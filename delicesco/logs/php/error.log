@@ -1,0 +1,331 @@
+[07-Nov-2019 18:36:48 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\premium-addons-for-elementor\widgets\premium-carousel.php on line 1074
+[07-Nov-2019 18:36:48 UTC] PHP Stack trace:
+[07-Nov-2019 18:36:48 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:0
+[07-Nov-2019 18:36:48 UTC] PHP   2. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:173
+[07-Nov-2019 18:36:48 UTC] PHP   3. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:465
+[07-Nov-2019 18:36:48 UTC] PHP   4. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:310
+[07-Nov-2019 18:36:48 UTC] PHP   5. Elementor\Core\Common\Modules\Ajax\Module->handle_ajax_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:286
+[07-Nov-2019 18:36:48 UTC] PHP   6. call_user_func:{C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:171}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:171
+[07-Nov-2019 18:36:48 UTC] PHP   7. Elementor\Widgets_Manager->ajax_render_widget() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:171
+[07-Nov-2019 18:36:48 UTC] PHP   8. Elementor\Core\DocumentTypes\Page->render_element() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\managers\widgets.php:323
+[07-Nov-2019 18:36:48 UTC] PHP   9. PremiumAddons\Widgets\Premium_Carousel->render_content() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\base\document.php:209
+[07-Nov-2019 18:36:48 UTC] PHP  10. PremiumAddons\Widgets\Premium_Carousel->render() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\base\widget-base.php:448
+[19-Dec-2019 11:00:07 UTC] PHP Warning:  Declaration of WP_CLI\UpgraderSkin::feedback($string) should be compatible with WP_Upgrader_Skin::feedback($string, ...$args) in phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/UpgraderSkin.php on line 0
+[19-Dec-2019 11:00:07 UTC] PHP Stack trace:
+[19-Dec-2019 11:00:07 UTC] PHP   1. {main}() C:\Users\fharb\AppData\Local\Programs\Local\resources\extraResources\site-binaries-win32\wp-cli\wp-cli.phar:0
+[19-Dec-2019 11:00:07 UTC] PHP   2. include() C:\Users\fharb\AppData\Local\Programs\Local\resources\extraResources\site-binaries-win32\wp-cli\wp-cli.phar:4
+[19-Dec-2019 11:00:07 UTC] PHP   3. include() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/php/boot-phar.php:11
+[19-Dec-2019 11:00:07 UTC] PHP   4. WP_CLI\bootstrap() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/wp-cli.php:27
+[19-Dec-2019 11:00:07 UTC] PHP   5. WP_CLI\Bootstrap\LaunchRunner->process() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/bootstrap.php:74
+[19-Dec-2019 11:00:07 UTC] PHP   6. WP_CLI\Runner->start() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Bootstrap/LaunchRunner.php:23
+[19-Dec-2019 11:00:07 UTC] PHP   7. WP_CLI\Runner->run_command_and_exit() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Runner.php:1132
+[19-Dec-2019 11:00:07 UTC] PHP   8. WP_CLI\Runner->run_command() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Runner.php:394
+[19-Dec-2019 11:00:07 UTC] PHP   9. WP_CLI\Dispatcher\Subcommand->invoke() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Runner.php:371
+[19-Dec-2019 11:00:07 UTC] PHP  10. call_user_func:{phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Dispatcher/Subcommand.php:451}() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Dispatcher/Subcommand.php:451
+[19-Dec-2019 11:00:07 UTC] PHP  11. WP_CLI\Dispatcher\CommandFactory::WP_CLI\Dispatcher\{closure:phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Dispatcher/CommandFactory.php:95-102}() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Dispatcher/Subcommand.php:451
+[19-Dec-2019 11:00:07 UTC] PHP  12. call_user_func:{phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Dispatcher/CommandFactory.php:98}() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Dispatcher/CommandFactory.php:98
+[19-Dec-2019 11:00:07 UTC] PHP  13. Core_Command->update() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/WP_CLI/Dispatcher/CommandFactory.php:98
+[19-Dec-2019 11:00:07 UTC] PHP  14. WP_CLI\Utils\get_upgrader() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/core-command/src/Core_Command.php:1111
+[19-Dec-2019 11:00:07 UTC] PHP  15. spl_autoload_call() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/utils-wp.php:138
+[19-Dec-2019 11:00:07 UTC] PHP  16. Composer\Autoload\ClassLoader->loadClass() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/utils-wp.php:138
+[19-Dec-2019 11:00:07 UTC] PHP  17. Composer\Autoload\includeFile() phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/site-binaries-win32/wp-cli/wp-cli.phar/vendor/composer/ClassLoader.php:322
+[20-Dec-2019 10:25:45 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 10:26:05 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 10:27:36 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 10:29:49 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 10:31:54 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 10:32:56 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('notoptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('notoptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(73): wp_cache_get('notoptions', 'options')
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(122): MEC::import('app\\li in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 10:33:07 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 10:34:02 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 10:34:07 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('notoptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('notoptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(73): wp_cache_get('notoptions', 'options')
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(122): MEC::import('app\\li in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 10:34:09 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 10:55:10 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 10:59:58 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 11:13:14 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 11:14:06 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 11:14:16 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('notoptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('notoptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(73): wp_cache_get('notoptions', 'options')
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(122): MEC::import('app\\li in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 16:22:39 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 16:36:18 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 16:36:43 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 16:44:44 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 16:51:18 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 16:51:27 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('notoptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('notoptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(73): wp_cache_get('notoptions', 'options')
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(122): MEC::import('app\\li in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 16:51:35 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 16:52:20 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('notoptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('notoptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(73): wp_cache_get('notoptions', 'options')
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(122): MEC::import('app\\li in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 16:53:35 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[20-Dec-2019 16:54:04 UTC] PHP Fatal error:  Uncaught Error: Maximum function nesting level of '256' reached, aborting! in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php:726
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(544): WP_Object_Cache->_exists('alloptions', 'options')
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php(123): WP_Object_Cache->get('alloptions', 'options', false, NULL)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(204): wp_cache_get('alloptions', 'options', false)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\option.php(92): wp_load_alloptions()
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(311): get_option('template')
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\theme.php(322): get_template()
+#6 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\modern-events-calendar-lite\mec-init.php(162): get_template_directory()
+#7 C:\Users\fharb\Local Sites in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\cache.php on line 726
+[06-Jan-2020 17:32:03 UTC] Astra: Running update() function!
+[06-Jan-2020 17:32:03 UTC] Astra: Batch Process Started!
+[06-Jan-2020 17:32:03 UTC] Astra: Queuing 2.2.0 - astra_page_builder_button_color_compatibility
+[06-Jan-2020 17:32:03 UTC] Astra: Queuing 2.2.0 - astra_vertical_horizontal_padding_migration
+[06-Jan-2020 17:32:06 UTC] Astra: Running update() function!
+[06-Jan-2020 17:32:06 UTC] Astra: Running update() function!
+[06-Jan-2020 17:32:06 UTC] Astra: Batch Process Started!
+[06-Jan-2020 17:32:06 UTC] Astra: Batch Process Started!
+[06-Jan-2020 17:32:06 UTC] Astra: Queuing 2.2.0 - astra_page_builder_button_color_compatibility
+[06-Jan-2020 17:32:06 UTC] Astra: Queuing 2.2.0 - astra_page_builder_button_color_compatibility
+[06-Jan-2020 17:32:06 UTC] Astra: Queuing 2.2.0 - astra_vertical_horizontal_padding_migration
+[06-Jan-2020 17:32:06 UTC] Astra: Queuing 2.2.0 - astra_vertical_horizontal_padding_migration
+[06-Jan-2020 17:32:07 UTC] Astra: Migrating vertical Padding - 10
+[06-Jan-2020 17:32:07 UTC] Astra: Migrating horizontal Padding - 40
+[06-Jan-2020 17:32:07 UTC] Astra: db version updated successfully!
+[06-Jan-2020 17:32:07 UTC] Astra: Migrating vertical Padding - 10
+[06-Jan-2020 17:32:07 UTC] Astra: Migrating horizontal Padding - 40
+[06-Jan-2020 17:32:07 UTC] Astra: Migrating vertical Padding - 10
+[06-Jan-2020 17:32:07 UTC] Astra: Migrating horizontal Padding - 40
+[06-Jan-2020 17:32:07 UTC] Astra: Batch Process Completed!
+[07-Jan-2020 11:15:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function UPCP_Set_Default_Style_Values() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ultimate-product-catalogue\Functions\Initial_Options.php:85
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php(288): Initial_UPCP_Options(false)
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php(312): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php(478): WP_Hook->do_action(Array)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\plugin.php(681): do_action('activate_ultima...', false)
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\plugins.php(44): activate_plugin('ultimate-produc...', 'http://delicesc...', false)
+#5 {main}
+  thrown in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ultimate-product-catalogue\Functions\Initial_Options.php on line 85
+[09-Jan-2020 10:08:58 UTC] PHP Warning:  Une erreur imprévue est survenue. Il pourrait y avoir un problème avec WordPress.org ou la configuration de ce serveur. Si vous continuez à rencontrer ce problème, veuillez vous rendre sur les <a href="https://wordpress.org/support/forums/">forums de support</a>. (WordPress n’a pas pu établir de connexion sécurisée vers WordPress.org. Veuillez contacter l’administrateur de votre serveur.) in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\update.php on line 162
+[09-Jan-2020 10:08:58 UTC] PHP Stack trace:
+[09-Jan-2020 10:08:58 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\update-core.php:0
+[09-Jan-2020 10:08:58 UTC] PHP   2. do_core_upgrade() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\update-core.php:817
+[09-Jan-2020 10:08:58 UTC] PHP   3. Core_Upgrader->upgrade() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\update-core.php:614
+[09-Jan-2020 10:08:58 UTC] PHP   4. wp_version_check() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\class-core-upgrader.php:136
+[09-Jan-2020 10:08:58 UTC] PHP   5. trigger_error() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\update.php:162
+[09-Jan-2020 10:14:23 UTC] Astra: db version updated successfully!
+[10-Jan-2020 16:04:52 UTC] PHP Warning:  Use of undefined constant SFSI_PLUGURL - assumed 'SFSI_PLUGURL' (this will throw an Error in a future version of PHP) in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ultimate-social-media-plus\views\sfsi_pop_content.php on line 839
+[10-Jan-2020 16:04:52 UTC] PHP Stack trace:
+[10-Jan-2020 16:04:52 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin.php:0
+[10-Jan-2020 16:04:52 UTC] PHP   2. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin.php:254
+[10-Jan-2020 16:04:52 UTC] PHP   3. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[10-Jan-2020 16:04:52 UTC] PHP   4. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:312
+[10-Jan-2020 16:04:52 UTC] PHP   5. sfsi_plus_options_page() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:288
+[10-Jan-2020 16:04:52 UTC] PHP   6. include() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ultimate-social-media-plus\libs\sfsi_install_uninstall.php:843
+[10-Jan-2020 16:04:52 UTC] PHP   7. include() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ultimate-social-media-plus\views\sfsi_options_view.php:256
+[10-Jan-2020 17:36:49 UTC] PHP Warning:  Use of undefined constant SFSI_PLUGURL - assumed 'SFSI_PLUGURL' (this will throw an Error in a future version of PHP) in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ultimate-social-media-plus\views\sfsi_pop_content.php on line 839
+[10-Jan-2020 17:36:49 UTC] PHP Stack trace:
+[10-Jan-2020 17:36:49 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin.php:0
+[10-Jan-2020 17:36:49 UTC] PHP   2. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin.php:254
+[10-Jan-2020 17:36:49 UTC] PHP   3. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[10-Jan-2020 17:36:49 UTC] PHP   4. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:312
+[10-Jan-2020 17:36:49 UTC] PHP   5. sfsi_plus_options_page() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:288
+[10-Jan-2020 17:36:49 UTC] PHP   6. include() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ultimate-social-media-plus\libs\sfsi_install_uninstall.php:843
+[10-Jan-2020 17:36:49 UTC] PHP   7. include() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ultimate-social-media-plus\views\sfsi_options_view.php:256

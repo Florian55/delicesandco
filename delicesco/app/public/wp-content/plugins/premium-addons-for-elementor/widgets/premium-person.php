@@ -471,6 +471,30 @@ class Premium_Person extends Widget_Base {
             ]
         );
         
+        $this->add_control('premium_person_whatsapp',
+            [
+                'label'         => __('Whatsapp', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::TEXT,
+                'dynamic'       => [ 'active' => true ],
+                'label_block'   => true,
+                'condition'     => [
+                    'premium_person_social_enable'  => 'yes'
+                ]
+            ]
+        );
+        
+        $this->add_control('premium_person_telegram',
+            [
+                'label'         => __('Telegram', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::TEXT,
+                'dynamic'       => [ 'active' => true ],
+                'label_block'   => true,
+                'condition'     => [
+                    'premium_person_social_enable'  => 'yes'
+                ]
+            ]
+        );
+        
         $this->add_control('premium_person_mail',
             [
                 'label'         => __('Email Address', 'premium-addons-for-elementor'),
@@ -668,6 +692,30 @@ class Premium_Person extends Widget_Base {
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
                 'default'       => '#',
+                'label_block'   => true,
+                'condition'     => [
+                    'multiple_social_enable'  => 'yes'
+                ]
+            ]
+        );
+        
+        $repeater->add_control('multiple_whatsapp',
+            [
+                'label'         => __('Whatsapp', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::TEXT,
+                'dynamic'       => [ 'active' => true ],
+                'label_block'   => true,
+                'condition'     => [
+                    'multiple_social_enable'  => 'yes'
+                ]
+            ]
+        );
+        
+        $repeater->add_control('multiple_telegram',
+            [
+                'label'         => __('Telegram', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::TEXT,
+                'dynamic'       => [ 'active' => true ],
                 'label_block'   => true,
                 'condition'     => [
                     'multiple_social_enable'  => 'yes'
@@ -1272,6 +1320,8 @@ class Premium_Person extends Widget_Base {
                 'pinterest'     => $settings['premium_person_pinterest'],
                 'dribbble'      => $settings['premium_person_dribbble'],
                 'behance'       => $settings['premium_person_behance'],
+                'whatsapp'      => $settings['premium_person_whatsapp'],
+                'telegram'      => $settings['premium_person_telegram'],
                 'mail'          => $settings['premium_person_mail']
             ];
         } else {
@@ -1287,6 +1337,8 @@ class Premium_Person extends Widget_Base {
                 'pinterest'     => $person['multiple_pinterest'],
                 'dribbble'      => $person['multiple_dribbble'],
                 'behance'       => $person['multiple_behance'],
+                'whatsapp'      => $person['multiple_whatsapp'],
+                'telegram'      => $person['multiple_telegram'],
                 'mail'          => $person['multiple_mail']
             ];
         }
@@ -1331,6 +1383,14 @@ class Premium_Person extends Widget_Base {
 
             if( ! empty( $socialIcons['behance'] ) ) : ?>
                 <li class="elementor-icon premium-person-list-item premium-person-behance"><a href="<?php echo $socialIcons['behance']; ?>" target="_blank"><i class="fab fa-behance"></i></a></li>
+            <?php endif;
+            
+            if( ! empty( $socialIcons['whatsapp'] ) ) : ?>
+                <li class="elementor-icon premium-person-list-item premium-person-whatsapp"><a href="<?php echo $socialIcons['whatsapp']; ?>" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+            <?php endif;
+            
+            if( ! empty( $socialIcons['telegram'] ) ) : ?>
+                <li class="elementor-icon premium-person-list-item premium-person-telegram"><a href="<?php echo $socialIcons['telegram']; ?>" target="_blank"><i class="fab fa-telegram-plane"></i></a></li>
             <?php endif;
 
             if( ! empty( $socialIcons['mail'] ) ) : ?>
@@ -1403,6 +1463,8 @@ class Premium_Person extends Widget_Base {
                     pinterest: settings.premium_person_pinterest,
                     dribbble: settings.premium_person_dribbble,
                     behance: settings.premium_person_behance,
+                    whatsapp: settings.premium_person_whatsapp,
+                    telegram: settings.premium_person_telegram,
                     mail: settings.premium_person_mail
                 };
             } else {
@@ -1418,6 +1480,8 @@ class Premium_Person extends Widget_Base {
                     pinterest: person.multiple_pinterest,
                     dribbble: person.multiple_dribbble,
                     behance: person.multiple_behance,
+                    whatsapp: person.multiple_whatsapp,
+                    telegram: person.multiple_telegram,
                     mail: person.multiple_mail
                 };
             }
@@ -1462,6 +1526,14 @@ class Premium_Person extends Widget_Base {
 
                 <# if( '' != socialIcons.behance ) { #>
                     <li class="elementor-icon premium-person-list-item premium-person-behance"><a href="{{ socialIcons.behance }}" target="_blank"><i class="fab fa-behance"></i></a></li>
+                <# } #>
+                
+                <# if( '' != socialIcons.whatsapp ) { #>
+                    <li class="elementor-icon premium-person-list-item premium-person-whatsapp"><a href="{{ socialIcons.whatsapp }}" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                <# } #>
+                
+                <# if( '' != socialIcons.telegram ) { #>
+                    <li class="elementor-icon premium-person-list-item premium-person-telegram"><a href="{{ socialIcons.mail }}" target="_blank"><i class="fab fa-telegram-plane"></i></a></li>
                 <# } #>
 
                 <# if( '' != socialIcons.mail ) { #>

@@ -718,7 +718,7 @@
 }
 /**************** Premium Carousel **************/
 /************************************************/
-.premium-carousel-wrapper a.carousel-arrow, .premium-carousel-wrapper a.ver-carousel-arrow, .premium-fb-rev-container a.carousel-arrow, .premium-blog-wrap a.carousel-arrow, .premium-hscroll-wrap a.carousel-arrow {
+.premium-carousel-wrapper a.carousel-arrow, .premium-carousel-wrapper a.ver-carousel-arrow, .premium-fb-rev-container a.carousel-arrow, .premium-blog-wrap a.carousel-arrow, .premium-hscroll-wrap a.carousel-arrow, .premium-twitter-feed-wrapper a.carousel-arrow {
     display: -ms-flexbox;
     display: -webkit-flex;
     display: -moz-flex;
@@ -753,7 +753,7 @@ div[class^="premium-"] .slick-arrow i {
 .premium-carousel-wrapper .premium-carousel-content-hidden {
     visibility: hidden;
 }
-.premium-carousel-wrapper a.carousel-arrow, .premium-fb-rev-container a.carousel-arrow, .premium-blog-wrap a.carousel-arrow, .premium-hscroll-wrap a.carousel-arrow {
+.premium-carousel-wrapper a.carousel-arrow, .premium-fb-rev-container a.carousel-arrow, .premium-blog-wrap a.carousel-arrow, .premium-hscroll-wrap a.carousel-arrow, .premium-twitter-feed-wrapper a.carousel-arrow {
     top: 50%;
 }
 .premium-carousel-wrapper a.ver-carousel-arrow {
@@ -2316,6 +2316,12 @@ button.premium-modal-box-modal-close {
 }
 .premium-person-defaults-yes li.premium-person-behance:hover a {
     background-color: #1769ff !important;
+}
+.premium-person-defaults-yes li.premium-person-whatsapp:hover a {
+    background-color: #25d366 !important;
+}
+.premium-person-defaults-yes li.premium-person-telegram:hover a {
+    background-color: #0088cc !important;
 }
  .premium-person-social-list li:hover a {
      box-shadow: none;

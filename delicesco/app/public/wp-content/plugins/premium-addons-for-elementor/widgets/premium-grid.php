@@ -2400,6 +2400,8 @@ class Premium_Grid extends Widget_Base {
         
         if ( $is_video ) {
             
+            $type = $item['premium_gallery_video_type'];
+            
             $this->add_render_attribute( $lightbox_key, [
                 'class'     => [
                     'pa-gallery-lightbox-wrap',
@@ -2418,11 +2420,17 @@ class Premium_Grid extends Widget_Base {
                         'videoAspectRatio' => '169',
                     ],
                 ];
-            
+                
+                if( 'hosted' === $type ) {
+                    $lightbox_options['videoParams'] = $this->get_hosted_params( $item );
+                }
+                
                 $this->add_render_attribute( $lightbox_key, [
                     'data-elementor-open-lightbox' => 'yes',
                     'data-elementor-lightbox' => wp_json_encode( $lightbox_options ),
                 ] );
+                
+                
             }
             
         ?>

@@ -966,7 +966,18 @@ class Premium_Person extends Widget_Base {
             ]
         );
         
-        /*Social Color*/
+        $this->add_responsive_control('premium_person_social_size',
+            [
+                'label'         => __('Size', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::SLIDER,
+                'size_units'    => ['px', 'em', '%'],
+                'label_block'   => true,
+                'selectors'     => [
+                    '{{WRAPPER}} .premium-person-list-item i' => 'font-size: {{SIZE}}{{UNIT}};',
+                ]
+            ]
+        );
+        
         $this->add_control('premium_person_social_color',
             [
                 'label'         => __('Color', 'premium-addons-for-elementor'),
@@ -981,7 +992,6 @@ class Premium_Person extends Widget_Base {
             ]
         );
 
-        /*Social Hover Color*/
         $this->add_control('premium_person_social_hover_color',
             [
                 'label'         => __('Hover Color', 'premium-addons-for-elementor'),
@@ -1068,10 +1078,8 @@ class Premium_Person extends Widget_Base {
             ]
         );
         
-        /*End Description Style Section*/
         $this->end_controls_section();
         
-        /*Start Content Style Section*/
         $this->start_controls_section('premium_person_general_style', 
             [
                 'label'         => __('Content', 'premium-addons-for-elementor'),
@@ -1312,7 +1320,7 @@ class Premium_Person extends Widget_Base {
             $socialIcons = [
                 'facebook'      => $settings['premium_person_facebook'],
                 'twitter'       => $settings['premium_person_twitter'],
-                'linkedin'      => $settings['premium_person_twitter'],
+                'linkedin'      => $settings['premium_person_linkedin'],
                 'google'        => $settings['premium_person_google'],
                 'youtube'       => $settings['premium_person_youtube'],
                 'instagram'     => $settings['premium_person_instagram'],
@@ -1455,7 +1463,7 @@ class Premium_Person extends Widget_Base {
                 socialIcons = {
                     facebook: settings.premium_person_facebook,
                     twitter:  settings.premium_person_twitter,
-                    linkedin:  settings.premium_person_twitter,
+                    linkedin:  settings.premium_person_linkedin,
                     google:  settings.premium_person_google,
                     youtube: settings.premium_person_youtube,
                     instagram: settings.premium_person_instagram,

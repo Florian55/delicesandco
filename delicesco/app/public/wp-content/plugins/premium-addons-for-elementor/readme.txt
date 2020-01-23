@@ -5,7 +5,7 @@ Donate Link: https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_c
 Requires at Least: 4.5
 Tested Up To: 5.3
 Requires PHP: 5.4
-Stable Tag: 3.10.6
+Stable Tag: 3.10.7
 License: GPL v3.0
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -174,6 +174,11 @@ Premium Addons for Elementor is 100% Ads Free, Ads can only be detected from You
 14. Premium Progress Bar Widget for Elementor
 
 == Changelog ==
+
+= 3.10.7 =
+
+- Tweak: Added `Size` option for social icons in Persons widget.
+- Fixed: Linkedin icon not showing in Persons widget.
 
 = 3.10.6 =
 

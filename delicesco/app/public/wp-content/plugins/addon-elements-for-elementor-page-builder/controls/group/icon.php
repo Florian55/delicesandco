@@ -48,20 +48,34 @@ class Group_Control_Icon extends Group_Control_Base {
 		];
 
 
-		$controls['icon'] = [
-			'label'     => __( 'Icon', 'wts-eae' ),
-			'type'      => Controls_Manager::ICON,
-			'default'   => 'fa fa-star',
-			'condition' => [
+//		$controls['icon'] = [
+//			'label'     => __( 'Icon', 'wts-eae' ),
+//			'type'      => Controls_Manager::ICON,
+//			'default'   => 'fa fa-star',
+//			'condition' => [
+//				'eae_icon!' => '',
+//				'icon_type'  => 'icon'
+//			],
+//		];
+
+        $controls['icon_new'] = [
+            'label' => __( 'Icon', 'wts-eae' ),
+            'type' => Controls_Manager::ICONS,
+            'fa4compatibility' => 'item_icon_icon',
+            'default' => [
+                'value' => 'fas fa-star',
+                'library' => 'fa-solid',
+            ],
+            'condition' => [
 				'eae_icon!' => '',
 				'icon_type'  => 'icon'
 			],
-		];
+        ];
 
 		$controls['image'] = [
 			'label'       => __( 'Custom Icon', 'wts-eae' ),
 			'type'        => Controls_Manager::MEDIA,
-			'label_block' => false,
+			'label_block' => true,
 			'condition'   => [
 				'eae_icon!' => '',
 				'icon_type'  => 'image'
@@ -71,6 +85,9 @@ class Group_Control_Icon extends Group_Control_Base {
 		$controls['text'] = [
 			'label'       => __( 'Text', 'wts-eae' ),
 			'type'        => Controls_Manager::TEXT,
+            'dynamic' => [
+                'active' => true,
+            ],
 			'label_block' => false,
 			'condition'   => [
 				'eae_icon!' => '',

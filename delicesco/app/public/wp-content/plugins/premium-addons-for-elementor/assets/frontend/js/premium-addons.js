@@ -952,13 +952,43 @@
     
     var PremiumPersonsHandler = function($scope, $) {
         
-        if( ! $scope.hasClass("premium-person-widget-style2") )
-            return;
-        
         var $persons = $scope.find(".multiple-persons");
         
         if( ! $persons.length )
             return;
+        
+        var carousel = $persons.data("carousel");
+        
+        if( carousel ) {
+                
+            var autoPlay    = $persons.data("play"),
+                speed       = $persons.data("speed"),
+                rtl         = $persons.data("rtl"),
+                colsNumber  = $persons.data("col"),
+                prevArrow   = '<a type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Next" role="button" style=""><i class="fas fa-angle-left" aria-hidden="true"></i></a>',
+                nextArrow   = '<a type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next" role="button" style=""><i class="fas fa-angle-right" aria-hidden="true"></i></a>';
+
+            $persons.slick({
+                infinite: true,
+                slidesToShow: colsNumber,
+                slidesToScroll: colsNumber,
+                responsive: [
+                  { breakpoint: 769, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+                  { breakpoint: 481, settings: { slidesToShow: 1, slidesToScroll: 1 } }
+                ],
+                autoplay: autoPlay,
+                autoplaySpeed: speed,
+                rtl: rtl,
+                nextArrow: nextArrow,
+                prevArrow: prevArrow,
+                draggable: true,
+                pauseOnHover: true
+            });
+        }
+        
+        if( ! $scope.hasClass("premium-person-widget-style2") )
+            return;
+        
         
         if( "yes" !== $persons.data("persons-equal") )
             return;

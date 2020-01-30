@@ -1,9 +1,9 @@
 === Elementor Addon Elements ===
-Contributors: webtechstreet, wpvibes, satishprajapati, hardiksharma
+Contributors: webtechstreet, satishprajapati, hardiksharma
 Tags: page-builder, elementor, elementor addon
 Requires at least: 4.4
 Tested up to: 5.3
-Stable tag: 5.2
+Stable tag: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,12 +23,11 @@ Current Addon Elements:
 * Timeline (new)
 * Info Circle (new)
 * Comparison Table (new)
-* Filterable Gallery (new)
 * Info Circle (new)
 * Background Slider
 * Modal Popup
 * Flip Box
-* Text Separator
+* Text Separator 
 * Price Table
 * Post List
 * Animated Text
@@ -57,12 +56,6 @@ Note: This plugin is an addon of Elementor Page Builder (https://wordpress.org/p
 
 New elements are added at the end of default elementor widget area.
 
-= How to set shape separator as full width. =
-Setting up separator can be little tricky for you initially.
-Under section settings set
-Stretch Section => yes
-Content width => full width
-Column gap => No gap
 
 == Screenshots ==
 
@@ -72,13 +65,25 @@ Column gap => No gap
 3. /assets/screenshot-4.png
 
 == Changelog ==
+
+= 1.6.1 =
+* Icon Migration from Font Awesome 4 to Font Awesome 5.
+* Fixed issue with SVG display
+* Modal Popup Close Button Spacing option added.
+* Dual Button CSS fix
+* After/Before Image Compare separator css fix.
+* Timeline OrderBy Field issue fix.
+* Comparision Table Check and Close icon css class update to fa5.
+* Masonry dependencies issue bug fix to filterable gallery.
+* Section Column cursor css added.
+
 = 1.6
 * New Widget: Filterable Gallery
-* New Feature: Section & Column Click
-* Fix : Padding issue in Dual Button
-* Fix : Shortcodes not rendering in Modal Popup
-* Fix : Issue with icon alignment
-* Tweak : Modal popup compatibility with our another plugin "AnyWhere Elementor Pro"
+* New Widget: Wrapper Link
+* Fix : Dual Button Padding
+* Fix : New module added default activate
+* Fix : Modal Popup shortcode not rendering fix
+* Tweak : Modal Popup content type AE-Template option added
 
 
 = 1.5.3 =
@@ -105,7 +110,6 @@ Column gap => No gap
 = 1.3 =
 * New Widget: Timeline
 * New Widget: Info Circle
-* New Widget: Evergreen Timer
 * New Widget: Comparison Table
 
 = 1.2 =
@@ -154,7 +158,7 @@ Column gap => No gap
 
 = 0.2.1 =
 * Fixed bug found in previous release. It broke text separator.
-
+ 
 = 0.2.0 =
 * Fixed issue with icon css in various elements.
 * Fixed issue - text separator overlapping content below when aligned left or right.

@@ -9,6 +9,7 @@ use Elementor\Scheme_Typography;
 use Elementor\Utils;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Border;
+use Elementor\Icons_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -71,14 +72,19 @@ class ImageCompare extends EAE_Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'slider_icon',
-			[
-				'label' => __( 'Icon', 'wts-eae' ),
-				'type' => Controls_Manager::ICON,
-				'default' => 'fa fa-star',
-			]
-		);
+
+        $this->add_control(
+            'slider_icon_new',
+            [
+                'label' => __( 'Icon', 'wts-eae' ),
+                'type' => Controls_Manager::ICONS,
+                'fa4compatibility' => 'slider_icon',
+                'default' => [
+                    'value' => 'fas fa-star',
+                    'library' => 'fa-solid',
+                ],
+            ]
+        );
 
 		/*$this->add_responsive_control(
 			'img_height',
@@ -104,6 +110,9 @@ class ImageCompare extends EAE_Widget_Base {
 			[
 				'label' => __( 'Before Image', 'wts-eae' ),
 				'type' => Controls_Manager::MEDIA,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
 				],
@@ -132,6 +141,9 @@ class ImageCompare extends EAE_Widget_Base {
 			[
 				'label' => __( 'After Image', 'wts-eae' ),
 				'type' => Controls_Manager::MEDIA,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
 				],
@@ -163,6 +175,9 @@ class ImageCompare extends EAE_Widget_Base {
 			[
 				'label' => __( 'Before Text', 'wts-eae' ),
 				'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'placeholder' => __( 'Enter text', 'wts-eae' ),
 				'default' => __( 'BEFORE', 'wts-eae' ),
 			]
@@ -173,6 +188,9 @@ class ImageCompare extends EAE_Widget_Base {
 			[
 				'label' => __( 'After Text', 'wts-eae' ),
 				'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'placeholder' => __( 'Enter text', 'wts-eae' ),
 				'default' => __( 'AFTER', 'wts-eae' ),
 			]
@@ -189,14 +207,41 @@ class ImageCompare extends EAE_Widget_Base {
 			]
 		);
 
+		$this->add_responsive_control(
+			'icon_size',
+			[
+				'label' => __( 'Icon Size', 'wts-eae' ),
+				'type' => Controls_Manager::SLIDER,
+				'default' => [
+					'size' => 22,
+				],
+				'render_type' => 'template',
+				'range' => [
+					'px' => [
+						'min' => 3,
+						'max' => 60,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .eae-slider-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .eae-img-comp-slider' => 'padding: {{size}}{{UNIT}};',
+					'{{WRAPPER}} .eae-img-comp-slider svg' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
 		$this->add_control(
 			'slider_icon_color',
 			[
 				'label'     => __('Icon Color', 'wts-eae'),
 				'type'      => Controls_Manager::COLOR,
-				'type'  => Scheme_Color::get_type(),
+                'scheme' => [
+                    'type' => Scheme_Color::get_type(),
+                    'value' => Scheme_Color::COLOR_2,
+                ],
 				'selectors'    => [
-					'{{WRAPPER}} .eae-slider-icon' => 'color: {{VALUE}}'
+					'{{WRAPPER}} .eae-slider-icon' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .eae-img-comp-slider svg' => 'fill: {{VALUE}}'
 				]
 			]
 		);
@@ -209,6 +254,17 @@ class ImageCompare extends EAE_Widget_Base {
 				'type'  => Scheme_Color::get_type(),
 				'selectors'    => [
 					'{{WRAPPER}} .eae-img-comp-slider' => 'background-color: {{VALUE}} !important'
+				]
+			]
+		);
+		$this->add_control(
+			'separator_color',
+			[
+				'label'     => __('Separator Color', 'wts-eae'),
+				'type'      => Controls_Manager::COLOR,
+				'type'  => Scheme_Color::get_type(),
+				'selectors'    => [
+					'{{WRAPPER}} .eae-img-comp-overlay' => 'border-color: {{VALUE}}'
 				]
 			]
 		);
@@ -245,6 +301,7 @@ class ImageCompare extends EAE_Widget_Base {
 				'min' => 0,
 				'max' => 10,
 				'step' => 1,
+				'render_type' => 'template',
 				'selectors' => [
 					'{{WRAPPER}} .mode-horizontal .eae-img-comp-overlay' => ' border-right-style:solid; border-right-width: {{SIZE}}px;',
 					'{{WRAPPER}} .mode-vertical .eae-img-comp-overlay' => ' border-bottom-style:solid; border-bottom-width: {{SIZE}}px;',
@@ -400,7 +457,7 @@ class ImageCompare extends EAE_Widget_Base {
 
 
 	protected function render() {
-		$settings = $this->get_settings();
+		$settings = $this->get_settings_for_display();
         //print_r($settings);
 		$this->add_render_attribute('wrapper', 'class', 'eae-img-comp-container');
 		$this->add_render_attribute('wrapper', 'class',  'mode-'.$settings['compare_style']);
@@ -409,6 +466,9 @@ class ImageCompare extends EAE_Widget_Base {
 
 		$this->add_render_attribute('icon', 'class',  'icon-'.$settings['compare_style']);
 		$this->add_render_attribute('icon', 'class',  'eae-img-comp-slider');
+
+        $icon_migrated = isset($settings['__fa4_migrated']['slider_icon_new']);
+        $icon_is_new = empty($settings['slider_icon']);
 		?>
         <figure <?php echo $this->get_render_attribute_string('wrapper'); ?> >
                 <?php echo wp_get_attachment_image($settings['before_image']['id'], $settings['before_image_size_size']); ?>
@@ -418,7 +478,11 @@ class ImageCompare extends EAE_Widget_Base {
             <?php }  ?>
 
             <div <?php echo $this->get_render_attribute_string('icon'); ?> >
-                <i class="<?php echo $settings['slider_icon']; ?> eae-slider-icon" ></i>
+                <?php if ( $icon_migrated || $icon_is_new ) :
+                    Icons_Manager::render_icon($settings['slider_icon_new'], ['aria-hidden' => 'true' , 'class' => 'eae-slider-icon']);
+                else:?>
+                    <i class="<?php echo $settings['slider_icon']; ?> eae-slider-icon"></i>
+                <?php endif; ?>
             </div>
 
             <div class="eae-img-comp-img eae-img-comp-overlay">
@@ -433,25 +497,32 @@ class ImageCompare extends EAE_Widget_Base {
         <?php
     }
 
-	protected function _content_template() {
-		?>
+    protected function _content_template() {
+        ?>
         <#
         view.addRenderAttribute('wrapper','class','eae-img-comp-container');
         view.addRenderAttribute('wrapper','class','mode-'+settings.compare_style);
         view.addRenderAttribute('wrapper','data-ab-style',settings.compare_style);
         view.addRenderAttribute('wrapper','data-slider-pos', settings.slider_position.size);
 
-        view.addRenderAttribute('icon','class',settings.slider_icon);
+
         view.addRenderAttribute('icon','class','eae-slider-icon');
+
+        iconHTML = elementor.helpers.renderIcon( view, settings.slider_icon_new, { 'aria-hidden': true  , 'class' : 'eae-slider-icon'}, 'i' , 'object' ),
+        migrated = elementor.helpers.isIconMigrated( settings, 'slider_icon_new' );
         #>
 
         <div {{{ view.getRenderAttributeString( 'wrapper') }}} >
-            <img src="{{{ settings.before_image.url }}}" />
+        <img src="{{{ settings.before_image.url }}}" />
         <# if(settings.text_before) {#>
-        <span class="eae-text-before">{{{settings.text_before}}}</span>
+            <span class="eae-text-before">{{{settings.text_before}}}</span>
         <# } #>
-            <div class="eae-img-comp-slider"">
-            <i {{{ view.getRenderAttributeString( 'icon') }}} ></i>
+        <div class="eae-img-comp-slider"">
+        <# if ( iconHTML.rendered && ( ! settings.slider_icon || migrated ) ) { #>
+           {{{iconHTML.value}}}
+        <# } else { #>
+            <i class="{{ settings.slider_icon }}" aria-hidden="true"></i>
+        <# } #>
         </div>
 
         <div class="eae-img-comp-img eae-img-comp-overlay">
@@ -462,7 +533,10 @@ class ImageCompare extends EAE_Widget_Base {
         </div>
 
         </div>
-		<?php
+        <?php
+    }
+	public function on_import( $element ) {
+		return Icons_Manager::on_import_migration( $element, 'slider_icon', 'slider_icon_new', true );
 	}
 }
 //Plugin::instance()->widgets_manager->register_widget_type( new Widget_Compare_Image() );

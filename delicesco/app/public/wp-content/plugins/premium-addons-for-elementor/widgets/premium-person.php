@@ -42,6 +42,7 @@ class Premium_Person extends Widget_Base {
     public function get_script_depends() {
         return [
             'imagesloaded',
+            'jquery-slick',
             'premium-addons-js'
         ];
     }
@@ -757,6 +758,61 @@ class Premium_Person extends Widget_Base {
            ]
        );
         
+        $this->add_control('carousel',
+            [
+                'label'         => __('Carousel', 'premium-addons-pro'),
+                'type'          => Controls_Manager::SWITCHER
+            ]
+        );
+        
+        $this->add_control('carousel_play',
+            [
+                'label'         => __('Auto Play', 'premium-addons-pro'),
+                'type'          => Controls_Manager::SWITCHER,
+                'condition'     => [
+                    'carousel'  => 'yes'
+                ]
+            ]
+        );
+        
+        $this->add_control('carousel_autoplay_speed',
+			[
+				'label'			=> __( 'Autoplay Speed', 'premium-addons-pro' ),
+				'description'	=> __( 'Autoplay Speed means at which time the next slide should come. Set a value in milliseconds (ms)', 'premium-addons-pro' ),
+				'type'			=> Controls_Manager::NUMBER,
+				'default'		=> 5000,
+				'condition'		=> [
+					'carousel' => 'yes',
+                    'carousel_play' => 'yes',
+				],
+			]
+		);
+        
+        $this->add_responsive_control('carousel_arrows_pos',
+            [
+                'label'         => __('Arrows Position', 'premium-addons-pro'),
+                'type'          => Controls_Manager::SLIDER,
+                'size_units'    => ['px', "em"],
+                'range'         => [
+                    'px'    => [
+                        'min'       => -100, 
+                        'max'       => 100,
+                    ],
+                    'em'    => [
+                        'min'       => -10, 
+                        'max'       => 10,
+                    ],
+                ],
+                'condition'		=> [
+					'carousel' => 'yes'
+				],
+                'selectors'     => [
+                    '{{WRAPPER}} .premium-persons-container a.carousel-arrow.carousel-next' => 'right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .premium-persons-container a.carousel-arrow.carousel-prev' => 'left: {{SIZE}}{{UNIT}};',
+                ]
+            ]
+        );
+        
         $this->end_controls_section();
         
         /*Start Image Style Section*/
@@ -1153,6 +1209,79 @@ class Premium_Person extends Widget_Base {
         
         $this->end_controls_section();
         
+        $this->start_controls_section('carousel_style',
+            [
+                'label'         => __('Carousel', 'premium-addons-pro'),
+                'tab'           => Controls_Manager::TAB_STYLE,
+                'condition'     => [
+                    'carousel'  => 'yes'
+                ]
+            ]
+        );
+        
+        $this->add_control('arrow_color',
+            [
+                'label'         => __('Color', 'premium-addons-pro'),
+                'type'          => Controls_Manager::COLOR,
+                'scheme'        => [
+                    'type'  => Scheme_Color::get_type(),
+                    'value' => Scheme_Color::COLOR_1,
+                ],
+                'selectors'     => [
+                    '{{WRAPPER}} .premium-persons-container .slick-arrow' => 'color: {{VALUE}};',
+                ]
+            ]
+        );
+
+        $this->add_responsive_control('arrow_size',
+            [
+                'label'         => __('Size', 'premium-addons-pro'),
+                'type'          => Controls_Manager::SLIDER,
+                'size_units'    => ['px', '%' ,'em'],
+                'selectors'     => [
+                    '{{WRAPPER}} .premium-persons-container .slick-arrow i' => 'font-size: {{SIZE}}{{UNIT}};'
+                ]
+            ]
+        );
+        
+        $this->add_control('arrow_background',
+            [
+                'label'         => __('Background Color', 'premium-addons-pro'),
+                'type'          => Controls_Manager::COLOR,
+                'scheme'        => [
+                    'type'  => Scheme_Color::get_type(),
+                    'value' => Scheme_Color::COLOR_2,
+                ],
+                'selectors'     => [
+                    '{{WRAPPER}} .premium-persons-container .slick-arrow' => 'background-color: {{VALUE}};',
+                ]
+            ]
+        );
+        
+        $this->add_control('arrow_border_radius',
+            [
+                'label'         => __('Border Radius', 'premium-addons-pro'),
+                'type'          => Controls_Manager::SLIDER,
+                'size_units'    => ['px', '%' ,'em'],
+                'selectors'     => [
+                    '{{WRAPPER}} .premium-persons-container .slick-arrow' => 'border-radius: {{SIZE}}{{UNIT}};'
+                ]
+            ]
+        );
+
+        $this->add_control('arrow_padding',
+            [
+                'label'         => __('Padding', 'premium-addons-pro'),
+                'type'          => Controls_Manager::SLIDER,
+                'size_units'    => ['px', '%' ,'em'],
+                'selectors'     => [
+                    '{{WRAPPER}} .premium-persons-container .slick-arrow' => 'padding: {{SIZE}}{{UNIT}};'
+                ]
+            ]
+        );
+        
+        $this->end_controls_section();
+        
     }
 
     /**
@@ -1200,6 +1329,28 @@ class Premium_Person extends Widget_Base {
             $persons = $settings['multiple_persons'];
             $this->add_render_attribute( 'persons_container', 'class', 'multiple-persons' );
             $this->add_render_attribute( 'persons_container', 'data-persons-equal', $settings['multiple_equal_height'] );
+        }
+        
+        $carousel = 'yes' === $settings['carousel'] ? true : false; 
+        
+        if( $carousel ) {
+            
+            $this->add_render_attribute('persons_container', 'data-carousel', $carousel );
+            
+            $columns = intval ( 100 / substr( $settings['persons_per_row'], 0, strpos( $settings['persons_per_row'], '%') ) );
+        
+            $this->add_render_attribute('persons_container', 'data-col', $columns );
+            
+            $play = 'yes' === $settings['carousel_play'] ? true : false;
+            
+            $speed = ! empty( $settings['carousel_autoplay_speed'] ) ? $settings['carousel_autoplay_speed'] : 5000;
+            
+            $this->add_render_attribute('persons_container', 'data-play', $play );
+            
+            $this->add_render_attribute('persons_container', 'data-speed', $speed );
+            
+            $this->add_render_attribute('persons_container', 'data-rtl', is_rtl() );
+            
         }
             
 
@@ -1450,6 +1601,25 @@ class Premium_Person extends Widget_Base {
             var persons = settings.multiple_persons;
             view.addRenderAttribute( 'persons_container', 'class', 'multiple-persons' );
             view.addRenderAttribute( 'persons_container', 'data-persons-equal', settings.multiple_equal_height );
+        }
+        
+        var carousel = 'yes' === settings.carousel ? true : false; 
+        
+        if( carousel ) {
+            
+            view.addRenderAttribute('persons_container', 'data-carousel', carousel );
+            
+            var play = 'yes' === settings.carousel_play ? true : false,
+                speed = '' !== settings.carousel_autoplay_speed ? settings.carousel_autoplay_speed : 5000;
+                
+            var columns = parseInt( 100 / settings.persons_per_row.substr( 0, settings.persons_per_row.indexOf('%') ) );
+        
+            view.addRenderAttribute('persons_container', 'data-col', columns );
+            
+            view.addRenderAttribute('persons_container', 'data-play', play );
+            
+            view.addRenderAttribute('persons_container', 'data-speed', speed );
+            
         }
             
         

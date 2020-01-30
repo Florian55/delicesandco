@@ -8,6 +8,7 @@ use WTS_EAE\Base\EAE_Widget_Base;
 use Elementor\Scheme_Color;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
+use Elementor\Icons_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -38,13 +39,18 @@ class FlipBox extends EAE_Widget_Base {
             ]
         );
 
+
+
         $this->add_control(
-            'front_icon',
+            'front_icon_new',
             [
                 'label' => __( 'Icon', 'wts-eae' ),
-                'type' => Controls_Manager::ICON,
-                'label_block' => true,
-                'default' => 'fa fa-star',
+                'type' => Controls_Manager::ICONS,
+                'fa4compatibility' => 'front_icon',
+                'default' => [
+                    'value' => 'fas fa-star',
+                    'library' => 'fa-solid',
+                ],
             ]
         );
 
@@ -133,12 +139,15 @@ class FlipBox extends EAE_Widget_Base {
         );
 
         $this->add_control(
-            'back_icon',
+            'back_icon_new',
             [
                 'label' => __( 'Icon', 'wts-eae' ),
-                'type' => Controls_Manager::ICON,
-                'label_block' => true,
-                'default' => 'fa fa-star',
+                'type' => Controls_Manager::ICONS,
+                'fa4compatibility' => 'front_icon',
+                'default' => [
+                    'value' => 'fas fa-star',
+                    'library' => 'fa-solid',
+                ],
             ]
         );
 
@@ -419,9 +428,7 @@ class FlipBox extends EAE_Widget_Base {
                 'default' => '#FFF',
                 'selectors' => [
                     '{{WRAPPER}} .eae-flip-box-front .icon-wrapper i' => 'color: {{VALUE}};',
-                ],
-                'condition' => [
-                    'front_icon!' => ''
+                    '{{WRAPPER}} .eae-flip-box-front .icon-wrapper svg' => 'fill: {{VALUE}};',
                 ],
             ]
         );
@@ -473,6 +480,7 @@ class FlipBox extends EAE_Widget_Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .eae-flip-box-front .icon-wrapper i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .eae-flip-box-front .icon-wrapper svg' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -597,10 +605,9 @@ class FlipBox extends EAE_Widget_Base {
                 'default' => '#FFF',
                 'selectors' => [
                     '{{WRAPPER}} .eae-flip-box-back .icon-wrapper i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .eae-flip-box-back .icon-wrapper svg' => 'fill: {{VALUE}};',
                 ],
-                'condition' => [
-                    'back_icon!' => ''
-                ],
+
             ]
         );
 
@@ -651,6 +658,7 @@ class FlipBox extends EAE_Widget_Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .eae-flip-box-back .icon-wrapper i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .eae-flip-box-back .icon-wrapper svg' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -790,19 +798,23 @@ class FlipBox extends EAE_Widget_Base {
 
 	protected function render( ) {
         $settings = $this->get_settings_for_display();
+        //echo '<pre>'; print_r($settings); echo '</pre>';
+        $front_icon_migrated = isset($settings['__fa4_migrated']['front_icon_new']);
+        $front_icon_is_new = empty($settings['front_icon']) && Icons_Manager::is_migration_allowed();
+
+        $back_icon_migrated = isset($settings['__fa4_migrated']['back_icon_new']);
+        $back_icon_is_new = empty($settings['back_icon']) && Icons_Manager::is_migration_allowed();;
 
         $this->add_render_attribute('front-icon-wrapper','class','icon-wrapper');
         $this->add_render_attribute('front-icon-wrapper','class','eae-fb-icon-view-'.$settings['front_icon_view']);
         $this->add_render_attribute('front-icon-wrapper','class','eae-fb-icon-shape-'.$settings['front_icon_shape']);
         $this->add_render_attribute('front-icon-title','class','front-icon-title');
-        $this->add_render_attribute('front-icon','class',$settings['front_icon']);
 
 
         $this->add_render_attribute('back-icon-wrapper','class','icon-wrapper');
         $this->add_render_attribute('back-icon-wrapper','class','eae-fb-icon-view-'.$settings['back_icon_view']);
         $this->add_render_attribute('back-icon-wrapper','class','eae-fb-icon-shape-'.$settings['back_icon_shape']);
         $this->add_render_attribute('back-icon-title','class','back-icon-title');
-        $this->add_render_attribute('back-icon','class',$settings['back_icon']);
 
         $this->add_render_attribute( 'button', 'class', 'eae-fb-button' );
         if ( ! empty( $settings['link']['url'] ) ) {
@@ -819,9 +831,13 @@ class FlipBox extends EAE_Widget_Base {
 
                 <div class="eae-flip-box-front">
                     <div class="flipbox-content">
-                        <?php if(!empty($settings['front_icon'])){ ?>
+                        <?php if(!empty($settings['front_icon_new'])){ ?>
                             <div <?php echo $this->get_render_attribute_string( 'front-icon-wrapper' ); ?>>
-                                <i <?php echo $this->get_render_attribute_string( 'front-icon' ); ?>></i>
+                                <?php if ( $front_icon_migrated || $front_icon_is_new ) :
+                                    Icons_Manager::render_icon($settings['front_icon_new'], ['aria-hidden' => 'true']);
+                                else:?>
+                                    <i class="<?php echo $settings['front_icon']; ?>"></i>
+                                <?php endif; ?>
                             </div>
                         <?php } ?>
 
@@ -841,9 +857,13 @@ class FlipBox extends EAE_Widget_Base {
 
                 <div class="eae-flip-box-back">
                     <div class="flipbox-content">
-                        <?php if(!empty($settings['back_icon'])){ ?>
+                        <?php if(!empty($settings['back_icon_new'])){ ?>
                             <div <?php echo $this->get_render_attribute_string( 'back-icon-wrapper' ); ?>>
-                                <i <?php echo $this->get_render_attribute_string( 'back-icon' ); ?>></i>
+                                <?php if ( $back_icon_migrated || $back_icon_is_new ) :
+                                    Icons_Manager::render_icon($settings['back_icon_new'], ['aria-hidden' => 'true']);
+                                else:?>
+                                    <i class="<?php echo $settings['back_icon']; ?>"></i>
+                                <?php endif; ?>
                             </div>
                         <?php } ?>
 
@@ -873,5 +893,6 @@ class FlipBox extends EAE_Widget_Base {
         </div>
         <?php
 	}
+	
 }
 //Plugin::instance()->widgets_manager->register_widget_type( new Widget_FlipBox() );

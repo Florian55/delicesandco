@@ -7,6 +7,7 @@ use Elementor\Scheme_Color;
 use WTS_EAE\Controls\Group\Group_Control_Icon;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
+use Elementor\Icons_Manager;
 
 class Helper {
 	function eae_get_post_data( $args ) {
@@ -112,22 +113,24 @@ class Helper {
 		return $orderby;
 	}
 
-	public function get_icon_html( $settings, $control_name , $default ) {
+	public function get_icon_html($settings, $control_name , $default, $all_settings ) {
 
 		$icon_html = '';
-
-		//echo '<pre>'; print_r($settings); echo '</pre>'; die();
+		$skin_type = $all_settings['_skin'];
+		//echo '<pre>'; print_r($settings); echo '</pre>';die();
 		// --------------New Work-----------------
 
 		$view = 'eae-icon-view-'.$default['view'];
 		$shape = 'eae-icon-shape-'.$default['shape'];
 
+		$icon_migrated = isset($all_settings['__fa4_migrated'][$skin_type.'_global_icon_new']);
+		$icon_is_new = empty($all_settings[$skin_type .'_global_icon']);
+
+        $item_icon_migrated = isset($settings['__fa4_migrated'][$control_name.'_icon_new']);
+        $item_icon_is_new = empty($settings[$control_name.'_icon']);
 		if ( !isset($settings[ $control_name . '_eae_icon' ]) ||  $settings[ $control_name . '_eae_icon' ] == '' ) {
 
-			switch($default['icon_type']){
-
-				case 'icon' :   $icon_html = '<i class="'.$default['icon'].'"></i>';
-					break;
+			switch($default['icon_type']) {
 
 				case 'image' :  $icon_html = '<i><img src="'.$default['image']['url'].'"/></i>';
 					break;
@@ -142,12 +145,28 @@ class Helper {
 			$icon_type = 'eae-icon-type-' . $default['icon_type'];
 			$icon_name = 'eae-icon-'.$control_name;
 
+            if ( $default['icon_new'] !== '') {
+                ?>
+                <div class="eae-icon <?php echo $icon_name . ' ' . $view . ' ' . $shape . ' ' . $icon_type; ?>">
+                    <div class="eae-icon-wrap">
+                        <?php if($default['icon_type'] == 'icon'){ ?>
+                            <?php if ($icon_migrated || $icon_is_new) :
+                                Icons_Manager::render_icon($all_settings[$skin_type.'_global_icon_new'], ['aria-hidden' => 'true']);
+                            else:?>
+                                <i class="<?php echo $default['icon']; ?>"></i>
+                            <?php endif; ?>
+                        <?php } else {
+                            echo $icon_html;
+                         } ?>
+                    </div>
+                </div>
+                <?php
+            }
+
 		}else{
 			//echo $settings[ $control_name . '_icon_text' ];
 			switch($settings[ $control_name . '_icon_type' ]){
 
-				case 'icon' :   $icon_html = '<i class="'.$settings[ $control_name . '_icon' ].'"></i>';
-					break;
 
 				case 'image' :  $icon_html = '<i><img src="'.$settings[ $control_name . '_image' ]['url'].'" /></i>';
 					break;
@@ -169,11 +188,21 @@ class Helper {
 
 			$icon_name = 'eae-icon-'.$control_name;
 		}
-		if ( $default['icon'] !== '' || $settings[ $control_name . '_eae_icon' ] !== '' ) {
+		if ( isset($settings[ $control_name . '_eae_icon' ])  && $settings[ $control_name . '_eae_icon' ] !== '' ) {
 			?>
 			<div class="eae-icon <?php echo $icon_name . ' ' . $view . ' ' . $shape . ' ' . $icon_type; ?>">
 				<div class="eae-icon-wrap">
-					<?php echo $icon_html; ?>
+                    <?php
+                    if($settings[ $control_name . '_icon_type' ] == 'icon'){?>
+                        <?php if ($item_icon_migrated || $item_icon_is_new) :
+                            Icons_Manager::render_icon( $settings[$control_name . '_icon_new'], ['aria-hidden' => 'true']);
+                        else:?>
+                            <i class="<?php echo $settings[ $control_name . '_icon' ]; ?>"></i>
+                        <?php endif; ?>
+                    <?php }
+                    else {
+                        echo $icon_html;
+                    }?>
 				</div>
 			</div>
 			<?php
@@ -293,7 +322,9 @@ class Helper {
 						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-stacked' => 'background-color: {{VALUE}};',
 						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-framed'  => 'border-color: {{VALUE}};',
 						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-framed i'  => 'color: {{VALUE}};',
+						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-framed svg'  => 'fill: {{VALUE}};',
 						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-default i' => 'color: {{VALUE}};',
+						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-default svg' => 'fill: {{VALUE}};',
 					],
 				]
 			);
@@ -312,6 +343,7 @@ class Helper {
 					'selectors' => [
 						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-framed'  => 'background-color: {{VALUE}};',
 						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-stacked i' => 'color: {{VALUE}};',
+						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-stacked svg' => 'fill: {{VALUE}};',
 					],
 				]
 			);
@@ -338,7 +370,9 @@ class Helper {
 						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-stacked:hover' => 'background-color: {{VALUE}};',
 						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-framed:hover'  => 'border-color: {{VALUE}};',
 						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-framed:hover i'  => 'color: {{VALUE}};',
+						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-framed:hover svg'  => 'fill: {{VALUE}};',
 						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-default:hover i' => 'color: {{VALUE}};',
+						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-default:hover svg' => 'fill: {{VALUE}};',
 					],
 				]
 			);
@@ -356,6 +390,7 @@ class Helper {
 					//],
 					'selectors' => [
 						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-stacked:hover i'  => 'color: {{VALUE}};',
+						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-stacked:hover svg'  => 'fill: {{VALUE}};',
 						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon-view-framed:hover' => 'background-color: {{VALUE}};',
 					],
 				]
@@ -398,7 +433,9 @@ class Helper {
 							'{{WRAPPER}} .' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-stacked' => 'background-color: {{VALUE}};',
 							'{{WRAPPER}} .' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-framed'  => 'border-color: {{VALUE}};',
 							'{{WRAPPER}} .' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-framed i'  => 'color: {{VALUE}};',
+							'{{WRAPPER}} .' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-framed svg'  => 'fill: {{VALUE}};',
 							'{{WRAPPER}} .' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-default i' => 'color: {{VALUE}}; border-color: {{VALUE}};',
+							'{{WRAPPER}} .' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-default svg' => 'fill: {{VALUE}}; border-color: {{VALUE}};',
 						],
 					]
 				);
@@ -420,6 +457,7 @@ class Helper {
 						'selectors' => [
 							'{{WRAPPER}} .' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-framed'  => 'background-color: {{VALUE}};',
 							'{{WRAPPER}} .' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-stacked i   ' => 'color: {{VALUE}};',
+							'{{WRAPPER}} .' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-stacked svg   ' => 'fill: {{VALUE}};',
 						],
 					]
 				);
@@ -446,7 +484,8 @@ class Helper {
 					],
 					'separator' => 'before',
 					'selectors' => [
-						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon i, {{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+						'{{WRAPPER}} .eae-icon-'.$control_name.'.eae-icon svg' => 'width: {{SIZE}}{{UNIT}};',
 					],
 				]
 			);
@@ -633,7 +672,9 @@ class Helper {
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-stacked' => 'background-color: {{VALUE}};',
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-framed'  => 'border-color: {{VALUE}};',
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-framed i'  => 'color: {{VALUE}};',
+						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-framed svg'  => 'fill: {{VALUE}};',
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-default i' => 'color: {{VALUE}};',
+						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-default svg' => 'fill: {{VALUE}};',
 					],
 					'condition' => [
 						$control_name . 'custom_styles' => 'yes'
@@ -655,6 +696,7 @@ class Helper {
 					'selectors' => [
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-framed'  => 'background-color: {{VALUE}};',
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-stacked i' => 'color: {{VALUE}};',
+						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-stacked svg' => 'color: {{VALUE}};',
 					],
 					'condition' => [
 						$control_name . 'custom_styles' => 'yes'
@@ -704,7 +746,9 @@ class Helper {
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-stacked:hover' => 'background-color: {{VALUE}};',
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-framed:hover'  => 'border-color: {{VALUE}};',
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-framed:hover i'  => 'color: {{VALUE}};',
+						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-framed:hover svg'  => 'fill: {{VALUE}};',
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-default:hover i' => 'color: {{VALUE}}; border-color: {{VALUE}};',
+						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-default:hover svg' => 'fill: {{VALUE}}; border-color: {{VALUE}};',
 					],
 					'condition' => [
 						$control_name . 'custom_styles' => 'yes'
@@ -726,7 +770,9 @@ class Helper {
 					'selectors' => [
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-framed:hover'  => 'background-color: {{VALUE}};',
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-stacked:hover i' => 'color: {{VALUE}};',
+						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-stacked:hover svg' => 'fill: {{VALUE}};',
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-default:hover i' => 'color: {{VALUE}};',
+						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon-view-default:hover svg' => 'fill: {{VALUE}};',
 					],
 					'condition' => [
 						$control_name . 'custom_styles' => 'yes'
@@ -788,7 +834,9 @@ class Helper {
 							'{{WRAPPER}} {{CURRENT_ITEM}}.' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-stacked' => 'background-color: {{VALUE}};',
 							'{{WRAPPER}} {{CURRENT_ITEM}}.' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-framed'  => 'border-color: {{VALUE}};',
 							'{{WRAPPER}} {{CURRENT_ITEM}}.' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-framed i'  => 'color: {{VALUE}};',
+							'{{WRAPPER}} {{CURRENT_ITEM}}.' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-framed svg'  => 'fill: {{VALUE}};',
 							'{{WRAPPER}} {{CURRENT_ITEM}}.' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-default i' => 'color: {{VALUE}}; border-color: {{VALUE}};',
+							'{{WRAPPER}} {{CURRENT_ITEM}}.' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-default svg' => 'fill: {{VALUE}}; border-color: {{VALUE}};',
 						],
 						'condition' => [
 							$control_name . 'custom_styles' => 'yes'
@@ -810,6 +858,7 @@ class Helper {
 						'selectors' => [
 							'{{WRAPPER}} {{CURRENT_ITEM}}.' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-framed'  => 'background-color: {{VALUE}};',
 							'{{WRAPPER}} {{CURRENT_ITEM}}.' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-stacked i' => 'color: {{VALUE}};',
+							'{{WRAPPER}} {{CURRENT_ITEM}}.' . $args['focus_item_class'] . ' .eae-icon-'.$control_name.'.eae-icon-view-stacked svg' => 'fill: {{VALUE}};',
 						],
 						'condition' => [
 							$control_name . 'custom_styles' => 'yes'
@@ -844,6 +893,7 @@ class Helper {
 					'separator' => 'before',
 					'selectors' => [
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon i, {{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon svg' => 'width: {{SIZE}}{{UNIT}};',
 						//'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-' . $control_name . '_wrapper.eae-icon-type-text' => 'display: inline-block; height: calc({{SIZE}}{{UNIT}} * 1); width: calc({{SIZE}}{{UNIT}} * 1); text-align: center;',
 					],
 					'condition' => [
@@ -891,6 +941,7 @@ class Helper {
 					],
 					'selectors' => [
 						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon i' => 'transform: rotate({{SIZE}}{{UNIT}});',
+						'{{WRAPPER}} {{CURRENT_ITEM}} .eae-icon-'.$control_name.'.eae-icon svg' => 'transform: rotate({{SIZE}}{{UNIT}});',
 					],
 					'condition' => [
 						$control_name . 'custom_styles' => 'yes'

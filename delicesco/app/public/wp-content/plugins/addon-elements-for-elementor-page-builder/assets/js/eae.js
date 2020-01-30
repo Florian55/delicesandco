@@ -200,8 +200,10 @@ var isEditMode = false;
                 ab_style = $scope.find('.eae-img-comp-container').data("ab-style");
                 slider_pos = $scope.find('.eae-img-comp-container').data("slider-pos");
                 if (ab_style === "horizontal") {
+                     separator_width = parseInt($scope.find('.eae-img-comp-overlay').css("border-right-width"));
                     horizontal($scope);
                 } else {
+                     separator_width = parseInt($scope.find('.eae-img-comp-overlay').css("border-bottom-width"));
                     vertical($scope);
                 }
             });
@@ -226,7 +228,7 @@ var isEditMode = false;
                     slider = slider[0];
                     /*position the slider in the middle:*/
                     slider.style.top = (h / 2) - (slider.offsetHeight / 2) + "px";
-                    slider.style.left = start_pos - (slider.offsetWidth / 2) + "px";
+                    slider.style.left = start_pos - (slider.offsetWidth / 2) - (separator_width / 2) + "px";
                     /*execute a function when the mouse button is pressed:*/
                     if (!$scope.hasClass('elementor-element-edit-mode')) {
                         slider.addEventListener("mousedown", slideReady);
@@ -313,7 +315,7 @@ var isEditMode = false;
                         /*resize the image:*/
                         img.style.width = x + "px";
                         /*position the slider:*/
-                        slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+                        slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) - (separator_width / 2) + "px";
                     }
                 }
             }
@@ -338,7 +340,7 @@ var isEditMode = false;
                     slider = $scope.find(".eae-img-comp-slider");
                     slider = slider[0];
                     /*position the slider in the middle:*/
-                    slider.style.top = start_pos - (slider.offsetHeight / 2) + "px";
+                    slider.style.top = start_pos - (slider.offsetHeight / 2) - (separator_width / 2) + "px";
                     slider.style.left = (w / 2) - (slider.offsetWidth / 2) + "px";
                     /*execute a function when the mouse button is pressed:*/
                     if (!$scope.hasClass('elementor-element-edit-mode')) {
@@ -422,7 +424,7 @@ var isEditMode = false;
                         /*resize the image:*/
                         img.style.height = x + "px";
                         /*position the slider:*/
-                        slider.style.top = img.offsetHeight - (slider.offsetHeight / 2) + "px";
+                        slider.style.top = img.offsetHeight - (slider.offsetHeight / 2) - (separator_width / 2) + "px";
                     }
                 }
             }
@@ -504,7 +506,15 @@ var isEditMode = false;
 
         var EaePopup = function ($scope, $) {
             $preview_modal = $scope.find('.eae-popup-wrapper').data('preview-modal');
+            $close_btn_type = $scope.find('.eae-popup-wrapper').data('close-button-type');
             $close_btn = $scope.find('.eae-popup-wrapper').data('close-btn');
+            if($close_btn_type == 'icon'){
+                $close_btn_html = '<i class="eae-close ' + $close_btn + '"> </i>';
+            }else{
+                $close_btn_html = '<svg class="eae-close" style="-webkit-mask: url('+ $close_btn + '); mask: url('+ $close_btn + '); "></svg>';
+
+            }
+
 
             $magnific = $scope.find('.eae-popup-link').eaePopup({
                 type: 'inline',
@@ -545,7 +555,7 @@ var isEditMode = false;
 
                 overflowY: 'auto',
 
-                closeMarkup: '<i class="eae-close ' + $close_btn + '"> </i>',
+                closeMarkup: $close_btn_html,
 
                 tClose: 'Close (Esc)',
 
@@ -559,6 +569,9 @@ var isEditMode = false;
                     $scope.find('.eae-popup-link').click();
                 }
             }
+
+
+
         };
 
 
@@ -1057,7 +1070,6 @@ var isEditMode = false;
                         d1.setTime(d1.getTime() + ($scope.find(".eae-evergreen-wrapper").data("egtime") * 1000));
                         var expires1 = "expires=" + d1.toUTCString();
 
-                        //console.log('expire',expires);
                         if ((countDownDate - now) > 0) {
                             document.cookie = element_cookie_id + "=" + first_load_value + ";" + expires1 + ";path=/";
                         }

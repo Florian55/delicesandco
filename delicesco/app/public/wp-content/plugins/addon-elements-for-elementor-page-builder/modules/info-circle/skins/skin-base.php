@@ -60,27 +60,40 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			]
 		);
 
-		$this->add_control(
-			'global_icon',
-			[
-				'label'     => __( 'Icon', 'wts-eae' ),
-				'type'      => Controls_Manager::ICON,
-				'default'   => 'fa fa-star',
-				'condition' => [
-					$this->get_control_id('global_icon_type')  => 'icon'
-				]
-			]
-		);
+//		$this->add_control(
+//			'global_icon',
+//			[
+//				'label'     => __( 'Icon', 'wts-eae' ),
+//				'type'      => Controls_Manager::ICON,
+//				'default'   => 'fa fa-star',
+//				'condition' => [
+//					$this->get_control_id('global_icon_type')  => 'icon'
+//				]
+//			]
+//		);
+
+        $this->add_control(
+            'global_icon_new',
+            [
+                'label' => __( 'Icon', 'wts-eae' ),
+                'type' => Controls_Manager::ICONS,
+                'fa4compatibility' => $this->get_control_id('global_icon'),
+                'default' => [
+                    'value' => 'fas fa-star',
+                    'library' => 'fa-solid',
+                ],
+                'condition' => [
+                    $this->get_control_id( 'global_icon_type' ) => 'icon'
+                ]
+            ]
+        );
 
 		$this->add_control(
 			'global_icon_image',
 			[
 				'label'       => __( 'Custom Icon', 'wts-eae' ),
 				'type'        => Controls_Manager::MEDIA,
-				'label_block' => false,
-				'condition'   => [
-					$this->get_control_id('global_icon_type')  => 'image'
-				]
+				'label_block' => true,
 			]
 		);
 
@@ -135,6 +148,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	}
 	function common_render() {
 	    $settings = $this->parent->get_settings_for_display();
+	    //echo '<pre>'; print_r($settings); echo '</pre>';
+        //die('dfadf');
 		$helper = new Helper();
 
 		?>
@@ -146,7 +161,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 						<div id="<?php echo $item['_id'] ?>" data-id="<?php echo $item['_id'] ?>"
 						     class="eae-ic-icon-wrap"
 						     style="opacity: 1;">
-							<?php $this->render_icon( $item); ?>
+							<?php $this->render_icon( $item , $settings); ?>
 						</div>
 						<div class="eae-info-circle-item__content-wrap">
 							<div class="eae-info-circle-item__content">
@@ -163,17 +178,20 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 <?php
 	}
 
-	function render_icon($item) {
-		$helper = new Helper();
+	function render_icon($item , $settings) {
 
+		$helper = new Helper();
+        $default_icon['icon_new']  = $this->get_instance_value( 'global_icon_new' );
+        $default_icon['icon']      = $this->get_instance_value( 'global_icon' );
 		$default_icon['icon_type'] = $this->get_instance_value( 'global_icon_type' );
-		$default_icon['icon']      = $this->get_instance_value( 'global_icon' );
-		$default_icon['image']     = $this->get_instance_value( 'global_icon_image' );
+		$skin =     $settings['_skin'];
+		$default_icon['image']     = $settings[$skin.'_global_icon_image'];
 		$default_icon['text']      = $this->get_instance_value( 'global_icon_text' );
 		$default_icon['view']      = $this->get_instance_value( 'global_icon_view' );
 		$default_icon['shape']     = $this->get_instance_value( 'global_icon_shape' );
-
-		$helper->get_icon_html( $item, 'item_icon', $default_icon );
+//		echo '<pre>'; print_r($default_icon); echo '</pre>';
+//		die('dfaf');
+		$helper->get_icon_html( $item, 'item_icon', $default_icon, $settings );
 	}
 
 	function eae_infocircle_content_section() {

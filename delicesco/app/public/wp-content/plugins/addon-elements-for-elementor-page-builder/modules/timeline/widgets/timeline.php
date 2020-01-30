@@ -119,6 +119,9 @@ class Timeline extends EAE_Widget_Base {
 			[
 				'label'   => __( 'Date', 'wts-eae' ),
 				'type'    => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'default' => 'February 2, 2014',
 			]
 		);
@@ -128,6 +131,9 @@ class Timeline extends EAE_Widget_Base {
 			[
 				'label'   => __( 'Link', 'wts-eae' ),
 				'type'    => Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'default' => [
 					'url'         => '#',
 					'is_external' => '',
@@ -141,6 +147,9 @@ class Timeline extends EAE_Widget_Base {
 			[
 				'label'       => __( 'Title', 'wts-eae' ),
 				'type'        => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'default'     => __( 'This is the heading', 'wts-eae' ),
 				'placeholder' => __( 'Enter your title', 'wts-eae' ),
 			]
@@ -159,6 +168,9 @@ class Timeline extends EAE_Widget_Base {
 			[
 				'label'       => __( 'Content', 'wts-eae' ),
 				'type'        => Controls_Manager::WYSIWYG,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'placeholder' => __( 'Content', 'wts-eae' ),
 				'default'     => __( 'Add some nice text here.', 'wts-eae' ),
 			]
@@ -193,6 +205,9 @@ class Timeline extends EAE_Widget_Base {
 			[
 				'label'      => __( 'Choose Image', 'wts-eae' ),
 				'type'       => Controls_Manager::MEDIA,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'default'    => [
 					'url' => Utils::get_placeholder_image_src(),
 				],

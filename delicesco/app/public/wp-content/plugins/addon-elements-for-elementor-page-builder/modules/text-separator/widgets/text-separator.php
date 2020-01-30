@@ -6,6 +6,7 @@ use WTS_EAE\Base\EAE_Widget_Base;
 use Elementor\Scheme_Color;
 use Elementor\Group_Control_Typography;
 use Elementor\Scheme_Typography;
+use Elementor\Icons_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -104,12 +105,15 @@ class TextSeparator extends EAE_Widget_Base {
 
 
 		$this->add_control(
-			'icon',
+			'icon_new',
 			[
 				'label' => __( 'Icon', 'wts-eae' ),
-				'type' => Controls_Manager::ICON,
-				'label_block' => true,
-				'default' => 'fa fa-star'
+				'type' => Controls_Manager::ICONS,
+                'fa4compatibility' => 'icon',
+                'default' => [
+                    'value' => 'fas fa-star',
+                    'library' => 'fa-solid',
+                ],
 			]
 		);
 
@@ -340,8 +344,12 @@ class TextSeparator extends EAE_Widget_Base {
 				    'value' => Scheme_Color::COLOR_1,
 				],
 				'selectors' => [
+					'{{WRAPPER}}.eae-icon-view-default  i' => 'color: {{VALUE}};',
+					'{{WRAPPER}}.eae-icon-view-default svg' => 'fill: {{VALUE}};',
                     '{{WRAPPER}}.eae-icon-view-stacked .eae-separator-icon-inner' => 'background-color: {{VALUE}};',
-                    '{{WRAPPER}}.eae-icon-view-framed .eae-separator-icon-inner, {{WRAPPER}}.eae-icon-view-default .eae-separator-icon-inner' => 'color: {{VALUE}}; border-color: {{VALUE}};',
+                    '{{WRAPPER}}.eae-icon-view-framed .eae-separator-icon-inner, {{WRAPPER}}.eae-icon-view-framed .eae-separator-icon-inner i' => 'color: {{VALUE}}; border-color: {{VALUE}};',
+                    '{{WRAPPER}}.eae-icon-view-framed .eae-separator-icon-inner svg ' => 'fill: {{VALUE}};',
+
 				],
 			]
 		);
@@ -351,11 +359,15 @@ class TextSeparator extends EAE_Widget_Base {
 			[
 				'label' => __( 'Secondary Color', 'wts-eae' ),
 				'type' => Controls_Manager::COLOR,
-				'default'   =>  '',
-                'selectors' => [
+                'default' => '',
+                'condition' => [
+                    'view!' => 'default',
+                ],
+				'selectors' => [
                     '{{WRAPPER}}.eae-icon-view-framed .eae-separator-icon-inner' => 'background-color: {{VALUE}};',
                     '{{WRAPPER}}.eae-icon-view-stacked .eae-separator-icon-inner i' => 'color: {{VALUE}};',
-                ],
+                    '{{WRAPPER}}.eae-icon-view-stacked .eae-separator-icon-inner svg' => 'fill: {{VALUE}};',
+				],
 			]
 		);
 
@@ -373,6 +385,7 @@ class TextSeparator extends EAE_Widget_Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .eae-separator-icon-inner i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .eae-separator-icon-inner svg' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -413,6 +426,7 @@ class TextSeparator extends EAE_Widget_Base {
 
 				'selectors' => [
 					'{{WRAPPER}} .eae-separator-icon-inner i' => 'transform: rotate({{SIZE}}{{UNIT}});',
+					'{{WRAPPER}} .eae-separator-icon-inner svg' => 'transform: rotate({{SIZE}}{{UNIT}});',
 				],
 			]
 		);
@@ -452,10 +466,12 @@ class TextSeparator extends EAE_Widget_Base {
 
 	    $this->add_render_attribute('separator_wrapper','class','wts-eae-textseparator');
 	    $this->add_render_attribute('separator_wrapper','class','sep-align-'.$settings['align']);
-	    if(!empty($settings['icon'])){
+	    if(!empty($settings['icon_new'])){
 	        $this->add_render_attribute('separator_wrapper','class','icon-yes');
 	        $this->add_render_attribute('separator_wrapper','class','icon-'.$settings['icon_position']);
 	    }
+        $icon_migrated = isset($settings['__fa4_migrated']['icon_new']);
+        $icon_is_new = empty($settings['icon']);
 
 	    if(!empty($settings['title'])){
 	        $this->add_render_attribute('separator_wrapper','class','title-yes');
@@ -464,71 +480,106 @@ class TextSeparator extends EAE_Widget_Base {
 		$this->add_render_attribute( 'title', 'class', 'eae-separator-title' );
 
 		$this->add_inline_editing_attributes( 'title' );
-
-		$separator_html = '<div '.$this->get_render_attribute_string('separator_wrapper').'>
-
+		?>
+        <div <?php echo $this->get_render_attribute_string('separator_wrapper');?> >
             <div class="eae-sep-holder sep-left">
                 <div class="eae-sep-lines"></div>
-            </div>';
+            </div>
 
+           <?php if(!empty($settings['icon_new']) && $settings['icon_position'] == 'before') { ?>
+            <div class="eae-separator-icon-wrapper">
+                <div class="eae-separator-icon-inner">
+                    <?php if ( $icon_migrated || $icon_is_new ) :
+                        Icons_Manager::render_icon($settings['icon_new'], ['aria-hidden' => 'true']);
+                        else:?>
+                        <i class="<?php echo $settings['icon']; ?>"></i>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php } ?>
 
+            <?php if($settings['title'] != ''){
+                echo sprintf( '<%1$s %2$s>%3$s</%1$s>', $settings['html_tag'], $this->get_render_attribute_string( 'title' ), $settings['title'] );
+            }?>
 
+            <?php if(!empty($settings['icon_new']) && $settings['icon_position'] == 'after') { ?>
+                <div class="eae-separator-icon-wrapper">
+                    <div class="eae-separator-icon-inner">
+                        <?php if ( $icon_migrated || $icon_is_new ) :
+                            Icons_Manager::render_icon($settings['icon_new'], ['aria-hidden' => 'true']);
+                        else:?>
+                            <i <?php $this->get_render_attribute_string('icon'); ?>></i>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php } ?>
 
-        if(!empty($settings['icon']) && $settings['icon_position'] == 'before'){
-            $separator_html .= '<div class="eae-separator-icon-wrapper"><div class="eae-separator-icon-inner">
-                                    <i class="'.$settings['icon'].'"></i>
-                               </div></div>';
-        }
-
-        if($settings['title'] != ''){
-            $separator_html .= sprintf( '<%1$s %2$s>%3$s</%1$s>', $settings['html_tag'], $this->get_render_attribute_string( 'title' ), $settings['title'] );
-        }
-
-        if(!empty($settings['icon']) && $settings['icon_position'] == 'after'){
-            $separator_html .= '<div class="eae-separator-icon-wrapper"><div class="eae-separator-icon-inner">
-                                    <i class="'.$settings['icon'].'"></i>
-                               </div></div>';
-        }
-
-
-        $separator_html .=  '<div class="eae-sep-holder sep-right">
+            <div class="eae-sep-holder sep-right">
                 <div class="eae-sep-lines"></div>
             </div>
-        </div>';
-
-
-
-
-
-
-		echo $separator_html;
+        </div>
+        <?php
 	}
 
-	protected function _content_template() {
-		?>
-		<#
-
-        icon_class = settings.icon != ''? 'icon-yes':'';
-        title_class = settings.title != ''? 'title-yes':'';
-		var separator_html = '<div class="wts-eae-textseparator sep-align-' + settings.align + ' icon-' + settings.icon_position + ' ' + icon_class + ' ' + title_class +'"><div class="eae-sep-holder sep-left"><div class="eae-sep-lines"></div></div>';
-
-        if(settings.icon != '' && settings.icon_position == 'before'){
-            separator_html += '<div class="eae-separator-icon-wrapper"><div class="eae-separator-icon-inner"><i class="'+ settings.icon +'"></i></div></div>'
+    protected function _content_template() {
+        ?>
+        <#
+        view.addRenderAttribute( 'separator_wrapper','class','wts-eae-textseparator' );
+        view.addRenderAttribute('separator_wrapper','class','sep-align-'+settings.align);
+        if(settings.icon_new){
+            view.addRenderAttribute('separator_wrapper','class','icon-yes');
+            view.addRenderAttribute('separator_wrapper','class','icon-'+settings.icon_position);
         }
 
-        if(settings.title != ''){
-            separator_html += '<' + settings.html_tag  + ' class="eae-separator-title elementor-inline-editing" data-elementor-setting-key="title">' + settings.title + '</' + settings.html_tag + '>';
-         }
+        iconHTML = elementor.helpers.renderIcon( view, settings.icon_new, { 'aria-hidden': true }, 'i' , 'object' ),
+        migrated = elementor.helpers.isIconMigrated( settings, 'icon_new' );
 
-
-        if(settings.icon != '' && settings.icon_position == 'after'){
-            separator_html += '<div class="eae-separator-icon-wrapper"><div class="eae-separator-icon-inner"><i class="'+ settings.icon +'"></i></div></div>'
+        if((settings.title)){
+         view.addRenderAttribute('separator_wrapper','class','title-yes');
         }
 
-        separator_html += '<div class="eae-sep-holder sep-right"><div class="eae-sep-lines"></div></div></div>';
+        view.addRenderAttribute( 'title', 'class', 'eae-separator-title' );
 
-		print( separator_html );
-		#>
-		<?php
+        view.addInlineEditingAttributes( 'title' );
+        #>
+        <div  {{{ view.getRenderAttributeString( 'separator_wrapper' ) }}}>
+            <div class="eae-sep-holder sep-left">
+                <div class="eae-sep-lines"></div>
+            </div>
+
+            <# if((settings.icon_new) && settings.icon_position == 'before') { #>
+                <div class="eae-separator-icon-wrapper">
+                    <div class="eae-separator-icon-inner">
+                        <# if ( iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
+                            {{{ iconHTML.value }}}
+                        <# } else { #>
+                            <i class="{{ settings.icon }}" aria-hidden="true"></i>
+                        <# } #>
+                    </div>
+                </div>
+            <# } #>
+
+            <{{{settings.html_tag}}} {{{ view.getRenderAttributeString( 'title' ) }}} >{{{ settings.title }}}</{{{settings.html_tag}}}>
+
+            <# if((settings.icon_new) && settings.icon_position == 'after') { #>
+                <div class="eae-separator-icon-wrapper">
+                    <div class="eae-separator-icon-inner">
+                        <# if ( iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
+                            {{{ iconHTML.value }}}
+                        <# } else { #>
+                            <i class="{{ settings.icon }}" aria-hidden="true"></i>
+                        <# } #>
+                    </div>
+                </div>
+            <# } #>
+
+            <div class="eae-sep-holder sep-right">
+                <div class="eae-sep-lines"></div>
+            </div>
+        </div>
+        <?php
+    }
+	public function on_import( $element ) {
+		return Icons_Manager::on_import_migration( $element, 'icon', 'icon_new', true );
 	}
 }

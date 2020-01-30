@@ -48,6 +48,9 @@ class Progress_Bar extends EAE_Widget_Base {
 			[
 				'label'       => __( 'Skill', 'wts-eae' ),
 				'type'        => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'default'     => 'Web Designer',
 				'label_block' => false,
 			]
@@ -58,6 +61,9 @@ class Progress_Bar extends EAE_Widget_Base {
 			[
 				'label'   => __( 'Percentage', 'wts-eae' ),
 				'type'    => Controls_Manager::SLIDER,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'range'   => [
 					'min' => 1,
 					'max' => 100,

@@ -105,7 +105,7 @@ class Post_Helper {
 				'label' => __('Meta Key (Custom Field Name)', 'wts-eae'),
 				'type'  => Controls_Manager::TEXT,
 				'condition' => [
-					'order_by'  => 'meta_key'
+					'order_by'  => 'meta_value'
 				]
 			]
 		);
@@ -198,7 +198,7 @@ class Post_Helper {
 		$query_vars['posts_per_page']   =   $settings['post_count'];
 		$query_vars['offset']       =   $settings['offset'];
 
-		if($query_vars['orderby'] == 'meta_key'){
+		if($query_vars['orderby'] == 'meta_value'){
 			$query_vars['meta_key'] =   $settings['order_meta_key'];
 		}
 

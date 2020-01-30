@@ -56,6 +56,9 @@ class FilterableGallery extends EAE_Widget_Base
             [
                 'label' => __('Filter Label', 'wts-eae'),
                 'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
             ]
         );
 
@@ -64,6 +67,9 @@ class FilterableGallery extends EAE_Widget_Base
             [
                 'label' => __('Add Images', 'wts-eae'),
                 'type' => Controls_Manager::GALLERY,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'show_label' => false,
 
             ]
@@ -436,6 +442,7 @@ class FilterableGallery extends EAE_Widget_Base
                     'value' => 'fas fa-star',
                     'library' => 'fa-solid',
                 ],
+
                 'condition' =>
                     [
                         'show_overlay!' => 'never',
@@ -868,6 +875,7 @@ class FilterableGallery extends EAE_Widget_Base
                 'selectors' => [
                     '{{WRAPPER}}.eae-icon-view-stacked .eae-overlay-icon' => 'background-color: {{VALUE}};',
                     '{{WRAPPER}}.eae-icon-view-framed .eae-overlay-icon, {{WRAPPER}}.eae-icon-view-default .eae-overlay-icon' => 'color: {{VALUE}}; border-color: {{VALUE}};',
+                    '{{WRAPPER}}.eae-icon-view-framed .eae-overlay-icon svg, {{WRAPPER}}.eae-icon-view-default .eae-overlay-icon svg' => 'fill : {{VALUE}};',
                 ],
                 'scheme' => [
                     'type' => Scheme_Color::get_type(),
@@ -890,6 +898,7 @@ class FilterableGallery extends EAE_Widget_Base
                 'selectors' => [
                     '{{WRAPPER}}.eae-icon-view-framed .eae-overlay-icon' => 'background-color: {{VALUE}};',
                     '{{WRAPPER}}.eae-icon-view-stacked .eae-overlay-icon i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}}.eae-icon-view-stacked .eae-overlay-icon svg' => 'fill: {{VALUE}};',
                 ],
                 'condition' => [
                     'icon!' => '',
@@ -906,8 +915,9 @@ class FilterableGallery extends EAE_Widget_Base
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}}.eae-icon-view-stacked:hover .eae-overlay-icon:hover' => 'background-color: {{VALUE}};',
-                    '{{WRAPPER}}.eae-icon-view-framed:hover .eae-overlay-icon:hover, {{WRAPPER}}.eae-icon-view-default .eae-overlay-icon' => 'color: {{VALUE}}; border-color: {{VALUE}};',
+                    '{{WRAPPER}}.eae-icon-view-stacked .eae-overlay-icon:hover' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}}.eae-icon-view-framed .eae-overlay-icon:hover, {{WRAPPER}}.eae-icon-view-default .eae-overlay-icon' => 'color: {{VALUE}}; border-color: {{VALUE}};',
+                    '{{WRAPPER}}.eae-icon-view-framed .eae-overlay-icon:hover svg, {{WRAPPER}}.eae-icon-view-default  .eae-overlay-icon:hover svg' => 'fill: {{VALUE}}',
                 ],
                 'scheme' => [
                     'type' => Scheme_Color::get_type(),
@@ -934,6 +944,7 @@ class FilterableGallery extends EAE_Widget_Base
                 'selectors' => [
                     '{{WRAPPER}}.eae-icon-view-framed:hover .eae-overlay-icon:hover' => 'background-color: {{VALUE}};',
                     '{{WRAPPER}}.eae-icon-view-stacked:hover .eae-overlay-icon:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}}.eae-icon-view-stacked:hover .eae-overlay-icon:hover svg' => 'fill: {{VALUE}};',
                 ],
             ]
         );
@@ -996,7 +1007,7 @@ class FilterableGallery extends EAE_Widget_Base
                     'unit' => 'deg',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .eae-overlay-icon i' => 'transform: rotate({{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}} .eae-overlay-icon i , {{WRAPPER}} .eae-overlay-icon svg' => 'transform: rotate({{SIZE}}{{UNIT}});',
                 ],
                 'condition' => [
                     'icon!' => '',
@@ -1266,7 +1277,6 @@ class FilterableGallery extends EAE_Widget_Base
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
-                'separator' =>  'before',
                 'selectors' =>  [
                         '{{WRAPPER}} .eae-gallery-filter' => 'justify-content : {{VALUE}}'
                 ],

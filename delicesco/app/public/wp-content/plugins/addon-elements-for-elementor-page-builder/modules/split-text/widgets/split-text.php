@@ -111,6 +111,9 @@ class SplitText extends EAE_Widget_Base {
 				[
 					'label' => __( 'Text', 'wts-eae' ),
 					'type' => Controls_Manager::TEXTAREA,
+                    'dynamic' => [
+                        'active' => true,
+                    ],
 					'placeholder' => __( 'Enter text', 'wts-eae' ),
 					'default' => __( 'I Love Elementor', 'wts-eae' ),
 				]
@@ -305,7 +308,7 @@ class SplitText extends EAE_Widget_Base {
 
 	}
 	protected function render(){
-		$settings = $this->get_settings();
+		$settings = $this->get_settings_for_display();
 
 		$this->add_render_attribute('eae-st-transform-text-wrapper','class','eae-st-transform-text-wrapper');
 

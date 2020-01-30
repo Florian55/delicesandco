@@ -1164,6 +1164,10 @@ else {
             <div id="updates-panel" class="panel-left">
 
                 <h2>Change Log for the Premium Version</h2>
+                <h3>2.9.7</h3>
+                <ul>
+                    <li>Tweak - Enabled lazy load for all the widgets except for the grid/gallery addons - Posts Grid, WooCommerce Grid, YouTube Grid, Vimeo Grid, Twitter grid, Instagram Grid, Video and Image Gallery. These Grid and Gallery addons utilize the popular Isotope library for laying out grid elements and Isotope library is not compatible with lazy loading of images.</li>
+                </ul>
                 <h3>2.9.6</h3>
                 <ul>
                     <li>Updated - Freemius SDK 2.3.2 with Opt-In / Out Enhancements, User Change, and More.</li>

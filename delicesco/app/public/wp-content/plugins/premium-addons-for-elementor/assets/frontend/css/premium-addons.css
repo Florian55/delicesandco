@@ -718,7 +718,7 @@
 }
 /**************** Premium Carousel **************/
 /************************************************/
-.premium-carousel-wrapper a.carousel-arrow, .premium-carousel-wrapper a.ver-carousel-arrow, .premium-fb-rev-container a.carousel-arrow, .premium-blog-wrap a.carousel-arrow, .premium-hscroll-wrap a.carousel-arrow, .premium-twitter-feed-wrapper a.carousel-arrow {
+.premium-carousel-wrapper a.carousel-arrow, .premium-carousel-wrapper a.ver-carousel-arrow, .premium-fb-rev-container a.carousel-arrow, .premium-blog-wrap a.carousel-arrow, .premium-hscroll-wrap a.carousel-arrow, .premium-twitter-feed-wrapper a.carousel-arrow, .premium-persons-container a.carousel-arrow {
     display: -ms-flexbox;
     display: -webkit-flex;
     display: -moz-flex;
@@ -753,7 +753,7 @@ div[class^="premium-"] .slick-arrow i {
 .premium-carousel-wrapper .premium-carousel-content-hidden {
     visibility: hidden;
 }
-.premium-carousel-wrapper a.carousel-arrow, .premium-fb-rev-container a.carousel-arrow, .premium-blog-wrap a.carousel-arrow, .premium-hscroll-wrap a.carousel-arrow, .premium-twitter-feed-wrapper a.carousel-arrow {
+.premium-carousel-wrapper a.carousel-arrow, .premium-fb-rev-container a.carousel-arrow, .premium-blog-wrap a.carousel-arrow, .premium-hscroll-wrap a.carousel-arrow, .premium-twitter-feed-wrapper a.carousel-arrow, .premium-persons-container a.carousel-arrow {
     top: 50%;
 }
 .premium-carousel-wrapper a.ver-carousel-arrow {
@@ -2358,6 +2358,16 @@ button.premium-modal-box-modal-close {
     -webkit-align-items: flex-start;
     -ms-flex-align: flex-start;
     align-items: flex-start;
+}
+.premium-person-widget-style1 .slick-track {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: flex;
+}
+.premium-person-widget-style1 .slick-slide {
+	height: inherit !important;
 }
 .premium-person-widget-style1 .multiple-persons[data-persons-equal="yes"] .premium-person-image-container,
 .premium-person-widget-style1 .multiple-persons[data-persons-equal="yes"] .premium-person-image-wrap {

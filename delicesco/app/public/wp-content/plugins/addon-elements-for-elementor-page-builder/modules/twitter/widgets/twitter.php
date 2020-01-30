@@ -132,6 +132,9 @@ class Twitter extends EAE_Widget_Base {
             [
                 'label'       => __( 'Enter UserName', 'wts-eae' ),
                 'type'        => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __( '@username', 'wts-eae' ),
                 'default'     => '@TwitterDev',
                 'condition'   => [
@@ -722,7 +725,7 @@ class Twitter extends EAE_Widget_Base {
 
 	public function render() {
 		// TODO: Implement render() method.
-		$settings = $this->get_settings();
+		$settings = $this->get_settings_for_display();
 		//echo'<pre>'; print_r($settings);
 
 		switch ( $settings['embed_type'] ) {

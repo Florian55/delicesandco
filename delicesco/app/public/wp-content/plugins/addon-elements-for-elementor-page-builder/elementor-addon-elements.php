@@ -3,8 +3,8 @@
  * Plugin Name: Elementor Addon Elements
  * Description: Add new elements to Elementor page builder plugin.
  * Plugin URI: https://www.elementoraddons.com/elements-addon-elements/
- * Author: WP Vibes
- * Version: 1.6
+ * Author: WPVibes
+ * Version: 1.6.1
  * Author URI: https://wpvibes.com/
  *
  * Text Domain: wts-eae
@@ -30,39 +30,40 @@ if ( ! function_exists( '_is_elementor_installed' ) ) {
 if(!function_exists('is_plugin_active')){
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 }
+if ( ! function_exists( 'wpv_eae' ) ) {
+	// Create a helper function for easy SDK access.
+	function wpv_eae() {
 
-//if ( ! function_exists( 'wpv_eae' ) ) {
-//    // Create a helper function for easy SDK access.
-//    function wpv_eae() {
-//        global $wpv_eae;
-//
-//        if ( ! isset( $wpv_eae ) ) {
-//            // Include Freemius SDK.
-//            require_once dirname(__FILE__) . '/freemius/start.php';
-//
-//            $wpv_eae = fs_dynamic_init( array(
-//                'id'                  => '4599',
-//                'slug'                => 'addon-elements-for-elementor-page-builder',
-//                'type'                => 'plugin',
-//                'public_key'          => 'pk_086ef046431438c9a172bb55fde28',
-//                'is_premium'          => false,
-//                'has_addons'          => false,
-//                'has_paid_plans'      => false,
-//                'menu'                => array(
-//                    'slug'           => 'eae-settings',
-//                    'account'        => false,
-//                    'contact'        => false,
-//                ),
-//            ) );
-//        }
-//
-//        return $wpv_eae;
-//    }
-//
-//    // Init Freemius.
-//    wpv_eae();
-//    // Signal that SDK was initiated.
-//    do_action( 'wpv_eae_loaded' );
-//}
+		global $wpv_eae;
+
+		if ( ! isset( $wpv_eae ) ) {
+			// Include Freemius SDK.
+			require_once dirname(__FILE__) . '/freemius/start.php';
+
+
+			$wpv_eae = fs_dynamic_init( array(
+				'id'                  => '4599',
+				'slug'                => 'addon-elements-for-elementor-page-builder',
+				'type'                => 'plugin',
+				'public_key'          => 'pk_086ef046431438c9a172bb55fde28',
+				'is_premium'          => false,
+				'has_addons'          => false,
+				'has_paid_plans'      => false,
+				'menu'                => array(
+					'slug'           => 'eae-settings',
+					'account'        => false,
+					'contact'        => false,
+				),
+			) );
+		}
+
+		return $wpv_eae;
+	}
+
+	// Init Freemius.
+	wpv_eae();
+	// Signal that SDK was initiated.
+	do_action( 'wpv_eae_loaded' );
+}
 
 require_once 'inc/bootstrap.php';

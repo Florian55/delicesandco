@@ -9,6 +9,7 @@ use Elementor\Scheme_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Background;
+use Elementor\Icons_Manager;
 
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -45,6 +46,9 @@ class PriceTable extends EAE_Widget_Base {
 			[
 				'label' => __( 'Heading', 'wts-eae' ),
 				'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'placeholder' => __( 'Enter plan name', 'wts-eae' ),
 				'default' => __( 'Plan 1', 'wts-eae' ),
 			]
@@ -73,6 +77,9 @@ class PriceTable extends EAE_Widget_Base {
 			[
 				'label' => __( 'Sub Heading', 'wts-eae' ),
 				'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'placeholder' => __( 'Enter plan name', 'wts-eae' ),
 				'default' => __( 'Plan 1', 'wts-eae' ),
 			]
@@ -111,6 +118,9 @@ class PriceTable extends EAE_Widget_Base {
             [
                 'label' => __( 'Price Box Text', 'wts-eae' ),
                 'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __( '$100', 'wts-eae' ),
                 'default' => __( '$100', 'wts-eae' ),
             ]
@@ -122,6 +132,9 @@ class PriceTable extends EAE_Widget_Base {
             [
                 'label' => __( 'Price Box Sub Text', 'wts-eae' ),
                 'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __( 'per month', 'wts-eae' ),
                 'default' => __( 'per month', 'wts-eae' ),
             ]
@@ -175,6 +188,9 @@ class PriceTable extends EAE_Widget_Base {
                         'name' => 'text',
                         'label' => __( 'Text', 'wts-eae' ),
                         'type' => Controls_Manager::TEXT,
+                        'dynamic' => [
+                            'active' => true,
+                        ],
                         'label_block' => true,
                         'placeholder' => __( 'Plan Features', 'wts-eae' ),
                         'default' => __( 'Feature 1', 'wts-eae' ),
@@ -205,6 +221,9 @@ class PriceTable extends EAE_Widget_Base {
             [
                 'label' => __( 'Button Text', 'wts-eae' ),
                 'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __( 'Buy', 'wts-eae' ),
                 'default' => __( 'Buy Now', 'wts-eae' ),
             ]
@@ -215,20 +234,37 @@ class PriceTable extends EAE_Widget_Base {
             [
                 'label' => __( 'Link to', 'wts-eae' ),
                 'type' => Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'placeholder' => __( 'http://your-link.com', 'wts-eae' ),
                 'separator' => 'before',
             ]
         );
 
+//        $this->add_control(
+//			'icon',
+//			[
+//				'label' => __( 'Icon', 'wts-eae' ),
+//				'type' => Controls_Manager::ICON,
+//				'label_block' => true,
+//				'default' => 'fa fa-shopping-cart',
+//			]
+//		);
+
         $this->add_control(
-			'icon',
-			[
-				'label' => __( 'Icon', 'wts-eae' ),
-				'type' => Controls_Manager::ICON,
-				'label_block' => true,
-				'default' => 'fa fa-shopping-cart',
-			]
-		);
+            'icon_new',
+            [
+                'label' => __( 'Icon', 'wts-eae' ),
+                'type' => Controls_Manager::ICONS,
+                'label_block' => true,
+                'fa4compatibility' => 'icon',
+                'default' => [
+                    'value' => 'fa fa-shopping-cart',
+                    'library' => 'fa-solid',
+                ],
+            ]
+        );
 
 		$this->add_control(
 			'icon_align',
@@ -240,9 +276,7 @@ class PriceTable extends EAE_Widget_Base {
 					'left' => __( 'Before', 'wts-eae' ),
 					'right' => __( 'After', 'wts-eae' ),
 				],
-				'condition' => [
-					'icon!' => '',
-				]
+
 			]
 		);
 
@@ -256,9 +290,11 @@ class PriceTable extends EAE_Widget_Base {
 						'max' => 50,
 					],
 				],
-				'condition' => [
-					'icon!' => '',
-				],
+				'default'   =>  [
+				        'unit'  =>  'px',
+                        'size'  =>  5,
+                ],
+
 				'selectors' => [
 					'{{WRAPPER}} .eae-pt-action-button .eae-pt-align-icon-right' => 'margin-left: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .eae-pt-action-button .eae-pt-align-icon-left' => 'margin-right: {{SIZE}}{{UNIT}};',
@@ -634,6 +670,7 @@ class PriceTable extends EAE_Widget_Base {
 				'default' => '#fff',
 				'selectors' => [
 					'{{WRAPPER}} .eae-pt-action-button' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .eae-pt-action-button svg' => 'fill: {{VALUE}};',
 				],
 			]
 		);
@@ -731,6 +768,7 @@ class PriceTable extends EAE_Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .eae-pt-action-button:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .eae-pt-action-button:hover svg' => 'fill: {{VALUE}};',
 				],
 			]
 		);
@@ -769,7 +807,7 @@ class PriceTable extends EAE_Widget_Base {
 	}
 
 	protected function render( ) {
-        $settings = $this->get_settings();
+        $settings = $this->get_settings_for_display();
 
         $this->add_render_attribute('heading','class','eae-pt-heading');
         $this->add_render_attribute('sub_heading','class','eae-pt-sub-heading');
@@ -783,6 +821,9 @@ class PriceTable extends EAE_Widget_Base {
 				$this->add_render_attribute( 'button', 'target', '_blank' );
 			}
 		}
+        
+        $icon_migrated = isset( $settings['__fa4_migrated']['icon_new'] );
+        $icon_is_new = empty( $settings['icon'] ) && Icons_Manager::is_migration_allowed();
 
 
         ?>
@@ -850,9 +891,13 @@ class PriceTable extends EAE_Widget_Base {
             <div class="eae-pt-button-wrapper">
                 <a <?php echo $this->get_render_attribute_string( 'button' ); ?>>
                     <span <?php echo $this->get_render_attribute_string( 'content-wrapper' ); ?>>
-                        <?php if ( ! empty( $settings['icon'] ) ) : ?>
+                        <?php if ( !empty( $settings['icon_new'] ) ) : ?>
                             <span <?php echo $this->get_render_attribute_string( 'icon-align' ); ?>>
-                                <i class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
+                               <?php if ( $icon_migrated || $icon_is_new ) :
+                                   Icons_Manager::render_icon($settings['icon_new'], ['aria-hidden' => 'true']);
+                               else : ?>
+                                   <i class="<?php echo $settings['icon']; ?>"></i>
+                               <?php endif; ?>
                             </span>
                         <?php endif; ?>
                         <span class="elementor-button-text"><?php echo $settings['action_text']; ?></span>
@@ -866,15 +911,9 @@ class PriceTable extends EAE_Widget_Base {
         <?php
 	}
 
-	protected function content_template() {
-		?>
-		<#
+    public function on_import( $element ) {
+        return Icons_Manager::on_import_migration( $element, 'icon', 'icon_new' );
+    }
 
-        box_html = '';
-
-		print( separator_html );
-		#>
-		<?php
-	}
 }
 //Plugin::instance()->widgets_manager->register_widget_type( new Widget_PriceTable() );

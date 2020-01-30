@@ -376,7 +376,12 @@ function lae_get_sysinfo()
     return $return;
 }
 
-function lae_get_image_html( $image_setting, $image_size_key, $settings )
+function lae_get_image_html(
+    $image_setting,
+    $image_size_key,
+    $settings,
+    $disable_lazy_load = false
+)
 {
     $image_html = '';
     $attachment_id = $image_setting['id'];
@@ -385,12 +390,10 @@ function lae_get_image_html( $image_setting, $image_size_key, $settings )
         $settings[$image_size_key . '_size'] = '';
     }
     $size = $settings[$image_size_key . '_size'];
-    // no-lazyload - wp-smushit
-    // data-no-lazy="1" - wprocket, rocket-lazy-load
-    // skip-lazy - jetpack
-    // exclude-me - autoptimize
-    // a3-notlazy - a3-lazy-load
-    $image_class = 'lae-image skip-lazy no-lazyload exclude-me a3-notlazy';
+    $image_class = 'lae-image';
+    if ( $disable_lazy_load ) {
+        $image_class .= ' ' . lae_disable_lazy_load_classes();
+    }
     if ( isset( $image_setting['class'] ) ) {
         $image_class .= ' ' . $image_setting['class'];
     }
@@ -400,17 +403,21 @@ function lae_get_image_html( $image_setting, $image_size_key, $settings )
     
     if ( !empty($attachment_id) && in_array( $size, $image_sizes ) ) {
         $image_class .= " attachment-{$size} size-{$size}";
-        $image_attr = array(
-            'class'        => trim( $image_class ),
-            'alt'          => get_the_title( $attachment_id ),
-            'title'        => lae_get_image_alt( $attachment_id ),
-            'data-no-lazy' => 1,
+        $image_attrs = array(
+            'class' => trim( $image_class ),
+            'alt'   => get_the_title( $attachment_id ),
+            'title' => lae_get_image_alt( $attachment_id ),
         );
+        if ( $disable_lazy_load ) {
+            $image_attrs = array_merge( $image_attrs, array(
+                'data-no-lazy' => 1,
+            ) );
+        }
         $image_html .= wp_get_attachment_image(
             $attachment_id,
             $size,
             false,
-            $image_attr
+            $image_attrs
         );
     } else {
         $image_src = Group_Control_Image_Size::get_attachment_image_src( $attachment_id, $image_size_key, $settings );
@@ -419,9 +426,14 @@ function lae_get_image_html( $image_setting, $image_size_key, $settings )
         }
         
         if ( !empty($image_src) ) {
+            $lazy_load_attr = '';
+            if ( $disable_lazy_load ) {
+                $lazy_load_attr = 'data-no-lazy="1"';
+            }
             $image_class_html = ( !empty($image_class) ? ' class="' . $image_class . '"' : '' );
             $image_html .= sprintf(
-                '<img data-no-lazy="1" src="%s" title="%s" alt="%s"%s />',
+                '<img %s src="%s" title="%s" alt="%s"%s />',
+                esc_attr( $lazy_load_attr ),
                 esc_attr( $image_src ),
                 get_the_title( $attachment_id ),
                 lae_get_image_alt( $attachment_id ),
@@ -613,4 +625,14 @@ function lae_shorten_number_format( $n, $precision = 1 )
     }
     
     return $n_format;
+}
+
+function lae_disable_lazy_load_classes()
+{
+    // no-lazyload - wp-smushit
+    // data-no-lazy="1" - wprocket, rocket-lazy-load
+    // skip-lazy - jetpack, SG Optimizer using filter in functions.php
+    // exclude-me - autoptimize
+    // a3-notlazy - a3-lazy-load
+    return apply_filters( 'lae_disable_lazy_load_classes', 'skip-lazy no-lazyload exclude-me a3-notlazy' );
 }

@@ -76,24 +76,41 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			]
 		);
 
-		$this->add_control(
-			'global_icon',
-			[
-				'label'     => __( 'Icon', 'wts-eae' ),
-				'type'      => Controls_Manager::ICON,
-				'default'   => 'fa fa-calendar',
-				'condition' => [
-					$this->get_control_id( 'global_icon_type' ) => 'icon'
-				]
-			]
-		);
+//		$this->add_control(
+//			'global_icon',
+//			[
+//				'label'     => __( 'Icon', 'wts-eae' ),
+//				'type'      => Controls_Manager::ICON,
+//				'default'   => 'fa fa-calendar',
+//				'condition' => [
+//					$this->get_control_id( 'global_icon_type' ) => 'icon'
+//				]
+//			]
+//		);
+
+        $this->add_control(
+            'global_icon_new',
+            [
+                'label' => __( 'Icon', 'wts-eae' ),
+                'type' => Controls_Manager::ICONS,
+                //'fa4compatibility' => 'global_icon',
+                'fa4compatibility' => $this->get_control_id('global_icon'),
+                'default' => [
+                    'value' => 'fa fa-calendar',
+                    'library' => 'fa-solid',
+                ],
+                'condition' => [
+                    $this->get_control_id( 'global_icon_type' ) => 'icon'
+                ]
+            ]
+        );
 
 		$this->add_control(
 			'global_icon_image',
 			[
 				'label'       => __( 'Custom Icon', 'wts-eae' ),
 				'type'        => Controls_Manager::MEDIA,
-				'label_block' => false,
+				'label_block' => true,
 				'condition'   => [
 					$this->get_control_id( 'global_icon_type' ) => 'image'
 				]
@@ -541,12 +558,14 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 					'{{WRAPPER}} .eae-tl-item-content'                                                                                            => 'background: {{VALUE}};',
 					'{{WRAPPER}} .eae-layout-center.eae-timeline .eae-timeline-item:nth-child(even) .eae-tl-item-content::before'                 => 'border-color: transparent {{VALUE}} transparent transparent;',
 					'{{WRAPPER}} .eae-layout-center.eae-timeline .eae-timeline-item:nth-child(odd) .eae-tl-item-content::before'                  => 'border-color: transparent transparent transparent {{VALUE}};',
-					'{{WRAPPER}} .eae-layout-right.eae-timeline .eae-tl-item-content::before'                                                     => 'border-color: transparent transparent transparent {{VALUE}};',
-					'{{WRAPPER}} .eae-layout-left.eae-timeline .eae-tl-item-content::before'                                                      => 'border-color: transparent {{VALUE}} transparent transparent ;',
+					'{{WRAPPER}} .eae-layout-right.eae-timeline .eae-tl-item-content::before'                                                     => 'border-color: transparent transparent transparent {{VALUE}}; !important',
+					'{{WRAPPER}} .eae-layout-left.eae-timeline .eae-tl-item-content::before'                                                      => 'border-color: transparent {{VALUE}} transparent transparent ; !important',
 					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-left .eae-timeline-item .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
 					'(tablet){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-left .eae-timeline-item .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
 					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-right .eae-timeline-item .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
 					'(tablet){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-right .eae-timeline-item .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'(mobile){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile .eae-timeline-item:nth-child(odd) .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+					'(tablet){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile .eae-timeline-item:nth-child(odd) .eae-tl-item-content::before'  => 'border-color: transparent transparent transparent {{VALUE}} !important;',
 				],
 			]
 		);
@@ -1239,7 +1258,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 
 	function common_render() {
 		$settings = $this->parent->get_settings_for_display();
-		//print_r($settings);
+		//echo '<pre>'; print_r($settings); echo '</pre>';
 		$helper = new Helper();
 
 		$this->parent->add_render_attribute( 'wrapper_class', 'data-layout', $this->get_instance_value( 'timeline_align' ) );
@@ -1282,6 +1301,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	function render_custom_content( $settings, $helper ) {
 
 		?>
+
 		<?php foreach ( $settings['timeline_items'] as $index => $item ) : ?>
 			<?php
 
@@ -1332,13 +1352,18 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 
                 <div <?php echo $this->parent->get_render_attribute_string( $item['_id'] . '-icon_wrapper' ); ?>>
 					<?php
+
 					$default_icon['icon_type'] = $this->get_instance_value( 'global_icon_type' );
-					$default_icon['icon']      = $this->get_instance_value( 'global_icon' );
-					$default_icon['image']     = $this->get_instance_value( 'global_icon_image' );
+                    $icon_migrated = isset($settings['__fa4_migrated']['slider_icon_new']);
+                    $icon_is_new = empty($settings['slider_icon']);
+
+                    $default_icon['icon_new']      = $this->get_instance_value( 'global_icon_new' );
+                    $default_icon['icon']      = $this->get_instance_value( 'global_icon' );
+                    $default_icon['image']     = $this->get_instance_value( 'global_icon_image' );
 					$default_icon['text']      = $this->get_instance_value( 'global_icon_text' );
 					$default_icon['view']      = $this->get_instance_value( 'global_icon_view' );
 					$default_icon['shape']     = $this->get_instance_value( 'global_icon_shape' );
-					echo $helper->get_icon_html( $item, 'item_icon', $default_icon );
+					echo $helper->get_icon_html( $item, 'item_icon', $default_icon, $settings );
 
 					?>
                 </div>
@@ -1409,12 +1434,14 @@ abstract class Skin_Base extends Elementor_Skin_Base {
                     <div class="eae-tl-icon-wrapper">
 						<?php
 						$default_icon['icon_type'] = $this->get_instance_value( 'global_icon_type' );
+						$default_icon['icon_new']      = $this->get_instance_value( 'global_icon_new' );
 						$default_icon['icon']      = $this->get_instance_value( 'global_icon' );
 						$default_icon['image']     = $this->get_instance_value( 'global_icon_image' );
 						$default_icon['text']      = $this->get_instance_value( 'global_icon_text' );
 						$default_icon['view']      = $this->get_instance_value( 'global_icon_view' );
 						$default_icon['shape']     = $this->get_instance_value( 'global_icon_shape' );
-						echo $helper->get_icon_html( $settings, 'item_icon', $default_icon ); ?>
+						$item = $settings['timeline_items'];
+						echo $helper->get_icon_html( $item, 'item_icon', $default_icon, $settings ); ?>
                     </div>
                     <div class="eae-tl-content-wrapper">
 

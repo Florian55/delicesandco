@@ -9,6 +9,7 @@ use Elementor\Scheme_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
+use Elementor\Icons_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -114,15 +115,15 @@ class DualButton extends EAE_Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'button1_icon',
-			[
-				'label'       => __( 'Icon', 'wts-eae' ),
-				'type'        => Controls_Manager::ICON,
-				'label_block' => true,
-				'default'     => '',
-			]
-		);
+
+        $this->add_control(
+            'button1_icon_new',
+            [
+                'label' => __( 'Icon', 'wts-eae' ),
+                'type' => Controls_Manager::ICONS,
+                'fa4compatibility' => 'button1_icon',
+            ]
+        );
 
 		$this->add_control(
 			'button1_icon_align',
@@ -134,9 +135,7 @@ class DualButton extends EAE_Widget_Base {
 					'before' => __( 'Before', 'wts-eae' ),
 					'after'  => __( 'After', 'wts-eae' ),
 				],
-				'condition' => [
-					'button1_icon!' => '',
-				],
+				
 			]
 		);
 
@@ -154,9 +153,7 @@ class DualButton extends EAE_Widget_Base {
 					'{{WRAPPER}} .eae-button-1.icon-before .eae-db-icon-wrapper' => 'margin-right: {{SIZE}}px;',
 					'{{WRAPPER}} .eae-button-1.icon-after .eae-db-icon-wrapper'  => 'margin-left: {{SIZE}}px;',
 				],
-				'condition' => [
-					'button1_icon!' => '',
-				],
+
 			]
 		);
 		$this->end_controls_section();
@@ -196,15 +193,14 @@ class DualButton extends EAE_Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'button2_icon',
-			[
-				'label'       => __( 'Icon', 'wts-eae' ),
-				'type'        => Controls_Manager::ICON,
-				'label_block' => true,
-				'default'     => '',
-			]
-		);
+        $this->add_control(
+            'button2_icon_new',
+            [
+                'label' => __( 'Icon', 'wts-eae' ),
+                'type' => Controls_Manager::ICONS,
+                'fa4compatibility' => 'button2_icon',
+            ]
+        );
 
 		$this->add_control(
 			'button2_icon_align',
@@ -216,9 +212,7 @@ class DualButton extends EAE_Widget_Base {
 					'before' => __( 'Before', 'wts-eae' ),
 					'after'  => __( 'After', 'wts-eae' ),
 				],
-				'condition' => [
-					'button2_icon!' => '',
-				],
+
 			]
 		);
 
@@ -235,9 +229,6 @@ class DualButton extends EAE_Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .eae-button-2.icon-before .eae-db-icon-wrapper' => 'margin-right: {{SIZE}}px;',
 					'{{WRAPPER}} .eae-button-2.icon-after .eae-db-icon-wrapper'  => 'margin-left: {{SIZE}}px;',
-				],
-				'condition' => [
-					'button2_icon!' => '',
 				],
 			]
 		);
@@ -262,12 +253,11 @@ class DualButton extends EAE_Widget_Base {
 		);
 
 		$this->add_control(
-			'separator_icon',
+			'separator_icon_new',
 			[
 				'label'       => __( 'Icon', 'wts-eae' ),
-				'type'        => Controls_Manager::ICON,
-				'label_block' => true,
-				'default'     => '',
+				'type'        => Controls_Manager::ICONS,
+                'fa4compatibility' => 'separator_icon',
 			]
 		);
 		$this->end_controls_section();
@@ -388,6 +378,7 @@ class DualButton extends EAE_Widget_Base {
 				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}} .eae-button-1-wrapper .eae-db-icon-wrapper' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .eae-button-1-wrapper .eae-db-icon-wrapper svg' => 'fill: {{VALUE}};',
 				],
                 'scheme' => [
                     'type' => Scheme_Color::get_type(),
@@ -432,6 +423,7 @@ class DualButton extends EAE_Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .eae-button-1-wrapper:hover .eae-db-icon-wrapper' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .eae-button-1-wrapper:hover .eae-db-icon-wrapper svg' => 'fill : {{VALUE}};',
 				],
 			]
 		);
@@ -558,6 +550,7 @@ class DualButton extends EAE_Widget_Base {
 				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}} .eae-button-2-wrapper .eae-db-icon-wrapper' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .eae-button-2-wrapper .eae-db-icon-wrapper svg' => 'fill: {{VALUE}};',
 				],
                 'scheme' => [
                     'type' => Scheme_Color::get_type(),
@@ -720,8 +713,35 @@ class DualButton extends EAE_Widget_Base {
 				'name'     => 'separator_typography',
 				'label'    => __( 'Typography', 'wts-eae' ),
 				'selector' => '{{WRAPPER}} .eae-button-separator-wrapper .eae-button-separator',
+                'condition' =>  [
+                        'separator_text!'   =>  '',
+                ],
 			]
 		);
+
+        $this->add_control(
+            'separator_icon_width',
+            [
+                'label'     => __( 'Size', 'wts-eae' ),
+                'type'      => Controls_Manager::SLIDER,
+                'range'     => [
+                    'px' => [
+                        'min' => 6,
+                        'max' => 100,
+                    ],
+                ],
+                'default'   => [
+                    'size' => '14',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .eae-button-separator-wrapper .eae-button-separator i'   => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .eae-button-separator-wrapper .eae-button-separator svg'   => 'width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' =>  [
+                    'separator_text'    =>  '',
+                ],
+            ]
+        );
 
 		$this->add_control(
 			'separator_icon_color',
@@ -731,9 +751,12 @@ class DualButton extends EAE_Widget_Base {
 				'default'   => '',
 				'selectors' => [
 					'{{WRAPPER}} .eae-button-separator-wrapper .eae-button-separator' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .eae-button-separator-wrapper .eae-button-separator svg' => 'fill : {{VALUE}};',
 				],
 			]
 		);
+
+
 
 		$this->add_control(
 			'separator_background_color',
@@ -833,33 +856,50 @@ class DualButton extends EAE_Widget_Base {
 				$this->add_render_attribute( 'button2', 'class', 'eae-bounce-top' );
 			}
 		}
+
+        $icon_migrated = isset($settings['__fa4_migrated']['button1_icon_new']);
+        $icon_is_new = empty($settings['button1_icon']);
+
+        $button2_icon_migrated = isset($settings['__fa4_migrated']['button2_icon_new']);
+        $button2_icon_is_new = empty($settings['button2_icon']);
+
+        $separator_icon_migrated = isset($settings['__fa4_migrated']['separator_icon_new']);
+        $separator_icon_is_new = empty($settings['separator_icon']);
 		?>
         <div class="eae-dual-button-main-wrapper">
             <div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
                 <div class="eae-button1">
                     <a <?php echo $this->get_render_attribute_string( 'button1' ); ?>>
                         <div <?php echo $this->get_render_attribute_string( 'button1_inner' ); ?>>
-							<?php if ( $settings['button1_icon'] !== '' ) { ?>
+							<?php if ( $settings['button1_icon_new'] !== '' ) { ?>
                                 <div class="eae-db-icon-wrapper">
-                                    <i class="<?php echo $settings['button1_icon'] ?>"></i>
+                                    <?php if ( $icon_migrated || $icon_is_new ) :
+                                        Icons_Manager::render_icon($settings['button1_icon_new'], ['aria-hidden' => 'true']);
+                                    else:?>
+                                        <i class="<?php echo $settings['button1_icon']; ?>"></i>
+                                    <?php endif; ?>
                                 </div>
 							<?php } ?>
                             <div class="eae-button-text"><?php echo $settings['button1_text']; ?></div>
                         </div>
                     </a>
 
-					<?php if ( $settings['separator_icon'] !== '' || $settings['separator_text'] !== '' ) { ?>
+					<?php if ( $settings['separator_icon_new'] !== '' || $settings['separator_text'] !== '' ) { ?>
                         <span class="eae-button-separator-wrapper">
                                 <span class="eae-button-separator">
                                     <span>
                                 <?php
-                                if ( $settings['separator_icon'] !== '' ) {
-	                                echo '<i class="' . $settings['separator_icon'] . '"></i>';
-                                }
-                                if ( $settings['separator_text'] !== '' ) {
-	                                echo $settings['separator_text'];
-                                }
-                                ?>
+                                    if ( $settings['separator_icon_new'] !== '' ) {
+                                        if ($separator_icon_migrated || $separator_icon_is_new) :
+                                            Icons_Manager::render_icon($settings['separator_icon_new'], ['aria-hidden' => 'true']);
+                                        else:?>
+                                            <i class="<?php echo $settings['separator_icon']; ?>"></i>
+                                        <?php endif;
+                                    }
+                                    if ( $settings['separator_text'] !== '' ) {
+                                        echo $settings['separator_text'];
+                                    }
+                                    ?>
                                     </span>
                                 </span>
                             </span>
@@ -868,9 +908,13 @@ class DualButton extends EAE_Widget_Base {
                 <div class="eae-button2">
                     <a <?php echo $this->get_render_attribute_string( 'button2' ); ?>>
                         <div <?php echo $this->get_render_attribute_string( 'button2_inner' ); ?>>
-							<?php if ( $settings['button2_icon'] !== '' ) { ?>
+							<?php if ( $settings['button2_icon_new'] !== '' ) { ?>
                                 <div class="eae-db-icon-wrapper">
-                                    <i class="<?php echo $settings['button2_icon'] ?>"></i>
+                                    <?php if ( $button2_icon_migrated || $button2_icon_is_new ) :
+                                        Icons_Manager::render_icon($settings['button2_icon_new'], ['aria-hidden' => 'true']);
+                                    else:?>
+                                        <i class="<?php echo $settings['button2_icon']; ?>"></i>
+                                    <?php endif; ?>
                                 </div>
 							<?php } ?>
                             <div class="eae-button-text"><?php echo $settings['button2_text']; ?></div>
@@ -888,11 +932,11 @@ class DualButton extends EAE_Widget_Base {
         <#
         view.addRenderAttribute( 'button1', 'class', 'eae-button-1-wrapper' );
         if ( settings['button1_link']['url'] !== '' ) {
-        view.addRenderAttribute( 'button1', 'href', settings['button1_link']['url'] );
+            view.addRenderAttribute( 'button1', 'href', settings['button1_link']['url'] );
 
-        if ( settings['button1_link']['is_external'] !== '' ) {
-        view.addRenderAttribute( 'button1', 'target', '_blank' );
-        }
+            if ( settings['button1_link']['is_external'] !== '' ) {
+                view.addRenderAttribute( 'button1', 'target', '_blank' );
+            }
         }
 
         view.addRenderAttribute( 'button2', 'class', 'eae-button-2-wrapper' );
@@ -940,6 +984,16 @@ class DualButton extends EAE_Widget_Base {
         view.addRenderAttribute( 'button2', 'class', 'eae-bounce-top' );
         }
         }
+
+        iconHTML = elementor.helpers.renderIcon( view, settings.button1_icon_new, { 'aria-hidden': true }, 'i' , 'object' ),
+        migrated = elementor.helpers.isIconMigrated( settings, 'button1_icon_new' ),
+
+        button2_iconHTML = elementor.helpers.renderIcon( view, settings.button2_icon_new, { 'aria-hidden': true }, 'i' , 'object' ),
+        button2_migrated = elementor.helpers.isIconMigrated( settings, 'button2_icon_new' ),
+
+        separator_iconHTML = elementor.helpers.renderIcon( view, settings.separator_icon_new, { 'aria-hidden': true }, 'i' , 'object' ),
+        separator_migrated = elementor.helpers.isIconMigrated( settings, 'separator_icon_new' ),
+
         #>
 
 
@@ -948,23 +1002,31 @@ class DualButton extends EAE_Widget_Base {
             <div class="eae-button1">
                 <a {{{ view.getRenderAttributeString( 'button1' ) }}}>
                 <div {{{ view.getRenderAttributeString( 'button1_inner' ) }}}>
-                <# if ( settings['button1_icon'] !== '' ) { #>
+                <# if ( settings['button1_icon_new'] !== '' ) { #>
                 <div class="eae-db-icon-wrapper">
-                    <i class="{{{ settings['button1_icon'] }}}"></i>
+                    <# if ( iconHTML.rendered && ( !settings.button1_icon || migrated ) ) { #>
+                        {{{ iconHTML.value }}}
+                    <# } else { #>
+                        <i class="{{ settings.button1_icon }}" aria-hidden="true"></i>
+                    <# } #>
                 </div>
                 <# } #>
                 <div class="eae-button-text">{{{ settings['button1_text'] }}}</div>
             </div>
             </a>
 
-            <# if ( settings['separator_icon'] !== '' || settings['separator_text'] !== '' ) { #>
+            <# if ( settings['separator_icon_new'] !== '' || settings['separator_text'] !== '' ) { #>
             <span class="eae-button-separator-wrapper">
                                 <span class="eae-button-separator">
                                     <span>
                                 <#
-                                if ( settings['separator_icon'] !== '' ) {
+                                if ( settings['separator_icon_new'] !== '' ) {
                                         #>
-	                                <i class="{{{ settings['separator_icon'] }}}"></i>
+	                                <# if ( separator_iconHTML.rendered && ( ! settings.separator_icon || migrated ) ) { #>
+                                        {{{ separator_iconHTML.value }}}
+                                    <# } else { #>
+                                        <i class="{{ settings.separator_icon }}" aria-hidden="true"></i>
+                                    <# } #>
                                 <# }
                                 if ( settings['separator_text'] !== '' ) {
                                         #>
@@ -978,9 +1040,13 @@ class DualButton extends EAE_Widget_Base {
         <div class="eae-button2">
             <a {{{ view.getRenderAttributeString( 'button2' ) }}}>
                 <div {{{ view.getRenderAttributeString( 'button2_inner' ) }}}>
-                    <# if ( settings['button2_icon'] !== '' ) { #>
+                    <# if ( settings['button2_icon_new'] !== '' ) { #>
                     <div class="eae-db-icon-wrapper">
-                        <i class="{{{ settings['button2_icon'] }}}"></i>
+                        <# if ( button2_iconHTML.rendered && ( ! settings.button2_icon || migrated ) ) { #>
+                            {{{ button2_iconHTML.value }}}
+                        <# } else { #>
+                            <i class="{{ settings.button2_icon }}" aria-hidden="true"></i>
+                        <# } #>
                     </div>
                     <# } #>
                     <div class="eae-button-text">{{{ settings['button2_text'] }}}</div>

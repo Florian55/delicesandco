@@ -68,6 +68,9 @@ class Info_Circle extends EAE_Widget_Base {
 			[
 				'label'       => __( 'Title', 'wts-eae' ),
 				'type'        => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'default'     => __( 'This is the heading', 'wts-eae' ),
 				'placeholder' => __( 'Enter your title', 'wts-eae' ),
 			]
@@ -86,6 +89,9 @@ class Info_Circle extends EAE_Widget_Base {
 			[
 				'label'       => __( 'Content', 'wts-eae' ),
 				'type'        => Controls_Manager::TEXTAREA,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'placeholder' => __( 'Content', 'wts-eae' ),
 				'default'     => __( 'Add some nice text here.', 'wts-eae' ),
 			]
@@ -292,80 +298,4 @@ class Info_Circle extends EAE_Widget_Base {
 		] );
 	}
 
-	protected function _content_template() {
-		?>
-	<#
-		#>
-		<div class="eae-info-circle-wrapper">
-			<div class="eae-info-circle" data-active-item="1" data-autoplay="{{{ settings[settings['_skin'] + '_ic_content_auto_change'] }}}"
-			     data-delay="{{{ settings[settings['_skin'] + '_ic_change_duration'] }}}" style="opacity: 1;">
-
-				<# if(settings.info_circle_items.length){
-
-				settings.info_circle_items.forEach(infoCircle);
-
-				function infoCircle(item,index){
-					var control_name = 'item_icon';
-					var icon_type = 'eae-icon-type-' + settings[settings['_skin'] + '_global_icon_type'];
-					var icon_name = 'eae-icon-' + control_name;
-					var icon_html = ''
-					var icon_view = 'eae-icon-view-' + settings[settings['_skin'] + '_global_icon_view'];
-					var icon_shape = 'eae-icon-shape-' + settings[settings['_skin'] + '_global_icon_shape'];
-
-				if( item.item_icon_view != 'global' ){
-					icon_view = 'eae-icon-view-' + item.item_icon_view;
-					}
-
-				if( item.item_icon_shape != 'global' ){
-					icon_shape = 'eae-icon-shape-' + item.item_icon_shape;
-					}
-
-				if ( item.item_icon_eae_icon == 'custom') {
-					if ( item.item_icon_icon_type == 'icon' ) {
-					icon_html = '<i class="' + item.item_icon_icon + '"></i>';
-					}
-					else if ( item.item_icon_icon_type == 'image' ) {
-						icon_html = '<i><img src="' + item.item_icon_image.url + '"/></i>';
-						}
-					else if ( item.item_icon_icon_type == 'text' ) {
-						icon_html = '<i class="">' + item.item_icon_text + '</i>';
-						}
-				}
-				else {
-					if ( settings[settings['_skin'] + '_global_icon_type'] == 'icon' ) {
-					icon_html = '<i class="' + settings[settings['_skin'] + '_global_icon'] + '"></i>';
-					}
-					else if ( settings[settings['_skin'] + '_global_icon_type'] == 'image' ) {
-						icon_html = '<i><img src="' + settings[settings['_skin'] + '_global_icon_image'].url + '"/></i>';
-						}
-					else if ( settings[settings['_skin'] + '_global_icon_type'] == 'text' ) {
-					icon_html = '<i class="">' + settings[settings['_skin'] + '_global_icon_text'] + '</i>';
-					}
-				}
-				#>
-				<div class="eae-info-circle-item elementor-repeater-item-{{{ item['_id'] }}}" style="opacity: 1;">
-					<div id="{{{ item['_id'] }}}" data-id="{{{ item['_id'] }}}" class="eae-ic-icon-wrap"
-					     style="opacity: 1;">
-						<div class="eae-icon {{ icon_name }} {{ icon_view }} {{ icon_shape }} {{ icon_type }}">
-							<div class="eae-icon-wrap">
-								{{{ icon_html }}}
-							</div>
-						</div>
-					</div>
-					<div class="eae-info-circle-item__content-wrap">
-						<div class="eae-info-circle-item__content">
-							<h3 class="eae-ic-heading">{{{ item['ic_item_title'] }}}</h3>
-							<div class="eae-ic-description">
-								<p>{{{ item['ic_item_content'] }}} </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<# }
-				}
-				#>
-			</div>
-		</div>
-		<?php
-	}
 }

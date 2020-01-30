@@ -914,7 +914,7 @@ class LAE_Portfolio_Widget extends Widget_Base {
 
                     $image_setting = ['id' => get_post_thumbnail_id($post_id)];
 
-                    $thumbnail_html = lae_get_image_html($image_setting, 'thumbnail_size', $settings);
+                    $thumbnail_html = lae_get_image_html($image_setting, 'thumbnail_size', $settings, true);
 
                     if ($settings['image_linkable'] == 'yes'):
 

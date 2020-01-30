@@ -103,10 +103,15 @@ class Modules_Settings {
 
     public function pa_admin_menu() {
         
-        $plugin_name = get_option('pa_wht_lbl_save_settings')['premium-wht-lbl-plugin-name'];
+        $plugin_name = 'Premium Addons for Elementor';
         
-        if( ! defined('PREMIUM_PRO_ADDONS_VERSION') || ! isset( $plugin_name ) || '' == $plugin_name ){
-            $plugin_name = 'Premium Addons for Elementor';
+        if( defined( 'PREMIUM_PRO_ADDONS_VERSION' ) ) {
+            if( isset( get_option( 'pa_wht_lbl_save_settings' )['premium-wht-lbl-plugin-name'] ) ) {
+                $name = get_option( 'pa_wht_lbl_save_settings' )['premium-wht-lbl-plugin-name'];
+                if( '' !== $name )
+                    $plugin_name = $name;
+            }
+            
         }
         
         add_menu_page(

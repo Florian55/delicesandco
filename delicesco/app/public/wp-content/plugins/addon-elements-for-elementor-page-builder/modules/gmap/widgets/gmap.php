@@ -63,6 +63,9 @@ class Gmap extends EAE_Widget_Base {
 		    [
 		    	'label' => __('Latitude', 'wts-eae'),
 			    'type'  => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 			    'placeholder' => __('Enter latitude value here', 'wts-eae')
 		    ]
 	    );
@@ -72,6 +75,9 @@ class Gmap extends EAE_Widget_Base {
 			[
 				'label' => __('Longitude', 'wts-eae'),
 				'type'  => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'placeholder' => __('Enter latitude value here', 'wts-eae')
 			]
 		);
@@ -81,6 +87,9 @@ class Gmap extends EAE_Widget_Base {
 			[
 				'label' => __('Address', 'wts-eae'),
 				'type'  => Controls_Manager::WYSIWYG,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'placeholder' => __('Enter address', 'wts-eae')
 			]
 		);
@@ -193,7 +202,7 @@ class Gmap extends EAE_Widget_Base {
 	}
 
 	protected function render( ) {
-        $settings = $this->get_settings();
+        $settings = $this->get_settings_for_display();
 
         $markers = $settings['markers'];
 

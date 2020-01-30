@@ -149,7 +149,17 @@ class Plugin {
 		wp_register_script( 'wts-magnific', EAE_URL . 'assets/lib/magnific'.EAE_SCRIPT_SUFFIX.'.js', array( 'jquery' ), '1.9', true );
 		wp_register_script( 'wts-isotope', EAE_URL . 'assets/lib/isotope/isotope.pkgd'.EAE_SCRIPT_SUFFIX.'.js', array( 'jquery' ), '2.6.2', true );
 		wp_register_script( 'wts-tilt', EAE_URL . 'assets/lib/tilt/tilt.jquery'.EAE_SCRIPT_SUFFIX.'.js', array( 'jquery' ), '', true );
-
+		wp_register_style(
+			'font-awesome-5-all',
+			ELEMENTOR_ASSETS_URL . 'lib/font-awesome/css/all.min.css'
+		);
+		wp_register_style(
+			'font-awesome-4-shim',
+			ELEMENTOR_ASSETS_URL . 'lib/font-awesome/css/v4-shims.min.css');
+		wp_register_script(
+			'font-awesome-4-shim',
+			ELEMENTOR_ASSETS_URL . 'lib/font-awesome/js/v4-shims.min.js'
+		);
 
 		$map_key = get_option( 'wts_eae_gmap_key' );
 		if ( isset( $map_key ) && $map_key != '' ) {

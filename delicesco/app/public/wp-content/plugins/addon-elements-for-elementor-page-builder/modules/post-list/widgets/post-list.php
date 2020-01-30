@@ -744,32 +744,5 @@ class PostList extends EAE_Widget_Base {
         <?php
 	}
 
-	protected function content_template() {
-		?>
-		<#
-
-        icon_class = settings.icon != ''? 'icon-yes':'';
-        title_class = settings.title != ''? 'title-yes':'';
-		var separator_html = '<div class="wts-eae-textseparator sep-align-' + settings.align + ' icon-' + settings.icon_position + ' ' + icon_class + ' ' + title_class +'"><div class="eae-sep-holder sep-left"><div class="eae-sep-lines"></div></div>';
-
-        if(settings.icon != '' && settings.icon_position == 'before'){
-            separator_html += '<div class="eae-separator-icon-wrapper"><div class="eae-separator-icon-inner"><i class="'+ settings.icon +'"></i></div></div>'
-        }
-
-        if(settings.title != ''){
-            separator_html += '<' + settings.html_tag  + ' class="eae-separator-title">' + settings.title + '</' + settings.html_tag + '>';
-         }
-
-
-        if(settings.icon != '' && settings.icon_position == 'after'){
-            separator_html += '<div class="eae-separator-icon-wrapper"><div class="eae-separator-icon-inner"><i class="'+ settings.icon +'"></i></div></div>'
-        }
-
-        separator_html += '<div class="eae-sep-holder sep-right"><div class="eae-sep-lines"></div></div></div>';
-
-		print( separator_html );
-		#>
-		<?php
-	}
 }
 //Plugin::instance()->widgets_manager->register_widget_type( new Widget_PostList() );

@@ -70,6 +70,9 @@ class AnimatedText extends EAE_Widget_Base {
 				[
 					'label' => __( 'Pre Text', 'wts-eae' ),
 					'type' => Controls_Manager::TEXTAREA,
+                    'dynamic' => [
+                        'active' => true,
+                    ],
 					'placeholder' => __( 'Enter text', 'wts-eae' ),
 					'default' => __( 'I Love', 'wts-eae' ),
 				]
@@ -97,6 +100,9 @@ class AnimatedText extends EAE_Widget_Base {
 							'name' => 'text',
 							'label' => __( 'Text', 'wts-eae' ),
 							'type' => Controls_Manager::TEXT,
+                            'dynamic' => [
+                                'active' => true,
+                            ],
 							'label_block' => true,
 							'placeholder' => __( 'Text to animate', 'wts-eae' ),
 							'default' => __( '', 'wts-eae' ),
@@ -111,6 +117,9 @@ class AnimatedText extends EAE_Widget_Base {
 				[
 					'label' => __( 'Post Text', 'wts-eae' ),
 					'type' => Controls_Manager::TEXTAREA,
+                    'dynamic' => [
+                        'active' => true,
+                    ],
 					'placeholder' => __( 'Enter text', 'wts-eae' ),
 					'default' => __( 'Very Much', 'wts-eae' ),
 				]
@@ -337,7 +346,7 @@ class AnimatedText extends EAE_Widget_Base {
 	}
 	
 	protected function render(){
-		$settings = $this->get_settings();
+		$settings = $this->get_settings_for_display();
 
 		$this->add_render_attribute('eae-at-animated-text-wrapper','class','eae-at-animation-text-wrapper');
 
@@ -378,7 +387,6 @@ class AnimatedText extends EAE_Widget_Base {
 				</div>
 			</div>
 			<script>
-				console.log('before-trigger');
 				jQuery(document).trigger('elementor/render/animation-text','#eae-at-<?php echo $this->get_id(); ?>');
 
 				jQuery(document).ready(function(){
@@ -387,17 +395,7 @@ class AnimatedText extends EAE_Widget_Base {
 			</script>
         <?php
 	}
-	
-	protected function content_template() {
-		?>
-		<#
 
-        box_html = '';
-
-		print( separator_html );
-		#>
-		<?php
-	}
 }
 
 //Plugin::instance()->widgets_manager->register_widget_type( new Widget_AnimatedText() );

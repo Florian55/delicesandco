@@ -2,6 +2,7 @@
 namespace WTS_EAE\Modules\ComparisonTable\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Icons_Manager;
 use Elementor\Repeater;
 use WTS_EAE\Base\EAE_Widget_Base;
 use Elementor\Scheme_Color;
@@ -94,6 +95,9 @@ class ComparisonTable extends EAE_Widget_Base {
 			[
 				'label'       => __( 'Feature', 'wts-eae' ),
 				'type'        => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'default'     => 'feature',
 				'placeholder' => __( 'Enter your feature', 'wts-eae' ),
 			]
@@ -103,6 +107,9 @@ class ComparisonTable extends EAE_Widget_Base {
 			[
 				'label'       => __( 'Tooltip', 'wts-eae' ),
 				'type'        => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'placeholder' => __( 'Tooltip Text', 'wts-eae' ),
 			]
 		);
@@ -149,7 +156,8 @@ class ComparisonTable extends EAE_Widget_Base {
 					],
 					'fa fa-close' => [
 						'title' => __( 'No', 'wts-eae' ),
-						'icon'  => 'fa fa-close',
+						'icon'  => '
+						fa fa-close',
 					],
 					'text'        => [
 						'title' => __( 'Text', 'wts-eae' ),
@@ -164,6 +172,9 @@ class ComparisonTable extends EAE_Widget_Base {
 			[
 				'label'       => __( 'Feature', 'wts-eae' ),
 				'type'        => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
 				'default'     => __( 'Feature', 'wts-eae' ),
 				'placeholder' => __( 'Enter your feature', 'wts-eae' ),
 				'condition'   => [
@@ -187,6 +198,9 @@ class ComparisonTable extends EAE_Widget_Base {
 				[
 					'label'       => __( 'Title', 'wts-eae' ),
 					'type'        => Controls_Manager::TEXT,
+                    'dynamic' => [
+                        'active' => true,
+                    ],
 					'default'     => __( 'Our Plan', 'wts-eae' ),
 					'placeholder' => __( 'Enter table title', 'wts-eae' ),
 				]
@@ -196,6 +210,9 @@ class ComparisonTable extends EAE_Widget_Base {
 				[
 					'label'       => __( 'Currency Symbol', 'wts-eae' ),
 					'type'        => Controls_Manager::TEXT,
+                    'dynamic' => [
+                        'active' => true,
+                    ],
 					'default'     => __( '$', 'wts-eae' ),
 					'placeholder' => __( '$', 'wts-eae' ),
 				]
@@ -205,6 +222,9 @@ class ComparisonTable extends EAE_Widget_Base {
 				[
 					'label'       => __( 'Price', 'wts-eae' ),
 					'type'        => Controls_Manager::TEXT,
+                    'dynamic' => [
+                        'active' => true,
+                    ],
 					'default'     => __( '39.99', 'wts-eae' ),
 					'placeholder' => __( 'Enter table title', 'wts-eae' ),
 				]
@@ -223,6 +243,9 @@ class ComparisonTable extends EAE_Widget_Base {
 				[
 					'label'       => __( 'Original Price', 'wts-eae' ),
 					'type'        => Controls_Manager::TEXT,
+                    'dynamic' => [
+                        'active' => true,
+                    ],
 					'default'     => __( '49.99', 'wts-eae' ),
 					'placeholder' => __( 'Enter table title', 'wts-eae' ),
 					'condition'   => [
@@ -235,6 +258,9 @@ class ComparisonTable extends EAE_Widget_Base {
 				[
 					'label'       => __( 'Duration', 'wts-eae' ),
 					'type'        => Controls_Manager::TEXT,
+                    'dynamic' => [
+                        'active' => true,
+                    ],
 					'default'     => __( '/year', 'wts-eae' ),
 					'placeholder' => __( 'Enter table title', 'wts-eae' ),
 				]
@@ -255,6 +281,9 @@ class ComparisonTable extends EAE_Widget_Base {
 				[
 					'label'       => __( 'Ribbon Text', 'wts-eae' ),
 					'type'        => Controls_Manager::TEXT,
+                    'dynamic' => [
+                        'active' => true,
+                    ],
 					'default'     => __( 'Popular', 'wts-eae' ),
 					'placeholder' => __( 'Popular', 'wts-eae' ),
 					'condition'   => [
@@ -295,6 +324,9 @@ class ComparisonTable extends EAE_Widget_Base {
 				[
 					'label'   => __( 'Button Text', 'wts-eae' ),
 					'type'    => Controls_Manager::TEXT,
+                    'dynamic' => [
+                        'active' => true,
+                    ],
 					'default' => 'Buy Now'
 				]
 			);
@@ -303,6 +335,9 @@ class ComparisonTable extends EAE_Widget_Base {
 				[
 					'label'   => __( 'Link', 'wts-eae' ),
 					'type'    => Controls_Manager::URL,
+                    'dynamic' => [
+                        'active' => true,
+                    ],
 					'default' => [
 						'url'         => '#',
 						'is_external' => '',
@@ -1841,7 +1876,20 @@ class ComparisonTable extends EAE_Widget_Base {
 						echo '<td class="eae-ct-txt eae-table-' . $j . '">';
 						if ( count( $settings[ 'feature_items_' . $j ] ) >= $x ) {
 							if ( $settings[ 'feature_items_' . $j ][ $x - 1 ]['table_content_type'] !== 'text' ) {
-								echo '<i class="' . $settings[ 'feature_items_' . $j ][ $x - 1 ]['table_content_type'] . '"></i>';
+							    if($settings[ 'feature_items_' . $j ][ $x - 1 ]['table_content_type'] == 'fa fa-close'){
+							        $icon  = array(
+							                'value' =>  'fas fa-times',
+                                            'library'   =>  'solid'
+                                    );
+                                }else{
+								    $icon  = array(
+									    'value' =>  'fas fa-check',
+									    'library'   =>  'solid'
+                                    );
+                                }
+								    Icons_Manager::render_icon($icon);
+
+								//echo '<i class="' . $icon . '"></i>';
 							} else {
 								echo $settings[ 'feature_items_' . $j ][ $x - 1 ]['feature_text'];
 							}
@@ -1885,7 +1933,6 @@ class ComparisonTable extends EAE_Widget_Base {
                 <#
                 for ( var i = 1; i <= settings.table_count; i++ ) {
                 if ( settings['table_ribbon_' + i ] == 'yes' ) {
-                console.log('yes');
                 view.addRenderAttribute( 'heading_' + i, 'class', 'eae-ct-heading' );
                 view.addRenderAttribute( 'heading_' + i, 'class', 'eae-table-' + i );
                 view.addRenderAttribute( 'heading_' + i, 'class', 'eae-ct-ribbons-yes');
@@ -2032,8 +2079,14 @@ class ComparisonTable extends EAE_Widget_Base {
                 <# for ( var j = 1; j <= settings['table_count']; j++ ) { #>
                     <td class="eae-ct-txt eae-table-{{{ j }}}">
                 <# if ( settings[ 'feature_items_' + j ].length  >= x ) {
-                        if ( settings[ 'feature_items_' + j ][ x - 1 ]['table_content_type'] !== 'text' ) { #>
-                        <i class=" {{{ settings[ 'feature_items_' + j ][ x - 1 ]['table_content_type'] }}}"></i>
+                        if ( settings[ 'feature_items_' + j ][ x - 1 ]['table_content_type'] !== 'text' ) {
+                        if ( settings[ 'feature_items_' + j ][ x - 1 ]['table_content_type'] == 'fa fa-close' ){
+                            var icon = 'fas fa-times';
+                        }else{
+                            var icon = 'fas fa-check';
+                        }
+                        #>
+                        <i class=" {{{ icon }}}"></i>
                 <# } else { #>
                     {{{ settings[ 'feature_items_' + j ][ x - 1 ]['feature_text'] }}}
                 <# } } else { #>

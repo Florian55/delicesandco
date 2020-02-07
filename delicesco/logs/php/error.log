@@ -329,3 +329,57 @@ Stack trace:
 [10-Jan-2020 17:36:49 UTC] PHP   5. sfsi_plus_options_page() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:288
 [10-Jan-2020 17:36:49 UTC] PHP   6. include() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ultimate-social-media-plus\libs\sfsi_install_uninstall.php:843
 [10-Jan-2020 17:36:49 UTC] PHP   7. include() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ultimate-social-media-plus\views\sfsi_options_view.php:256
+[07-Feb-2020 10:49:00 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\premium-addons-for-elementor\widgets\premium-carousel.php on line 1070
+[07-Feb-2020 10:49:00 UTC] PHP Stack trace:
+[07-Feb-2020 10:49:00 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:0
+[07-Feb-2020 10:49:00 UTC] PHP   2. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:175
+[07-Feb-2020 10:49:00 UTC] PHP   3. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[07-Feb-2020 10:49:00 UTC] PHP   4. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:312
+[07-Feb-2020 10:49:00 UTC] PHP   5. Elementor\Core\Common\Modules\Ajax\Module->handle_ajax_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:288
+[07-Feb-2020 10:49:00 UTC] PHP   6. call_user_func:{C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:171}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:171
+[07-Feb-2020 10:49:00 UTC] PHP   7. Elementor\Core\Documents_Manager->ajax_save() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:171
+[07-Feb-2020 10:49:00 UTC] PHP   8. Elementor\Core\DocumentTypes\Page->save() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\documents-manager.php:512
+[07-Feb-2020 10:49:00 UTC] PHP   9. Elementor\Core\DocumentTypes\Page->save_elements() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\base\document.php:541
+[07-Feb-2020 10:49:00 UTC] PHP  10. Elementor\DB->save_plain_text() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\base\document.php:906
+[07-Feb-2020 10:49:00 UTC] PHP  11. Elementor\DB->get_plain_text() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\db.php:326
+[07-Feb-2020 10:49:00 UTC] PHP  12. Elementor\DB->get_plain_text_from_data() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\db.php:618
+[07-Feb-2020 10:49:00 UTC] PHP  13. Elementor\DB->render_element_plain_content() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\db.php:637
+[07-Feb-2020 10:49:00 UTC] PHP  14. Elementor\DB->render_element_plain_content() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\db.php:304
+[07-Feb-2020 10:49:00 UTC] PHP  15. Elementor\DB->render_element_plain_content() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\db.php:304
+[07-Feb-2020 10:49:00 UTC] PHP  16. PremiumAddons\Widgets\Premium_Carousel->render_plain_content() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\db.php:298
+[07-Feb-2020 10:49:00 UTC] PHP  17. PremiumAddons\Widgets\Premium_Carousel->render_content() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\base\widget-base.php:501
+[07-Feb-2020 10:49:00 UTC] PHP  18. PremiumAddons\Widgets\Premium_Carousel->render() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\base\widget-base.php:448
+[07-Feb-2020 10:52:13 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\premium-addons-for-elementor\widgets\premium-carousel.php on line 1070
+[07-Feb-2020 10:52:13 UTC] PHP Stack trace:
+[07-Feb-2020 10:52:13 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[07-Feb-2020 10:52:13 UTC] PHP   2. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:12
+[07-Feb-2020 10:52:13 UTC] PHP   3. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin.php:401
+[07-Feb-2020 10:52:13 UTC] PHP   4. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[07-Feb-2020 10:52:13 UTC] PHP   5. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:312
+[07-Feb-2020 10:52:13 UTC] PHP   6. Elementor\Core\Editor\Editor->init() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:288
+[07-Feb-2020 10:52:13 UTC] PHP   7. Elementor\Core\Editor\Editor->print_editor_template() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\editor\editor.php:164
+[07-Feb-2020 10:52:13 UTC] PHP   8. include() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\editor\editor.php:316
+[07-Feb-2020 10:52:13 UTC] PHP   9. wp_head() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\editor-templates\editor-wrapper.php:34
+[07-Feb-2020 10:52:13 UTC] PHP  10. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\general-template.php:2879
+[07-Feb-2020 10:52:13 UTC] PHP  11. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[07-Feb-2020 10:52:13 UTC] PHP  12. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:312
+[07-Feb-2020 10:52:13 UTC] PHP  13. wp_enqueue_scripts() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:288
+[07-Feb-2020 10:52:13 UTC] PHP  14. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\script-loader.php:2670
+[07-Feb-2020 10:52:13 UTC] PHP  15. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[07-Feb-2020 10:52:13 UTC] PHP  16. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:312
+[07-Feb-2020 10:52:13 UTC] PHP  17. Elementor\Core\Editor\Editor->enqueue_scripts() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:288
+[07-Feb-2020 10:52:13 UTC] PHP  18. Elementor\Core\DocumentTypes\Page->get_elements_raw_data() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\editor\editor.php:510
+[07-Feb-2020 10:52:13 UTC] PHP  19. Elementor\Element_Section->get_raw_data() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\base\document.php:698
+[07-Feb-2020 10:52:13 UTC] PHP  20. Elementor\Element_Column->get_raw_data() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\base\element-base.php:715
+[07-Feb-2020 10:52:13 UTC] PHP  21. PremiumAddons\Widgets\Premium_Carousel->get_raw_data() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\base\element-base.php:715
+[07-Feb-2020 10:52:13 UTC] PHP  22. PremiumAddons\Widgets\Premium_Carousel->render_content() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\base\widget-base.php:561
+[07-Feb-2020 10:52:13 UTC] PHP  23. PremiumAddons\Widgets\Premium_Carousel->render() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\includes\base\widget-base.php:448
+[07-Feb-2020 10:57:08 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ml-slider\admin\routes\api.php:514
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ml-slider\admin\routes\api.php(458): MetaSlider_Api->process_uploads(Array, NULL)
+#1 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api\class-wp-rest-server.php(946): MetaSlider_Api->import_images(Object(WP_REST_Request))
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api\class-wp-rest-server.php(329): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api.php(305): WP_REST_Server->serve_request('/metaslider/v1/...')
+#4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php(288): rest_api_loaded(Object(WP))
+#5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php(312): WP_Hook->apply_filters('', Array)
+#6 C:\User in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ml-slider\admin\routes\api.php on line 514

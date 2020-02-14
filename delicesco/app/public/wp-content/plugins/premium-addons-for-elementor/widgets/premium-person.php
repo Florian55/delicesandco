@@ -1296,9 +1296,9 @@ class Premium_Person extends Widget_Base {
         
         $settings = $this->get_settings_for_display();
         
-        $this->add_inline_editing_attributes('premium_person_name');
+        $this->add_inline_editing_attributes('premium_person_name', 'advanced');
         
-        $this->add_inline_editing_attributes('premium_person_title');
+        $this->add_inline_editing_attributes('premium_person_title', 'advanced');
         
         $this->add_inline_editing_attributes('premium_person_content','advanced');
         
@@ -1399,8 +1399,8 @@ class Premium_Person extends Widget_Base {
                     $title_setting_key = $this->get_repeater_setting_key( 'multiple_title', 'multiple_persons', $index );
                     $desc_setting_key = $this->get_repeater_setting_key( 'multiple_description', 'multiple_persons', $index );
                     
-                    $this->add_inline_editing_attributes( $name_setting_key );
-                    $this->add_inline_editing_attributes( $title_setting_key );
+                    $this->add_inline_editing_attributes( $name_setting_key, 'advanced' );
+                    $this->add_inline_editing_attributes( $title_setting_key, 'advanced' );
                     $this->add_inline_editing_attributes( $desc_setting_key, 'advanced' );
                     
                     $person_image_html = '';
@@ -1563,9 +1563,9 @@ class Premium_Person extends Widget_Base {
         ?>
         <#
         
-        view.addInlineEditingAttributes( 'premium_person_name' );
+        view.addInlineEditingAttributes( 'premium_person_name', 'advanced' );
         
-        view.addInlineEditingAttributes( 'premium_person_title' );
+        view.addInlineEditingAttributes( 'premium_person_title', 'advanced' );
         
         view.addInlineEditingAttributes( 'premium_person_content', 'advanced' );
         
@@ -1769,8 +1769,8 @@ class Premium_Person extends Widget_Base {
                         descSettingKey = view.getRepeaterSettingKey( 'multiple_description', 'multiple_persons', index );
                     
                         
-                    view.addInlineEditingAttributes( nameSettingKey );
-                    view.addInlineEditingAttributes( titleSettingKey );
+                    view.addInlineEditingAttributes( nameSettingKey, 'advanced' );
+                    view.addInlineEditingAttributes( titleSettingKey, 'advanced' );
                     view.addInlineEditingAttributes( descSettingKey, 'advanced' );
                     
                     var personImageHtml = '';

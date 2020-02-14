@@ -232,22 +232,34 @@ class Premium_Vscroll extends Widget_Base {
            ]
         );
         
+        $this->add_control('navigation_dots',
+            [
+                'label'         => __('Navigation Dots', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::SWITCHER,
+                'default'       => 'yes',
+                'separator'     => 'before',
+                'prefix_class'  => 'premium-vscroll-nav-dots-'
+            ]
+        );
+        
         $this->add_control('navigation_dots_pos',
             [
-                'label'         => __('Dots Horizontal Position', 'premium-addons-for-elementor'),
+                'label'         => __('Horizontal Position', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SELECT,
                 'options'       => [
                     'left'  => __('Left', 'premium-addons-for-elementor'),
                     'right' => __('Right', 'premium-addons-for-elementor'),
                 ],
                 'default'       => 'right',
-                'separator'     => 'before'
+                'condition'     => [
+                    'navigation_dots'   => 'yes',
+                ]
             ]
         );
         
         $this->add_control('navigation_dots_v_pos',
             [
-                'label'         => __('Dots Vertical Position', 'premium-addons-for-elementor'),
+                'label'         => __('Vertical Position', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SELECT,
                 'options'       => [
                     'top'   => __('Top', 'premium-addons-for-elementor'),
@@ -255,15 +267,20 @@ class Premium_Vscroll extends Widget_Base {
                     'bottom'=> __('Bottom', 'premium-addons-for-elementor'),
                 ],
                 'default'       => 'middle',
+                'condition'     => [
+                    'navigation_dots'   => 'yes',
+                ]
             ]
         );
         
         $this->add_control('dots_tooltips_switcher',
             [
-                'label'         => __('Dots Tooltips', 'premium-addons-for-elementor'),
+                'label'         => __('Tooltips', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SWITCHER,
                 'default'       => 'yes',
-                
+                'condition'     => [
+                    'navigation_dots'   => 'yes',
+                ]
             ]
         );
         
@@ -277,7 +294,7 @@ class Premium_Vscroll extends Widget_Base {
                 ],
                 'default'       => 'circ',
                 'condition'     => [
-                    'dots_tooltips_switcher'    => 'yes'
+                    'navigation_dots'   => 'yes',
                 ]
             ]
         );
@@ -289,6 +306,7 @@ class Premium_Vscroll extends Widget_Base {
                 'dynamic'       => [ 'active' => true ],
                 'description'   => __('Add text for each navigation dot separated by \',\'','premium-addons-for-elementor'),
                 'condition'     => [
+                    'navigation_dots'           => 'yes',
                     'dots_tooltips_switcher'    => 'yes'
                 ]
             ]
@@ -299,7 +317,10 @@ class Premium_Vscroll extends Widget_Base {
 				'label'         => __( 'Entrance Animation', 'premium-addons-for-elementor' ),
 				'type'          => Controls_Manager::ANIMATION,
 				'frontend_available' => true,
-                'render_type'   => 'template'
+                'render_type'   => 'template',
+                'condition'     => [
+                    'navigation_dots'   => 'yes',
+                ]
 			]
 		);
 
@@ -314,7 +335,8 @@ class Premium_Vscroll extends Widget_Base {
 					'fast'  => __( 'Fast', 'premium-addons-for-elementor' ),
 				],
 				'condition' => [
-					'dots_animation!' => '',
+                    'navigation_dots'   => 'yes',
+					'dots_animation!'   => '',
 				],
 			]
 		);
@@ -375,6 +397,9 @@ class Premium_Vscroll extends Widget_Base {
             [
                 'label'         => __('Navigation Dots', 'premium-addons-for-elementor'),
                 'tab'           => CONTROLS_MANAGER::TAB_STYLE,
+                'condition' => [
+                    'navigation_dots'    => 'yes'
+                ]
             ]
         );
         
@@ -824,7 +849,7 @@ class Premium_Vscroll extends Widget_Base {
         $vscroll_settings = [
             'id'            => $id, 
             'speed'         => ! empty( $settings['scroll_speed'] ) ? $settings['scroll_speed'] * 1000 : 700,
-            'offset'        => $settings['scroll_offset'],
+            'offset'        => ! empty( $settings['scroll_offset'] ) ? $settings['scroll_offset'] : 0,
             'tooltips'      => 'yes' == $settings['dots_tooltips_switcher'] ? true : false,
             'dotsText'      => $dots_text,
             'dotsPos'       => $settings['navigation_dots_pos'],

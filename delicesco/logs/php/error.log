@@ -383,3 +383,8 @@ Stack trace:
 #4 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php(288): rest_api_loaded(Object(WP))
 #5 C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php(312): WP_Hook->apply_filters('', Array)
 #6 C:\User in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\ml-slider\admin\routes\api.php on line 514
+[14-Feb-2020 16:42:21 UTC] Astra: Batch Process Started!
+[14-Feb-2020 16:42:21 UTC] Astra: Queuing 2.3.0 - astra_header_button_new_options
+[14-Feb-2020 16:42:37 UTC] Astra: Migrating button url - https://www.wpastra.com
+[14-Feb-2020 16:42:37 UTC] Astra: db version updated successfully!
+[14-Feb-2020 16:42:37 UTC] Astra: Batch Process Completed!

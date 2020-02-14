@@ -11,6 +11,7 @@ use Elementor\Controls_Manager;
 use Elementor\Scheme_Color;
 use Elementor\Scheme_Typography;
 use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Box_Shadow;
@@ -76,6 +77,15 @@ class Premium_Banner extends Widget_Base {
 					'url'	=> Utils::get_placeholder_image_src()
 				],
 				'show_external'	=> true
+			]
+		);
+        
+        $this->add_group_control(
+			Group_Control_Image_Size::get_type(),
+			[
+				'name'          => 'thumbnail',
+				'default'       => 'full',
+				'separator'     => 'none',
 			]
 		);
         
@@ -489,11 +499,10 @@ class Premium_Banner extends Widget_Base {
 		            ]
 				],
 				'selectors' => [
-		            '{{WRAPPER}} .premium-banner-ib .premium-banner-ib-img' => 'opacity: {{SIZE}};'
+		            '{{WRAPPER}} .premium-banner-ib img' => 'opacity: {{SIZE}};'
 		        ]
 			]
 		);
-
 
 		$this->add_control('premium_banner_image_hover_opacity',
 			[
@@ -510,7 +519,7 @@ class Premium_Banner extends Widget_Base {
 		            ]
 				],
 				'selectors' => [
-		            '{{WRAPPER}} .premium-banner-ib .premium-banner-ib-img.active' => 'opacity: {{SIZE}};'
+		            '{{WRAPPER}} .premium-banner-ib img.active' => 'opacity: {{SIZE}};'
 		        ]
 			]
 		);
@@ -519,7 +528,7 @@ class Premium_Banner extends Widget_Base {
 			Group_Control_Css_Filter::get_type(),
 			[
 				'name' => 'css_filters',
-				'selector' => '{{WRAPPER}} .premium-banner-ib-img',
+				'selector' => '{{WRAPPER}} .premium-banner-ib img',
 			]
 		);
         
@@ -528,7 +537,7 @@ class Premium_Banner extends Widget_Base {
 			[
 				'name'      => 'hover_css_filters',
                 'label'     => __('Hover CSS Filter', 'premium-addons-for-elementor'),
-				'selector'  => '{{WRAPPER}} .premium-banner-ib .premium-banner-ib-img.active'
+				'selector'  => '{{WRAPPER}} .premium-banner-ib img.active'
 			]
 		);
 
@@ -910,28 +919,38 @@ class Premium_Banner extends Widget_Base {
 
             $banner_url = 'url' == $settings['premium_banner_link_selection'] ? $settings['premium_banner_link']['url'] : get_permalink($settings['premium_banner_existing_link']);
             
-            $alt = esc_attr( Control_Media::get_image_alt( $settings['premium_banner_image'] ) );
+            $image_html = '';
+            if ( ! empty( $settings['premium_banner_image']['url'] ) ) {
+                
+                $this->add_render_attribute( 'image', 'src', $settings['premium_banner_image']['url'] );
+                $this->add_render_attribute( 'image', 'alt', Control_Media::get_image_alt( $settings['premium_banner_image'] ) );
+                
+                $this->add_render_attribute( 'image', 'title', Control_Media::get_image_title( $settings['premium_banner_image'] ) );
+
+                $image_html = Group_Control_Image_Size::get_attachment_image_html( $settings, 'thumbnail', 'premium_banner_image' );
+                
+            }
             
         ?>
             <div class="premium-banner" id="premium-banner-<?php echo esc_attr($this->get_id()); ?>">
 				<div class="premium-banner-ib <?php echo $full_class; ?> premium-banner-min-height">
-					<?php if( !empty(  $settings['premium_banner_image']['url'] ) ) : ?>
+					<?php if( ! empty(  $settings['premium_banner_image']['url'] ) ) : ?>
                         <?php if( $settings['premium_banner_height'] == 'custom' ) : ?>
                             <div class="premium-banner-img-wrap">
-                        <?php endif; ?>
-                            <img class="premium-banner-ib-img" alt="<?php echo $alt; ?>" src="<?php echo $settings['premium_banner_image']['url']; ?>">
-                        <?php if( $settings['premium_banner_height'] == 'custom' ): ?>
+                        <?php endif;
+                            echo $image_html;
+                        if( $settings['premium_banner_height'] == 'custom' ): ?>
                             </div>
-                        <?php endif; ?>
-					<?php endif; ?>
+                        <?php endif;
+					endif; ?>
 					<div class="premium-banner-ib-desc">
-						<?php echo $full_title; ?>
-                        <?php if( ! empty( $settings['premium_banner_description'] ) ) : ?>
+						<?php echo $full_title;
+                        if( ! empty( $settings['premium_banner_description'] ) ) : ?>
                             <div class="premium-banner-ib-content premium_banner_content">
                                 <div <?php echo $this->get_render_attribute_string('premium_banner_description'); ?>><?php echo $settings[ 'premium_banner_description' ]; ?></div>
                             </div>
-                        <?php endif; ?>
-                    <?php if( 'yes' == $settings['premium_banner_link_switcher'] && !empty( $settings['premium_banner_more_text'] ) ) : ?>
+                        <?php endif;
+                    if( 'yes' == $settings['premium_banner_link_switcher'] && !empty( $settings['premium_banner_more_text'] ) ) : ?>
                         
                             <div class ="premium-banner-read-more">
                                 <a class = "premium-banner-link" <?php if( !empty( $banner_url ) ) : ?> href="<?php echo esc_url( $banner_url ); ?>"<?php endif;?><?php if( !empty( $settings['premium_banner_link']['is_external'] ) ) : ?> target="_blank" <?php endif; ?><?php if( !empty($settings['premium_banner_link']['nofollow'] ) ) : ?> rel="nofollow" <?php endif; ?>><?php echo esc_html( $settings['premium_banner_more_text'] ); ?></a>
@@ -999,6 +1018,22 @@ class Premium_Banner extends Widget_Base {
                 
             var minSize = settings.premium_banner_min_range + 'px',
                 maxSize = settings.premium_banner_max_range + 'px';
+                
+            var imageHtml = '';
+            if ( settings.premium_banner_image.url ) {
+                var image = {
+                    id: settings.premium_banner_image.id,
+                    url: settings.premium_banner_image.url,
+                    size: settings.thumbnail_size,
+                    dimension: settings.thumbnail_custom_dimension,
+                    model: view.getEditModel()
+                };
+
+                var image_url = elementor.imagesManager.getImageUrl( image );
+
+                imageHtml = '<img src="' + image_url + '"/>';
+
+            }
         #>
         
             <div {{{ view.getRenderAttributeString( 'banner' ) }}}>
@@ -1007,7 +1042,7 @@ class Premium_Banner extends Widget_Base {
                         <# if( 'custom' === settings.premium_banner_height ) { #>
                             <div class="premium-banner-img-wrap">
                         <# } #>
-                            <img class="premium-banner-ib-img" src="{{ settings.premium_banner_image.url }}">
+                            {{{imageHtml}}}
                         <# if( 'custom' === settings.premium_banner_height ) { #>
                             </div>
                         <# } #>

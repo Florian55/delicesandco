@@ -1837,30 +1837,11 @@ class Premium_Pricing_Table extends Widget_Base {
                     'value' => Scheme_Color::COLOR_1,
                 ],
                 'selectors'     => [
-                    '{{WRAPPER}} .premium-badge-left .corner'  => 'border-top-color: {{VALUE}}',
-                    '{{WRAPPER}} .premium-badge-circle'  => 'background-color: {{VALUE}}'
+                    '{{WRAPPER}} .premium-badge-triangle.premium-badge-left .corner'  => 'border-top-color: {{VALUE}}',
+                    '{{WRAPPER}} .premium-badge-triangle.premium-badge-right .corner'  => 'border-right-color: {{VALUE}}'
                 ],
                 'condition'     => [
-                    'ribbon_type'                           => 'triangle',
-                    'premium_pricing_table_badge_position'  => 'left'
-                ]
-            ]
-        );
-        
-        $this->add_control('premium_pricing_badge_right_color',
-            [
-                'label'         => __('Background Color', 'premium-addons-for-elementor'),
-                'type'          => Controls_Manager::COLOR,
-                'scheme'        => [
-                    'type'  => Scheme_Color::get_type(),
-                    'value' => Scheme_Color::COLOR_1,
-                ],
-                'selectors'     => [
-                    '{{WRAPPER}} .premium-badge-right .corner'  => 'border-right-color: {{VALUE}};'
-                ],
-                'condition'     => [
-                    'ribbon_type'                           => 'triangle',
-                    'premium_pricing_table_badge_position'  => 'left'
+                    'ribbon_type'   => 'triangle'
                 ]
             ]
         );

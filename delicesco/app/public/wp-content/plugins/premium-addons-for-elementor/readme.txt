@@ -3,9 +3,9 @@ Contributors: Leap13, Rimoun
 Tags: Elementor, Elementor Page Builder, Elements, Elementor Addons, Add-ons, Page Builder, Widgets, Elementor Widgets
 Donate Link: https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme
 Requires at Least: 4.5
-Tested Up To: 5.3
+Tested Up To: 5.3.2
 Requires PHP: 5.4
-Stable Tag: 3.10.9
+Stable Tag: 3.11.2
 License: GPL v3.0
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -174,6 +174,34 @@ Premium Addons for Elementor is 100% Ads Free, Ads can only be detected from You
 14. Premium Progress Bar Widget for Elementor
 
 == Changelog ==
+
+= 3.11.2 =
+
+- Tweak: Added RTL support for lightbox in Media Grid widget
+- Tweak: Added `Filter Tabs By Categories/Tags` in Blog widget.
+- Tweak: Added `Show/Hide Navigation Dots` option in Vertical Scroll widget.
+- Fixed: Banner widget image styling not applied after last version.
+- Fixed: Duplicated items using Premium Duplicator type always set to "Page".
+- Fixed: Carousel widget fade option not working in RTL sites.
+- Fixed: Carousel widget navigation arrows position issue in RTL sites.
+
+= 3.11.1 =
+
+- Tweak: Improved support for RTL sites.
+- Tweak: Added minified assets to improve performance and loading speed.
+- Tweak: Show post custom excerpt if set in Blog widget.
+- Fixed: Fields styling not applied on file type fields in Contact Form 7 widget.
+- Fixed: Fancy Text widget conflict on the editor.
+
+= 3.11.0 =
+
+- Tweak: Added `Filter Rules (Match/Exclude)` options for Authors, Categories and Tags in Blog widget.
+- Tweak: Added `Enable Pagination Next/Prev Strings` option in Blog widget.
+- Tweak: Added `Background Color` option for active page in Blog widget.
+- Tweak: Pagination number styling improved for better pagination experience in Blog widget.
+- Tweak: Added `Image Size` option in Banner widget.
+- Tweak: Videos in Media Grid widget are now loaded only when an image is clicked to optimize page loading speed and size.
+- Fixed: Background Color not applied on Triangle Ribbon in Pricing Table widget.
 
 = 3.10.9 =
 
@@ -537,7 +565,7 @@ Premium Addons for Elementor is 100% Ads Free, Ads can only be detected from You
 = 3.4.1 =
 
 - Tweak: Added `Dots Shape` option for navigation dots in Vertical Scroll widget.
-- Fixed: Header title and close button are not horizontally centered in Modal Box widget
+- Fixed: Header title and close button are not horizontally centered in Modal Box widget.
 
 = 3.4.0 =
 

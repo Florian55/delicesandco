@@ -2352,7 +2352,7 @@ class Premium_Grid extends Widget_Base {
         ?>
             <div class="premium-gallery-video-wrap" data-type="<?php echo $item['premium_gallery_video_type']; ?>">
                 <?php if( 'hosted' !== $item['premium_gallery_video_type'] ) : ?>
-                    <iframe src="<?php echo $link; ?>"></iframe>
+                    <div class="premium-gallery-iframe-wrap" data-src="<?php echo $link; ?>"></div>
                 <?php else: 
                     $link = empty( $item['premium_gallery_video_self_url'] ) ? $item['premium_gallery_video_self']['url'] : $item['premium_gallery_video_self_url'];
                 ?>

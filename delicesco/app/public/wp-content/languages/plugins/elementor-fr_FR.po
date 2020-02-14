@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Elementor Page Builder - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-01-27 17:40:52+0000\n"
+"PO-Revision-Date: 2020-02-06 22:17:19+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2068,7 +2068,7 @@ msgstr "Ombre du texte"
 
 #: core/settings/general/model.php:140 includes/settings/settings.php:582
 msgid "Open all image links in a lightbox popup window. The lightbox will automatically work on any link that leads to an image file."
-msgstr "Ouvrir tous les liens image dans une fenêtre surgissante de visionneuse. La visionneuse fonctionnera automatiquement sur tout lien qui mène à un fichier image."
+msgstr "Ouvrir tous les liens image dans une visionneuse. La visionneuse fonctionnera automatiquement sur tout lien qui mène à un fichier image."
 
 #: core/settings/general/model.php:137 includes/settings/settings.php:577
 msgid "Image Lightbox"
@@ -3110,7 +3110,7 @@ msgstr "Couleur officielle"
 
 #: includes/widgets/social-icons.php:263
 msgid "Rounded"
-msgstr "Rondes"
+msgstr "Arrondi"
 
 #: includes/widgets/social-icons.php:42 includes/widgets/social-icons.php:85
 #: includes/widgets/social-icons.php:229

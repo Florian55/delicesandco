@@ -50,15 +50,20 @@ class Modules_Settings {
         
         wp_enqueue_style( 'pa_admin_icon', PREMIUM_ADDONS_URL .'admin/assets/fonts/style.css' );
         
+        $suffix = is_rtl() ? '-rtl' : '';
+        
         $current_screen = get_current_screen();
         
-        wp_enqueue_style( 'pa-notice-css', PREMIUM_ADDONS_URL.'admin/assets/css/notice.css' );
+        wp_enqueue_style(
+            'pa-notice-css',
+            PREMIUM_ADDONS_URL . 'admin/assets/css/notice' . $suffix . '.css'
+        );
         
         if( strpos( $current_screen->id , $this->page_slug ) !== false ) {
             
             wp_enqueue_style(
                 'pa-admin-css',
-                PREMIUM_ADDONS_URL.'admin/assets/css/admin.css'
+                PREMIUM_ADDONS_URL.'admin/assets/css/admin' . $suffix . '.css'
             );
             
             wp_enqueue_style(

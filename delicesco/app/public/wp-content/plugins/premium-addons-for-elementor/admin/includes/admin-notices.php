@@ -38,8 +38,6 @@ class Admin_Notices {
 
         $this->handle_review_notice();
         
-//        $this->handle_det_notice();
-        
     }
     
     /**
@@ -56,8 +54,6 @@ class Admin_Notices {
         if ( false == $response ) {
             $this->get_review_notice();
         }
-        
-//        $this->get_det_notice();
         
     }
 
@@ -106,29 +102,6 @@ class Admin_Notices {
         }
 
         wp_redirect( remove_query_arg( 'pbg' ) );
-        exit;
-    }
-    
-    /**
-     * Checks if Disable Elementor Translation message is dismissed.
-     * 
-     * @since 3.7.9
-     * @access public
-     * 
-     * @return void
-     */
-    public function handle_det_notice() {
-        if ( ! isset( $_GET['det'] ) ) {
-            return;
-        }
-
-        if ( 'opt_out' === $_GET['det'] ) {
-            check_admin_referer( 'opt_out' );
-
-            update_option( 'det_notice', '1' );
-        }
-
-        wp_redirect( remove_query_arg( 'det' ) );
         exit;
     }
     
@@ -271,43 +244,6 @@ class Admin_Notices {
         }
         
     }
-    
-    /**
-     * 
-     * Shows an admin notice for Disable Elementor Translation.
-     * 
-     * @since 3.7.9
-     * @access public
-     * 
-     * @return void
-     */
-    public function get_det_notice() {
-        
-        $det_notice = get_option( 'det_notice' );
-        
-        if( ! current_user_can( 'install_plugins' ) ||  '1' === $det_notice || defined( 'DET_VERSION' ) )
-            return;
-        
-        $det_slug = 'disable-elementor-editor-translation';
-        
-        $install_url = wp_nonce_url( self_admin_url( sprintf( 'update.php?action=install-plugin&plugin=%s', $det_slug ) ), sprintf( 'install-plugin_%s', $det_slug ) );
-            
-        $optout_url = wp_nonce_url( add_query_arg( 'det', 'opt_out' ), 'opt_out' );
-        
-        $message =  '<p class="pa-text-wrap">';
-        
-        $message .= sprintf( '<img class="pa-notice-logo" src="%s">', PREMIUM_ADDONS_URL .'admin/images/premium-addons-logo.png' );
-
-        $message .= sprintf( '<strong>%s</strong>' , __( 'Now, you can disable Elementor editor & Premium Addons translation with this handy plugin.&nbsp;', 'premium-addons-for-elementor' ) );
-        
-        $message .= sprintf( '<a class="pa-notice-cta" href="%s" target="_blank">%s</a>', $install_url , __( 'Click Here to Install', 'premium-addons-for-elementor' ) );
-
-        $message .= sprintf( __('<a class="pa-notice-close" href="%s"><span class="dashicons dashicons-dismiss"></span></a></p>', 'premium-addons-for-elementor'),  $optout_url );
-            
-        $this->render_admin_notices( $message );
-
-    }
-
     
     /**
      * Checks user credentials for specific action

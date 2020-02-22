@@ -206,6 +206,9 @@ class Premium_Person extends Widget_Base {
                     'h4'    => 'H4',
                     'h5'    => 'H5',
                     'h6'    => 'H6',
+                    'div'   => 'div',
+                    'span'  => 'span',
+                    'p'     => 'p',
                 ],
                 'label_block'   =>  true,
             ]
@@ -222,7 +225,10 @@ class Premium_Person extends Widget_Base {
                     'h3' => 'H3',
                     'h4' => 'H4',
                     'h5' => 'H5',
-                    'h6' => 'H6'
+                    'h6' => 'H6',
+                    'div'   => 'div',
+                    'span'  => 'span',
+                    'p'     => 'p',
                 ],
                 'label_block'   =>  true,
             ]
@@ -1739,15 +1745,17 @@ class Premium_Person extends Widget_Base {
                     <div class="premium-person-info-container">
                         <# if( '' != settings.premium_person_name  ) { #>
                         <{{{nameHeading}}} class="premium-person-name">
-                        <span {{{ view.getRenderAttributeString('premium_person_name') }}}>
-                            {{{ settings.premium_person_name }}}
-                        </span></{{{nameHeading}}}>
+                            <span {{{ view.getRenderAttributeString('premium_person_name') }}}>
+                                {{{ settings.premium_person_name }}}
+                            </span>
+                        </{{{nameHeading}}}>
                         <# }
                         if( '' != settings.premium_person_title  ) { #>
                         <{{{titleHeading}}} class="premium-person-title">
-                        <span {{{ view.getRenderAttributeString('premium_person_title') }}}>
-                            {{{ settings.premium_person_title }}}
-                        </span></{{{titleHeading}}}>
+                            <span {{{ view.getRenderAttributeString('premium_person_title') }}}>
+                                {{{ settings.premium_person_title }}}
+                            </span>
+                        </{{{titleHeading}}}>
                         <# }
                         if( '' != settings.premium_person_content ) { #>
                             <div class="premium-person-content">

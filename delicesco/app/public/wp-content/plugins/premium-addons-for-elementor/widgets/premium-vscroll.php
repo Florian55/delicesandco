@@ -273,17 +273,6 @@ class Premium_Vscroll extends Widget_Base {
             ]
         );
         
-        $this->add_control('dots_tooltips_switcher',
-            [
-                'label'         => __('Tooltips', 'premium-addons-for-elementor'),
-                'type'          => Controls_Manager::SWITCHER,
-                'default'       => 'yes',
-                'condition'     => [
-                    'navigation_dots'   => 'yes',
-                ]
-            ]
-        );
-        
         $this->add_control('dots_shape',
             [
                 'label'         => __('Shape', 'premium-addons-for-elementor'),
@@ -293,6 +282,17 @@ class Premium_Vscroll extends Widget_Base {
                     'lines'         => __('Lines', 'premium-addons-for-elementor')
                 ],
                 'default'       => 'circ',
+                'condition'     => [
+                    'navigation_dots'   => 'yes',
+                ]
+            ]
+        );
+        
+        $this->add_control('dots_tooltips_switcher',
+            [
+                'label'         => __('Tooltips Text', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::SWITCHER,
+                'default'       => 'yes',
                 'condition'     => [
                     'navigation_dots'   => 'yes',
                 ]
@@ -826,6 +826,7 @@ class Premium_Vscroll extends Widget_Base {
         
         $this->add_render_attribute( 'vertical_scroll_dots', 'class', array(
                 'premium-vscroll-dots',
+                'premium-vscroll-dots-hide',
                 $settings['navigation_dots_pos'],
                 $settings['navigation_dots_v_pos'],
                 $settings['dots_shape']

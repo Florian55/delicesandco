@@ -328,16 +328,24 @@ class Premium_Grid extends Widget_Base {
            ]
        );
         
-        $this->add_control( 'premium_gallery_active_cat',
+        $this->add_control('premium_gallery_active_cat',
             [
                 'label'             => __('Active Category Index', 'premium-addons-for-elementor'),
                 'type'              => Controls_Manager::NUMBER,
-                'description'       => __('Put the index of the default active category, default is 1', 'premium-addons-for-elementor'),
                 'default'           => 1,
+                'min'               => 0,
                 'condition'         => $condition
                 
             ]
         );
+            
+        $this->add_control('active_cat_notice',
+			[
+				'raw'             => __( 'Please note categories are zero indexed, so to set if you need the first category to be active, you need to set the value to 0', 'premium-addons-for-elementor' ),
+                'type'            => Controls_Manager::RAW_HTML,
+                'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+			]
+		);  
         
         $this->add_control('premium_gallery_shuffle',
             [
@@ -2033,16 +2041,20 @@ class Premium_Grid extends Widget_Base {
         
         if ( 'yes' === $filter ) {
             
-            if( 'yes' !== $settings['premium_gallery_first_cat_switcher'] ) {
-                $active_index       = $settings['premium_gallery_active_cat'];
-                $active_category    = $settings['premium_gallery_cats_content'][$active_index]['premium_gallery_img_cat'];
-                $category           = "." . $this->filter_cats( $active_category );
-            }
-            
-            if ( ! empty( $settings['premium_gallery_active_cat'] ) ) {
-                $active_category_index = 'yes' === $settings['premium_gallery_first_cat_switcher'] ? $settings['premium_gallery_active_cat'] - 1 : $settings['premium_gallery_active_cat'];
+            if ( ! empty( $settings['premium_gallery_active_cat'] ) || 0 === $settings['premium_gallery_active_cat'] ) {
+                
+                if( 'yes' !== $settings['premium_gallery_first_cat_switcher'] ) {
+                    $active_index           = $settings['premium_gallery_active_cat'];
+                    $active_category        = $settings['premium_gallery_cats_content'][$active_index]['premium_gallery_img_cat'];
+                    $category               = "." . $this->filter_cats( $active_category );
+                    $active_category_index  = $settings['premium_gallery_active_cat'];
+                    
+                } else {
+                    $active_category_index  = $settings['premium_gallery_active_cat'] - 1;
+                }
+                
             } else {
-                $active_category_index = -1;
+                $active_category_index = 'yes' === $settings['premium_gallery_first_cat_switcher'] ? -1 : 0;
             }
         
             $is_all_active = ( 0 > $active_category_index ) ? "active" : "";

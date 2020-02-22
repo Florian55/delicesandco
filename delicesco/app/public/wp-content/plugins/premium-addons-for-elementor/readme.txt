@@ -5,7 +5,7 @@ Donate Link: https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_c
 Requires at Least: 4.5
 Tested Up To: 5.3.2
 Requires PHP: 5.4
-Stable Tag: 3.11.2
+Stable Tag: 3.11.4
 License: GPL v3.0
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -175,9 +175,27 @@ Premium Addons for Elementor is 100% Ads Free, Ads can only be detected from You
 
 == Changelog ==
 
+= 3.11.4 =
+
+- Tweak: Added `Controls Color` for Vimeo videos in Video Box widget.
+- Tweak: Added `Show/Hide Intro Title, Portrait and Byline` options for Vimeo videos in Video Box widget.
+- Tweak: HTML div, p and span tags added to HTML Tag option in all widgets for SEO Optimization.
+- Tweak: Bordered overlay effect improved in Blog widget.
+- Fixed: Navigation dots in Vertical Scroll widget not hidden when scroll below the widget.
+- Fixed: Media Grid items not shown when Active Category Index option is left empty.
+- Fixed: Current section in Vertical Scroll widget is not detected when scrollbar is used to scroll.
+- Fixed: Blog widget not showing posts if post excerpt is empty.
+- Fixed: Blog Widget layout always changed to masonry on filter tabs click.
+- Fixed: Blog Widget excerpt link markup issue.
+- Fixed: Input width and box shadow options are not applied on file type input in Contact Form 7 widget.
+
+= 3.11.3 =
+
+- Fixed: Premium Templates button not showing after Elementor v2.9.0
+
 = 3.11.2 =
 
-- Tweak: Added RTL support for lightbox in Media Grid widget
+- Tweak: Added RTL support for lightbox in Media Grid widget.
 - Tweak: Added `Filter Tabs By Categories/Tags` in Blog widget.
 - Tweak: Added `Show/Hide Navigation Dots` option in Vertical Scroll widget.
 - Fixed: Banner widget image styling not applied after last version.

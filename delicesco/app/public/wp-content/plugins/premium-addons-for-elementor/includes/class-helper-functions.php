@@ -401,7 +401,40 @@ class Helper_Functions {
     }
     
     /*
-     * Get Embed Thumbnail
+     * Get Vimeo Video Data
+     * 
+     * Get video data using Vimeo API
+     * 
+     * @since 3.11.4
+     * @access public
+     * 
+     * @param string $id video ID
+     */
+    public static function get_vimeo_video_data( $id ) {
+        
+        $vimeo_data         = wp_remote_get( 'http://www.vimeo.com/api/v2/video/' . intval( $id ) . '.php' );
+        
+        if ( isset( $vimeo_data['response']['code'] ) && '200' == $vimeo_data['response']['code'] ) {
+            $response       = unserialize( $vimeo_data['body'] );
+            $thumbnail = isset( $response[0]['thumbnail_large'] ) ? $response[0]['thumbnail_large'] : false;
+            
+            $data = [
+                'src'       => $thumbnail,
+                'url'       => $response[0]['user_url'],
+                'portrait'  => $response[0]['user_portrait_huge'],
+                'title'     => $response[0]['title'],
+                'user'      => $response[0]['user_name']
+            ];
+            
+            return $data;
+        }
+        
+        return false;
+        
+    }
+    
+    /*
+     * Get Video Thumbnail
      * 
      * Get thumbnail URL for embed or self hosted
      * 
@@ -423,11 +456,9 @@ class Helper_Functions {
             $thumbnail_src = sprintf( 'https://i.ytimg.com/vi/%s/%s.jpg', $id, $size );
         } elseif ( 'vimeo' === $type ) {
            
-            $vimeo_data         = wp_remote_get( 'http://www.vimeo.com/api/v2/video/' . intval( $id ) . '.php' );
-            if ( isset( $vimeo_data['response']['code'] ) && '200' == $vimeo_data['response']['code'] ) {
-                $response       = unserialize( $vimeo_data['body'] );
-                $thumbnail_src  = isset( $response[0]['thumbnail_large'] ) ? $response[0]['thumbnail_large'] : false;
-            }
+            $vimeo = self::get_vimeo_video_data( $id );
+            
+            $thumbnail_src = $vimeo['src'];
                 
         } else {
             $thumbnail_src = 'transparent';

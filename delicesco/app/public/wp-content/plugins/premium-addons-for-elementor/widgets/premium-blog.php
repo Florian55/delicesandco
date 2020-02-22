@@ -63,39 +63,79 @@ class Premium_Blog extends Widget_Base {
     // Adding the controls fields for Premium Blog
     // This will controls the animation, colors and background, dimensions etc
     protected function _register_controls() {
-
-        $this->start_controls_section('premium_blog_general_settings',
+        
+        $this->start_controls_section('general_settings_section',
             [
-                'label'         => __('Featured Image', 'premium-addons-for-elementor'),
+                'label'         => __('General', 'premium-addons-for-elementor'),
             ]
         );
         
-        $this->add_group_control(
-			Group_Control_Image_Size::get_type(),
-			[
-				'name' => 'featured_image',
-				'default' => 'full'
-			]
-		);
-        
-        $this->add_control('premium_blog_hover_image_effect',
+        $this->add_control('premium_blog_skin',
             [
-                'label'         => __('Hover Effect', 'premium-addons-for-elementor'),
+                'label'         => __('Skin', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SELECT,
-                'description'   => __('Choose a hover effect for the image','premium-addons-for-elementor'),
                 'options'       => [
-                    'none'   => __('None', 'premium-addons-for-elementor'),
-                    'zoomin' => __('Zoom In', 'premium-addons-for-elementor'),
-                    'zoomout'=> __('Zoom Out', 'premium-addons-for-elementor'),
-                    'scale'  => __('Scale', 'premium-addons-for-elementor'),
-                    'gray'   => __('Grayscale', 'premium-addons-for-elementor'),
-                    'blur'   => __('Blur', 'premium-addons-for-elementor'),
-                    'bright' => __('Bright', 'premium-addons-for-elementor'),
-                    'sepia'  => __('Sepia', 'premium-addons-for-elementor'),
-                    'trans'  => __('Translate', 'premium-addons-for-elementor'),
+                    'classic'       => __('Classic', 'premium-addons-for-elementor'),
+                    'modern'        => __('Modern', 'premium-addons-for-elementor'),
+                    'cards'         => __('Cards', 'premium-addons-for-elementor'),
                 ],
-                'default'       => 'zoomin',
+                'default'       => 'modern',
                 'label_block'   => true
+            ]
+        );
+        
+        $this->add_control('premium_blog_grid',
+            [
+                'label'         => __('Grid', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::SWITCHER,
+                'default'       => 'yes'
+            ]
+        );
+        
+        $this->add_control('premium_blog_layout',
+            [
+                'label'             => __('Layout', 'premium-addons-for-elementor'),
+                'type'              => Controls_Manager::SELECT,
+                'options'           => [
+                    'even'      => __('Even', 'premium-addons-for-elementor'),
+                    'masonry'   => __('Masonry', 'premium-addons-for-elementor'),
+                ],
+                'default'           => 'masonry',
+                'condition'         => [
+                    'premium_blog_grid' => 'yes'
+                ]
+            ]
+        );
+        
+        $this->add_responsive_control('premium_blog_columns_number',
+            [
+                'label'         => __('Number of Columns', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::SELECT,
+                'options'       => [
+                    '100%'  => __('1 Column', 'premium-addons-for-elementor'),
+                    '50%'   => __('2 Columns', 'premium-addons-for-elementor'),
+                    '33.33%'=> __('3 Columns', 'premium-addons-for-elementor'),
+                    '25%'   => __('4 Columns', 'premium-addons-for-elementor'),
+                ],
+                'default'       => '33.33%',
+                'render_type'   => 'template',
+                'label_block'   => true,
+                'condition'     => [
+                    'premium_blog_grid' =>  'yes',
+                ],
+                'selectors'     => [
+                    '{{WRAPPER}} .premium-blog-post-outer-container'  => 'width: {{VALUE}};'
+                ],
+            ]
+        );
+        
+        $this->add_control('premium_blog_number_of_posts',
+            [
+                'label'         => __('Posts Per Page', 'premium-addons-for-elementor'),
+                'description'   => __('Set the number of per page','premium-addons-for-elementor'),
+                'type'          => Controls_Manager::NUMBER,
+                'min'			=> 1,
+                'default'		=> 3,
             ]
         );
         
@@ -208,7 +248,7 @@ class Premium_Blog extends Widget_Base {
         $this->add_control('premium_blog_offset',
 			[
 				'label'         => __( 'Offset Count', 'premium-addons-for-elementor' ),
-                'description'   => __('The index of post to start with','premium-addons-for-elementor'),
+                'description'   => __('This option is used to exclude number of initial posts from being display.','premium-addons-for-elementor'),
 				'type' 			=> Controls_Manager::NUMBER,
                 'default' 		=> '0',
 				'min' 			=> '0',
@@ -250,26 +290,20 @@ class Premium_Blog extends Widget_Base {
         );
             
         $this->end_controls_section();
-        
-        $this->start_controls_section('premium_blog_content_settings',
+
+        $this->start_controls_section('premium_blog_general_settings',
             [
-                'label'         => __('Display Options', 'premium-addons-for-elementor'),
+                'label'         => __('Featured Image', 'premium-addons-for-elementor'),
             ]
         );
         
-        $this->add_control('premium_blog_skin',
-            [
-                'label'         => __('Skin', 'premium-addons-for-elementor'),
-                'type'          => Controls_Manager::SELECT,
-                'options'       => [
-                    'classic'       => __('Classic', 'premium-addons-for-elementor'),
-                    'modern'        => __('Modern', 'premium-addons-for-elementor'),
-                    'cards'         => __('Cards', 'premium-addons-for-elementor'),
-                ],
-                'default'       => 'modern',
-                'label_block'   => true
-            ]
-        );
+        $this->add_group_control(
+			Group_Control_Image_Size::get_type(),
+			[
+				'name' => 'featured_image',
+				'default' => 'full'
+			]
+		);
         
         $this->add_control('premium_blog_hover_color_effect',
             [
@@ -291,66 +325,24 @@ class Premium_Blog extends Widget_Base {
             ]
         );
         
-        $this->add_control('premium_blog_title_tag',
-			[
-				'label'			=> __( 'Title HTML Tag', 'premium-addons-for-elementor' ),
-				'description'	=> __( 'Select a heading tag for the post title.', 'premium-addons-for-elementor' ),
-				'type'			=> Controls_Manager::SELECT,
-				'default'		=> 'h2',
-				'options'       => [
-                    'h1'    => 'H1',
-                    'h2'    => 'H2',
-                    'h3'    => 'H3',
-                    'h4'    => 'H4',
-                    'h5'    => 'H5',
-                    'h6'    => 'H6',
-                ],
-				'label_block'	=> true,
-			]
-		);
-        
-        $this->add_control('premium_blog_grid',
+        $this->add_control('premium_blog_hover_image_effect',
             [
-                'label'         => __('Grid', 'premium-addons-for-elementor'),
-                'type'          => Controls_Manager::SWITCHER,
-                'default'       => 'yes'
-            ]
-        );
-        
-        $this->add_control('premium_blog_layout',
-            [
-                'label'             => __('Layout', 'premium-addons-for-elementor'),
-                'type'              => Controls_Manager::SELECT,
-                'options'           => [
-                    'even'      => __('Even', 'premium-addons-for-elementor'),
-                    'masonry'   => __('Masonry', 'premium-addons-for-elementor'),
-                ],
-                'default'           => 'masonry',
-                'condition'         => [
-                    'premium_blog_grid' => 'yes'
-                ]
-            ]
-        );
-        
-        $this->add_responsive_control('premium_blog_columns_number',
-            [
-                'label'         => __('Number of Columns', 'premium-addons-for-elementor'),
+                'label'         => __('Hover Effect', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SELECT,
+                'description'   => __('Choose a hover effect for the image','premium-addons-for-elementor'),
                 'options'       => [
-                    '100%'  => __('1 Column', 'premium-addons-for-elementor'),
-                    '50%'   => __('2 Columns', 'premium-addons-for-elementor'),
-                    '33.33%'=> __('3 Columns', 'premium-addons-for-elementor'),
-                    '25%'   => __('4 Columns', 'premium-addons-for-elementor'),
+                    'none'   => __('None', 'premium-addons-for-elementor'),
+                    'zoomin' => __('Zoom In', 'premium-addons-for-elementor'),
+                    'zoomout'=> __('Zoom Out', 'premium-addons-for-elementor'),
+                    'scale'  => __('Scale', 'premium-addons-for-elementor'),
+                    'gray'   => __('Grayscale', 'premium-addons-for-elementor'),
+                    'blur'   => __('Blur', 'premium-addons-for-elementor'),
+                    'bright' => __('Bright', 'premium-addons-for-elementor'),
+                    'sepia'  => __('Sepia', 'premium-addons-for-elementor'),
+                    'trans'  => __('Translate', 'premium-addons-for-elementor'),
                 ],
-                'default'       => '33.33%',
-                'render_type'   => 'template',
-                'condition'     => [
-                    'premium_blog_grid' =>  'yes',
-                ],
-                'label_block'   => true,
-                'selectors'     => [
-                    '{{WRAPPER}} .premium-blog-post-outer-container'  => 'width: {{VALUE}};'
-                ],
+                'default'       => 'zoomin',
+                'label_block'   => true
             ]
         );
         
@@ -364,6 +356,9 @@ class Premium_Blog extends Widget_Base {
                         'min'   => 1, 
                         'max'   => 300,
                     ],
+                ],
+                'condition'     => [
+                    'premium_blog_grid' =>  'yes',
                 ],
                 'selectors'     => [
                     '{{WRAPPER}} .premium-blog-thumbnail-container img' => 'min-height: {{SIZE}}{{UNIT}};'
@@ -381,6 +376,9 @@ class Premium_Blog extends Widget_Base {
                         'min'   => 1, 
                         'max'   => 300,
                     ],
+                ],
+                'condition'     => [
+                    'premium_blog_grid' =>  'yes',
                 ],
                 'selectors'     => [
                     '{{WRAPPER}} .premium-blog-thumbnail-container img' => 'max-height: {{SIZE}}{{UNIT}};'
@@ -406,6 +404,35 @@ class Premium_Blog extends Widget_Base {
                 ]
             ]
         );
+        
+        $this->end_controls_section();
+        
+        $this->start_controls_section('premium_blog_content_settings',
+            [
+                'label'         => __('Display Options', 'premium-addons-for-elementor'),
+            ]
+        );
+        
+        $this->add_control('premium_blog_title_tag',
+			[
+				'label'			=> __( 'Title HTML Tag', 'premium-addons-for-elementor' ),
+				'description'	=> __( 'Select a heading tag for the post title.', 'premium-addons-for-elementor' ),
+				'type'			=> Controls_Manager::SELECT,
+				'default'		=> 'h2',
+				'options'       => [
+                    'h1'    => 'H1',
+                    'h2'    => 'H2',
+                    'h3'    => 'H3',
+                    'h4'    => 'H4',
+                    'h5'    => 'H5',
+                    'h6'    => 'H6',
+                    'div'   => 'div',
+                    'span'  => 'span',
+                    'p'     => 'p',
+                ],
+				'label_block'	=> true,
+			]
+		);
         
         $this->add_responsive_control('premium_blog_posts_columns_spacing',
             [
@@ -609,6 +636,10 @@ class Premium_Blog extends Widget_Base {
                 'options'     => [
                     'categories'    => __( 'Categories', 'premium-addons-for-elementor' ),
                     'tags'          => __( 'Tags', 'premium-addons-for-elementor' ),
+                ],
+                'condition'     => [
+                    'premium_blog_cat_tabs'     => 'yes',
+                    'premium_blog_carousel!'    => 'yes'
                 ]
             ]
         );
@@ -618,6 +649,10 @@ class Premium_Blog extends Widget_Base {
                 'raw'               => __('Please make sure to select the categories/tags you need to show from Query tab.', 'premium-addons-for-elemeentor'),
                 'type'              => Controls_Manager::RAW_HTML,
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
+                'condition'     => [
+                    'premium_blog_cat_tabs'     => 'yes',
+                    'premium_blog_carousel!'    => 'yes'
+                ]
             ] 
         );
         
@@ -787,19 +822,10 @@ class Premium_Blog extends Widget_Base {
             ]
         );
         
-        $this->add_control('premium_blog_number_of_posts',
-            [
-                'label'         => __('Posts Per Page', 'premium-addons-for-elementor'),
-                'description'   => __('Choose how many posts do you want to be displayed per page','premium-addons-for-elementor'),
-                'type'          => Controls_Manager::NUMBER,
-                'min'			=> 1,
-                'default'		=> 3,
-            ]
-        );
-        
         $this->add_control('premium_blog_total_posts_number',
             [
                 'label'         => __('Total Number of Posts', 'premium-addons-for-elementor'),
+                'description'   => __('Set the number of posts in all pages','premium-addons-for-elementor'),
                 'type'          => Controls_Manager::NUMBER,
                 'default'       => wp_count_posts()->publish,
                 'min'			=> 1,
@@ -925,12 +951,11 @@ class Premium_Blog extends Widget_Base {
                     'type'  => Scheme_Color::get_type(),
                     'value' => Scheme_Color::COLOR_2,
                 ],
-                'description'   => 'Used with Bordered style only',
                 'condition'     => [
                     'premium_blog_hover_color_effect'  => 'bordered',
                 ],
                 'selectors'     => [
-                    '{{WRAPPER}} .premium-blog-bordered-border-container' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .premium-blog-post-link:before, {{WRAPPER}} .premium-blog-post-link:after' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -1704,7 +1729,7 @@ class Premium_Blog extends Widget_Base {
         
         $this->add_control('premium_blog_background_active_color',
            [
-               'label'         => __('Background Active Color', 'premium-addons-for-elementor'),
+               'label'         => __('Active Background Color', 'premium-addons-for-elementor'),
                'type'          => Controls_Manager::COLOR,
                'scheme'        => [
                     'type'  => Scheme_Color::get_type(),
@@ -1946,9 +1971,7 @@ class Premium_Blog extends Widget_Base {
                     <?php if( 'classic' !== $skin ) : ?>
                         <div class="premium-blog-effect-container <?php echo 'premium-blog-'. $post_effect . '-effect'; ?>">
                             <a class="premium-blog-post-link" href="<?php the_permalink(); ?>" target="<?php echo esc_attr( $target ); ?>"></a>
-                            <?php if( $settings['premium_blog_hover_color_effect'] === 'bordered' ) : ?>
-                                <div class="premium-blog-bordered-border-container"></div>
-                            <?php elseif( $settings['premium_blog_hover_color_effect'] === 'squares' ) : ?>
+                            <?php if( $settings['premium_blog_hover_color_effect'] === 'squares' ) : ?>
                                 <div class="premium-blog-squares-square-container"></div>
                             <?php endif; ?>
                         </div>
@@ -2022,7 +2045,11 @@ class Premium_Blog extends Widget_Base {
         
     ?>
         
-        <<?php echo $settings['premium_blog_title_tag'] . ' ' . $this->get_render_attribute_string('title'); ?>><a href="<?php the_permalink(); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php the_title(); ?></a></<?php echo $settings['premium_blog_title_tag']; ?>>
+        <<?php echo $settings['premium_blog_title_tag'] . ' ' . $this->get_render_attribute_string('title'); ?>>
+            <a href="<?php the_permalink(); ?>" target="<?php echo esc_attr( $link_target ); ?>">
+                <?php the_title(); ?>
+            </a>
+        </<?php echo $settings['premium_blog_title_tag']; ?>>
         
     <?php   
     }
@@ -2175,6 +2202,8 @@ class Premium_Blog extends Widget_Base {
             'premium-blog-' . $col_number
             ]
         );
+
+        $this->add_render_attribute('blog', 'data-layout', $settings['premium_blog_layout'] );
         
         if ( $carousel ) {
             

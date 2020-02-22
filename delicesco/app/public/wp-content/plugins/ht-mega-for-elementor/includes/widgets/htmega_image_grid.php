@@ -164,6 +164,19 @@ class HTMega_Elementor_Widget_Image_Grid extends Widget_Base {
                     'default' => 'rgba(0, 0, 0, 0.5)',
                     'selectors' => [
                         '{{WRAPPER}} .htmega-singleimage-grid .thumb a::before' => 'background-color: {{VALUE}};',
+                        '{{WRAPPER}} .htmega-singleimage-gridstyle-5 .image-grid-content' => 'background-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_responsive_control(
+                'imagegrid_image_margin',
+                [
+                    'label' => __( 'Margin', 'htmega-addons' ),
+                    'type' => Controls_Manager::DIMENSIONS,
+                    'size_units' => [ 'px', '%', 'em' ],
+                    'selectors' => [
+                        '{{WRAPPER}} .htmega-singleimage-grid' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ],
                 ]
             );

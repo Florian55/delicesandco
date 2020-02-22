@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc
 Tags: Elementor, Elementor Addons, Elementor Widgets, elementor page builder, Elementor Blocks
 Requires at least: 4.7
 Tested up to: 5.3.2
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,9 +12,8 @@ The HTMega is a elementor addons package for Elementor page builder plugin for W
 == Description ==
 HTMega is a absolute addons for elementor includes 80+ elements & 360 Blocks with unlimited variations. HT Mega brings limitless possibilities. Embellish your site with the elements of HT Mega.
 
-You can see the plugin demo here : [Demo](http://demo.wphash.com/htmega)
+[Check the Plugin Demo](https://demo.hasthemes.com/ht-mega/index.html)
 
-== There is a massive feature update with version 1.3.0 ==
 = Advanced Features: =
 = Header/Footer Builder =
 This feature allows for creating a header/footer layout for the full website or specific page. There is an option to select the preferred header/footer globally or for a single page/post.
@@ -27,6 +26,8 @@ This feature allows showing the sales notification or popup to display real/fake
 
 = Menu Builder: =
 This feature allows creating menu or mega menu using the Elementor page builder.
+
+[youtube https://youtu.be/d7jAiAYusUg]
 
 == Avaible Elements ==
 
@@ -188,6 +189,11 @@ August 05 - 2019:
 Visit [HasThemes](https://hasthemes.com/) for more details about HTML, Shopify and WordPress products and services.
 
 == Changelog ==
+
+= Version: 1.3.6 - Date: 2020-02-20 =
+* Menu position option added in inline menu addon
+* Image grid Style Five Overlay Color issue fixed
+* Image grid spacing option added
 
 = Version: 1.3.5 - Date: 2020-01-16 =
 * Ajax Added in User Login Form.

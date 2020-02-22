@@ -103,7 +103,7 @@ class Premium_Contactform extends Widget_Base {
                     'unit'  => '%'
                 ],
 				'selectors' => [
-					'{{WRAPPER}} .premium-cf7-container input.wpcf7-text' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .premium-cf7-container input.wpcf7-text, {{WRAPPER}} .premium-cf7-container .wpcf7-file' => 'width: {{SIZE}}{{UNIT}};',
 				],
   			]
   		);
@@ -298,7 +298,7 @@ class Premium_Contactform extends Widget_Base {
 				'label' => __( 'Focus Border Color', 'premium-addons-for-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .premium-cf7-container input.wpcf7-text:focus, {{WRAPPER}} .premium-cf7-container textarea.wpcf7-textarea:focus' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .premium-cf7-container input.wpcf7-text:focus, {{WRAPPER}} .premium-cf7-container textarea.wpcf7-textarea:focus , {{WRAPPER}} .premium-cf7-container .wpcf7-file:focus' => 'border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -328,7 +328,7 @@ class Premium_Contactform extends Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name' => 'input_button_shadow',
-				'selector' => '{{WRAPPER}} .premium-cf7-container input.wpcf7-text, {{WRAPPER}} .premium-cf7-container textarea.wpcf7-textarea',
+				'selector' => '{{WRAPPER}} .premium-cf7-container input.wpcf7-text, {{WRAPPER}} .premium-cf7-container textarea.wpcf7-textarea, {{WRAPPER}} .premium-cf7-container .wpcf7-file',
 			]
 		);
      

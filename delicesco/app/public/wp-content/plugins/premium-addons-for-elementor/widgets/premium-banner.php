@@ -300,6 +300,9 @@ class Premium_Banner extends Widget_Base {
                     'h4'    => 'H4',
                     'h5'    => 'H5',
                     'h6'    => 'H6',
+                    'div'   => 'div',
+                    'span'  => 'span',
+                    'p'     => 'p',
                 ],
 				'label_block'	=> true,
 			]
@@ -895,11 +898,16 @@ class Premium_Banner extends Widget_Base {
 			$settings 	= $this->get_settings_for_display();
             
             $this->add_inline_editing_attributes('premium_banner_title');
+            $this->add_render_attribute('premium_banner_title', 'class', array(
+                'premium-banner-ib-title',
+                'premium_banner_title'
+            ));
+            
             $this->add_inline_editing_attributes('premium_banner_description', 'advanced');
 
 			$title_tag 	= $settings[ 'premium_banner_title_tag' ];
 			$title 		= $settings[ 'premium_banner_title' ];
-			$full_title = '<'. $title_tag . ' class="premium-banner-ib-title premium_banner_title"><div '. $this->get_render_attribute_string('premium_banner_title') .'>' .$title. '</div></'.$title_tag.'>';
+			$full_title = '<div class="premium-banner-title-wrap"><'. $title_tag . ' ' . $this->get_render_attribute_string('premium_banner_title') .'>' .$title. '</'.$title_tag.'></div>';
 
 			$link = 'yes' == $settings['premium_banner_image_link_switcher'] ? $settings['premium_banner_image_custom_link']['url'] : get_permalink( $settings['premium_banner_image_existing_page_link'] );
 
@@ -998,12 +1006,12 @@ class Premium_Banner extends Widget_Base {
             var titleTag = settings.premium_banner_title_tag,
                 title    = settings.premium_banner_title;
                 
-            view.addRenderAttribute( 'title_wrap', 'class', [
+            view.addRenderAttribute( 'premium_banner_title', 'class', [
                 'premium-banner-ib-title',
                 'premium_banner_title'
             ] );
             
-            view.addInlineEditingAttributes( 'title' );
+            view.addInlineEditingAttributes( 'premium_banner_title' );
             
             var description = settings.premium_banner_description;
             
@@ -1049,7 +1057,9 @@ class Premium_Banner extends Widget_Base {
                     <# } #>
 					<div class="premium-banner-ib-desc">
                         <# if( '' !== title ) { #>
-                            <{{{titleTag}}} {{{ view.getRenderAttributeString('title_wrap') }}}><div {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ title }}}</div></{{{titleTag}}}>
+                            <div class="premium-banner-title-wrap">
+                                <{{{titleTag}}} {{{ view.getRenderAttributeString('premium_banner_title') }}}>{{{ title }}}</{{{titleTag}}}>
+                            </div>
                         <# } #>
                         <# if( '' !== description ) { #>
                             <div class="premium-banner-ib-content premium_banner_content">

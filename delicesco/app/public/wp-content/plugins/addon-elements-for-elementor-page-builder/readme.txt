@@ -1,5 +1,5 @@
 === Elementor Addon Elements ===
-Contributors: webtechstreet, satishprajapati, hardiksharma
+Contributors: wpvibes, webtechstreet, satishprajapati, hardiksharma
 Tags: page-builder, elementor, elementor addon
 Requires at least: 4.4
 Tested up to: 5.3
@@ -56,6 +56,12 @@ Note: This plugin is an addon of Elementor Page Builder (https://wordpress.org/p
 
 New elements are added at the end of default elementor widget area.
 
+= How to set shape separator as full width. =
+Setting up separator can be little tricky for you initially.
+Under section settings set
+Stretch Section => yes
+Content width => full width
+Column gap => No gap
 
 == Screenshots ==
 
@@ -66,7 +72,15 @@ New elements are added at the end of default elementor widget area.
 
 == Changelog ==
 
-= 1.6.1 =
+= 1.6.2 =
+* Tweak : Added option to define Feature Heading and Button Heading in Comparison Table
+* Tweak : Added capability to style individual cards in Timeline widget
+* Tweak : Enhancements in Filterable Gallery
+* Tweak : Automatic CSS Regenerated on plugin re-activation.
+* Fix : Text Separator blank icon migration issue resolved
+* Fix : Modal Popup Close button icon migration issue resolved
+
+== 1.6.1 =
 * Icon Migration from Font Awesome 4 to Font Awesome 5.
 * Fixed issue with SVG display
 * Modal Popup Close Button Spacing option added.

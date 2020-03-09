@@ -129,6 +129,7 @@ class Premium_Banner extends Widget_Base {
 					'premium_banner_image_link_switcher!' => 'yes',
                     'premium_banner_link_url_switch'    => 'yes'
 				],
+                'label_block'   => true,
                 'multiple'      => false,
 				'options'		=> $this->getTemplateInstance()->get_all_post()
 			]

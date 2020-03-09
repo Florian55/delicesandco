@@ -63,8 +63,8 @@ class Post_Timeline extends Widget_Base
 			[
 				'label' => __( 'Show Overlay', 'essential-addons-for-elementor-lite' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'your-plugin' ),
-				'label_off' => __( 'Hide', 'your-plugin' ),
+				'label_on' => __( 'Show', 'essential-addons-for-elementor-lite' ),
+				'label_off' => __( 'Hide', 'essential-addons-for-elementor-lite' ),
 				'return_value' => 'yes',
                 'default' => 'yes',
                 'selectors' => [
@@ -316,7 +316,7 @@ class Post_Timeline extends Widget_Base
             'eael_excerpt_length' => $settings['eael_excerpt_length'],
             'show_load_more' => $settings['show_load_more'],
             'show_load_more_text' => $settings['show_load_more_text'],
-            'expanison_indicator'   => $settings['excerpt_expanison_indicator']
+            'excerpt_expanison_indicator'   => $settings['excerpt_expanison_indicator']
         ];
 
         $this->add_render_attribute(

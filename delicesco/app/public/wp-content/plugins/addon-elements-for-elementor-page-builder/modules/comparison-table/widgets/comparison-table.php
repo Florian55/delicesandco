@@ -62,6 +62,16 @@ class ComparisonTable extends EAE_Widget_Base {
 		);
 
 		$this->add_control(
+			'feature_box_heading',
+			[
+				'label'       => __( 'Heading', 'wts-eae' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'placeholder' => __( 'Add Heading Here', 'wts-eae' ),
+			]
+		);
+
+		$this->add_control(
 			'show_tooltip',
 			[
 				'label'        => __( 'Enable Tooltip', 'wts-eae' ),
@@ -735,7 +745,24 @@ class ComparisonTable extends EAE_Widget_Base {
 			);
 
 			$this->end_controls_section();
+
 		}
+
+		$this->start_controls_section(
+			'feature_button',
+			[
+				'label' => __( 'Button', 'wts-eae' )
+			]
+		);
+
+		$this->add_control(
+			'button_heading_text',
+			[
+				'label' =>  __('Heading', 'wts-eae'),
+				'type'  =>  Controls_Manager::TEXT
+			]
+		);
+		$this->end_controls_section();
 
 		$this->start_controls_section(
 			'section_general_style',
@@ -772,7 +799,24 @@ class ComparisonTable extends EAE_Widget_Base {
 			[
 				'name'        => 'table_border',
 				'label'       => __( 'Border', 'wts-eae' ),
-				'selector'    => '{{WRAPPER}} .eae-ct-wrapper table tr td:first-child,{{WRAPPER}}  .eae-ct-wrapper td,{{WRAPPER}} .eae-ct-wrapper td,{{WRAPPER}}  .eae-ct-wrapper th',
+				'fields_options' => [
+					'border' => [
+						'default' => 'solid',
+					],
+					'width'  => [
+						'default' => [
+							'top'    => 1,
+							'right'  => 1,
+							'bottom' => 1,
+							'left'   => 1,
+							'unit'   => 'px'
+						],
+					],
+					'color'  => [
+						'default' => '#DDD',
+					]
+				],
+				'selector'    => '{{WRAPPER}} .eae-ct-wrapper table tr:first-child td, {{WRAPPER}} .eae-ct-wrapper table tr:last-child td, {{WRAPPER}} .eae-ct-wrapper td,{{WRAPPER}} .eae-ct-wrapper td,{{WRAPPER}} .eae-ct-wrapper th',
 				'label_block' => true,
 			]
 		);
@@ -801,10 +845,33 @@ class ComparisonTable extends EAE_Widget_Base {
 		$this->add_control(
 			'feature_text_bg_color',
 			[
-				'label'     => __( 'Background Color', 'wts-eae' ),
+				'label'     => __( 'Primary Background Color', 'wts-eae' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .eae-ct-feature' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} tbody tr:nth-child(odd) .eae-ct-feature' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+//		$this->add_control(
+//			'feature_odd_color',
+//			[
+//				'label'     => __( 'Odd Row Color', 'wts-eae' ),
+//				'type'      => Controls_Manager::COLOR,
+//				'selectors' => [
+//					'{{WRAPPER}} tbody tr:nth-child(odd) .eae-ct-feature' => 'background-color: {{VALUE}};',
+//				],
+//			]
+//		);
+
+		$this->add_control(
+			'feature_even_color',
+			[
+				'label'     => __( 'Secondary Row Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} tbody tr:nth-child(even) .eae-ct-feature' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -854,6 +921,63 @@ class ComparisonTable extends EAE_Widget_Base {
 				],
 			]
 		);
+
+		$this->add_control(
+			'feature_box_heading_style',
+			[
+				'label'     => __( 'Heading', 'wts-eae' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => [
+					'feature_box_heading!' => ''
+				]
+			]
+		);
+
+		$this->add_control(
+			'feature_heading_color',
+			[
+				'label'     => __( 'Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   =>  '#fff',
+				'selectors' => [
+					'{{WRAPPER}} .eae-ct-header .eae-fbox-heading' => 'color: {{VALUE}};',
+					'{{WRAPPER}} tbody tr .eae-ct-hide.eae-fbox-heading' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'feature_box_heading!' => ''
+				]
+			]
+		);
+		$this->add_control(
+			'feature_heading_bg_color',
+			[
+				'label'     => __( 'Background Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .eae-ct-header .eae-fbox-heading' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} tbody tr .eae-ct-hide.eae-fbox-heading' => 'background-color: {{VALUE}};',
+				],
+				'condition' => [
+					'feature_box_heading!' => ''
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'feature_heading_typography',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_2,
+				'selector' => '{{WRAPPER}} .eae-ct-header .eae-fbox-heading , {{WRAPPER}} tbody tr .eae-ct-hide.eae-fbox-heading',
+			]
+		);
+
+
 		$this->add_control(
 			'tooltip_icon_heading',
 			[
@@ -1627,6 +1751,70 @@ class ComparisonTable extends EAE_Widget_Base {
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
+
+		$this->add_control(
+			'button_heading_style',
+			[
+				'label'     => __( 'Heading', 'wts-eae' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => [
+					'button_heading_text!' => ''
+				]
+			]
+		);
+
+		$this->add_control(
+			'button_heading_color',
+			[
+				'label'     => __( 'Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   =>  '#fff',
+				'selectors' => [
+					'{{WRAPPER}} .eae-ct-wrapper .eae-ct-button-heading' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'button_heading_text!' => ''
+				]
+			]
+		);
+		$this->add_control(
+			'button_heading_bg_color',
+			[
+				'label'     => __( 'Background Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .eae-ct-wrapper .eae-ct-button-heading' => 'background-color: {{VALUE}};',
+				],
+				'condition' => [
+					'button_heading_text!' => ''
+				]
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'button_heading_typography',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_2,
+				'{{WRAPPER}} .eae-ct-wrapper .eae-ct-button-heading' => 'color: {{VALUE}};',
+				'condition' => [
+					'button_heading_text!' => ''
+				]
+			]
+		);
+
+		$this->start_controls_tabs(
+			'button_style_tabs'
+		);
+
+		$this->start_controls_tab(
+			'button_style_normal_tab',
+			[
+				'label' => __( 'Normal', 'wts-eae' ),
+			]
+		);
+
 		$this->add_control(
 			'button_color',
 			[
@@ -1649,6 +1837,40 @@ class ComparisonTable extends EAE_Widget_Base {
 				],
 			]
 		);
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'button_style_hover_tab',
+			[
+				'label' => __( 'Hover', 'wts-eae' ),
+			]
+		);
+
+		$this->add_control(
+			'button_color_hover',
+			[
+				'label'     => __( 'Text Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .eae-ct-btn:hover' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'btn_background_color_hover',
+			[
+				'label'     => __( 'Background Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .eae-ct-btn:hover' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
 		$this->add_control(
 			'btn_clm_background_color',
 			[
@@ -1732,9 +1954,16 @@ class ComparisonTable extends EAE_Widget_Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
+		$this->add_render_attribute('eae-ct-wrapper', 'class', 'eae-ct-wrapper');
+		if($settings['feature_box_heading'] == ''){
+			$this->add_render_attribute('eae-ct-wrapper', 'class', 'feature-heading-blank');
+        }
+		if($settings['button_heading_text'] == ''){
+			$this->add_render_attribute('eae-ct-wrapper', 'class', 'button-heading-blank');
+		}
 		//echo '<pre>';print_r($settings);echo '</pre>';
 		?>
-        <article class="eae-ct-wrapper">
+        <article <?php echo $this->get_render_attribute_string('eae-ct-wrapper'); ?>>
 
             <ul>
 				<?php
@@ -1772,14 +2001,24 @@ class ComparisonTable extends EAE_Widget_Base {
             </ul>
 
             <table>
-                <thead>
-                <tr>
-                    <th class="hide"></th>
+                <tbody>
+                <tr class="eae-ct-header">
+                    <?php
+                        $class = 'hide';
+                        $cont = "";
+                        $rowspan = "";
+                    if(!empty($settings['feature_box_heading'])) {
+	                    $rowspan = 2;
+	                    $class   = "eae-fbox-heading";
+	                    $cont    = $settings['feature_box_heading'];
+                    }?>
+
+                        <td class="<?php echo $class; ?>" rowspan="<?php echo $rowspan; ?>"> <?php echo $cont; ?></td>
 					<?php
 
 					for ( $i = 1; $i <= $settings['table_count']; $i ++ ) {
 						if ( $settings[ 'table_ribbon_' . $i ] == 'yes' ) {
-							echo '<th class="eae-ct-heading eae-ct-ribbons-yes eae-ct-ribbons-h-' . $settings[ 'ribbons_position_' . $i ] . ' eae-table-' . $i . '">';
+							echo '<td class="eae-ct-heading eae-ct-ribbons-yes eae-ct-ribbons-h-' . $settings[ 'ribbons_position_' . $i ] . ' eae-table-' . $i . '">';
 							if ( $settings[ 'ribbons_position_' . $i ] == 'top' ) {
 								?>
                                 <div class="eae-ct-ribbons-wrapper-top">
@@ -1799,18 +2038,21 @@ class ComparisonTable extends EAE_Widget_Base {
 								<?php
 							}
 						} else {
-							echo '<th class="eae-ct-heading eae-table-' . $i . '">';
+							echo '<td class="eae-ct-heading eae-table-' . $i . '">';
 						}
 						echo $settings[ 'table_title_' . $i ];
-						echo '</th>';
+						echo '</td>';
 					}
 					?>
                 </tr>
-                </thead>
-                <tbody>
 				<?php
 				echo '<tr>';
-				echo '<td class="hide"></td>';
+				$cls = "hide";
+				if(!empty($settings['feature_box_heading'])){
+				    $cls = "hide eae-ct-hide eae-fbox-heading";
+                }?>
+				<td class="<?php echo $cls; ?>"><?php echo $settings['feature_box_heading']; ?></td>
+				<?php
 				for ( $j = 1; $j <= $settings['table_count']; $j++ ) {
 					echo '<td class="eae-ct-plan eae-table-' . $j . '"><div class="eae-ct-price-wrapper">';
 
@@ -1900,7 +2142,10 @@ class ComparisonTable extends EAE_Widget_Base {
 					}
 					echo '</tr>';
 				}
-				echo '<td></td>';
+				if(!empty($settings['button_heading_text'])){
+					$this->add_render_attribute( 'button_heading' , 'class', 'eae-button-heading' );
+				}
+				echo '<td '.  $this->get_render_attribute_string( "button_heading")  .'>'. $settings['button_heading_text'] .'</td>';
 				for ( $j = 1; $j <= $settings['table_count']; $j ++ ) {
 					$this->add_render_attribute( 'button_' . $j . '-link-attributes', 'href', $settings[ 'item_link_' . $j ]['url'] );
 					$this->add_render_attribute( 'button_' . $j . '-link-attributes', 'class', 'eae-ct-btn' );
@@ -1927,8 +2172,16 @@ class ComparisonTable extends EAE_Widget_Base {
 
 	protected function _content_template() {
 		?>
-
-        <article class="eae-ct-wrapper">
+        <#
+            view.addRenderAttribute( 'eae-ct-wrapper', 'class', 'eae-ct-wrapper');
+            if(settings['feature_box_heading'] == ''){
+                view.addRenderAttribute( 'eae-ct-wrapper', 'class', 'feature-heading-blank');
+            }
+            if(settings['button_heading_text'] == ''){
+                view.addRenderAttribute( 'eae-ct-wrapper', 'class', 'button-heading-blank');
+            }
+        #>
+        <article {{{ view.getRenderAttributeString('eae-ct-wrapper') }}}>
             <ul>
                 <#
                 for ( var i = 1; i <= settings.table_count; i++ ) {
@@ -1976,9 +2229,21 @@ class ComparisonTable extends EAE_Widget_Base {
                 #>
             </ul>
             <table>
-                <thead>
-                <tr>
-                    <th class="hide"></th>
+                <tbody>
+                <tr class="eae-ct-header">
+                    <#
+                    var cont = '';
+                    view.addRenderAttribute( 'feature_heading' , 'class', 'hide' );
+                    view.addRenderAttribute( 'feature_heading' , 'rowspan', null );
+
+                    if (settings['feature_box_heading'] != '' ) {
+                        var cls = 'eae-fbox-heading';
+                        var cont = settings['feature_box_heading'] ;
+                        var rowspan = 2;
+                    view.addRenderAttribute( 'feature_heading' , 'class', 'eae-fbox-heading' );
+                    view.addRenderAttribute( 'feature_heading' , 'rowspan', '2' );
+                    } #>
+                        <td {{{ view.getRenderAttributeString('feature_heading') }}}> {{{cont}}}</td>
                     <#
                     for ( var i = 1; i <= settings.table_count; i++ ) {
                         if ( settings[ 'table_ribbon_' + i ] == 'yes' ) {
@@ -1987,7 +2252,7 @@ class ComparisonTable extends EAE_Widget_Base {
                             view.addRenderAttribute( 'heading_inn_' + i, 'class', 'eae-ct-ribbons-h-' + settings['ribbons_position_' + i ] );
                             view.addRenderAttribute( 'heading_inn_' + i, 'class', 'eae-table-' + i );
                     #>
-                    <th {{{ view.getRenderAttributeString('heading_inn_' + i ) }}}>
+                    <td {{{ view.getRenderAttributeString('heading_inn_' + i ) }}}>
                     <# if ( settings[ 'ribbons_position_' + i ] == 'top' ) {
                     #>
                     <div class="eae-ct-ribbons-wrapper-top">
@@ -2006,18 +2271,24 @@ class ComparisonTable extends EAE_Widget_Base {
 
                     <# } #>
                     <# } else { #>
-                    <th class="eae-ct-heading eae-table-{{{ i }}}">
+                    <td class="eae-ct-heading eae-table-{{{ i }}}">
                     <# }
                     #>
                     {{{ settings[ 'table_title_' + i ] }}}
-                    </th>
+                    </td>
                 <#    }
                     #>
                 </tr>
-                </thead>
-                <tbody>
                 <tr>
-                    <td class="hide"></td>
+	                <#
+	                var cls = 'hide';
+                    view.addRenderAttribute( 'fet_heading', 'class', 'hide' );
+	                if (settings['feature_box_heading'] != '' ) {
+                        view.addRenderAttribute( 'fet_heading', 'class', ['hide eae-ct-hide eae-fbox-heading'] );
+	                    var cls = 'hide eae-ct-hide eae-fbox-heading';
+	                } #>
+
+                        <td {{{view.getRenderAttributeString('fet_heading') }}}> {{{settings['feature_box_heading']}}}</td>
                     <#
                     for ( var j = 1; j <= settings.table_count; j++ ) {
                     #>
@@ -2095,7 +2366,14 @@ class ComparisonTable extends EAE_Widget_Base {
                     <# } #>
                 </tr>
                 <# } #>
-                <td></td>
+                <#
+                var button_heading = '';
+                    if(settings['button_heading_text'] != ''){
+                        view.addRenderAttribute( 'button_heading' , 'class', 'eae-ct-button-heading' );
+                        button_heading = settings['button_heading_text']
+                    }
+                #>
+                <td {{{ view.getRenderAttributeString( 'button_heading' ) }}}> {{{ button_heading }}} </td>
                 <# for ( j = 1; j <= settings['table_count']; j++ ) {
                 view.addRenderAttribute( 'button_' + j + '-link-attributes', 'href', settings[ 'item_link_' + j ]['url'] );
                 view.addRenderAttribute( 'button_' + j + '-link-attributes', 'class', 'eae-ct-btn' );

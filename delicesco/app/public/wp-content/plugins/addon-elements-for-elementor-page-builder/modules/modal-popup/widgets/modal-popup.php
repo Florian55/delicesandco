@@ -11,6 +11,7 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Border;
 use Elementor\Icons_Manager;
+use Elementor\Core\Schemes;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -199,7 +200,10 @@ class ModalPopup extends EAE_Widget_Base {
             [
                 'label'   => __( 'Button Text', 'wts-eae' ),
                 'type'    => Controls_Manager::TEXT,
-                'default' => 'Click Me'
+                'default' => 'Click Me',
+                'dynamic'     => [
+	                'active' => true,
+                ],
             ]
         );
 
@@ -263,9 +267,12 @@ class ModalPopup extends EAE_Widget_Base {
                 'type'      => Controls_Manager::SLIDER,
                 'range'     => [
                     'px' => [
-                        'min' => 6,
                         'max' => 100,
                     ],
+                ],
+                'default' => [
+	                'unit' => 'px',
+	                'size' => 6,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .icon-position-before i , {{WRAPPER}} .icon-position-before svg' => 'margin-right: {{SIZE}}{{UNIT}};',
@@ -375,7 +382,7 @@ class ModalPopup extends EAE_Widget_Base {
         $this->add_control(
             'background_color',
             [
-                'label'     => __( 'Color', 'wts-eae' ),
+                'label'     => __( 'Background Color', 'wts-eae' ),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '.eae-wrap-{{ID}} .mfp-inline-holder .mfp-content' => 'background-color: {{VALUE}};',
@@ -465,6 +472,7 @@ class ModalPopup extends EAE_Widget_Base {
             [
                 'name'     => 'btn_text_typography',
                 'label'    => __( 'Typography', 'wts-eae' ),
+                'scheme' => Schemes\Typography::TYPOGRAPHY_4,
                 //'selector' => '.eae-popup-{{ID}} .eae-popup-link',
                 'selector' => '{{WRAPPER}} .eae-popup-link',
             ]
@@ -504,7 +512,10 @@ class ModalPopup extends EAE_Widget_Base {
             [
                 'label'     => __( 'Background Color', 'wts-eae' ),
                 'type'      => Controls_Manager::COLOR,
-                'default'   => '#61ce70',
+                'scheme' => [
+	                'type' => Schemes\Color::get_type(),
+	                'value' => Schemes\Color::COLOR_4,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .eae-popup-link' => 'background-color: {{VALUE}};',
                 ],
@@ -880,8 +891,8 @@ class ModalPopup extends EAE_Widget_Base {
         $icon_is_new = empty($settings['button_icon']);
         //echo '<pre>'; print_r($settings); echo '</pre>';
         
-	    $close_btn_icon_migrated = isset($settings['__fa4_migrated']['button_icon_new']);
-	    $close_btn_icon_is_new = empty($settings['button_icon']);
+	    $close_btn_icon_migrated = isset($settings['__fa4_migrated']['close_btn_icon_new']);
+	    $close_btn_icon_is_new = empty($settings['close_btn_icon']);
 
         $close_button_type = isset($settings['close_btn_icon_new']['value']['url']) ? 'svg' : 'icon';
         if($close_button_type == 'svg'){

@@ -624,17 +624,30 @@ class Premium_Testimonials extends Widget_Base {
                 <?php endif; ?>
 
                 <div class="premium-testimonial-text-wrapper">
-                    <div <?php echo $this->get_render_attribute_string('premium_testimonial_content'); ?>><?php echo $settings['premium_testimonial_content']; ?></div>
+                    <div <?php echo $this->get_render_attribute_string('premium_testimonial_content'); ?>>
+                        <?php echo $settings['premium_testimonial_content']; ?>
+                    </div>
                 </div>
 
                 <div class="premium-testimonial-author-info">
                     <<?php echo $person_title_tag; ?> class="premium-testimonial-person-name">
                         <span <?php echo $this->get_render_attribute_string('premium_testimonial_person_name'); ?>><?php echo $settings['premium_testimonial_person_name']; ?></span>
                     </<?php echo $person_title_tag; ?>>
+                    
                     <span class="premium-testimonial-separator"> - </span>
 
-                    <<?php echo $company_title_tag; ?> class="premium-testimonial-company-name"><?php if($settings['premium_testimonial_company_link_switcher'] == 'yes') : ?><a class="premium-testimonial-company-link" href="<?php echo $settings['premium_testimonial_company_link']; ?>" target="_<?php echo $settings['premium_testimonial_link_target']; ?>"><span <?php echo $this->get_render_attribute_string('premium_testimonial_company_name'); ?>><?php echo $settings['premium_testimonial_company_name']; ?></span></a><?php else: ?><span class="premium-testimonial-company-link" <?php echo $this->get_render_attribute_string('premium_testimonial_company_name'); ?>><?php echo $settings['premium_testimonial_company_name']; ?></span><?php endif;?></<?php echo $company_title_tag; ?>>
-                </span>
+                    <<?php echo $company_title_tag; ?> class="premium-testimonial-company-name">
+                    <?php if( $settings['premium_testimonial_company_link_switcher'] === 'yes') : ?>
+                        <a class="premium-testimonial-company-link" href="<?php echo $settings['premium_testimonial_company_link']; ?>" target="_<?php echo $settings['premium_testimonial_link_target']; ?>">
+                            <span <?php echo $this->get_render_attribute_string('premium_testimonial_company_name'); ?>><?php echo $settings['premium_testimonial_company_name']; ?></span>
+                        </a>
+                    <?php else: ?>
+                        <span class="premium-testimonial-company-link" <?php echo $this->get_render_attribute_string('premium_testimonial_company_name'); ?>>
+                            <?php echo $settings['premium_testimonial_company_name']; ?>
+                        </span>
+                    <?php endif; ?>
+                    </<?php echo $company_title_tag; ?>>
+                </div>
             </div>
             <i class="fa fa-quote-right premium-testimonial-lower-quote"></i>
         </div>

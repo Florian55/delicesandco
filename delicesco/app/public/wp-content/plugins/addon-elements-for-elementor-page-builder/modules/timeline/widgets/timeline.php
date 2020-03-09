@@ -12,6 +12,7 @@ use Elementor\Group_Control_Image_Size;
 use WTS_EAE\Controls\Hover_Transition;
 use WTS_EAE\Controls\Group\Group_Control_Icon;
 use WTS_EAE\Modules\Timeline\Skins;
+use Elementor\Scheme_Color;
 
 class Timeline extends EAE_Widget_Base {
 
@@ -229,6 +230,357 @@ class Timeline extends EAE_Widget_Base {
 				'label' => __( 'Style', 'wts-eae' ),
 			]
 		);
+		$repeater->add_control(
+			'tl_custom_card_style',
+			[
+				'label'        => __( 'Custom Card Style', 'wts-eae' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => __( 'Yes', 'wts-eae' ),
+				'label_off'    => __( 'No', 'wts-eae' ),
+				'return_value' => 'yes',
+				'default'      => 'no',
+			]
+		);
+
+		$repeater->add_control(
+			'tl_custom_card_style_default',
+			[
+				'label' => __( 'Default', 'wts-eae' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+
+		$repeater->add_control(
+			'tl_custom_title_color',
+			[
+				'label'     => __( 'Title Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}}  {{CURRENT_ITEM}} .eae-tl-item-title' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'tl_custom_date_color',
+			[
+				'label'     => __( 'Date Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_2,
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} .eae-tl-item-meta' => 'color: {{VALUE}};',
+					'{{WRAPPER}} {{CURRENT_ITEM}} .eae-tl-content-wrapper .eae-tl-item-meta-inner' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+
+		$repeater->add_control(
+			'tl_custom_content_color',
+			[
+				'label'     => __( 'Content Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_3,
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} .eae-tl-content' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+
+		$repeater->add_control(
+			'tl_custom_background_color',
+			[
+				'label'     => __( 'Background Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} .eae-tl-item-content'                                                                                            => 'background: {{VALUE}};',
+					'{{WRAPPER}} .eae-layout-center.eae-timeline {{CURRENT_ITEM}}.eae-timeline-item:nth-child(even) .eae-tl-item-content::before'                 => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+					'{{WRAPPER}} .eae-layout-center.eae-timeline {{CURRENT_ITEM}}.eae-timeline-item:nth-child(odd) .eae-tl-item-content::before'                  => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'{{WRAPPER}} .eae-layout-right.eae-timeline {{CURRENT_ITEM}} .eae-tl-item-content::before'                                                     => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'{{WRAPPER}} .eae-layout-left.eae-timeline {{CURRENT_ITEM}} .eae-tl-item-content::before'                                                      => 'border-color: transparent {{VALUE}} transparent transparent  !important;',
+					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-timeline-item .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+					'(tablet){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-timeline-item .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-right {{CURRENT_ITEM}}.eae-timeline-item .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'(tablet){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-right {{CURRENT_ITEM}}.eae-timeline-item .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'(mobile){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile {{CURRENT_ITEM}}.eae-timeline-item:nth-child(odd) .eae-tl-item-content::before'  => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'(mobile){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-timeline-item:nth-child(odd) .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+					'(tablet){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile {{CURRENT_ITEM}}.eae-timeline-item:nth-child(odd) .eae-tl-item-content::before'  => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+
+
+		$repeater->add_control(
+			'tl_custom_card_style_hover',
+			[
+				'label' => __( 'Hover', 'wts-eae' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+
+		$repeater->add_control(
+			'tl_custom_title_color_hover',
+			[
+				'label'     => __( 'Title Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}}  {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-title' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'tl_custom_date_color_hover',
+			[
+				'label'     => __( 'Date Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_2,
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}}:hover .eae-tl-item-meta' => 'color: {{VALUE}};',
+					'{{WRAPPER}} {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-meta-inner' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+
+		$repeater->add_control(
+			'tl_custom_content_color_hover',
+			[
+				'label'     => __( 'Content Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_3,
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-content' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+
+		$repeater->add_control(
+			'tl_custom_background_color_hover',
+			[
+				'label'     => __( 'Background Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content'                                                                                            => 'background: {{VALUE}};',
+					'{{WRAPPER}} .eae-layout-center.eae-timeline {{CURRENT_ITEM}}.eae-timeline-item:nth-child(even) .eae-tl-content-wrapper:hover .eae-tl-item-content::before'                 => 'border-color: transparent {{VALUE}} transparent transparent ;',
+					'{{WRAPPER}} .eae-layout-center.eae-timeline {{CURRENT_ITEM}}.eae-timeline-item:nth-child(odd) .eae-tl-content-wrapper:hover .eae-tl-item-content::before'                  => 'border-color: transparent transparent transparent {{VALUE}} ;',
+					'{{WRAPPER}} .eae-layout-right.eae-timeline {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before'                                                     => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'{{WRAPPER}} .eae-layout-left.eae-timeline {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before'                                                      => 'border-color: transparent {{VALUE}} transparent transparent  !important;',
+					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-timeline-item .eae-tl-content-wrapper:hover .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+					'(tablet){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-timeline-item .eae-tl-content-wrapper:hover .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-right {{CURRENT_ITEM}}.eae-timeline-item .eae-tl-content-wrapper:hover .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'(tablet){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-right {{CURRENT_ITEM}}.eae-timeline-item .eae-tl-content-wrapper:hover .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'(mobile){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile {{CURRENT_ITEM}}.eae-timeline-item:nth-child(odd) .eae-tl-content-wrapper:hover .eae-tl-item-content::before'  => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'(mobile){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-timeline-item:nth-child(odd) .eae-tl-content-wrapper:hover .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+					'(tablet){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile {{CURRENT_ITEM}}.eae-timeline-item:nth-child(odd) .eae-tl-content-wrapper:hover .eae-tl-item-content::before'  => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+
+
+//					'{{WRAPPER}} {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content'                                                                          => 'background: {{VALUE}};',
+//					'{{WRAPPER}} .eae-layout-center.eae-timeline {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before'                                                      => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+//					'{{WRAPPER}} .eae-layout-right.eae-timeline {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before'                                  => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+//					'{{WRAPPER}} .eae-layout-left.eae-timeline {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before'                                       => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+//					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-left {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+//					'(tablet){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-left {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+//					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-right {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+//					'(tablet){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-right {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+//					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-style-mobile.eae-tl-res-layout-left {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before'   => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+//					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-style-mobile.eae-tl-res-layout-right {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before'  => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+//					'(tablet){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile.eae-tl-res-layout-left {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before'   => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+//					'(tablet){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile..eae-tl-res-layout-right {{CURRENT_ITEM}} .eae-tl-content-wrapper:hover .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+
+		/*Foucsed Start*/
+
+		$repeater->add_control(
+			'tl_custom_card_style_focused',
+			[
+				'label' => __( 'Focused', 'wts-eae' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+
+		$repeater->add_control(
+			'tl_custom_title_color_focused',
+			[
+				'label'     => __( 'Title Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				],
+				'selectors' => [
+					'{{WRAPPER}}  {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-item-title' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$repeater->add_control(
+			'tl_custom_date_color_focused',
+			[
+				'label'     => __( 'Date Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_2,
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper:hover .eae-tl-item-meta-inner' => 'color: {{VALUE}};',
+					'{{WRAPPER}} {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-item-meta' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+		$repeater->add_control(
+			'tl_custom_content_color_focused',
+			[
+				'label'     => __( 'Content Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_3,
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-content' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+
+		$repeater->add_control(
+			'tl_custom_background_color_focused',
+			[
+				'label'     => __( 'Background Color', 'wts-eae' ),
+				'type'      => Controls_Manager::COLOR,
+
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-item-content'                                                                                            => 'background: {{VALUE}} !important;',
+					'{{WRAPPER}} .eae-layout-center.eae-timeline {{CURRENT_ITEM}}.eae-tl-item-focused.eae-timeline-item:nth-child(even) .eae-tl-item-content::before'                 => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+					'{{WRAPPER}} .eae-layout-center.eae-timeline {{CURRENT_ITEM}}.eae-tl-item-focused.eae-timeline-item:nth-child(odd) .eae-tl-item-content::before'                  => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'{{WRAPPER}} .eae-layout-right.eae-timeline {{CURRENT_ITEM}}.eae-tl-item-focused  .eae-tl-item-content::before'                                                     => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'{{WRAPPER}} .eae-layout-left.eae-timeline {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-item-content::before'                                                      => 'border-color: transparent {{VALUE}} transparent transparent  !important;',
+					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-tl-item-focused.eae-timeline-item  .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+					'(tablet){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-tl-item-focused.eae-timeline-item  .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-right {{CURRENT_ITEM}}.eae-tl-item-focused.eae-timeline-item  .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'(tablet){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-right {{CURRENT_ITEM}}.eae-tl-item-focused.eae-timeline-item  .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'(mobile){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile {{CURRENT_ITEM}}.eae-tl-item-focused.eae-timeline-item:nth-child(odd) .eae-tl-item-content::before'  => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+					'(mobile){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-tl-item-focused.eae-timeline-item:nth-child(odd) .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+					'(tablet){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile {{CURRENT_ITEM}}.eae-tl-item-focused.eae-timeline-item:nth-child(odd) .eae-tl-item-content::before'  => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+
+
+//					'{{WRAPPER}} {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-item-content'                                                                                            => 'background: {{VALUE}} !important;',
+//					'{{WRAPPER}} .eae-layout-center.eae-timeline {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-item-content::before'                                  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+//					'{{WRAPPER}}  .eae-layout-right.eae-timeline {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-item-content::before'                                                     => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+//					'{{WRAPPER}}  .eae-layout-left.eae-timeline {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-item-content::before'                                                      => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+//					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+//					'(tablet){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-item-content::before'  => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+//					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-right {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+//					'(tablet){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-layout-right {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+//					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-style-mobile.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-item-content::before'   => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+//					'(mobile){{WRAPPER}} .eae-layout-center.eae-timeline.eae-tl-res-style-mobile.eae-tl-res-layout-right {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-item-content::before'  => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+//					'(tablet){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile.eae-tl-res-layout-left {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-item-content::before'   => 'border-color: transparent {{VALUE}} transparent transparent !important;',
+//					'(tablet){{WRAPPER}} .eae-timeline.eae-layout-center.eae-tl-res-style-mobile..eae-tl-res-layout-right {{CURRENT_ITEM}}.eae-tl-item-focused .eae-tl-content-wrapper .eae-tl-item-content::before' => 'border-color: transparent transparent transparent {{VALUE}} !important;',
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+
+		/* Focused End */
+
+
+		$repeater->add_responsive_control(
+			'tl_custom_content_align',
+			[
+				'label'     => __( 'Alignment', 'wts-eae' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => 'center',
+				'options'   => [
+					'left'   => [
+						'title' => __( 'Left', 'wts-eae' ),
+						'icon'  => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Top', 'wts-eae' ),
+						'icon'  => 'fa fa-align-center',
+					],
+					'right'  => [
+						'title' => __( 'Right', 'wts-eae' ),
+						'icon'  => 'fa fa-align-right',
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} .eae-tl-item-content' => 'text-align: {{VALUE}}',
+				],
+				'condition' => [
+					'tl_custom_card_style' => 'yes'
+				]
+			]
+		);
+
 		$repeater->add_control(
 			'tl_custom_image_style',
 			[

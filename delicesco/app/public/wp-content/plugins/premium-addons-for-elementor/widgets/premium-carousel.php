@@ -86,6 +86,7 @@ class Premium_Carousel extends Widget_Base {
 		     	'type'          => Controls_Manager::SELECT2,
 		     	'options'       => $this->getTemplateInstance()->get_elementor_page_list(),
 		     	'multiple'      => true,
+                'label_block'   => true,
                 'condition'     => [
                     'premium_carousel_content_type' => 'select'
                 ]
@@ -98,6 +99,7 @@ class Premium_Carousel extends Widget_Base {
             [
                 'label'         => __( 'Content', 'premium-addons-for-elementor' ),
                 'type'          => Controls_Manager::SELECT2,
+                'label_block'   => true,
                 'options'       => $this->getTemplateInstance()->get_elementor_page_list()
             ]
         );
@@ -173,16 +175,12 @@ class Premium_Carousel extends Widget_Base {
 				'label'             => __( 'Vertical Offset', 'premium-addons-for-elementor' ),
 				'type'              => Controls_Manager::SLIDER,
                 'size_units'        => ['px', 'em', '%'],
-                'default'           => [
-                    'unit'  => '%',
-                    'size'  => 50
-                ],
                 'selectors'         => [
                     '{{WRAPPER}} .premium-carousel-dots-above ul.slick-dots' => 'top: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .premium-carousel-dots-below ul.slick-dots' => 'bottom: {{SIZE}}{{UNIT}}',
                 ],
                 'condition'     => [
                     'premium_carousel_dot_navigation_show'  => 'yes',
-                    'premium_carousel_dot_position'         => 'above'
                 ]
 			]
 		);

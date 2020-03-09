@@ -81,12 +81,13 @@ class Premium_Vscroll extends Widget_Base {
             [
                 'label'         => __('Content Type', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SELECT,
+                'description'   => __('Choose which method you prefer to insert sections.', 'premium-addons-for-elementor'),
                 'options'       => [
                     'templates'     => __('Elementor Templates', 'premium-addons-for-elementor'),
                     'ids'           => __('Section ID', 'premium-addons-for-elementor')
                 ],
                 'default'       => 'templates',
-                'description'   => __('Choose which method you prefer to insert sections.', 'premium-addons-for-elementor')
+                'label_block'   => true,
             ]
         );
         
@@ -98,6 +99,7 @@ class Premium_Vscroll extends Widget_Base {
 		     	'type'          => Controls_Manager::SELECT2,
 		     	'options'       => $this->getTemplateInstance()->get_elementor_page_list(),
 		     	'multiple'      => false,
+                'label_block'   => true,
 		  	]
 		);
         

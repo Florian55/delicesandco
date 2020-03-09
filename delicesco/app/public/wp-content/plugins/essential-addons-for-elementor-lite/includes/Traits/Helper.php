@@ -293,22 +293,40 @@ trait Helper
         );
 
         if ('eael-post-grid' === $this->get_name()) {
-            $this->add_control(
+            $this->add_responsive_control(
                 'eael_post_grid_columns',
                 [
-                    'label' => esc_html__('Number of Columns', 'essential-addons-for-elementor-lite'),
+                    'label' => esc_html__('Column', 'essential-addons-for-elementor-lite'),
                     'type' => Controls_Manager::SELECT,
                     'default' => 'eael-col-4',
+                    'tablet_default' => 'eael-col-2',
+                    'mobile_default' => 'eael-col-1',
                     'options' => [
-                        'eael-col-1' => esc_html__('Single Column', 'essential-addons-for-elementor-lite'),
-                        'eael-col-2' => esc_html__('Two Columns', 'essential-addons-for-elementor-lite'),
-                        'eael-col-3' => esc_html__('Three Columns', 'essential-addons-for-elementor-lite'),
-                        'eael-col-4' => esc_html__('Four Columns', 'essential-addons-for-elementor-lite'),
-                        'eael-col-5' => esc_html__('Five Columns', 'essential-addons-for-elementor-lite'),
-                        'eael-col-6' => esc_html__('Six Columns', 'essential-addons-for-elementor-lite'),
+                        'eael-col-1' => esc_html__('1', 'essential-addons-for-elementor-lite'),
+                        'eael-col-2' => esc_html__('2', 'essential-addons-for-elementor-lite'),
+                        'eael-col-3' => esc_html__('3', 'essential-addons-for-elementor-lite'),
+                        'eael-col-4' => esc_html__('4', 'essential-addons-for-elementor-lite'),
+                        'eael-col-5' => esc_html__('5', 'essential-addons-for-elementor-lite'),
+                        'eael-col-6' => esc_html__('6', 'essential-addons-for-elementor-lite'),
+                    ],
+                    'prefix_class' => 'elementor-grid%s-',
+                    'frontend_available' => true,
+                ]
+            );
+
+            $this->add_control(
+                'layout_mode',
+                [
+                    'label' => esc_html__('Layout', 'essential-addons-for-elementor-lite'),
+                    'type' => Controls_Manager::SELECT,
+                    'default' => 'masonry',
+                    'options' => [
+                        'grid' => esc_html__('Grid', 'essential-addons-for-elementor-lite'),
+                        'masonry' => esc_html__('Masonry', 'essential-addons-for-elementor-lite'),
                     ],
                 ]
             );
+
         }
 
         if ('eael-post-block' === $this->get_name()) {
@@ -528,30 +546,59 @@ trait Helper
             ]
         );
 
-        $this->add_control(
-            'eael_excerpt_length',
-            [
-                'label' => __('Excerpt Words', 'essential-addons-for-elementor-lite'),
-                'type' => Controls_Manager::NUMBER,
-                'default' => '10',
-                'condition' => [
-                    'eael_show_excerpt' => 'yes',
-                ],
-            ]
-        );
+        if('eael-content-timeline' === $this->get_name()) {
+            $this->add_control(
+                'eael_excerpt_length',
+                [
+                    'label' => __('Excerpt Words', 'essential-addons-for-elementor-lite'),
+                    'type' => Controls_Manager::NUMBER,
+                    'default' => '10',
+                    'condition' => [
+                        'eael_show_excerpt' => 'yes',
+                        'eael_content_timeline_choose' => 'dynamic'
+                    ],
+                ]
+            );
+            
+            $this->add_control(
+                'excerpt_expanison_indicator',
+                [
+                    'label' => esc_html__('Expanison Indicator', 'essential-addons-for-elementor-lite'),
+                    'type' => Controls_Manager::TEXT,
+                    'label_block' => false,
+                    'default' => esc_html__('...', 'essential-addons-for-elementor-lite'),
+                    'condition' => [
+                        'eael_show_excerpt' => 'yes',
+                        'eael_content_timeline_choose' => 'dynamic'
+                    ],
+                ]
+            );
+        }else {
+            $this->add_control(
+                'eael_excerpt_length',
+                [
+                    'label' => __('Excerpt Words', 'essential-addons-for-elementor-lite'),
+                    'type' => Controls_Manager::NUMBER,
+                    'default' => '10',
+                    'condition' => [
+                        'eael_show_excerpt' => 'yes'
+                    ]
+                ]
+            );
 
-        $this->add_control(
-            'excerpt_expanison_indicator',
-            [
-                'label' => esc_html__('Expanison Indicator', 'essential-addons-for-elementor-lite'),
-                'type' => Controls_Manager::TEXT,
-                'label_block' => false,
-                'default' => esc_html__('...', 'essential-addons-for-elementor-lite'),
-                'condition' => [
-                    'eael_show_excerpt' => 'yes',
-                ],
-            ]
-        );
+            $this->add_control(
+                'excerpt_expanison_indicator',
+                [
+                    'label' => esc_html__('Expanison Indicator', 'essential-addons-for-elementor-lite'),
+                    'type' => Controls_Manager::TEXT,
+                    'label_block' => false,
+                    'default' => esc_html__('...', 'essential-addons-for-elementor-lite'),
+                    'condition' => [
+                        'eael_show_excerpt' => 'yes'
+                    ],
+                ]
+            );
+        }
 
         $this->add_control(
             'eael_show_read_more',
@@ -1511,12 +1558,18 @@ trait Helper
     /**
      * Get all Tags
      *
+     * @param  array  $args
+     *
      * @return array
      */
-    public function eael_get_tags()
+    public function eael_get_tags($args = array())
     {
-        $options = array();
-        $tags = get_tags();
+        $options = [];
+        $tags = get_tags($args);
+
+        if (is_wp_error($tags)) {
+            return [];
+        }
 
         foreach ($tags as $tag) {
             $options[$tag->term_id] = $tag->name;
@@ -1596,7 +1649,7 @@ trait Helper
             ];
         }
 
-        if($class == '\Essential_Addons_Elementor\Elements\Post_Grid') {
+        if($class == '\Essential_Addons_Elementor\Elements\Post_Grid' && $settings['orderby'] === 'rand') {
             $args['post__not_in'] = array_unique($_REQUEST['post__not_in']);
         }
 
@@ -1718,7 +1771,7 @@ trait Helper
                         <p>' . substr(str_replace(@$item['entities']['urls'][0]['url'], '', $item['full_text']), 0, $settings['eael_twitter_feed_content_length']) . '...</p>';
 
             if ($settings['eael_twitter_feed_show_read_more'] == 'true') {
-                $html .= '<a href="//twitter.com/' . @$item['user']['screen_name'] . '/status/' . $item['id'] . '" target="_blank" class="read-more-link">Read More <i class="fas fa-angle-double-right"></i></a>';
+                $html .= '<a href="//twitter.com/' . @$item['user']['screen_name'] . '/status/' . $item['id_str'] . '" target="_blank" class="read-more-link">Read More <i class="fas fa-angle-double-right"></i></a>';
             }
             $html .= '</div>
                     ' . (isset($item['extended_entities']['media'][0]) && $settings['eael_twitter_feed_media'] == 'true' ? ($item['extended_entities']['media'][0]['type'] == 'photo' ? '<img src="' . $item['extended_entities']['media'][0]['media_url_https'] . '">' : '') : '') . '
@@ -2137,5 +2190,84 @@ trait Helper
             }
         }
         return $typo_data;
+    }
+
+    public function eael_language_code_list (){
+        return [
+            'af' => 'Afrikaans',
+            'sq' => 'Albanian',
+            'ar' => 'Arabic',
+            'eu' => 'Basque',
+            'bn' => 'Bengali',
+            'bs' => 'Bosnian',
+            'bg' => 'Bulgarian',
+            'ca' => 'Catalan',
+            'zh-cn' => 'Chinese',
+            'zh-tw' => 'Chinese-tw',
+            'hr' => 'Croatian',
+            'cs' => 'Czech',
+            'da' => 'Danish',
+            'nl' => 'Dutch',
+            'en' => 'English',
+            'et' => 'Estonian',
+            'fi' => 'Finnish',
+            'fr' => 'French',
+            'gl' => 'Galician',
+            'ka' => 'Georgian',
+            'de' => 'German',
+            'el' => 'Greek (Modern)',
+            'he' => 'Hebrew',
+            'hi' => 'Hindi',
+            'hu' => 'Hungarian',
+            'is' => 'Icelandic',
+            'io' => 'Ido',
+            'id' => 'Indonesian',
+            'it' => 'Italian',
+            'ja' => 'Japanese',
+            'kk' => 'Kazakh',
+            'ko' => 'Korean',
+            'lv' => 'Latvian',
+            'lb' => 'Letzeburgesch',
+            'lt' => 'Lithuanian',
+            'lu' => 'Luba-Katanga',
+            'mk' => 'Macedonian',
+            'mg' => 'Malagasy',
+            'ms' => 'Malay',
+            'ro' => 'Moldovan, Moldavian, Romanian',
+            'nb' => 'Norwegian Bokmål',
+            'nn' => 'Norwegian Nynorsk',
+            'fa' => 'Persian',
+            'pl' => 'Polish',
+            'pt' => 'Portuguese',
+            'ru' => 'Russian',
+            'sr' => 'Serbian',
+            'sk' => 'Slovak',
+            'sl' => 'Slovenian',
+            'es' => 'Spanish',
+            'sv' => 'Swedish',
+            'tr' => 'Turkish',
+            'uk' => 'Ukrainian',
+            'vi' => 'Vietnamese',
+        ];
+    }
+
+    /**
+     * @since  3.8.2
+     * @param $source
+     *
+     * @return array
+     */
+    public function eael_event_calendar_source($source)
+    {
+
+        if (!function_exists('is_plugin_active')) {
+            require_once ABSPATH . '/wp-admin/includes/plugin.php';
+        }
+
+        if (is_plugin_active('the-events-calendar/the-events-calendar.php')) {
+            $source['the_events_calendar'] = __('The Events Calendar', 'essential-addons-for-elementor-lite');
+        }
+
+        return $source;
     }
 }

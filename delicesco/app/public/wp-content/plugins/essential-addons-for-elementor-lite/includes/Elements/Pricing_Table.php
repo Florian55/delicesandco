@@ -9,7 +9,6 @@ if (!defined('ABSPATH')) {
 use \Elementor\Controls_Manager;
 use \Elementor\Group_Control_Border;
 use \Elementor\Group_Control_Box_Shadow;
-use \Elementor\Group_Control_Image_Size;
 use \Elementor\Group_Control_Typography;
 use \Elementor\Widget_Base;
 use \Elementor\Group_Control_Background;
@@ -410,7 +409,23 @@ class Pricing_Table extends Widget_Base {
   			[
   				'label' => esc_html__( 'Button', 'essential-addons-for-elementor-lite')
   			]
-  		);
+		);  
+		
+		$this->add_control(
+			'eael_pricing_table_button_show',
+			[
+				'label' => __( 'Display Button', 'essential-addons-for-elementor-lite' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Show', 'essential-addons-for-elementor-lite' ),
+				'label_off' => __( 'Hide', 'essential-addons-for-elementor-lite' ),
+				'return_value' => 'yes',
+                'default' => 'yes',
+                'selectors' => [
+                    '{{WRAPPER}} .eael-pricing-button' => 'display: inline-block;',
+                ],
+			]
+		);
+
 
   		$this->add_control(
 			'eael_pricing_table_button_icon_new',
@@ -418,6 +433,9 @@ class Pricing_Table extends Widget_Base {
 				'label' => esc_html__( 'Button Icon', 'essential-addons-for-elementor-lite'),
 				'type' => Controls_Manager::ICONS,
 				'fa4compatibility' => 'eael_pricing_table_button_icon',
+				'condition' => [
+					'eael_pricing_table_button_show' => 'yes',
+				],
 			]
 		);
 
@@ -433,6 +451,7 @@ class Pricing_Table extends Widget_Base {
 				],
 				'condition' => [
 					'eael_pricing_table_button_icon_new!' => '',
+					'eael_pricing_table_button_show' => 'yes',
 				],
 			]
 		);
@@ -449,6 +468,7 @@ class Pricing_Table extends Widget_Base {
 				],
 				'condition' => [
 					'eael_pricing_table_button_icon_new!' => '',
+					'eael_pricing_table_button_show' => 'yes',
 				],
 				'selectors' => [
 					'{{WRAPPER}} .eael-pricing-button i.fa-icon-left' => 'margin-right: {{SIZE}}px;',
@@ -464,6 +484,9 @@ class Pricing_Table extends Widget_Base {
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
 				'default'     => esc_html__( 'Choose Plan', 'essential-addons-for-elementor-lite'),
+				'condition' => [
+					'eael_pricing_table_button_show' => 'yes',
+				],
 			]
 		);
 
@@ -477,7 +500,10 @@ class Pricing_Table extends Widget_Base {
         			'url' => '#',
         			'is_external' => '',
      			],
-     			'show_external' => true,
+				 'show_external' => true,
+				 'condition' => [
+					'eael_pricing_table_button_show' => 'yes',
+				],
 			]
 		);
 
@@ -533,6 +559,8 @@ class Pricing_Table extends Widget_Base {
 				'selectors'   => [
 					'{{WRAPPER}} .eael-pricing.style-1 .eael-pricing-item.featured:before' => 'content: "{{VALUE}}";',
 					'{{WRAPPER}} .eael-pricing.style-2 .eael-pricing-item.featured:before' => 'content: "{{VALUE}}";',
+					'{{WRAPPER}} .eael-pricing.style-3 .eael-pricing-item.featured:before' => 'content: "{{VALUE}}";',
+					'{{WRAPPER}} .eael-pricing.style-4 .eael-pricing-item.featured:before' => 'content: "{{VALUE}}";',
 				],
 				'condition' => [
 					'eael_pricing_table_featured_styles' => [ 'ribbon-2', 'ribbon-3' ],
@@ -1804,8 +1832,6 @@ foreach ($settings['eael_pricing_table_items'] as $item):
 
 	protected function render() {
 		$settings = $this->get_settings();
-		$pricing_table_image = $this->get_settings( 'eael_pricing_table_image' );
-		$pricing_table_image_url = Group_Control_Image_Size::get_attachment_image_src( $pricing_table_image['id'], 'thumbnail', $settings );
 		$target = $settings['eael_pricing_table_btn_link']['is_external'] ? 'target="_blank"' : '';
 		$nofollow = $settings['eael_pricing_table_btn_link']['nofollow'] ? 'rel="nofollow"' : '';
 		$featured_class = ('yes' === $settings['eael_pricing_table_featured'] ? 'featured ' . $settings['eael_pricing_table_featured_styles'] : '');

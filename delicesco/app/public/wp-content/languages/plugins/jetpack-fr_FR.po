@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Jetpack by WordPress.com - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-21 00:54:10+0000\n"
+"PO-Revision-Date: 2020-03-05 17:44:34+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,12 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: fr\n"
 "Project-Id-Version: Plugins - Jetpack by WordPress.com - Stable (latest release)\n"
+
+#. translators: plugins_loaded is a filter name in WordPress, no need to
+#. translate.
+#: class.jetpack.php:572
+msgid "A plugin on your site is using the plugins_loaded filter with a priority that is too high. Jetpack does not support this, you may experience problems."
+msgstr "Une extension sur votre site utilise le filtre plugins_loaded avec une priorité qui est trop élevée. Jetpack ne prend pas cela en charge, vous pourriez rencontrer des problèmes."
 
 #: _inc/blocks/editor-beta.js:2
 msgid "Learn more about Amazon"
@@ -143,7 +149,7 @@ msgstr "Collez un lien vers un événement Eventbrite pour intégrer la validati
 #: _inc/blocks/editor-experimental.js:2 _inc/blocks/editor-beta.js:2
 #: _inc/blocks/editor.js:2
 msgid "Eventbrite Checkout"
-msgstr "Validation Eventbrite"
+msgstr "Événement Eventbrite"
 
 #: _inc/blocks/editor-experimental.js:2 _inc/blocks/editor-beta.js:2
 #: _inc/blocks/editor.js:2
@@ -3235,6 +3241,10 @@ msgstr "Votre serveur n'a pas réussi à se connecter au serveur Jetpack via HTT
 msgid "Please ask your hosting provider to refer to our server requirements at https://jetpack.com/support/server-requirements/ and enable PHP's XML module."
 msgstr "Veuillez demander à votre hébergeur de se reporter à notre configuration serveur requise sur https://jetpack.com/support/server-requirements/ et d'activer le module XML du PHP."
 
+#: _inc/lib/debugger/class-jetpack-cxn-tests.php:161
+msgid "PHP XML manipulation libraries are not available."
+msgstr "Les bibliothèques de manipulation XML de PHP ne sont pas disponibles."
+
 #. translators: a WordPress username
 #: _inc/lib/debugger/class-jetpack-cxn-tests.php:143
 msgid "Either upgrade the user or disconnect and reconnect Jetpack."
@@ -4682,6 +4692,10 @@ msgstr "Position"
 msgctxt "Navigation item"
 msgid "Debug"
 msgstr "Déboguer"
+
+#: _inc/jetpack-strings.php:615
+msgid "Test your site’s compatibility with Jetpack."
+msgstr "Testez la compatibilité de votre site avec Jetpack."
 
 #: _inc/lib/admin-pages/class.jetpack-admin-page.php:369
 msgctxt "Navigation item"
@@ -8837,6 +8851,11 @@ msgstr ""
 #: class.jetpack-modules-list-table.php:267
 msgid "Feature Info"
 msgstr "Informations sur les fonctionnalités"
+
+#. translators: placeholder is a unit of time (1 hour, 5 days, ...)
+#: _inc/lib/core-api/class.jetpack-core-api-module-endpoints.php:1650
+msgid "Your site was successfully backed up %s ago."
+msgstr "Votre site a bien été sauvegardé il y a %s."
 
 #: _inc/lib/core-api/class.jetpack-core-api-module-endpoints.php:1641
 msgid "VaultPress is active and will back up your site soon."
@@ -15529,3 +15548,7 @@ msgstr "Déconnecter Jetpack"
 #: class.jetpack.php:3984 modules/sharedaddy/sharedaddy.php:225
 msgid "Support"
 msgstr "Support"
+
+#: _inc/lib/admin-pages/class.jetpack-admin-page.php:386
+msgid "Test your site's compatibility with Jetpack."
+msgstr "Testez la compatibilité de votre site avec Jetpack."

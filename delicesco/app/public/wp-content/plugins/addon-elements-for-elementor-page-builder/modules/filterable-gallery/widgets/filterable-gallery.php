@@ -14,6 +14,8 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Css_Filter;
 use Elementor\Repeater;
 use Elementor\Icons_Manager;
+use Elementor\Core\Schemes;
+use Elementor\Utils;
 use Elementor\Plugin;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
@@ -59,6 +61,7 @@ class FilterableGallery extends EAE_Widget_Base
                 'dynamic' => [
                     'active' => true,
                 ],
+                'default'   =>  'Filter'
             ]
         );
 
@@ -71,7 +74,6 @@ class FilterableGallery extends EAE_Widget_Base
                     'active' => true,
                 ],
                 'show_label' => false,
-
             ]
         );
 
@@ -85,7 +87,7 @@ class FilterableGallery extends EAE_Widget_Base
                 'show_label' => true,
                 'default' => [
                     [
-                        'eae_filter_label' => 'Filter1'
+                        'eae_filter_label' => 'Filter1',
                     ],
                     [
                         'eae_filter_label' => 'Filter2'
@@ -810,7 +812,7 @@ class FilterableGallery extends EAE_Widget_Base
             [
                 'name' => 'typography',
                 'label' => __('Typography', 'ae-pro'),
-                'scheme' => Scheme_Typography::TYPOGRAPHY_4,
+                'scheme' => Scheme_Typography::TYPOGRAPHY_2,
                 'selector' => '{{WRAPPER}} .eae-overlay-caption',
                 'condition' => [
                     'caption' => 'yes',
@@ -918,10 +920,6 @@ class FilterableGallery extends EAE_Widget_Base
                     '{{WRAPPER}}.eae-icon-view-stacked .eae-overlay-icon:hover' => 'background-color: {{VALUE}};',
                     '{{WRAPPER}}.eae-icon-view-framed .eae-overlay-icon:hover, {{WRAPPER}}.eae-icon-view-default .eae-overlay-icon' => 'color: {{VALUE}}; border-color: {{VALUE}};',
                     '{{WRAPPER}}.eae-icon-view-framed .eae-overlay-icon:hover svg, {{WRAPPER}}.eae-icon-view-default  .eae-overlay-icon:hover svg' => 'fill: {{VALUE}}',
-                ],
-                'scheme' => [
-                    'type' => Scheme_Color::get_type(),
-                    'value' => Scheme_Color::COLOR_1,
                 ],
                 'condition' => [
                     'icon!' => '',
@@ -1102,6 +1100,10 @@ class FilterableGallery extends EAE_Widget_Base
             [
                 'label' => __('Background Color', 'wts-eae'),
                 'type' => Controls_Manager::COLOR,
+                'scheme' => [
+	                'type' => Schemes\Color::get_type(),
+	                'value' => Schemes\Color::COLOR_4,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .eae-filter-label' => 'background-color: {{VALUE}}',
                 ],
@@ -1113,6 +1115,10 @@ class FilterableGallery extends EAE_Widget_Base
             [
                 'label' => __('Current Background Color', 'wts-eae'),
                 'type' => Controls_Manager::COLOR,
+                'scheme' => [
+	                'type' => Schemes\Color::get_type(),
+	                'value' => Schemes\Color::COLOR_1,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .eae-filter-label.current' => 'background-color: {{VALUE}}',
                 ],
@@ -1336,6 +1342,7 @@ class FilterableGallery extends EAE_Widget_Base
         $overlay_speed = $settings['overlay_speed']['size'];
 
         $filter_groups = $settings['eae_filterable_gallery_content'];
+        //echo '<pre>'; print_r($filter_groups); echo '</pre>';
 
         $this->add_render_attribute('gallery-wrapper', 'class', 'eae-fg-wrapper');
         if ($settings['hover_tilt'] == 'yes') {
@@ -1379,8 +1386,17 @@ class FilterableGallery extends EAE_Widget_Base
                 <?php } ?>
                 <?php
                 if (count($settings['eae_filterable_gallery_content']) > 1) {
+                    //echo '<pre>'; print_r($filter_groups); echo '</pre>';
+                    $demo_images = [];
+                    if( empty($filter_group[0]['eae_img_gallery']) && empty($filter_group[1]['eae_img_gallery']) && empty($filter_group[0]['eae_img_gallery']) ){
+                        $demo_images[] = $this->get_placeholder_images();
+                    }
                     foreach ($filter_groups as $filter_group) {
                         $images = $filter_group['eae_img_gallery'];
+	                    if(empty($images)){
+		                    //echo '<pre>'; print_r($demo_images); echo '</pre>';
+		                    $images = $demo_images;
+	                    }
                         if (!empty($images)) {
                             $filter_label = $filter_group['eae_filter_label'];
                             $filter_name  = strtolower($filter_group['eae_filter_label']);
@@ -1399,6 +1415,10 @@ class FilterableGallery extends EAE_Widget_Base
                 <?php
                 foreach ($filter_groups as $filter_group) {
                     $images      = $filter_group['eae_img_gallery'];
+                    if(empty($images)){
+                        //echo '<pre>'; print_r($demo_images); echo '</pre>';
+                        $images = $demo_images;
+                    }
                     $filter_name = strtolower($filter_group['eae_filter_label']);
                     $filter_name = str_replace(" ", "-", $filter_name);
                     $this->add_render_attribute('gallery-item-' . $filter_group['_id'], 'class', 'eae-gallery-item');
@@ -1415,8 +1435,13 @@ class FilterableGallery extends EAE_Widget_Base
                                         <?php if ($settings['enable_image_ratio'] == 'yes'){ ?>
                                         <div class="eae-fg-img-wrapper">
                                             <?php } ?>
-                                            <?php $img = wp_get_attachment_image($image['id'], $settings['thumbnail_size']);
-                                            echo $img;
+                                            <?php if(!empty($image['id'])){
+	                                            $img = wp_get_attachment_image($image['id'], $settings['thumbnail_size']);
+	                                            echo $img;
+                                            }else{?>
+                                                <img src="<?php echo $image['url']; ?>">
+                                            <?php }
+                                               
                                             ?>
                                             <?php if ($settings['enable_image_ratio'] == 'yes'){ ?>
                                         </div>
@@ -1450,5 +1475,14 @@ class FilterableGallery extends EAE_Widget_Base
         </div>
         <?php
 
+    }
+
+    public function get_placeholder_images(){
+        $demo_images =
+                [
+                        'id'    =>  '',
+                        'url'   =>  Utils::get_placeholder_image_src(),
+                ];
+        return $demo_images;
     }
 }

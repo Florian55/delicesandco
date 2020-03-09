@@ -1151,7 +1151,7 @@ class Premium_Person extends Widget_Base {
         
         $this->add_control('premium_person_content_background_color',
             [
-                'label'         => __('Color', 'premium-addons-for-elementor'),
+                'label'         => __('Background Color', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::COLOR,
                 'default'       => 'rgba(245,245,245,0.97)',
                 'selectors'     => [

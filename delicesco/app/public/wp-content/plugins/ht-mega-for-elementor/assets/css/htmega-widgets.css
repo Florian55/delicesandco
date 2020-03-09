@@ -1993,7 +1993,7 @@ span.ht-count {
 }
 
 .htmega-pricing-style-1 .htmega-pricing-heading .price h4 span.separator {
-    margin-right: -10px;
+    margin-right: -5px;
 }
 
 .htmega-pricing-style-1 .htmega-pricing-body {
@@ -5829,6 +5829,11 @@ blockquote cite {
 .htmega-blockquote blockquote img,.htmega-blockquote blockquote .blockquote_icon{
   position: absolute;
 }
+.htmega-blockquote blockquote img{
+  position: absolute;
+  width: 100px;
+  z-index: 0;
+}
 .htmega-blockquote blockquote p{
   margin: 0;
 }
@@ -5898,6 +5903,8 @@ blockquote cite {
     font-weight: 600;
     margin-bottom: 17px;
     margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
 }
 
 .htmega-blockquote blockquote cite {
@@ -6302,6 +6309,9 @@ a.instagram_follow_btn.possition-center span {
     z-index: 1;
     position: relative;
     font-family: "Montserrat", sans-serif;
+}
+.htmega-switcher-nav a i{
+  margin-right: 5px;
 }
 .htmega-switcher-nav svg {
   width: 20px;
@@ -12075,6 +12085,9 @@ button.htmega-notify-button {
 /*----------------------
     Slick Dot
 -----------------------*/
+.htmega-carousel-activation .slick-arrow{
+  padding: 0;
+}
 .htmega-carousel-activation .slick-dots {
     text-align: center;
     bottom: -60px;
@@ -15274,6 +15287,15 @@ a{
     width: 16.66%;
   }
 
+  .htmega-process-area{
+    background-image: none !important;
+  }
+
+  .htmega-process-column-5 .htmega-single-process-area {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
 
 }
 
@@ -15361,7 +15383,7 @@ a{
   }
 
   .htmega-countbox .ht-count {
-    margin: 0 22px 15px;
+    margin: 0 22px 15px !important;
   }
 
   .htmega-carousel-style-1 .slick-slide.slick-center .single-custom-carousel {
@@ -15454,7 +15476,10 @@ a{
     padding-left: 60px;
     width: 100%;
   }
-  .htmega-process-column-4 .htmega-single-process-area {
+  .htmega-process-area{
+    background-image: none !important;
+  }
+  .htmega-process-column-4 .htmega-single-process-area,.htmega-process-column-5 .htmega-single-process-area {
     flex: 0 0 100%;
     max-width: 100%;
   }
@@ -15562,6 +15587,18 @@ a{
 
   .htmegainstagram-column-mobile-6 .htmega-instragram ul.htmega-instagram-list li{
     width: 16.66%;
+  }
+
+  .htmega-postslider-layout-1 .content,.htmega-postslider-layout-3 .content,.htmega-postslider-layout-4 .content {
+    position: static;
+    max-width: 100%;
+    padding: 0;
+  }
+  .htmega-postslider-layout-3 .content{
+    transform: translateY(0%);
+  }
+  .htmega-postslider-layout-3 .content .post-inner h2 {
+    padding: 0;
   }
 
 

@@ -459,3 +459,5 @@ Stack trace:
 #3 [internal function]: WP_Fatal_Error_Handler->handle()
 #4 {main}
   thrown in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\formatting.php on line 4316
+[22-Feb-2020 11:12:11 UTC] Astra: db version updated successfully!
+[09-Mar-2020 10:34:25 UTC] Astra: db version updated successfully!

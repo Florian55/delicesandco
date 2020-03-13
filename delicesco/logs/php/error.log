@@ -461,3 +461,8 @@ Stack trace:
   thrown in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\formatting.php on line 4316
 [22-Feb-2020 11:12:11 UTC] Astra: db version updated successfully!
 [09-Mar-2020 10:34:25 UTC] Astra: db version updated successfully!
+[13-Mar-2020 16:12:29 UTC] Erreur de la base de données WordPress Deadlock found when trying to get lock; try restarting transaction pour la requête DELETE FROM `wp_options` WHERE `option_name` = '_transient_htmega_template_info' faite par include('phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/bin/wp-cli/wp-cli.phar/php/boot-phar.php'), include('phar://C:/Users/fharb/AppData/Local/Programs/Local/resources/extraResources/bin/wp-cli/wp-cli.phar/vendor/wp-cli/wp-cli/php/wp-cli.php'), WP_CLI\bootstrap, WP_CLI\Bootstrap\LaunchRunner->process, WP_CLI\Runner->start, WP_CLI\Runner->load_wordpress, require('wp-settings.php'), do_action('plugins_loaded'), WP_Hook->do_action, WP_Hook->apply_filters, HTMega_Addons_Elementor->init, HTMega_Addons_Elementor->includes, require_once('/plugins/ht-mega-for-elementor/admin/admin-init.php'), HTMega_Admin_Setting->__construct, HTMega_Admin_Setting->HTMega_Admin_Settings_page, require_once('/plugins/ht-mega-for-elementor/admin/include/template-library.php'), HTMega_Template_Library::instance, HTMega_Template_Library->__construct, HTMega_Template_Library->get_templates_info, get_transient, delete_option
+[13-Mar-2020 16:25:16 UTC] Astra: Batch Process Started!
+[13-Mar-2020 16:25:16 UTC] Astra: Queuing 2.3.3 - astra_elementor_default_color_typo_comp
+[13-Mar-2020 16:25:19 UTC] Astra: db version updated successfully!
+[13-Mar-2020 16:25:19 UTC] Astra: Batch Process Completed!

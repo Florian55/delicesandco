@@ -976,10 +976,6 @@ class Premium_Blog extends Widget_Base {
             [
                 'label'         => __('Overlay Color', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::COLOR,
-                'scheme'        => [
-                    'type'  => Scheme_Color::get_type(),
-                    'value' => Scheme_Color::COLOR_1,
-                ],
                 'selectors'     => [
                     '{{WRAPPER}} .premium-blog-framed-effect, {{WRAPPER}} .premium-blog-bordered-effect,{{WRAPPER}} .premium-blog-squares-effect:before,{{WRAPPER}} .premium-blog-squares-effect:after,{{WRAPPER}} .premium-blog-squares-square-container:before,{{WRAPPER}} .premium-blog-squares-square-container:after, {{WRAPPER}} .premium-blog-format-container:hover, {{WRAPPER}} .premium-blog-thumbnail-overlay' => 'background-color: {{VALUE}};',
                 ]
@@ -1010,6 +1006,15 @@ class Premium_Blog extends Widget_Base {
                 'selector' => '{{WRAPPER}} .premium-blog-thumbnail-container img',
             ]
         );
+        
+        $this->add_group_control(
+			Group_Control_Css_Filter::get_type(),
+			[
+				'name'      => 'hover_css_filters',
+                'label'     => __('Hover CSS Filter', 'premium-addons-for-elementor'),
+				'selector'  => '{{WRAPPER}} .premium-blog-post-container:hover .premium-blog-thumbnail-container img'
+			]
+		);
         
         $this->end_controls_section();
         

@@ -5,7 +5,7 @@ Contributors: livemesh, freemius
 Tags: elementor, elementor addons, elementor extensions, elementor modules, page builder, portfolio, carousel, posts grid
 Requires at least: 4.5
 Tested up to: 5.3
-Stable Tag: 2.9.7
+Stable Tag: 2.9.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,6 +115,9 @@ Pls install and activate the <a href="https://wordpress.org/plugins/portfolio-po
 
 
 
+
+= 2.9.9 =
+* Fixed - The posts carousel and posts grid can cause error when the taxonomy terms are missing.
 
 = 2.9.7 =
 * Tweak - Enabled lazy load for all the widgets except for the Posts Grid addon. Posts Grid utilizes the popular Isotope library for laying out grid elements and Isotope library is not compatible with lazy loading of images.

@@ -1164,6 +1164,15 @@ else {
             <div id="updates-panel" class="panel-left">
 
                 <h2>Change Log for the Premium Version</h2>
+                <h3>2.9.9</h3>
+                <ul>
+                    <li>Fixed - The posts carousel and posts grid can cause error when the taxonomy terms are missing.</li>
+                </ul>
+                <h3>2.9.8</h3>
+                <ul>
+                    <li>Fixed - The posts block and posts grid addons would allow a max of 100 words for post excerpts.</li>
+                    <li>Fixed - The display taxonomy option not enabled for 'Grid Style 5' and 'Post Meta' section is empty in the Posts Grid addon settings.</li>
+                </ul>
                 <h3>2.9.7</h3>
                 <ul>
                     <li>Tweak - Enabled lazy load for all the widgets except for the grid/gallery addons - Posts Grid, WooCommerce Grid, YouTube Grid, Vimeo Grid, Twitter grid, Instagram Grid, Video and Image Gallery. These Grid and Gallery addons utilize the popular Isotope library for laying out grid elements and Isotope library is not compatible with lazy loading of images.</li>

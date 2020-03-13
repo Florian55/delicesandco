@@ -98,11 +98,16 @@ function lae_get_taxonomy_info( $taxonomy )
         $output .= '<span class="lae-terms">';
         $term_count = 0;
         foreach ( $terms as $term ) {
-            if ( $term_count != 0 ) {
-                $output .= ', ';
+            $term_link = get_term_link( $term->slug, $taxonomy );
+            
+            if ( !empty($term_link) && !is_wp_error( $term_link ) ) {
+                if ( $term_count != 0 ) {
+                    $output .= ', ';
+                }
+                $output .= '<a href="' . get_term_link( $term->slug, $taxonomy ) . '">' . $term->name . '</a>';
+                $term_count = $term_count + 1;
             }
-            $output .= '<a href="' . get_term_link( $term->slug, $taxonomy ) . '">' . $term->name . '</a>';
-            $term_count = $term_count + 1;
+        
         }
         $output .= '</span>';
     }

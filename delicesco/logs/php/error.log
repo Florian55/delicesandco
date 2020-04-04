@@ -466,3 +466,30 @@ Stack trace:
 [13-Mar-2020 16:25:16 UTC] Astra: Queuing 2.3.3 - astra_elementor_default_color_typo_comp
 [13-Mar-2020 16:25:19 UTC] Astra: db version updated successfully!
 [13-Mar-2020 16:25:19 UTC] Astra: Batch Process Completed!
+[16-Mar-2020 10:23:29 UTC] PHP Warning:  Une erreur imprévue est survenue. Il pourrait y avoir un problème avec WordPress.org ou la configuration de ce serveur. Si vous continuez à rencontrer ce problème, veuillez vous rendre sur les <a href="https://wordpress.org/support/forums/">forums de support</a>. (WordPress n’a pas pu établir de connexion sécurisée vers WordPress.org. Veuillez contacter l’administrateur de votre serveur.) in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\update.php on line 162
+[16-Mar-2020 10:23:29 UTC] PHP Stack trace:
+[16-Mar-2020 10:23:30 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\update.php:0
+[16-Mar-2020 10:23:30 UTC] PHP   2. Plugin_Upgrader->bulk_upgrade() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\update.php:47
+[16-Mar-2020 10:23:30 UTC] PHP   3. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\class-plugin-upgrader.php:316
+[16-Mar-2020 10:23:30 UTC] PHP   4. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[16-Mar-2020 10:23:30 UTC] PHP   5. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:312
+[16-Mar-2020 10:23:30 UTC] PHP   6. wp_version_check() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:286
+[16-Mar-2020 10:23:30 UTC] PHP   7. trigger_error() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\update.php:162
+[16-Mar-2020 10:23:37 UTC] PHP Warning:  Une erreur imprévue est survenue. Il pourrait y avoir un problème avec WordPress.org ou la configuration de ce serveur. Si vous continuez à rencontrer ce problème, veuillez vous rendre sur les <a href="https://wordpress.org/support/forums/">forums de support</a>. (WordPress n’a pas pu établir de connexion sécurisée vers WordPress.org. Veuillez contacter l’administrateur de votre serveur.) in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\update.php on line 388
+[16-Mar-2020 10:23:37 UTC] PHP Stack trace:
+[16-Mar-2020 10:23:37 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\update.php:0
+[16-Mar-2020 10:23:37 UTC] PHP   2. Plugin_Upgrader->bulk_upgrade() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\update.php:47
+[16-Mar-2020 10:23:37 UTC] PHP   3. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\class-plugin-upgrader.php:316
+[16-Mar-2020 10:23:37 UTC] PHP   4. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[16-Mar-2020 10:23:37 UTC] PHP   5. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:312
+[16-Mar-2020 10:23:37 UTC] PHP   6. wp_update_plugins() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:286
+[16-Mar-2020 10:23:37 UTC] PHP   7. trigger_error() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\update.php:388
+[16-Mar-2020 10:23:44 UTC] PHP Warning:  Une erreur imprévue est survenue. Il pourrait y avoir un problème avec WordPress.org ou la configuration de ce serveur. Si vous continuez à rencontrer ce problème, veuillez vous rendre sur les <a href="https://wordpress.org/support/forums/">forums de support</a>. (WordPress n’a pas pu établir de connexion sécurisée vers WordPress.org. Veuillez contacter l’administrateur de votre serveur.) in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\update.php on line 577
+[16-Mar-2020 10:23:44 UTC] PHP Stack trace:
+[16-Mar-2020 10:23:44 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\update.php:0
+[16-Mar-2020 10:23:44 UTC] PHP   2. Plugin_Upgrader->bulk_upgrade() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\update.php:47
+[16-Mar-2020 10:23:44 UTC] PHP   3. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\class-plugin-upgrader.php:316
+[16-Mar-2020 10:23:44 UTC] PHP   4. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[16-Mar-2020 10:23:44 UTC] PHP   5. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:312
+[16-Mar-2020 10:23:44 UTC] PHP   6. wp_update_themes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:286
+[16-Mar-2020 10:23:44 UTC] PHP   7. trigger_error() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\update.php:577

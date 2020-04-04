@@ -493,3 +493,8 @@ Stack trace:
 [16-Mar-2020 10:23:44 UTC] PHP   5. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:312
 [16-Mar-2020 10:23:44 UTC] PHP   6. wp_update_themes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:286
 [16-Mar-2020 10:23:44 UTC] PHP   7. trigger_error() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\update.php:577
+[04-Apr-2020 09:52:27 UTC] Erreur de la base de données WordPress Deadlock found when trying to get lock; try restarting transaction pour la requête DELETE FROM `wp_options` WHERE `option_name` = '_transient_htmega_template_info' faite par require_once('wp-admin/admin.php'), require_once('wp-load.php'), require_once('wp-config.php'), require_once('wp-settings.php'), do_action('plugins_loaded'), WP_Hook->do_action, WP_Hook->apply_filters, HTMega_Addons_Elementor->init, HTMega_Addons_Elementor->includes, require_once('/plugins/ht-mega-for-elementor/admin/admin-init.php'), HTMega_Admin_Setting->__construct, HTMega_Admin_Setting->HTMega_Admin_Settings_page, require_once('/plugins/ht-mega-for-elementor/admin/include/template-library.php'), HTMega_Template_Library::instance, HTMega_Template_Library->__construct, HTMega_Template_Library->get_templates_info, get_transient, delete_option
+[04-Apr-2020 10:01:52 UTC] Astra: Batch Process Started!
+[04-Apr-2020 10:01:52 UTC] Astra: Queuing 2.3.4 - astra_breadcrumb_separator_fix
+[04-Apr-2020 10:01:58 UTC] Astra: db version updated successfully!
+[04-Apr-2020 10:01:58 UTC] Astra: Batch Process Completed!

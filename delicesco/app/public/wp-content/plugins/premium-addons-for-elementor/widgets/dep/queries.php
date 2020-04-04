@@ -50,7 +50,7 @@ function premium_blog_get_post_settings( $settings ) {
     return $post_args;
 } 
 
-function premium_blog_get_excerpt_by_id( $source, $excerpt_length, $cta_type, $exceprt_text ) {
+function premium_blog_get_excerpt_by_id( $source, $excerpt_length, $cta_type, $read_more ) {
     
     if( 0 === $excerpt_length ) {
         return;
@@ -60,10 +60,10 @@ function premium_blog_get_excerpt_by_id( $source, $excerpt_length, $cta_type, $e
     
     if( 'full' === $source || empty( $excerpt ) ) {
         
-        $excerpt = get_the_content();
+        the_content();
         
-        if( 'link' == $cta_type ) {
-            $excerpt .= '<div class="premium-blog-excerpt-link-wrap"><a href="' . get_permalink() .'" class="premium-blog-excerpt-link elementor-button">' . $exceprt_text . '</a></div>'; 
+        if( ! empty( $read_more ) && 'link' === $cta_type ) {
+            $excerpt = '<div class="premium-blog-excerpt-link-wrap"><a href="' . get_permalink() .'" class="premium-blog-excerpt-link elementor-button">' . $read_more . '</a></div>'; 
         }
         
     } else {
@@ -77,8 +77,8 @@ function premium_blog_get_excerpt_by_id( $source, $excerpt_length, $cta_type, $e
                 array_push( $words, '…' );
             }
 
-            if( 'link' == $cta_type ) {
-                array_push( $words, '<div class="premium-blog-excerpt-link-wrap"><a href="' . get_permalink() .'" class="premium-blog-excerpt-link elementor-button">' . $exceprt_text . '</a></div>' ); 
+            if( ! empty( $read_more ) && 'link' === $cta_type ) {
+                array_push( $words, '<div class="premium-blog-excerpt-link-wrap"><a href="' . get_permalink() .'" class="premium-blog-excerpt-link elementor-button">' . $read_more . '</a></div>' ); 
             }
 
             $excerpt = implode( ' ', $words );

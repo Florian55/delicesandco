@@ -50,7 +50,10 @@ class Premium_Banner extends Widget_Base {
     }
     
     public function get_script_depends() {
-        return ['premium-addons-js'];
+        return [
+            'tilt-js',
+            'premium-addons-js'
+        ];
     }
     
     public function get_custom_help_url() {
@@ -258,6 +261,25 @@ class Premium_Banner extends Widget_Base {
 				]
 			]
 		);
+        
+        $this->add_control('mouse_tilt',
+            [
+                'label'         => __('Enable Mouse Tilt', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::SWITCHER,
+                'return_value'  => 'true'
+            ]
+        );
+        
+        $this->add_control('mouse_tilt_rev',
+            [
+                'label'         => __('Reverse', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::SWITCHER,
+                'return_value'  => 'true',
+                'condition'     => [
+                    'mouse_tilt'    => 'true'
+                ]
+            ]
+        );
      
 		$this->add_control('premium_banner_extra_class',
 			[
@@ -898,6 +920,17 @@ class Premium_Banner extends Widget_Base {
         
 			$settings 	= $this->get_settings_for_display();
             
+            $this->add_render_attribute( 'banner', 'id', 'premium-banner-' . $this->get_id() );
+            $this->add_render_attribute( 'banner', 'class', 'premium-banner' );
+            
+            if( 'true' === $settings['mouse_tilt'] ) {
+                $this->add_render_attribute( 'banner', 'data-box-tilt', 'true' );
+                if( 'true' === $settings['mouse_tilt_rev'] ) {
+                    $this->add_render_attribute( 'banner', 'data-box-tilt-reverse', 'true' );
+                }
+            }
+            
+           
             $this->add_inline_editing_attributes('premium_banner_title');
             $this->add_render_attribute('premium_banner_title', 'class', array(
                 'premium-banner-ib-title',
@@ -941,7 +974,7 @@ class Premium_Banner extends Widget_Base {
             }
             
         ?>
-            <div class="premium-banner" id="premium-banner-<?php echo esc_attr($this->get_id()); ?>">
+            <div <?php echo $this->get_render_attribute_string('banner'); ?>>
 				<div class="premium-banner-ib <?php echo $full_class; ?> premium-banner-min-height">
 					<?php if( ! empty(  $settings['premium_banner_image']['url'] ) ) : ?>
                         <?php if( $settings['premium_banner_height'] == 'custom' ) : ?>
@@ -992,6 +1025,13 @@ class Premium_Banner extends Widget_Base {
 
             view.addRenderAttribute( 'banner', 'id', 'premium-banner-' + view.getID() );
             view.addRenderAttribute( 'banner', 'class', 'premium-banner' );
+            
+            if( 'true' === settings.mouse_tilt ) {
+                view.addRenderAttribute( 'banner', 'data-box-tilt', 'true' );
+                if( 'true' === settings.mouse_tilt_rev ) {
+                    view.addRenderAttribute( 'banner', 'data-box-tilt-reverse', 'true' );
+                }
+            }
             
             var active = 'yes' === settings.premium_banner_active ? 'active' : '';
             

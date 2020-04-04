@@ -590,7 +590,7 @@ class Premium_Blog extends Widget_Base {
 
         $this->add_control('premium_blog_excerpt_text',
 			[
-				'label'			=> __( 'Link Text', 'premium-addons-for-elementor' ),
+				'label'			=> __( 'Read More Text', 'premium-addons-for-elementor' ),
 				'type'			=> Controls_Manager::TEXT,
                 'default'   => __( 'Read More →', 'premium-addons-for-elementor' ),
                 'condition'     => [

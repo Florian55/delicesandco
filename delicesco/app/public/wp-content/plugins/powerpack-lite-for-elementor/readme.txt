@@ -2,7 +2,7 @@
 Contributors: ideaboxcreations, simrandeep, puneetsahalot, ibachal, jainnidhi, prash17, nirbhay18
 Tags: elementor, addons, elementor addon, elementor widgets, elements, powerpack elementor addon, essential addons
 Requires at least: 4.7
-Tested up to: 5.2
+Tested up to: 5.3.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -149,6 +149,12 @@ Not at all! All the widgets and settings are easy to use with drag & drop interf
 
 
 == Changelog ==
+
+= 1.2.9.1 - March 29, 2020 =
+* 	Fixed: PHP error in query control
+
+= 1.2.9 - March 29, 2020 =
+* 	Enhancement: Updated query controls in Content Ticker and Advanced Accordion widgets
 
 = 1.2.8.7 - March 11, 2020 =
 * 	Fixed: Swiper slider after updating to Elementor 2.9.5

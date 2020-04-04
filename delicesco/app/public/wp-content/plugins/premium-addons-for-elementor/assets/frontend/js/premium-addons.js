@@ -23,56 +23,58 @@
 
     /****** Premium Video Box Handler ******/
     var PremiumVideoBoxWidgetHandler = function ($scope, $) {
-        
-        var $videoBoxElement    = $scope.find(".premium-video-box-container"),
-            $videoContainer     = $videoBoxElement.find(".premium-video-box-video-container"),
-            type                = $videoBoxElement.data("type"),
-            video, vidSrc, checkRel;
-    
-    
-            
-        if( "self" === type ) {
-            
+
+        var $videoBoxElement = $scope.find(".premium-video-box-container"),
+            $videoContainer = $videoBoxElement.find(".premium-video-box-video-container"),
+            type = $videoBoxElement.data("type"),
+            video, vidSrc;
+
+        if ("self" === type) {
+
             video = $videoContainer.find("video");
             vidSrc = video.attr("src");
-            
+
         } else {
-            
+
             vidSrc = $videoContainer.data("src");
-            
-            if( -1 !== vidSrc.indexOf( "autoplay=1" ) ) {
+
+            if (-1 !== vidSrc.indexOf("autoplay=1")) {
                 playVideo();
             } else {
                 vidSrc = vidSrc + "&autoplay=1";
             }
 
         }
-            
-        
+
+
         function playVideo() {
-            
+
+            if ($videoBoxElement.hasClass("playing")) return;
+
+            $videoBoxElement.addClass("playing");
+
             if ("self" === type) {
-                
+
                 $(video).get(0).play();
-                
+
                 $videoContainer.css({
                     opacity: "1",
                     visibility: "visible"
                 });
-                
+
             } else {
-                
+
                 var $iframe = $("<iframe/>");
-                
+
                 checkRel = vidSrc.indexOf("rel=0");
                 $iframe.attr("src", vidSrc);
                 $iframe.attr("frameborder", "0");
                 $iframe.attr("allowfullscreen", "1");
                 $iframe.attr("allow", "autoplay;encrypted-media;");
                 $videoContainer.css("background", "#000");
-                $videoContainer.html( $iframe );
+                $videoContainer.html($iframe);
             }
-            
+
             $videoBoxElement.find(
                 ".premium-video-box-image-container, .premium-video-box-play-icon-container"
             ).remove();
@@ -80,8 +82,8 @@
             if ("vimeo" === type)
                 $videoBoxElement.find(".premium-video-box-vimeo-wrap").remove();
         }
-            
-    
+
+
         $videoBoxElement.on("click", function () {
             playVideo();
         });
@@ -591,6 +593,26 @@
         var $bannerElement = $scope.find(".premium-banner"),
             $bannerImg = $bannerElement.find("img");
 
+
+        if ($bannerElement.data("box-tilt")) {
+            var reverse = $bannerElement.data("box-tilt-reverse");
+            UniversalTilt.init({
+                elements: $bannerElement,
+                settings: {
+                    reverse: reverse
+                },
+                callbacks: {
+                    onMouseLeave: function (el) {
+                        el.style.boxShadow = "0 45px 100px rgba(255, 255, 255, 0)";
+                    },
+                    onDeviceMove: function (el) {
+                        el.style.boxShadow = "0 45px 100px rgba(255, 255, 255, 0.3)";
+                    }
+                }
+            });
+        }
+
+
         $bannerElement.find(".premium-banner-ib").hover(function () {
             $bannerImg.addClass("active");
         }, function () {
@@ -621,9 +643,9 @@
             carousel = $blogElement.data("carousel"),
             grid = $blogElement.data("grid"),
             layout = $blogElement.data("layout");
-    
+
         var $metaSeparators = $blogPost.first().find(".premium-blog-meta-separator");
-        
+
         if (1 === $metaSeparators.length) {
             $blogPost.find(".premium-blog-meta-separator").remove();
         } else {
@@ -645,8 +667,8 @@
             });
             return false;
         });
-        
-        if ("masonry" === layout && ! carousel) {
+
+        if ("masonry" === layout && !carousel) {
             $blogElement.imagesLoaded(function () {
                 $blogElement.isotope({
                     itemSelector: ".premium-blog-post-outer-container",
@@ -659,7 +681,7 @@
                 });
             });
         }
-        
+
         if (carousel && grid) {
             var autoPlay = $blogElement.data("play"),
                 speed = $blogElement.data("speed"),
@@ -826,18 +848,20 @@
                 pauseOnHover: true
             });
         }
-        if (!$scope.hasClass("premium-person-widget-style2")) return;
+        if ($persons.hasClass("premium-person-style1")) return;
 
         if ("yes" !== $persons.data("persons-equal")) return;
 
         var heights = new Array();
-        $persons.find(".premium-person-style2").each(function (index, person) {
+
+        $persons.find(".premium-person-container").each(function (index, person) {
             $(person).imagesLoaded(function () {}).done(function () {
                 var imageHeight = $(person).find(".premium-person-image-container")
                     .outerHeight();
                 heights.push(imageHeight);
             });
         });
+
         $persons.imagesLoaded(function () {}).done(function () {
             var maxHeight = Math.max.apply(null, heights);
             $persons.find(".premium-person-image-wrap").css("height", maxHeight + "px");

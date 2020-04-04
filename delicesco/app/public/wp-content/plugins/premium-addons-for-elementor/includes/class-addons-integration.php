@@ -257,6 +257,14 @@ class Addons_Integration {
            true
        );
        
+       wp_register_script(
+            'tilt-js',
+            PREMIUM_ADDONS_URL . 'assets/frontend/' . $dir . '/universal-tilt' . $suffix . '.js',
+            array( 'jquery' ), 
+            PREMIUM_ADDONS_VERSION, 
+            true
+        );
+       
        if( $maps_settings['premium-map-cluster'] ) {
             wp_register_script(
                 'google-maps-cluster',

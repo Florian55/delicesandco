@@ -310,7 +310,7 @@ class Modules_Settings {
                                     </label>
                                 </td>
                                 
-                                <th><?php echo sprintf( '%1$s %2$s', $prefix, __('Persons', 'premium-addons-for-elementor') ); ?></th>
+                                <th><?php echo sprintf( '%1$s %2$s', $prefix, __('Team Members', 'premium-addons-for-elementor') ); ?></th>
                                 <td>
                                     <label class="switch">
                                             <input type="checkbox" id="premium-person" name="premium-person" <?php checked(1, $this->pa_get_settings['premium-person'], true) ?>>

@@ -5,7 +5,7 @@ Donate Link: https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_c
 Requires at Least: 4.5
 Tested Up To: 5.3.2
 Requires PHP: 5.4
-Stable Tag: 3.11.7
+Stable Tag: 3.12.0
 License: GPL v3.0
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -41,7 +41,7 @@ Each widget and addon has been tested on different screen sizes, mobile devices,
 * [**Carousel Widget**](https://premiumaddons.com/carousel-widget-for-elementor-page-builder/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme) *(FREE)*: The best all purpose Elementor carousel widget. It can be used to create any kind of carousel you want like: Testimonials Carousel, Client Logos Carousel, and some of our users even used it as Advanced Slider in a combination with other widgets.
 * [**Blog Widget**](https://premiumaddons.com/blog-widget-for-elementor-page-builder/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme) *(FREE)*: Blog Posts Widget comes with a modern style, advanced posts filtering options, and also it allows you to create posts carousel.
 * [**Google Maps Widget**](https://premiumaddons.com/google-maps-widget-for-elementor-page-builder/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme) *(FREE)*: Advanced Google Maps Widget comes with features like adding multiple markers, custom skins, and much more options.
-* [**Persons Widget**](https://premiumaddons.com/persons-widget-for-elementor-page-builder/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme) *(FREE)*: Very good Elementor Widget to list team members, co-workers, etc. Persons Widget for Elementor comes with many customization options.
+* [**Team Members Widget**](https://premiumaddons.com/persons-widget-for-elementor-page-builder/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme) *(FREE)*: Very good Elementor Widget to list team members, co-workers, etc. Team Members Widget for Elementor comes with many customization options.
 * [**Tabs Widget**](https://premiumaddons.com/tabs-widget-for-elementor-page-builder-2/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme) *(PRO)*: Create both Vertical and Horizontal tabs inside Elementor with tons of styling features. You can also use Elementor Templates as tabs content.
 * [**Content Switcher**](https://premiumaddons.com/content-switcher-widget-for-elementor-page-builder/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme) *(PRO)*: Present multiple content in a smart way using Content Switcher Widget for Elementor. This widget is ideal for to present pricing plans. It works with simple text editor or Elementor templates.
  
@@ -169,11 +169,30 @@ Premium Addons for Elementor is 100% Ads Free, Ads can only be detected from You
 9. Premium Image Button Widget for Elementor
 10. Premium Image Separator Widget for Elementor
 11. Premium Maps Widget for Elementor
-12. Premium Persons Widget for Elementor
+12. Premium Team Members Widget for Elementor
 13. Premium Pricing Table Widget for Elementor
 14. Premium Progress Bar Widget for Elementor
 
 == Changelog ==
+
+= 3.12.0 =
+
+- Tweak: Read More markup in Blog widget will not be rendered if Read More text is empty.
+- Tweak: Added padding option for name, title and description in Team Members widget.
+- Tweak: Added arrow hover color/background for carousel in Team Members widget.
+- Fixed: Click a video in Video Box widget does not play it on Chrome.
+- Fixed: Dribbble link option not appearing for multiple team members in Team Members widget.
+
+= 3.11.9 =
+
+- Fixed: Warning: Use of undefined constant PREMIUM_PRO_ADDONS_VERSION.
+
+= 3.11.8 =
+
+- Tweak: Added `Mouse Tilt` option in Banner widget.
+- Fixed: Thousands separator can't be removed in Counter widget.
+- Fixed: Videos/Links are not embedded in Blog widget.
+- Fixed: Modal iframes duplicate issue in Modal Box widget.
 
 = 3.11.7 =
 

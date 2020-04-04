@@ -77,15 +77,15 @@
             );
 
             $window.on("load", function () {
-                
+
                 self.setSectionsData();
-                
+
                 //Handle Full Section Scroll
-                if ( settings.fullTouch || ( ! isTouch && settings.fullSection ) )
+                if (settings.fullTouch || (!isTouch && settings.fullSection))
                     self.sectionsOverflowRefresh();
-                
+
                 self.checkCurrentActive();
-                
+
             });
 
             self.keyboardHandler();
@@ -103,25 +103,25 @@
 
 
         };
-        
-        self.checkCurrentActive = function() {
-            
-            var firstSection = Object.keys( sections )[0];
-            
+
+        self.checkCurrentActive = function () {
+
+            var firstSection = Object.keys(sections)[0];
+
             //Get first section offset
-            var firstSectionOffset = sections[ firstSection ].offset;
-            
+            var firstSectionOffset = sections[firstSection].offset;
+
             //If page scroll is lower than first section offset, then set current active to 1
-            if( firstSectionOffset >= $window.scrollTop() && firstSectionOffset - $window.scrollTop() < 200 ) {
+            if (firstSectionOffset >= $window.scrollTop() && firstSectionOffset - $window.scrollTop() < 200) {
                 currentSection = 1;
                 $itemsList.removeClass("active");
                 $($itemsList[0]).addClass("active");
             }
-            
+
             //If current active section is defined, then show the dots
-            if( currentSection )
+            if (currentSection)
                 $(".premium-vscroll-dots").removeClass("premium-vscroll-dots-hide");
-            
+
         };
 
         self.setSectionsOverflow = function () {
@@ -237,20 +237,20 @@
         };
 
         self.scrollHandler = function () {
-            
+
             var index = 0;
-            
+
             for (var section in sections) {
-                
+
                 var $section = sections[section].selector;
-                
+
                 elementorFrontend.waypoint(
                     $section,
                     function () {
 
                         var $this = $(this),
                             sectionId = $this.attr("id");
-                    
+
                         if (!isScrolling) {
 
                             currentSection = sectionId;
@@ -712,7 +712,7 @@
         }
 
         self.onWheel = function (event) {
-            
+
             if (inScope && !isTouch) {
                 self.preventDefault(event);
             }
@@ -720,7 +720,7 @@
             if (isScrolling) {
                 return false;
             }
-            
+
             var $target = $(event.target),
                 sectionSelector = checkTemps ? ".premium-vscroll-temp" : ".elementor-top-section",
                 $section = $target.closest(sectionSelector),
@@ -733,7 +733,7 @@
                 direction = 0 > delta ? "down" : "up",
                 windowScrollTop = $window.scrollTop(),
                 dotIndex = $(".premium-vscroll-dot-item.active").index();
-        
+
             if (isTouch) {
 
                 $(".premium-vscroll-tooltip").hide();
@@ -813,11 +813,11 @@
                             ).addClass("premium-vscroll-dots-hide");
                         }
                     } else if ("up" === direction) {
-                        
-                            $(
-                                ".premium-vscroll-dots, .premium-vscroll-nav-menu"
-                            ).addClass("premium-vscroll-dots-hide");
-                        
+
+                        $(
+                            ".premium-vscroll-dots, .premium-vscroll-nav-menu"
+                        ).addClass("premium-vscroll-dots-hide");
+
                     }
                 }
             } else {

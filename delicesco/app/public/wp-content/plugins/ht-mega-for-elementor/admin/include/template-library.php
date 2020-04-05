@@ -7,8 +7,8 @@ class HTMega_Template_Library{
     const TRANSIENT_KEY = 'htmega_template_info';
     public static $buylink = null;
 
-    public static $endpoint     = 'https://demo.hasthemes.com/api/htmega/v1/layouts-free/layoutinfofree.json';
-    public static $templateapi  = 'https://demo.hasthemes.com/api/htmega/v1/layouts-free/%s.json';
+    public static $endpoint     = HTMEGA_ADDONS_PL_URL.'admin/json/layoutinfofree.json';
+    public static $templateapi  = 'https://api.hasthemes.com/api/htmega/v1/layouts-free/%s.json';
 
     public static $api_args = [];
 

@@ -2160,7 +2160,7 @@ class Premium_Pricing_Table extends Widget_Base {
         <?php endif; ?>
         <?php if($settings['premium_pricing_table_button_switcher'] == 'yes') : ?>
         <div class="premium-pricing-button-container">
-            <a class="premium-pricing-price-button" target="_<?php echo esc_attr( $settings['premium_pricing_table_button_link_target'] ); ?>" href="<?php echo esc_url( $link_url ); ?>">
+            <a class="premium-pricing-price-button" target="_<?php echo esc_attr( $settings['premium_pricing_table_button_link_target'] ); ?>" href="<?php echo $link_url; ?>">
                 <span <?php echo $this->get_render_attribute_string('button_text'); ?>><?php echo $settings['premium_pricing_table_button_text']; ?></span>
             </a>
         </div>

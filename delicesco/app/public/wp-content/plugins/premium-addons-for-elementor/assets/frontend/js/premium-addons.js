@@ -1,14 +1,54 @@
 (function ($) {
     /****** Premium Progress Bar Handler ******/
     var PremiumProgressBarWidgetHandler = function ($scope, $) {
-        var progressbarElement = $scope.find(".premium-progressbar-progress-bar").each(function () {
-            var settings = $(this).data("settings"),
-                length = settings["progress_length"],
-                speed = settings["speed"];
-            $(this).animate({
+        var $progressbarContainer = $scope.find(".premium-progressbar-container"),
+            settings = $progressbarContainer.data("settings"),
+            length = settings.progress_length,
+            speed = settings.speed,
+            type = settings.type;
+
+        if ("line" === type) {
+
+            var $progressbar = $(".premium-progressbar-bar");
+
+            if (settings.gradient)
+                $progressbar.css("background", "linear-gradient(-45deg, " + settings.gradient + ")");
+
+            $progressbar.animate({
                 width: length + "%"
             }, speed);
-        });
+
+        } else {
+            if (length > 100)
+                length = 100;
+
+            $progressbarContainer.prop({
+                'counter': 0
+            }).animate({
+                counter: length
+            }, {
+                duration: speed,
+                easing: 'linear',
+                step: function (counter) {
+                    var rotate = (counter * 3.6);
+
+                    $progressbarContainer.find(".premium-progressbar-right-label span").text(Math.ceil(counter) + "%");
+
+                    $progressbarContainer.find(".premium-progressbar-circle-left").css('transform', "rotate(" + rotate + "deg)");
+                    if (rotate > 180) {
+
+                        $progressbarContainer.find(".premium-progressbar-circle").css({
+                            '-webkit-clip-path': 'inset(0)',
+                            'clip-path': 'inset(0)',
+                        });
+
+                        $progressbarContainer.find(".premium-progressbar-circle-right").css('visibility', 'visible');
+                    }
+                }
+            });
+
+        }
+
     };
 
     /****** Premium Progress Bar Scroll Handler *****/
@@ -76,7 +116,7 @@
             }
 
             $videoBoxElement.find(
-                ".premium-video-box-image-container, .premium-video-box-play-icon-container"
+                ".premium-video-box-image-container, .premium-video-box-play-icon-container, .premium-video-box-description-container"
             ).remove();
 
             if ("vimeo" === type)
@@ -91,19 +131,20 @@
 
     /****** Premium Media Grid Handler ******/
     var PremiumGridWidgetHandler = function ($scope, $) {
-        var galleryElement = $scope.find(".premium-gallery-container"),
-            gridSettings = galleryElement.data("settings"),
-            layout = gridSettings["img_size"],
-            deviceType = $("body").data("elementor-device-mode"),
-            loadMore = gridSettings["load_more"],
+
+        var $galleryElement = $scope.find(".premium-gallery-container"),
+            settings = $galleryElement.data("settings"),
+            layout = settings.img_size,
+            deviceType = elementorFrontend.getCurrentDeviceMode(),
+            loadMore = settings.load_more,
             columnWidth = null,
             filter = null,
             isFilterClicked = false,
-            minimum = gridSettings["minimum"],
-            imageToShow = gridSettings["click_images"],
+            minimum = settings.minimum,
+            imageToShow = settings.click_images,
             counter = minimum,
-            ltrMode = gridSettings["ltr_mode"],
-            shuffle = gridSettings["shuffle"];
+            ltrMode = settings.ltr_mode,
+            shuffle = settings.shuffle;
         if (layout === "metro") {
             var suffix = "";
             if ("tablet" === deviceType) {
@@ -111,9 +152,9 @@
             } else if ("mobile" === deviceType) {
                 suffix = "_mobile";
             }
-            var gridWidth = galleryElement.width(),
+            var gridWidth = $galleryElement.width(),
                 cellSize = Math.floor(gridWidth / 12);
-            galleryElement.find(".premium-gallery-item").each(function (index, item) {
+            $galleryElement.find(".premium-gallery-item").each(function (index, item) {
                 var cells = $(item).data("metro")["cells" + suffix],
                     vCells = $(item).data("metro")["vcells" + suffix];
                 if ("" == cells || undefined == cells) {
@@ -130,50 +171,50 @@
             layout = "masonry";
             columnWidth = cellSize;
         }
-        galleryElement.imagesLoaded(function () {}).done(function () {
-            galleryElement.isotope({
+        $galleryElement.imagesLoaded(function () { }).done(function () {
+            $galleryElement.isotope({
                 itemSelector: ".premium-gallery-item",
                 percentPosition: true,
                 animationOptions: {
                     duration: 750,
                     easing: "linear"
                 },
-                filter: gridSettings["active_cat"],
+                filter: settings.active_cat,
                 layoutMode: layout,
                 originLeft: ltrMode,
                 masonry: {
                     columnWidth: columnWidth
                 },
-                sortBy: gridSettings["sort_by"]
+                sortBy: settings.sort_by
             });
         });
         if (loadMore) {
-            galleryElement.parent().find(".premium-gallery-load-more div").addClass(
+            $galleryElement.parent().find(".premium-gallery-load-more div").addClass(
                 "premium-gallery-item-hidden");
-            if (galleryElement.find(".premium-gallery-item").length > minimum) {
-                galleryElement.parent().find(".premium-gallery-load-more").removeClass(
+            if ($galleryElement.find(".premium-gallery-item").length > minimum) {
+                $galleryElement.parent().find(".premium-gallery-load-more").removeClass(
                     "premium-gallery-item-hidden");
-                galleryElement.find(".premium-gallery-item:gt(" + (minimum - 1) + ")").addClass(
+                $galleryElement.find(".premium-gallery-item:gt(" + (minimum - 1) + ")").addClass(
                     "premium-gallery-item-hidden");
 
                 function appendItems(imagesToShow) {
-                    var instance = galleryElement.data("isotope");
-                    galleryElement.find(".premium-gallery-item-hidden").removeClass(
+                    var instance = $galleryElement.data("isotope");
+                    $galleryElement.find(".premium-gallery-item-hidden").removeClass(
                         "premium-gallery-item-hidden");
-                    galleryElement.parent().find(".premium-gallery-load-more").removeClass(
+                    $galleryElement.parent().find(".premium-gallery-load-more").removeClass(
                         "premium-gallery-item-hidden");
                     var itemsToHide = instance.filteredItems.slice(imagesToShow, instance
                         .filteredItems.length).map(function (item) {
-                        return item.element;
-                    });
+                            return item.element;
+                        });
                     $(itemsToHide).addClass("premium-gallery-item-hidden");
-                    galleryElement.isotope("layout");
+                    $galleryElement.isotope("layout");
                     if (0 == itemsToHide) {
-                        galleryElement.parent().find(".premium-gallery-load-more").addClass(
+                        $galleryElement.parent().find(".premium-gallery-load-more").addClass(
                             "premium-gallery-item-hidden");
                     }
                 }
-                galleryElement.parent().on("click", ".premium-gallery-load-more-btn", function () {
+                $galleryElement.parent().on("click", ".premium-gallery-load-more-btn", function () {
                     if (isFilterClicked) {
                         counter = minimum;
                         isFilterClicked = false;
@@ -184,21 +225,21 @@
                     $.ajax({
                         url: appendItems(counter),
                         beforeSend: function () {
-                            galleryElement.parent().find(
+                            $galleryElement.parent().find(
                                 ".premium-gallery-load-more div").removeClass(
-                                "premium-gallery-item-hidden");
+                                    "premium-gallery-item-hidden");
                         },
                         success: function () {
-                            galleryElement.parent().find(
+                            $galleryElement.parent().find(
                                 ".premium-gallery-load-more div").addClass(
-                                "premium-gallery-item-hidden");
+                                    "premium-gallery-item-hidden");
                         }
                     });
                 });
             }
         }
-        if ("yes" !== gridSettings["light_box"]) {
-            galleryElement.find(".premium-gallery-video-wrap").each(function (index, item) {
+        if ("yes" !== settings.light_box) {
+            $galleryElement.find(".premium-gallery-video-wrap").each(function (index, item) {
                 var type = $(item).data("type");
                 $(item).closest(".premium-gallery-item").on("click", function () {
                     var $this = $(this);
@@ -235,23 +276,23 @@
             $scope.find(".premium-gallery-cats-container li .active").removeClass("active");
             $(this).addClass("active");
             filter = $(this).attr("data-filter");
-            galleryElement.isotope({
+            $galleryElement.isotope({
                 filter: filter
             });
             if (shuffle) {
-                galleryElement.isotope("shuffle");
+                $galleryElement.isotope("shuffle");
             }
             if (loadMore) appendItems(minimum);
             return false;
         });
-        if ("default" === gridSettings["lightbox_type"]) {
+        if ("default" === settings.lightbox_type) {
             $scope.find(".premium-img-gallery a[data-rel^='prettyPhoto']").prettyPhoto({
-                theme: gridSettings["theme"],
+                theme: settings.theme,
                 hook: "data-rel",
                 opacity: 0.7,
                 show_title: false,
                 deeplinking: false,
-                overlay_gallery: gridSettings["overlay"],
+                overlay_gallery: settings.overlay,
                 custom_markup: "",
                 default_width: 900,
                 default_height: 506,
@@ -455,19 +496,19 @@
             slidesToScroll: carouselSettings["slidesToScroll"],
             slidesToShow: carouselSettings["slidesToShow"],
             responsive: [{
-                    breakpoint: carouselSettings["tabletBreak"],
-                    settings: {
-                        slidesToShow: carouselSettings["slidesTab"],
-                        slidesToScroll: carouselSettings["slidesTab"]
-                    }
-                },
-                {
-                    breakpoint: carouselSettings["mobileBreak"],
-                    settings: {
-                        slidesToShow: carouselSettings["slidesMob"],
-                        slidesToScroll: carouselSettings["slidesMob"]
-                    }
+                breakpoint: carouselSettings["tabletBreak"],
+                settings: {
+                    slidesToShow: carouselSettings["slidesTab"],
+                    slidesToScroll: carouselSettings["slidesTab"]
                 }
+            },
+            {
+                breakpoint: carouselSettings["mobileBreak"],
+                settings: {
+                    slidesToShow: carouselSettings["slidesMob"],
+                    slidesToScroll: carouselSettings["slidesMob"]
+                }
+            }
             ],
             useTransform: true,
             fade: carouselSettings["fade"],
@@ -548,8 +589,8 @@
             if ("null" != carouselSettings["animation"]) {
                 $inViewPort.siblings().find(
                     "p, h1, h2, h3, h4, h5, h6, span, a, img, i, button").removeClass(
-                    carouselSettings["animation"]).addClass(
-                    "premium-carousel-content-hidden");
+                        carouselSettings["animation"]).addClass(
+                            "premium-carousel-content-hidden");
             }
         });
         if (carouselSettings["vertical"]) {
@@ -639,7 +680,6 @@
     var PremiumBlogHandler = function ($scope, $) {
         var $blogElement = $scope.find(".premium-blog-wrap"),
             $blogPost = $blogElement.find(".premium-blog-post-outer-container"),
-            colsNumber = $blogElement.data("col"),
             carousel = $blogElement.data("carousel"),
             grid = $blogElement.data("grid"),
             layout = $blogElement.data("layout");
@@ -686,43 +726,52 @@
             var autoPlay = $blogElement.data("play"),
                 speed = $blogElement.data("speed"),
                 fade = $blogElement.data("fade"),
+                center = $blogElement.data("center"),
+                spacing = $blogElement.data("slides-spacing"),
                 arrows = $blogElement.data("arrows"),
                 dots = $blogElement.data("dots"),
+                cols = $blogElement.data("col"),
+                colsTablet = $blogElement.data("col-tablet"),
+                colsMobile = $blogElement.data("col-mobile"),
                 prevArrow = null,
                 nextArrow = null;
+
             if (arrows) {
                 (prevArrow =
                     '<a type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Next" role="button" style=""><i class="fas fa-angle-left" aria-hidden="true"></i></a>'
                 ), (nextArrow =
                     '<a type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next" role="button" style=""><i class="fas fa-angle-right" aria-hidden="true"></i></a>'
-                );
+                    );
             } else {
                 prevArrow = prevArrow = "";
             }
+            console.log(spacing);
             $($blogElement).slick({
                 infinite: true,
-                slidesToShow: colsNumber,
-                slidesToScroll: colsNumber,
+                slidesToShow: cols,
+                slidesToScroll: cols,
                 responsive: [{
-                        breakpoint: 769,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 481,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
+                    breakpoint: 1025,
+                    settings: {
+                        slidesToShow: colsTablet,
+                        slidesToScroll: 1
                     }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: colsMobile,
+                        slidesToScroll: 1
+                    }
+                }
                 ],
                 autoplay: autoPlay,
                 autoplaySpeed: speed,
                 nextArrow: nextArrow,
                 prevArrow: prevArrow,
                 fade: fade,
+                centerMode: center,
+                centerPadding: spacing + "px",
                 draggable: true,
                 dots: dots,
                 customPaging: function () {
@@ -817,27 +866,27 @@
                 rtl = $persons.data("rtl"),
                 colsNumber = $persons.data("col"),
                 prevArrow =
-                '<a type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Next" role="button" style=""><i class="fas fa-angle-left" aria-hidden="true"></i></a>',
+                    '<a type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Next" role="button" style=""><i class="fas fa-angle-left" aria-hidden="true"></i></a>',
                 nextArrow =
-                '<a type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next" role="button" style=""><i class="fas fa-angle-right" aria-hidden="true"></i></a>';
+                    '<a type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next" role="button" style=""><i class="fas fa-angle-right" aria-hidden="true"></i></a>';
             $persons.slick({
                 infinite: true,
                 slidesToShow: colsNumber,
                 slidesToScroll: colsNumber,
                 responsive: [{
-                        breakpoint: 769,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 481,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
+                    breakpoint: 769,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
                     }
+                },
+                {
+                    breakpoint: 481,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
                 ],
                 autoplay: autoPlay,
                 autoplaySpeed: speed,
@@ -855,14 +904,14 @@
         var heights = new Array();
 
         $persons.find(".premium-person-container").each(function (index, person) {
-            $(person).imagesLoaded(function () {}).done(function () {
+            $(person).imagesLoaded(function () { }).done(function () {
                 var imageHeight = $(person).find(".premium-person-image-container")
                     .outerHeight();
                 heights.push(imageHeight);
             });
         });
 
-        $persons.imagesLoaded(function () {}).done(function () {
+        $persons.imagesLoaded(function () { }).done(function () {
             var maxHeight = Math.max.apply(null, heights);
             $persons.find(".premium-person-image-wrap").css("height", maxHeight + "px");
         });

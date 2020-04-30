@@ -959,7 +959,7 @@ class Premium_Banner extends Widget_Base {
             $max_size = $settings['premium_banner_max_range'] .'px';
 
 
-            $banner_url = 'url' == $settings['premium_banner_link_selection'] ? $settings['premium_banner_link']['url'] : get_permalink($settings['premium_banner_existing_link']);
+            $banner_url = 'url' == $settings['premium_banner_link_selection'] ? $settings['premium_banner_link']['url'] : get_permalink( $settings['premium_banner_existing_link'] );
             
             $image_html = '';
             if ( ! empty( $settings['premium_banner_image']['url'] ) ) {
@@ -995,13 +995,13 @@ class Premium_Banner extends Widget_Base {
                     if( 'yes' == $settings['premium_banner_link_switcher'] && !empty( $settings['premium_banner_more_text'] ) ) : ?>
                         
                             <div class ="premium-banner-read-more">
-                                <a class = "premium-banner-link" <?php if( !empty( $banner_url ) ) : ?> href="<?php echo esc_url( $banner_url ); ?>"<?php endif;?><?php if( !empty( $settings['premium_banner_link']['is_external'] ) ) : ?> target="_blank" <?php endif; ?><?php if( !empty($settings['premium_banner_link']['nofollow'] ) ) : ?> rel="nofollow" <?php endif; ?>><?php echo esc_html( $settings['premium_banner_more_text'] ); ?></a>
+                                <a class = "premium-banner-link" <?php if( !empty( $banner_url ) ) : ?> href="<?php echo $banner_url; ?>"<?php endif;?><?php if( !empty( $settings['premium_banner_link']['is_external'] ) ) : ?> target="_blank" <?php endif; ?><?php if( !empty($settings['premium_banner_link']['nofollow'] ) ) : ?> rel="nofollow" <?php endif; ?>><?php echo esc_html( $settings['premium_banner_more_text'] ); ?></a>
                             </div>
                         
                     <?php endif; ?>
 					</div>
 					<?php 
-						if( $settings['premium_banner_link_url_switch'] == 'yes' && ( ! empty( $settings['premium_banner_image_custom_link']['url'] ) || !empty( $settings['premium_banner_image_existing_page_link'] ) ) ) {
+						if( $settings['premium_banner_link_url_switch'] === 'yes' && ( ! empty( $settings['premium_banner_image_custom_link']['url'] ) || !empty( $settings['premium_banner_image_existing_page_link'] ) ) ) {
 							echo $full_link;
 						}
 					 ?>

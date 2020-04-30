@@ -1917,6 +1917,48 @@ class Premium_Grid extends Widget_Base {
         $this->end_controls_tabs();
 
         $this->end_controls_section();
+
+        $this->start_controls_section('section_lightbox_style',
+			[
+				'label' => __( 'Lightbox', 'premium-addons-for-elementor' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'premium_gallery_lightbox_type' => 'yes'
+                ]
+			]
+		);
+
+		$this->add_control('lightbox_color',
+			[
+				'label' => __( 'Color', 'premium-addons-for-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'#elementor-lightbox-slideshow-{{ID}}' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control('lightbox_ui_color',
+			[
+				'label' => __( 'UI Color', 'premium-addons-for-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'#elementor-lightbox-slideshow-{{ID}} .dialog-lightbox-close-button, #elementor-lightbox-slideshow-{{ID}} .elementor-swiper-button' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control('lightbox_ui_hover_color',
+			[
+				'label' => __( 'UI Hover Color', 'premium-addons-for-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'#elementor-lightbox-slideshow-{{ID}} .dialog-lightbox-close-button:hover, #elementor-lightbox-slideshow-{{ID}} .elementor-swiper-button:hover' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
         
         $this->update_controls();
         
@@ -2242,19 +2284,25 @@ class Premium_Grid extends Widget_Base {
 
                                 $lightbox_key   = 'image_lightbox_' . $index;
 
-                                $rel            = sprintf( 'prettyPhoto[premium-grid-%s]', $this->get_id() );
-
                                 $this->add_render_attribute( $lightbox_key, [
                                     'class'     => 'pa-gallery-whole-link',
                                     'href'      => $image['premium_gallery_img']['url'],
                                 ]);
 
                                 if( 'default' !== $lightbox_type ) {
+
+                                    $alt    = Control_Media::get_image_alt( $image['premium_gallery_img'] );
+
                                     $this->add_render_attribute( $lightbox_key, [
                                         'data-elementor-open-lightbox'      => $lightbox_type,
-                                        'data-elementor-lightbox-slideshow' => $this->get_id()
+                                        'data-elementor-lightbox-slideshow' => $this->get_id(),
+                                        'data-elementor-lightbox-title'     => $alt
                                     ]);
+
                                 } else {
+
+                                    $rel            = sprintf( 'prettyPhoto[premium-grid-%s]', $this->get_id() );
+
                                     $this->add_render_attribute( $lightbox_key, [
                                         'data-rel'  => $rel
                                     ]);
@@ -2400,8 +2448,6 @@ class Premium_Grid extends Widget_Base {
         
         $href           = $item['premium_gallery_img']['url'];
         
-        $rel            = sprintf( 'prettyPhoto[premium-grid-%s]', $this->get_id() );
-        
         $lightbox       = $settings['premium_gallery_light_box'];
         
         $lightbox_type  = $settings['premium_gallery_lightbox_type'];
@@ -2469,11 +2515,18 @@ class Premium_Grid extends Widget_Base {
                 ]);
 
                 if( 'default' !== $lightbox_type ) {
+
+                    $alt    = Control_Media::get_image_alt( $item['premium_gallery_img'] );
+
                     $this->add_render_attribute( $lightbox_key, [
                         'data-elementor-open-lightbox'      => $lightbox_type,
-                        'data-elementor-lightbox-slideshow' => $id
+                        'data-elementor-lightbox-slideshow' => $id,
+                        'data-elementor-lightbox-title'     => $alt
                     ]);
                 } else {
+
+                    $rel = sprintf( 'prettyPhoto[premium-grid-%s]', $this->get_id() );
+
                     $this->add_render_attribute( $lightbox_key, [
                         'data-rel'  => $rel
                     ]);

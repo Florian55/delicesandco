@@ -21,7 +21,7 @@ class HTMega_Template_Library{
     }
 
     function __construct(){
-        self::$buylink = isset($this->get_templates_info( true )['pro_link'][0]['url']) ? $this->get_templates_info( true )['pro_link'][0]['url'] : '#';
+        self::$buylink = isset( $this->get_templates_info()['pro_link'][0]['url']) ? $this->get_templates_info()['pro_link'][0]['url'] : '#';
         if ( is_admin() ) {
             add_action( 'admin_menu', [ $this, 'admin_menu' ], 225 );
             add_action( 'wp_ajax_htmega_ajax_request', [ $this, 'templates_ajax_request' ] );
@@ -80,6 +80,7 @@ class HTMega_Template_Library{
                 'timeout'    => $force_update ? 25 : 10,
                 'user-agent' => 'WordPress/' . $wp_version . '; ' . home_url(),
                 'body'       => $body_args,
+                'sslverify'  => false,
             ]
         );
         $response = json_decode( wp_remote_retrieve_body( $request ), true );
@@ -89,7 +90,7 @@ class HTMega_Template_Library{
     /**
      * Retrieve template library and save as a transient.
      */
-    public static function set_templates_info( $force_update = true ) {
+    public static function set_templates_info( $force_update = false ) {
         $transient = get_transient( self::TRANSIENT_KEY );
 
         if ( ! $transient || $force_update ) {
@@ -101,7 +102,7 @@ class HTMega_Template_Library{
     /**
      * Get template info.
      */
-    public function get_templates_info( $force_update = true ) {
+    public function get_templates_info( $force_update = false ) {
         if ( ! get_transient( self::TRANSIENT_KEY ) || $force_update ) {
             self::set_templates_info( true );
         }
@@ -113,122 +114,19 @@ class HTMega_Template_Library{
      */
     public function scripts( $hook ) {
 
-        // wp core styles
-        wp_enqueue_style( 'wp-jquery-ui-dialog' );
-        // wp core scripts
-        wp_enqueue_script( 'jquery-ui-dialog' );
-        
-        wp_enqueue_script(
-            'htmega-admin',
-            HTMEGA_ADDONS_PL_URL . 'admin/assets/js/admin.js',
-            [ 'jquery'],
-            true
-        );
-        
         if( $hook === 'htmega-addons_page_htmega_addons_templates_library' ){
-
-            // wp core styles
-            wp_enqueue_style( 'wp-jquery-ui-dialog' );
-            // wp core scripts
-            wp_enqueue_script( 'jquery-ui-dialog' );
             
             // CSS
-            wp_enqueue_style(
-                'htmega-selectric',
-                HTMEGA_ADDONS_PL_URL . 'admin/assets/lib/css/selectric.css',
-                NULL,
-                HTMEGA_VERSION
-            );
-            
-            wp_enqueue_style(
-                'htmega-temlibray-style',
-                HTMEGA_ADDONS_PL_URL . 'admin/assets/css/tmp-style.css',
-                NULL,
-                HTMEGA_VERSION
-            );
+            wp_enqueue_style( 'htmega-selectric' );
+            wp_enqueue_style( 'htmega-temlibray-style' );
 
             // JS
-            wp_enqueue_script(
-                'htmega-modernizr',
-                HTMEGA_ADDONS_PL_URL . 'admin/assets/lib/js/modernizr.custom.63321.js',
-                [ 'jquery'],
-                FALSE
-            );
-            wp_enqueue_script(
-                'jquery-selectric',
-                HTMEGA_ADDONS_PL_URL . 'admin/assets/lib/js/jquery.selectric.min.js',
-                [ 'jquery'],
-                HTMEGA_VERSION,
-                TRUE
-            );
-            wp_enqueue_script(
-                'jquery-ScrollMagic',
-                HTMEGA_ADDONS_PL_URL . 'admin/assets/lib/js/ScrollMagic.min.js',
-                [ 'jquery'],
-                HTMEGA_VERSION,
-                TRUE
-            );
-            wp_enqueue_script(
-                'babel-min',
-                HTMEGA_ADDONS_PL_URL . 'admin/assets/lib/js/babel.min.js',
-                [ 'jquery'],
-                HTMEGA_VERSION,
-                TRUE
-            );
-
-            wp_enqueue_script(
-                'htmega-templates',
-                HTMEGA_ADDONS_PL_URL . 'admin/assets/js/admin_scripts.js',
-                [ 'jquery'],
-                HTMEGA_VERSION,
-                TRUE
-            );
-
-            wp_enqueue_script(
-                'htmega-admin-install-manager',
-                HTMEGA_ADDONS_PL_URL . 'admin/assets/js/admin_install_manager.js',
-                ['htmega-templates', 'wp-util', 'updates'],
-                HTMEGA_VERSION,
-                TRUE
-            );
-
-            // Localize Script
-            $current_user = wp_get_current_user();
-            wp_localize_script(
-                'htmega-templates',
-                'HTTM',
-                [
-                    'ajaxurl'          => admin_url( 'admin-ajax.php' ),
-                    'adminURL'         => admin_url(),
-                    'elementorURL'     => admin_url( 'edit.php?post_type=elementor_library' ),
-                    'version'          => HTMEGA_VERSION,
-                    'pluginURL'        => plugin_dir_url( __FILE__ ),
-                    'alldata'          => !empty( $this->get_templates_info( true )['templates'] ) ? $this->get_templates_info( true )['templates']:array(),
-                    'prolink'          => !empty( $this->get_pro_link() ) ? $this->get_pro_link() : '#',
-                    'prolabel'         => esc_html__( 'Pro', 'htmega-addons' ),
-                    'loadingimg'       => HTMEGA_ADDONS_PL_URL . 'admin/assets/images/loading.gif',
-                    'message'          =>[
-                        'packagedesc'=> esc_html__( 'in this package', 'htmega-addons' ),
-                        'allload'    => esc_html__( 'All Items have been Loaded', 'htmega-addons' ),
-                        'notfound'   => esc_html__( 'Nothing Found', 'htmega-addons' ),
-                    ],
-                    'buttontxt'        =>[
-                        'tmplibrary' => esc_html__( 'Import to Library', 'htmega-addons' ),
-                        'tmppage'    => esc_html__( 'Import to Page', 'htmega-addons' ),
-                        'import'     => esc_html__( 'Import', 'htmega-addons' ),
-                        'buynow'     => esc_html__( 'Buy Now', 'htmega-addons' ),
-                        'preview'    => esc_html__( 'Preview', 'htmega-addons' ),
-                        'installing' => esc_html__( 'Installing..', 'htmega-addons' ),
-                        'activating' => esc_html__( 'Activating..', 'htmega-addons' ),
-                        'active'     => esc_html__( 'Active', 'htmega-addons' ),
-                    ],
-                    'user'             => [
-                        'email' => $current_user->user_email,
-                    ],
-
-                ]
-            );
-
+            wp_enqueue_script( 'htmega-modernizr' );
+            wp_enqueue_script( 'jquery-selectric' );
+            wp_enqueue_script( 'jquery-ScrollMagic' );
+            wp_enqueue_script( 'babel-min' );
+            wp_enqueue_script( 'htmega-templates' );
+            wp_enqueue_script( 'htmega-install-manager' );
 
         }
 

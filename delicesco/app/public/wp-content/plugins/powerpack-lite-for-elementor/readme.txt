@@ -2,7 +2,7 @@
 Contributors: ideaboxcreations, simrandeep, puneetsahalot, ibachal, jainnidhi, prash17, nirbhay18
 Tags: elementor, addons, elementor addon, elementor widgets, elements, powerpack elementor addon, essential addons
 Requires at least: 4.7
-Tested up to: 5.3.2
+Tested up to: 5.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -149,6 +149,23 @@ Not at all! All the widgets and settings are easy to use with drag & drop interf
 
 
 == Changelog ==
+
+= 1.2.9.3 - April 20, 2020 =
+* 	Added: Button width option
+* 	Fixed: WPML compatibility was missing for some widgets
+* 	Fixed: Gravity Forms CSS & JS files were loading on all pages
+* 	Fixed: Link effects CSS issue
+* 	Fixed: Title container HTML markup in Info Box and Info Box carousel widgets
+* 	Fixed: Lightbox and Image Link options in Instagram Feed widget
+
+= 1.2.9.2 - April 8, 2020 =
+* 	Fixed: Hotspot icon was not showing in editor in Image Hotspots widget
+* 	Added: Option to randomize logos in Logo Carousel widget
+* 	Fixed: Input fields padding option was not working in Gravity Forms widget
+* 	Fixed: Input focus background option was not working in Gravity Forms widget
+* 	Enhancement: Added styling for dropdown option in Gravity Forms widget
+* 	Updated "Input & Textarea" section label to "Input, Textarea & Dropdown" in Gravity Forms widget
+* 	Added input focus color option in Gravity Forms widget
 
 = 1.2.9.1 - March 29, 2020 =
 * 	Fixed: PHP error in query control

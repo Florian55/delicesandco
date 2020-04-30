@@ -4,7 +4,7 @@
  * Description: Add new elements to Elementor page builder plugin.
  * Plugin URI: https://www.elementoraddons.com/elements-addon-elements/
  * Author: WebTechStreet
- * Version: 1.6.2
+ * Version: 1.6.4
  * Author URI: https://webtechstreet.com/
  *
  * Text Domain: wts-eae
@@ -14,7 +14,7 @@ define( 'EAE_FILE', __FILE__ );
 define( 'EAE_URL', plugins_url( '/', __FILE__ ) );
 define( 'EAE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EAE_SCRIPT_SUFFIX', defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min' );
-define( 'EAE_VERSION', '1.6.2');
+define( 'EAE_VERSION', '1.6.4');
 
 
 if ( ! function_exists( '_is_elementor_installed' ) ) {

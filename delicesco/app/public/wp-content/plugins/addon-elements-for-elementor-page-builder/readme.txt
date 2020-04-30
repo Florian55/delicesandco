@@ -2,8 +2,8 @@
 Contributors: wpvibes, webtechstreet, satishprajapati, hardiksharma
 Tags: page-builder, elementor, elementor addon
 Requires at least: 4.4
-Tested up to: 5.3
-Stable tag: 5.3
+Tested up to: 5.4
+Stable tag: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -72,6 +72,12 @@ Column gap => No gap
 
 == Changelog ==
 
+= 1.6.4 =
+* Fixed a potential security issues. Immediate update recommended.
+
+= 1.6.3 =
+* Fixed compatibility issues with WordPress 5.4
+
 = 1.6.2 =
 * Tweak : Added option to define Feature Heading and Button Heading in Comparison Table
 * Tweak : Added capability to style individual cards in Timeline widget
@@ -80,7 +86,7 @@ Column gap => No gap
 * Fix : Text Separator blank icon migration issue resolved
 * Fix : Modal Popup Close button icon migration issue resolved
 
-== 1.6.1 =
+= 1.6.1 =
 * Icon Migration from Font Awesome 4 to Font Awesome 5.
 * Fixed issue with SVG display
 * Modal Popup Close Button Spacing option added.
@@ -91,7 +97,7 @@ Column gap => No gap
 * Masonry dependencies issue bug fix to filterable gallery.
 * Section Column cursor css added.
 
-= 1.6
+= 1.6 =
 * New Widget: Filterable Gallery
 * New Widget: Wrapper Link
 * Fix : Dual Button Padding

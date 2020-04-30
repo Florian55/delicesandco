@@ -42,19 +42,26 @@ class Settings extends Settings_Page {
 	}
 
 	public function eae_save_gmap_key(){
-        $key = $_REQUEST['mapkey'];
-        echo 'key '.$key;
-		update_option('wts_eae_gmap_key',$key);
+        $key = sanitize_text_field($_REQUEST['mapkey']);
+
+        if(current_user_can( 'manage_options' ) && check_ajax_referer('eae_ajax_nonce','nonce')){
+	        update_option('wts_eae_gmap_key',$key);
+        }
     }
 
 	public function eae_save_elements(){
 		$elements = $_REQUEST['eae_items'];
+
         $items = [];
 		for($i=0; $i <count($elements);$i++){
-            $items[$elements[$i]['key']] = $elements[$i]['enabled'];
+		    if($elements[$i]['enabled'] === 'true' || $elements[$i]['enabled'] === 'false'){
+			    $items[$elements[$i]['key']] = $elements[$i]['enabled'];
+            }
         }
 
-		update_option('wts_eae_elements',$items);
+		if(current_user_can( 'manage_options' ) && check_ajax_referer('eae_ajax_nonce','nonce')) {
+			update_option( 'wts_eae_elements', $items );
+		}
     }
 
 	public function display_settings_page_new(){

@@ -108,7 +108,7 @@ class Plugin {
 				'map_key'      => get_option( 'wts_eae_gmap_key' ),
 				'eae_elements' => $modules,
 				'eae_version' => EAE_VERSION,
-				'nonce'        => wp_create_nonce( 'wp_rest' )
+				'nonce'        => wp_create_nonce( 'eae_ajax_nonce' )
 			) );
 		}
 	}

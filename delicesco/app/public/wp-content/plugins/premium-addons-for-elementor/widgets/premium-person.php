@@ -50,6 +50,10 @@ class Premium_Person extends Widget_Base {
     public function get_categories() {
         return [ 'premium-elements' ];
     }
+
+    public function get_keywords() {
+		return ['person'];
+	}
     
     public function get_custom_help_url() {
 		return 'https://premiumaddons.com/support/';
@@ -186,7 +190,7 @@ class Premium_Person extends Widget_Base {
                         'icon' => 'fa fa-align-right',
                     ],
                 ],
-                'default'       => 'center',
+                'default'       => 'left',
                 'selectors'     => [
                     '{{WRAPPER}} .premium-person-info' => 'text-align: {{VALUE}};',
                 ],
@@ -337,7 +341,7 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('Description', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::WYSIWYG,
                 'dynamic'       => [ 'active' => true ],
-                'default'       => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla','premium-addons-for-elementor'),
+                'default'       => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit','premium-addons-for-elementor'),
             ]
         );
         
@@ -381,7 +385,6 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('LinkedIn', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
-                'default'       => '#',
                 'label_block'   => true,
                 'condition'     => [
                     'premium_person_social_enable'  => 'yes'
@@ -394,7 +397,6 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('Google+', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
-                'default'       => '#',
                 'label_block'   => true,
                 'condition'     => [
                     'premium_person_social_enable'  => 'yes'
@@ -419,6 +421,7 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('Instagram', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
+                'default'       => '#',
                 'label_block'   => true,
                 'condition'     => [
                     'premium_person_social_enable'  => 'yes'
@@ -443,7 +446,6 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('Pinterest', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
-                'default'       => '#',
                 'label_block'   => true,
                 'condition'     => [
                     'premium_person_social_enable'  => 'yes'
@@ -469,7 +471,6 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('Behance', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
-                'default'       => '#',
                 'label_block'   => true,
                 'condition'     => [
                     'premium_person_social_enable'  => 'yes'
@@ -506,7 +507,18 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('Email Address', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
-                'default'       => '#',
+                'label_block'   => true,
+                'condition'     => [
+                    'premium_person_social_enable'  => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_control('premium_person_site',
+            [
+                'label'         => __('Website', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::TEXT,
+                'dynamic'       => [ 'active' => true ],
                 'label_block'   => true,
                 'condition'     => [
                     'premium_person_social_enable'  => 'yes'
@@ -565,7 +577,7 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('Description', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::WYSIWYG,
                 'dynamic'       => [ 'active' => true ],
-                'default'       => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla','premium-addons-for-elementor'),
+                'default'       => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit','premium-addons-for-elementor'),
             ]
         );
         
@@ -609,7 +621,6 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('LinkedIn', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
-                'default'       => '#',
                 'label_block'   => true,
                 'condition'     => [
                     'multiple_social_enable'  => 'yes'
@@ -622,7 +633,6 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('Google+', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
-                'default'       => '#',
                 'label_block'   => true,
                 'condition'     => [
                     'multiple_social_enable'  => 'yes'
@@ -647,6 +657,7 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('Instagram', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
+                'default'       => '#',
                 'label_block'   => true,
                 'condition'     => [
                     'multiple_social_enable'  => 'yes'
@@ -671,7 +682,6 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('Pinterest', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
-                'default'       => '#',
                 'label_block'   => true,
                 'condition'     => [
                     'multiple_social_enable'  => 'yes'
@@ -697,7 +707,6 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('Behance', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
-                'default'       => '#',
                 'label_block'   => true,
                 'condition'     => [
                     'multiple_social_enable'  => 'yes'
@@ -734,7 +743,18 @@ class Premium_Person extends Widget_Base {
                 'label'         => __('Email Address', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::TEXT,
                 'dynamic'       => [ 'active' => true ],
-                'default'       => '#',
+                'label_block'   => true,
+                'condition'     => [
+                    'multiple_social_enable'  => 'yes'
+                ]
+            ]
+        );
+
+        $repeater->add_control('multiple_site',
+            [
+                'label'         => __('Website', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::TEXT,
+                'dynamic'       => [ 'active' => true ],
                 'label_block'   => true,
                 'condition'     => [
                     'multiple_social_enable'  => 'yes'
@@ -1476,7 +1496,8 @@ class Premium_Person extends Widget_Base {
                 'behance'       => $settings['premium_person_behance'],
                 'whatsapp'      => $settings['premium_person_whatsapp'],
                 'telegram'      => $settings['premium_person_telegram'],
-                'mail'          => $settings['premium_person_mail']
+                'mail'          => $settings['premium_person_mail'],
+                'site'          => $settings['premium_person_site']
             ];
         } else {
             $personSettings = $person;
@@ -1493,7 +1514,8 @@ class Premium_Person extends Widget_Base {
                 'behance'       => $person['multiple_behance'],
                 'whatsapp'      => $person['multiple_whatsapp'],
                 'telegram'      => $person['multiple_telegram'],
-                'mail'          => $person['multiple_mail']
+                'mail'          => $person['multiple_mail'],
+                'site'          => $person['multiple_site'],
             ];
         }
         
@@ -1548,7 +1570,11 @@ class Premium_Person extends Widget_Base {
             <?php endif;
 
             if( ! empty( $socialIcons['mail'] ) ) : ?>
-                <li class="elementor-icon premium-person-list-item premium-person-mail"><a class="elementor-icon" href="<?php echo $socialIcons['mail']; ?>" target="_blank"><i class="far fa-envelope"></i></a></li>
+                <li class="elementor-icon premium-person-list-item premium-person-mail"><a href="<?php echo $socialIcons['mail']; ?>" target="_blank"><i class="far fa-envelope"></i></a></li>
+            <?php endif;
+
+            if( ! empty( $socialIcons['site'] ) ) : ?>
+                <li class="elementor-icon premium-person-list-item premium-person-site"><a href="<?php echo $socialIcons['site']; ?>" target="_blank"><i class="fas fa-link"></i></a></li>
             <?php endif; ?>
         </ul>
         <?php
@@ -1758,7 +1784,8 @@ class Premium_Person extends Widget_Base {
                     behance: settings.premium_person_behance,
                     whatsapp: settings.premium_person_whatsapp,
                     telegram: settings.premium_person_telegram,
-                    mail: settings.premium_person_mail
+                    mail: settings.premium_person_mail,
+                    site: settings.premium_person_site
                 };
             } else {
                 personSettings = person;
@@ -1775,7 +1802,8 @@ class Premium_Person extends Widget_Base {
                     behance: person.multiple_behance,
                     whatsapp: person.multiple_whatsapp,
                     telegram: person.multiple_telegram,
-                    mail: person.multiple_mail
+                    mail: person.multiple_mail,
+                    site: person.multiple_site
                 };
             }
             
@@ -1831,6 +1859,10 @@ class Premium_Person extends Widget_Base {
 
                 <# if( '' != socialIcons.mail ) { #>
                     <li class="elementor-icon premium-person-list-item premium-person-mail"><a href="{{ socialIcons.mail }}" target="_blank"><i class="far fa-envelope"></i></a></li>
+                <# } #>
+
+                <# if( '' != socialIcons.site ) { #>
+                    <li class="elementor-icon premium-person-list-item premium-person-site"><a href="{{ socialIcons.site }}" target="_blank"><i class="fas fa-link"></i></a></li>
                 <# } #>
 
             </ul>

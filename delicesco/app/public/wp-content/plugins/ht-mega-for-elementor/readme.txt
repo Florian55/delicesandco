@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc
 Tags: Elementor, Elementor Addons, Elementor Widgets, elementor page builder, Elementor Blocks
 Requires at least: 4.7
 Tested up to: 5.4
-Stable tag: 1.3.8
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,11 @@ August 05 - 2019:
 Visit [HasThemes](https://hasthemes.com/) for more details about HTML, Shopify and WordPress products and services.
 
 == Changelog ==
+
+= Version: 1.4.0 - Date: 2020-04-13 =
+* Single Post Title Length option added.
+* Modal Issue solved for mobile device.
+* Image Grid Overlay color Issue solved.
 
 = Version: 1.3.7 - Date: 2020-03-09 =
 * Working Process 5 column responsive issue fixed

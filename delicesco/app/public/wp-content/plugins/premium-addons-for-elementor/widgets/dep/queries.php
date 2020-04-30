@@ -77,12 +77,13 @@ function premium_blog_get_excerpt_by_id( $source, $excerpt_length, $cta_type, $r
                 array_push( $words, '…' );
             }
 
-            if( ! empty( $read_more ) && 'link' === $cta_type ) {
-                array_push( $words, '<div class="premium-blog-excerpt-link-wrap"><a href="' . get_permalink() .'" class="premium-blog-excerpt-link elementor-button">' . $read_more . '</a></div>' ); 
-            }
-
-            $excerpt = implode( ' ', $words );
         }
+
+        if( ! empty( $read_more ) && 'link' === $cta_type ) {
+            array_push( $words, '<div class="premium-blog-excerpt-link-wrap"><a href="' . get_permalink() .'" class="premium-blog-excerpt-link elementor-button">' . $read_more . '</a></div>' ); 
+        }
+
+        $excerpt = implode( ' ', $words );
     }
     
     return $excerpt;

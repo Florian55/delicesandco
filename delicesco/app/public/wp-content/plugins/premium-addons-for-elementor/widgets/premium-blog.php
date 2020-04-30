@@ -128,8 +128,12 @@ class Premium_Blog extends Widget_Base {
                     '50%'   => __('2 Columns', 'premium-addons-for-elementor'),
                     '33.33%'=> __('3 Columns', 'premium-addons-for-elementor'),
                     '25%'   => __('4 Columns', 'premium-addons-for-elementor'),
+                    '20%'       => __( '5 Columns', 'premium-addons-for-elementor' ),
+					'16.66%'    => __( '6 Columns', 'premium-addons-for-elementor' ),
                 ],
                 'default'       => '33.33%',
+                'tablet_default'=> '50%',
+                'mobile_default'=> '100%',
                 'render_type'   => 'template',
                 'label_block'   => true,
                 'condition'     => [
@@ -799,6 +803,25 @@ class Premium_Blog extends Widget_Base {
                     'premium_blog_carousel_play' => 'yes',
 				],
 			]
+        );
+        
+        $this->add_control('premium_blog_carousel_center',
+            [
+                'label'         => __('Center Mode', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::SWITCHER,
+                'condition'     => [
+                    'premium_blog_carousel' => 'yes',
+                ]
+            ]
+        );
+
+        $this->add_control('premium_blog_carousel_spacing',
+			[
+				'label' 		=> __( 'Slides\' Spacing', 'premium-addons-for-elementor' ),
+                'description'   => __('Set a spacing value in pixels (px)', 'premium-addons-for-elementor'),
+				'type'			=> Controls_Manager::NUMBER,
+				'default'		=> '15'
+			]
 		);
         
         $this->add_control('premium_blog_carousel_dots',
@@ -1149,7 +1172,7 @@ class Premium_Blog extends Widget_Base {
             Group_Control_Typography::get_type(),
             [
                 'name'          => 'premium_blog_title_typo',
-                'selector'      => '{{WRAPPER}} .premium-blog-entry-title a',
+                'selector'      => '{{WRAPPER}} .premium-blog-entry-title, {{WRAPPER}} .premium-blog-entry-title a',
             ]
         );
         
@@ -2337,8 +2360,6 @@ class Premium_Blog extends Widget_Base {
                 break;
         }
         
-        $posts_number = intval ( 100 / substr( $settings['premium_blog_columns_number'], 0, strpos( $settings['premium_blog_columns_number'], '%') ) );
-        
         $carousel = 'yes' == $settings['premium_blog_carousel'] ? true : false; 
         
         $this->add_render_attribute('blog', 'class', [
@@ -2352,14 +2373,22 @@ class Premium_Blog extends Widget_Base {
         
         if ( $carousel ) {
             
-            $play   = 'yes' == $settings['premium_blog_carousel_play'] ? true : false;
-            $fade   = 'yes' == $settings['premium_blog_carousel_fade'] ? 'true' : 'false';
-            $arrows = 'yes' == $settings['premium_blog_carousel_arrows'] ? 'true' : 'false';
-            $grid   = 'yes' == $settings['premium_blog_grid'] ? 'true' : 'false';
+            $play   = 'yes' === $settings['premium_blog_carousel_play'] ? true : false;
+            $fade   = 'yes' === $settings['premium_blog_carousel_fade'] ? 'true' : 'false';
+            $arrows = 'yes' === $settings['premium_blog_carousel_arrows'] ? 'true' : 'false';
+            $grid   = 'yes' === $settings['premium_blog_grid'] ? 'true' : 'false';
+            $center_mode   = 'yes' === $settings['premium_blog_carousel_center'] ? 'true' : 'false';
+            $spacing   = intval( $settings['premium_blog_carousel_spacing'] );
             
             $speed  = ! empty( $settings['premium_blog_carousel_autoplay_speed'] ) ? $settings['premium_blog_carousel_autoplay_speed'] : 5000;
-            $dots   = 'yes' == $settings['premium_blog_carousel_dots'] ? 'true' : 'false';
-        
+            $dots   = 'yes' === $settings['premium_blog_carousel_dots'] ? 'true' : 'false';
+
+            $columns = intval ( 100 / substr( $settings['premium_blog_columns_number'], 0, strpos( $settings['premium_blog_columns_number'], '%') ) );
+            
+            $columns_tablet = intval ( 100 / substr( $settings['premium_blog_columns_number_tablet'], 0, strpos( $settings['premium_blog_columns_number_tablet'], '%') ) );
+
+            $columns_mobile = intval ( 100 / substr( $settings['premium_blog_columns_number_mobile'], 0, strpos( $settings['premium_blog_columns_number_mobile'], '%') ) );
+
             $this->add_render_attribute('blog', 'data-carousel', $carousel );
             
             $this->add_render_attribute('blog', 'data-grid', $grid );
@@ -2368,9 +2397,17 @@ class Premium_Blog extends Widget_Base {
 
             $this->add_render_attribute('blog', 'data-play', $play );
 
+            $this->add_render_attribute('blog', 'data-center', $center_mode );
+
+            $this->add_render_attribute('blog', 'data-slides-spacing', $spacing );
+
             $this->add_render_attribute('blog', 'data-speed', $speed );
 
-            $this->add_render_attribute('blog', 'data-col', $posts_number );
+            $this->add_render_attribute('blog', 'data-col', $columns );
+
+            $this->add_render_attribute('blog', 'data-col-tablet', $columns_tablet );
+
+            $this->add_render_attribute('blog', 'data-col-mobile', $columns_mobile );
             
             $this->add_render_attribute('blog', 'data-arrows', $arrows );
             

@@ -562,7 +562,7 @@ class Premium_Banner extends Widget_Base {
 			Group_Control_Css_Filter::get_type(),
 			[
 				'name'      => 'hover_css_filters',
-                'label'     => __('Hover CSS Filter', 'premium-addons-for-elementor'),
+                'label'     => __('Hover CSS Filters', 'premium-addons-for-elementor'),
 				'selector'  => '{{WRAPPER}} .premium-banner-ib img.active'
 			]
 		);

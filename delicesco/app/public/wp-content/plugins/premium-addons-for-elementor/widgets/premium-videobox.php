@@ -733,9 +733,13 @@ class Premium_Videobox extends Widget_Base {
         $params     = $this->get_video_params();
         
         $thumbnail  = $this->get_video_thumbnail( $params['id'] );
-        
-        $image      = sprintf( 'url(\'%s\')', $thumbnail );
-        
+
+        $image      = 'transparent';
+    
+        if( ! empty( $thumbnail ) ) {
+            $image      = sprintf( 'url(\'%s\')', $thumbnail );
+        }
+    
         if( 'self' === $video_type ) {
             
             $overlay        = $settings['premium_video_box_image_switcher'];
@@ -851,7 +855,8 @@ class Premium_Videobox extends Widget_Base {
                 'id'    => 'premium-video-box-container-' . $id,
                 'class' => 'premium-video-box-container',
                 'data-overlay'  => 'yes' === $settings['premium_video_box_image_switcher'] ? 'true' : 'false',
-                'data-type'     => $video_type
+                'data-type'     => $video_type,
+                'data-thumbnail' => !empty( $thumbnail )
             ]
         );
         
@@ -880,7 +885,7 @@ class Premium_Videobox extends Widget_Base {
             <div class="premium-video-box-image-container" style="background-image: <?php echo $image; ?>;">
         </div>
         
-        <?php if( 'yes' === $settings['premium_video_box_play_icon_switcher'] && 'yes' !== $autoplay ) : ?>
+        <?php if( 'yes' === $settings['premium_video_box_play_icon_switcher'] && 'yes' !== $autoplay && !empty($thumbnail) ) : ?>
             <div class="premium-video-box-play-icon-container">
                 <i class="premium-video-box-play-icon fa fa-play fa-lg"></i>
             </div>
@@ -974,25 +979,30 @@ class Premium_Videobox extends Widget_Base {
             return;
         }
         
+        $vimeo_data = Helper_Functions::get_vimeo_video_data( $id );
+
         if ( 'yes' === $settings['vimeo_portrait'] || 'yes' === $settings['vimeo_title'] || 'yes' === $settings['vimeo_byline']
-		) {
-            $vimeo_data = Helper_Functions::get_vimeo_video_data( $id );
+		) {  
         ?>
 		<div class="premium-video-box-vimeo-wrap">
-			<?php if ( 'yes' === $settings['vimeo_portrait'] ) { ?>
+			<?php if ( 'yes' === $settings['vimeo_portrait'] && !empty($vimeo_data['portrait']) ) { ?>
 			<div class="premium-video-box-vimeo-portrait">
-				<a href="<?php echo $vimeo_data['url']; ?>" target="_blank"><img src="<?php echo $vimeo_data['portrait']; ?>" alt=""></a>
+				<a href="<?php echo $vimeo_data['url']; ?>" target="_blank">
+                    <img src="<?php echo $vimeo_data['portrait']; ?>" alt="">
+                </a>
 			</div>
 			<?php } ?>
 			<?php
 			if ( 'yes' === $settings['vimeo_title'] || 'yes' === $settings['vimeo_byline'] ) { ?>
 			<div class="premium-video-box-vimeo-headers">
-				<?php if ( 'yes' === $settings['vimeo_title'] ) { ?>
+				<?php if ( 'yes' === $settings['vimeo_title'] && !empty( $vimeo_data['title'] ) ) { ?>
 				<div class="premium-video-box-vimeo-title">
-					<a href="<?php echo $settings['premium_video_box_link']; ?>" target="_blank"><?php echo $vimeo_data['title']; ?></a>
+					<a href="<?php echo $settings['premium_video_box_link']; ?>" target="_blank">
+                        <?php echo $vimeo_data['title']; ?>
+                    </a>
 				</div>
 				<?php } ?>
-				<?php if ( 'yes' === $settings['vimeo_byline'] ) { ?>
+				<?php if ( 'yes' === $settings['vimeo_byline'] && !empty( $vimeo_data['user'] ) ) { ?>
 				<div class="premium-video-box-vimeo-byline">
 					<?php _e( 'from ', 'premium-addons-for-elementor' ); ?> <a href="<?php echo $vimeo_data['url']; ?>" target="_blank"><?php echo $vimeo_data['user']; ?></a>
 				</div>
@@ -1002,6 +1012,8 @@ class Premium_Videobox extends Widget_Base {
 		</div>
 		<?php } ?>
         <?php
+
+        return isset( $vimeo_data['user'] ) ? true : false;
     }
     
     private function has_image_overlay() {

@@ -82,17 +82,17 @@ class Premium_Grid extends Widget_Base {
             ]);
         
         $this->add_control('premium_gallery_img_size_select',
-                [
-                    'label'             => __('Grid Layout', 'premium-addons-for-elementor'),
-                    'type'              => Controls_Manager::SELECT,
-                    'options'           => [
-                        'fitRows'  => __('Even', 'premium-addons-for-elementor'),
-                        'masonry'  => __('Masonry', 'premium-addons-for-elementor'),
-                        'metro'    => __('Metro', 'premium-addons-for-elementor'), 
-                   ],
-                    'default'           => 'fitRows',
-                    ]
-                );
+            [
+                'label'             => __('Grid Layout', 'premium-addons-for-elementor'),
+                'type'              => Controls_Manager::SELECT,
+                'options'           => [
+                    'fitRows'  => __('Even', 'premium-addons-for-elementor'),
+                    'masonry'  => __('Masonry', 'premium-addons-for-elementor'),
+                    'metro'    => __('Metro', 'premium-addons-for-elementor'), 
+                ],
+                'default'           => 'fitRows',
+            ]
+        );
         
         $this->add_responsive_control('pemium_gallery_even_img_height',
 			[ 
@@ -341,7 +341,7 @@ class Premium_Grid extends Widget_Base {
             
         $this->add_control('active_cat_notice',
 			[
-				'raw'             => __( 'Please note categories are zero indexed, so to set if you need the first category to be active, you need to set the value to 0', 'premium-addons-for-elementor' ),
+				'raw'             => __( 'Please note categories are zero indexed, so if you need the first category to be active, you need to set the value to 0', 'premium-addons-for-elementor' ),
                 'type'            => Controls_Manager::RAW_HTML,
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			]
@@ -694,7 +694,7 @@ class Premium_Grid extends Widget_Base {
                     ],
                 ],
                 'selectors'     => [
-                    '{{WRAPPER}} .premium-gallery-item' => 'padding: {{SIZE}}{{UNIT}};'
+                    '{{WRAPPER}} .premium-gallery-item' => 'padding: {{SIZE}}{{UNIT}}'
                 ]
             ]
         );
@@ -718,7 +718,7 @@ class Premium_Grid extends Widget_Base {
         
         $this->add_control('premium_grid_style_notice', 
             [
-                'raw'               => __('Style 4 works only with Even / Masonry Layout', 'premium-addons-pro'),
+                'raw'               => __('Style 4 works only with Even / Masonry Layout', 'premium-addons-for-elementor'),
                 'type'              => Controls_Manager::RAW_HTML,
                 'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
                 'condition'         => [
@@ -891,15 +891,15 @@ class Premium_Grid extends Widget_Base {
         
         $this->add_control('premium_gallery_lightbox_theme',
             [
-                'label'             => __('Lightbox Theme', 'premium-addons-pro'),
+                'label'             => __('Lightbox Theme', 'premium-addons-for-elementor'),
                 'type'              => Controls_Manager::SELECT,
                 'options'           => [
-                    'pp_default'        => __('Default', 'premium-addons-pro'),
-                    'light_rounded'     => __('Light Rounded', 'premium-addons-pro'),
-                    'dark_rounded'      => __('Dark Rounded', 'premium-addons-pro'),
-                    'light_square'      => __('Light Square', 'premium-addons-pro'),
-                    'dark_square'       => __('Dark Square', 'premium-addons-pro'),
-                    'facebook'          => __('Facebook', 'premium-addons-pro'),
+                    'pp_default'        => __('Default', 'premium-addons-for-elementor'),
+                    'light_rounded'     => __('Light Rounded', 'premium-addons-for-elementor'),
+                    'dark_rounded'      => __('Dark Rounded', 'premium-addons-for-elementor'),
+                    'light_square'      => __('Light Square', 'premium-addons-for-elementor'),
+                    'dark_square'       => __('Dark Square', 'premium-addons-for-elementor'),
+                    'facebook'          => __('Facebook', 'premium-addons-for-elementor'),
                 ],
                 'default'           => 'pp_default',
                 'condition'     => [
@@ -974,7 +974,7 @@ class Premium_Grid extends Widget_Base {
         
         $this->start_controls_section('section_pa_docs',
             [
-                'label'         => __('Helpful Documentations', 'premium-addons-pro'),
+                'label'         => __('Helpful Documentations', 'premium-addons-for-elementor'),
             ]
         );
         
@@ -2332,6 +2332,13 @@ class Premium_Grid extends Widget_Base {
         
     </div>
     
+    <?php if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
+
+        if ( 'metro' !== $settings['premium_gallery_img_size_select'] ) {
+            $this->render_editor_script();
+        }
+    } ?>
+
     <?php if( 'yes' === $settings['premium_gallery_responsive_switcher'] ) : ?>
         <style>
             @media( min-width: <?php echo $min_size; ?> ) and ( max-width:<?php echo $max_size; ?> ) {
@@ -2698,5 +2705,52 @@ class Premium_Grid extends Widget_Base {
 			]
 		);
 
+    }
+    
+    /**
+	 * Render Editor Masonry Script.
+	 *
+	 * @since 3.12.3
+	 * @access protected
+	 */
+	protected function render_editor_script() {
+
+		?><script type="text/javascript">
+			jQuery( document ).ready( function( $ ) {
+
+				$( '.premium-gallery-container' ).each( function() {
+
+                    var $node_id 	= '<?php echo $this->get_id(); ?>',
+                        scope 		= $( '[data-id="' + $node_id + '"]' ),
+                        settings    = $(this).data("settings"),
+                        selector 	= $(this);
+                    
+					if ( selector.closest( scope ).length < 1 ) {
+						return;
+					}
+					
+                    var masonryArgs = {
+                        // set itemSelector so .grid-sizer is not used in layout
+                        filter 			: settings.active_cat,
+                        itemSelector	: '.premium-gallery-item',
+                        percentPosition : true,
+                        layoutMode		: settings.img_size,
+                    };
+
+                    var $isotopeObj = {};
+
+                    selector.imagesLoaded( function() {
+
+                        $isotopeObj = selector.isotope( masonryArgs );
+
+                        selector.find('.premium-gallery-item').resize( function() {
+                            $isotopeObj.isotope( 'layout' );
+                        });
+                    });
+
+				});
+			});
+		</script>
+		<?php
 	}
 }

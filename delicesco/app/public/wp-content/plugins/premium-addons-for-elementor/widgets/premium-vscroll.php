@@ -580,7 +580,7 @@ class Premium_Vscroll extends Widget_Base {
         
         $this->add_responsive_control('dots_border_radius',
             [
-                'label'         => __('Border Radius', 'premium-addons-pro'),
+                'label'         => __('Border Radius', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::DIMENSIONS,
                 'size_units'    => ['px', 'em', '%'],
                 'selectors'     => [

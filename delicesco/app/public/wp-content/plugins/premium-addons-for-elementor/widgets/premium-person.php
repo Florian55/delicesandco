@@ -239,15 +239,15 @@ class Premium_Person extends Widget_Base {
         
         $this->add_responsive_control('persons_per_row',
             [
-                'label'             => __('Members/Row', 'premium-addons-pro'),
+                'label'             => __('Members/Row', 'premium-addons-for-elementor'),
                 'type'              => Controls_Manager::SELECT,
                 'options'           => [
-                    '100%'  => __('1 Column', 'premium-addons-pro'),
-                    '50%'   => __('2 Columns', 'premium-addons-pro'),
-                    '33.33%'=> __('3 Columns', 'premium-addons-pro'),
-                    '25%'   => __('4 Columns', 'premium-addons-pro'),
-                    '20%'   => __('5 Columns', 'premium-addons-pro'),
-                    '16.667%'=> __('6 Columns', 'premium-addons-pro'),
+                    '100%'  => __('1 Column', 'premium-addons-for-elementor'),
+                    '50%'   => __('2 Columns', 'premium-addons-for-elementor'),
+                    '33.33%'=> __('3 Columns', 'premium-addons-for-elementor'),
+                    '25%'   => __('4 Columns', 'premium-addons-for-elementor'),
+                    '20%'   => __('5 Columns', 'premium-addons-for-elementor'),
+                    '16.667%'=> __('6 Columns', 'premium-addons-for-elementor'),
                 ],
                 'default'           => '33.33%',
                 'render_type'       => 'template',
@@ -262,7 +262,7 @@ class Premium_Person extends Widget_Base {
         
         $this->add_responsive_control('spacing',
             [
-                'label'         => __('Spacing', 'premium-addons-pro'),
+                'label'         => __('Spacing', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::DIMENSIONS,
                 'size_units'    => ['px', '%', "em"],
                 'default'       => [
@@ -785,14 +785,14 @@ class Premium_Person extends Widget_Base {
         
         $this->add_control('carousel',
             [
-                'label'         => __('Carousel', 'premium-addons-pro'),
+                'label'         => __('Carousel', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SWITCHER
             ]
         );
         
         $this->add_control('carousel_play',
             [
-                'label'         => __('Auto Play', 'premium-addons-pro'),
+                'label'         => __('Auto Play', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SWITCHER,
                 'condition'     => [
                     'carousel'  => 'yes'
@@ -802,8 +802,8 @@ class Premium_Person extends Widget_Base {
         
         $this->add_control('carousel_autoplay_speed',
 			[
-				'label'			=> __( 'Autoplay Speed', 'premium-addons-pro' ),
-				'description'	=> __( 'Autoplay Speed means at which time the next slide should come. Set a value in milliseconds (ms)', 'premium-addons-pro' ),
+				'label'			=> __( 'Autoplay Speed', 'premium-addons-for-elementor' ),
+				'description'	=> __( 'Autoplay Speed means at which time the next slide should come. Set a value in milliseconds (ms)', 'premium-addons-for-elementor' ),
 				'type'			=> Controls_Manager::NUMBER,
 				'default'		=> 5000,
 				'condition'		=> [
@@ -815,7 +815,7 @@ class Premium_Person extends Widget_Base {
         
         $this->add_responsive_control('carousel_arrows_pos',
             [
-                'label'         => __('Arrows Position', 'premium-addons-pro'),
+                'label'         => __('Arrows Position', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SLIDER,
                 'size_units'    => ['px', "em"],
                 'range'         => [
@@ -1239,7 +1239,7 @@ class Premium_Person extends Widget_Base {
         
         $this->add_responsive_control('premium_person_content_padding',
             [
-                'label'         => __('Padding', 'premium-addons-pro'),
+                'label'         => __('Padding', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::DIMENSIONS,
                 'size_units'    => ['px', 'em', '%'],
                 'selectors'     => [
@@ -1252,7 +1252,7 @@ class Premium_Person extends Widget_Base {
         
         $this->start_controls_section('carousel_style',
             [
-                'label'         => __('Carousel', 'premium-addons-pro'),
+                'label'         => __('Carousel', 'premium-addons-for-elementor'),
                 'tab'           => Controls_Manager::TAB_STYLE,
                 'condition'     => [
                     'carousel'  => 'yes'
@@ -1262,7 +1262,7 @@ class Premium_Person extends Widget_Base {
         
         $this->add_control('arrow_color',
             [
-                'label'         => __('Color', 'premium-addons-pro'),
+                'label'         => __('Color', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::COLOR,
                 'scheme'        => [
                     'type'  => Scheme_Color::get_type(),
@@ -1276,7 +1276,7 @@ class Premium_Person extends Widget_Base {
         
         $this->add_control('arrow_hover_color',
             [
-                'label'         => __('Hover Color', 'premium-addons-pro'),
+                'label'         => __('Hover Color', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::COLOR,
                 'scheme'        => [
                     'type'  => Scheme_Color::get_type(),
@@ -1290,7 +1290,7 @@ class Premium_Person extends Widget_Base {
 
         $this->add_responsive_control('arrow_size',
             [
-                'label'         => __('Size', 'premium-addons-pro'),
+                'label'         => __('Size', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SLIDER,
                 'size_units'    => ['px', '%' ,'em'],
                 'selectors'     => [
@@ -1301,7 +1301,7 @@ class Premium_Person extends Widget_Base {
         
         $this->add_control('arrow_background',
             [
-                'label'         => __('Background Color', 'premium-addons-pro'),
+                'label'         => __('Background Color', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::COLOR,
                 'scheme'        => [
                     'type'  => Scheme_Color::get_type(),
@@ -1315,7 +1315,7 @@ class Premium_Person extends Widget_Base {
         
         $this->add_control('arrow_hover_background',
             [
-                'label'         => __('Background Hover Color', 'premium-addons-pro'),
+                'label'         => __('Background Hover Color', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::COLOR,
                 'scheme'        => [
                     'type'  => Scheme_Color::get_type(),
@@ -1329,7 +1329,7 @@ class Premium_Person extends Widget_Base {
         
         $this->add_control('arrow_border_radius',
             [
-                'label'         => __('Border Radius', 'premium-addons-pro'),
+                'label'         => __('Border Radius', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SLIDER,
                 'size_units'    => ['px', '%' ,'em'],
                 'selectors'     => [
@@ -1340,7 +1340,7 @@ class Premium_Person extends Widget_Base {
 
         $this->add_control('arrow_padding',
             [
-                'label'         => __('Padding', 'premium-addons-pro'),
+                'label'         => __('Padding', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SLIDER,
                 'size_units'    => ['px', '%' ,'em'],
                 'selectors'     => [

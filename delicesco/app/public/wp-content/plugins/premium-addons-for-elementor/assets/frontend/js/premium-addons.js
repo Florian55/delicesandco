@@ -1,15 +1,18 @@
 (function ($) {
+
     /****** Premium Progress Bar Handler ******/
-    var PremiumProgressBarWidgetHandler = function ($scope, $) {
-        var $progressbarContainer = $scope.find(".premium-progressbar-container"),
-            settings = $progressbarContainer.data("settings"),
+    var PremiumProgressBarWidgetHandler = function ($scope, trigger) {
+
+        var $progressbarElem = $scope.find(".premium-progressbar-container"),
+            settings = $progressbarElem.data("settings"),
             length = settings.progress_length,
             speed = settings.speed,
             type = settings.type;
 
+
         if ("line" === type) {
 
-            var $progressbar = $(".premium-progressbar-bar");
+            var $progressbar = $progressbarElem.find(".premium-progressbar-bar");
 
             if (settings.gradient)
                 $progressbar.css("background", "linear-gradient(-45deg, " + settings.gradient + ")");
@@ -18,11 +21,11 @@
                 width: length + "%"
             }, speed);
 
-        } else {
+        } else if ("circle" === type) {
             if (length > 100)
                 length = 100;
 
-            $progressbarContainer.prop({
+            $progressbarElem.prop({
                 'counter': 0
             }).animate({
                 counter: length
@@ -32,29 +35,113 @@
                 step: function (counter) {
                     var rotate = (counter * 3.6);
 
-                    $progressbarContainer.find(".premium-progressbar-right-label span").text(Math.ceil(counter) + "%");
+                    $progressbarElem.find(".premium-progressbar-right-label span").text(Math.ceil(counter) + "%");
 
-                    $progressbarContainer.find(".premium-progressbar-circle-left").css('transform', "rotate(" + rotate + "deg)");
+                    $progressbarElem.find(".premium-progressbar-circle-left").css('transform', "rotate(" + rotate + "deg)");
                     if (rotate > 180) {
 
-                        $progressbarContainer.find(".premium-progressbar-circle").css({
+                        $progressbarElem.find(".premium-progressbar-circle").css({
                             '-webkit-clip-path': 'inset(0)',
                             'clip-path': 'inset(0)',
                         });
 
-                        $progressbarContainer.find(".premium-progressbar-circle-right").css('visibility', 'visible');
+                        $progressbarElem.find(".premium-progressbar-circle-right").css('visibility', 'visible');
                     }
                 }
             });
+
+        } else {
+
+            var $progressbar = $progressbarElem.find(".premium-progressbar-bar-wrap"),
+                width = $progressbarElem.outerWidth(),
+                dotSize = settings.dot || 25,
+                dotSpacing = settings.spacing || 10,
+                numberOfCircles = Math.ceil(width / (dotSize + dotSpacing)),
+                circlesToFill = numberOfCircles * (length / 100),
+                numberOfTotalFill = Math.floor(circlesToFill),
+                fillPercent = 100 * (circlesToFill - numberOfTotalFill);
+
+            $progressbar.attr('data-circles', numberOfCircles);
+            $progressbar.attr('data-total-fill', numberOfTotalFill);
+            $progressbar.attr('data-partial-fill', fillPercent);
+
+            var className = "progress-segment";
+            for (var i = 0; i < numberOfCircles; i++) {
+                className = "progress-segment";
+                var innerHTML = '';
+
+                if (i < numberOfTotalFill) {
+                    innerHTML = "<div class='segment-inner'></div>";
+                } else if (i === numberOfTotalFill) {
+
+                    innerHTML = "<div class='segment-inner'></div>";
+                }
+
+                $progressbar.append("<div class='" + className + "'>" + innerHTML + "</div>");
+
+            }
+
+            if ("frontend" !== trigger) {
+                PremiumProgressDotsHandler($scope);
+            }
 
         }
 
     };
 
+    var PremiumProgressDotsHandler = function ($scope) {
+
+        var $progressbarElem = $scope.find(".premium-progressbar-container"),
+            settings = $progressbarElem.data("settings"),
+            $progressbar = $scope.find(".premium-progressbar-bar-wrap"),
+            data = $progressbar.data(),
+            speed = settings.speed,
+            increment = 0;
+
+        var numberOfTotalFill = data.totalFill,
+            numberOfCircles = data.circles,
+            fillPercent = data.partialFill;
+
+        dotIncrement(increment);
+
+        function dotIncrement(inc) {
+
+            var $dot = $progressbar.find(".progress-segment").eq(inc),
+                dotWidth = 100;
+
+            if (inc === numberOfTotalFill)
+                dotWidth = fillPercent
+
+            $dot.find(".segment-inner").animate({
+                width: dotWidth + '%'
+            }, speed / numberOfCircles, function () {
+                increment++;
+                if (increment <= numberOfTotalFill) {
+                    dotIncrement(increment);
+                }
+
+            });
+        }
+    };
+
     /****** Premium Progress Bar Scroll Handler *****/
     var PremiumProgressBarScrollWidgetHandler = function ($scope, $) {
+
+        var $progressbarElem = $scope.find(".premium-progressbar-container"),
+            settings = $progressbarElem.data("settings"),
+            type = settings.type;
+
+        if ("dots" === type) {
+            PremiumProgressBarWidgetHandler($scope, "frontend");
+        }
+
         elementorFrontend.waypoint($scope, function () {
-            PremiumProgressBarWidgetHandler($(this), $);
+            if ("dots" !== type) {
+                PremiumProgressBarWidgetHandler($(this));
+            } else {
+                PremiumProgressDotsHandler($(this));
+            }
+
         }, {
             offset: Waypoint.viewportHeight() - 150,
             triggerOnce: true
@@ -67,6 +154,7 @@
         var $videoBoxElement = $scope.find(".premium-video-box-container"),
             $videoContainer = $videoBoxElement.find(".premium-video-box-video-container"),
             type = $videoBoxElement.data("type"),
+            thumbnail = $videoBoxElement.data("thumbnail"),
             video, vidSrc;
 
         if ("self" === type) {
@@ -78,7 +166,7 @@
 
             vidSrc = $videoContainer.data("src");
 
-            if (-1 !== vidSrc.indexOf("autoplay=1")) {
+            if (!thumbnail || -1 !== vidSrc.indexOf("autoplay=1")) {
                 playVideo();
             } else {
                 vidSrc = vidSrc + "&autoplay=1";
@@ -145,32 +233,65 @@
             counter = minimum,
             ltrMode = settings.ltr_mode,
             shuffle = settings.shuffle;
+
         if (layout === "metro") {
-            var suffix = "";
-            if ("tablet" === deviceType) {
-                suffix = "_tablet";
-            } else if ("mobile" === deviceType) {
-                suffix = "_mobile";
-            }
+
             var gridWidth = $galleryElement.width(),
+                cellSize = Math.floor(gridWidth / 12),
+                suffix = null;
+
+            setMetroLayout();
+
+            function setMetroLayout() {
+
+                deviceType = elementorFrontend.getCurrentDeviceMode();
+                gridWidth = $galleryElement.width();
                 cellSize = Math.floor(gridWidth / 12);
-            $galleryElement.find(".premium-gallery-item").each(function (index, item) {
-                var cells = $(item).data("metro")["cells" + suffix],
-                    vCells = $(item).data("metro")["vcells" + suffix];
-                if ("" == cells || undefined == cells) {
-                    var cells = $(item).data("metro")["cells"];
+                suffix = "";
+
+                if ("tablet" === deviceType) {
+                    suffix = "_tablet";
+                } else if ("mobile" === deviceType) {
+                    suffix = "_mobile";
                 }
-                if ("" == vCells || undefined == vCells) {
-                    var vCells = $(item).data("metro")["vcells"];
-                }
-                $(item).css({
-                    width: Math.ceil(cells * cellSize),
-                    height: Math.ceil(vCells * cellSize)
+
+                $galleryElement.find(".premium-gallery-item").each(function (index, item) {
+
+                    var cells = $(item).data("metro")["cells" + suffix],
+                        vCells = $(item).data("metro")["vcells" + suffix];
+
+                    if ("" == cells || undefined == cells) {
+                        cells = $(item).data("metro")["cells"];
+                    }
+                    if ("" == vCells || undefined == vCells) {
+                        vCells = $(item).data("metro")["vcells"];
+                    }
+
+                    $(item).css({
+                        width: Math.ceil(cells * cellSize),
+                        height: Math.ceil(vCells * cellSize)
+                    });
                 });
-            });
+
+                columnWidth = cellSize;
+            }
+
             layout = "masonry";
-            columnWidth = cellSize;
+
+            $(window).resize(function () {
+
+                setMetroLayout();
+
+                $galleryElement.isotope({
+                    itemSelector: ".premium-gallery-item",
+                    masonry: {
+                        columnWidth: columnWidth
+                    },
+                });
+
+            });
         }
+
         $galleryElement.imagesLoaded(function () { }).done(function () {
             $galleryElement.isotope({
                 itemSelector: ".premium-gallery-item",
@@ -188,7 +309,9 @@
                 sortBy: settings.sort_by
             });
         });
+
         if (loadMore) {
+
             $galleryElement.parent().find(".premium-gallery-load-more div").addClass(
                 "premium-gallery-item-hidden");
             if ($galleryElement.find(".premium-gallery-item").length > minimum) {
@@ -198,6 +321,7 @@
                     "premium-gallery-item-hidden");
 
                 function appendItems(imagesToShow) {
+
                     var instance = $galleryElement.data("isotope");
                     $galleryElement.find(".premium-gallery-item-hidden").removeClass(
                         "premium-gallery-item-hidden");
@@ -214,6 +338,7 @@
                             "premium-gallery-item-hidden");
                     }
                 }
+
                 $galleryElement.parent().on("click", ".premium-gallery-load-more-btn", function () {
                     if (isFilterClicked) {
                         counter = minimum;
@@ -238,7 +363,9 @@
                 });
             }
         }
+
         if ("yes" !== settings.light_box) {
+
             $galleryElement.find(".premium-gallery-video-wrap").each(function (index, item) {
                 var type = $(item).data("type");
                 $(item).closest(".premium-gallery-item").on("click", function () {
@@ -247,6 +374,7 @@
                     $this.find(
                         "img, .pa-gallery-icons-caption-container, .pa-gallery-icons-wrapper, .premium-gallery-caption"
                     ).css("visibility", "hidden");
+
                     if ("hosted" !== type) {
                         var $iframeWrap = $this.find(".premium-gallery-iframe-wrap"),
                             src = $iframeWrap.data("src");
@@ -268,23 +396,28 @@
                     }
                 });
             });
+
         }
+
         $scope.find(".premium-gallery-cats-container li a").click(function (e) {
             e.preventDefault();
+
             isFilterClicked = true;
             //Showing all images of category
             $scope.find(".premium-gallery-cats-container li .active").removeClass("active");
             $(this).addClass("active");
+
             filter = $(this).attr("data-filter");
             $galleryElement.isotope({
                 filter: filter
             });
-            if (shuffle) {
-                $galleryElement.isotope("shuffle");
-            }
+
+            if (shuffle) $galleryElement.isotope("shuffle");
             if (loadMore) appendItems(minimum);
+
             return false;
         });
+
         if ("default" === settings.lightbox_type) {
             $scope.find(".premium-img-gallery a[data-rel^='prettyPhoto']").prettyPhoto({
                 theme: settings.theme,
@@ -303,15 +436,17 @@
 
     /****** Premium Counter Handler ******/
     var PremiumCounterHandler = function ($scope, $) {
-        var counterElement = $scope.find(".premium-counter");
-        elementorFrontend.waypoint(counterElement, function () {
-            var counterSettings = counterElement.data(),
-                incrementElement = counterElement.find(".premium-counter-init"),
-                iconElement = counterElement.find(".icon");
+        var $counterElement = $scope.find(".premium-counter");
+        elementorFrontend.waypoint($counterElement, function () {
+            var counterSettings = $counterElement.data(),
+                incrementElement = $counterElement.find(".premium-counter-init"),
+                iconElement = $counterElement.find(".icon");
             $(incrementElement).numerator(counterSettings);
             $(iconElement).addClass("animated " + iconElement.data("animation"));
         });
+
     };
+
     /****** Premium Fancy Text Handler ******/
     var PremiumFancyTextHandler = function ($scope, $) {
         var $elem = $scope.find(".premium-fancy-text-wrapper");
@@ -327,6 +462,7 @@
             settings["strings"].forEach(function (item) {
                 fancyStrings.push(escapeHtml(item));
             });
+
             $elem.find(".premium-fancy-text").typed({
                 strings: fancyStrings,
                 typeSpeed: settings["typeSpeed"],
@@ -663,17 +799,19 @@
 
     /****** Premium Modal Box Handler ******/
     var PremiumModalBoxHandler = function ($scope, $) {
-        var modalBoxElement = $scope.find(".premium-modal-box-container"),
-            modalBoxSettings = modalBoxElement.data("settings");
-        if (modalBoxElement.length > 0) {
-            if (modalBoxSettings["trigger"] === "pageload") {
-                $(document).ready(function ($) {
-                    setTimeout(function () {
-                        modalBoxElement.find(".premium-modal-box-modal").modal();
-                    }, modalBoxSettings["delay"] * 1000);
-                });
-            }
+
+        var $modalElem = $scope.find(".premium-modal-box-container"),
+            settings = $modalElem.data("settings"),
+            instance = null;
+
+        if (settings.trigger === "pageload") {
+            $(document).ready(function ($) {
+                setTimeout(function () {
+                    $modalElem.find(".premium-modal-box-modal").modal();
+                }, settings.delay * 1000);
+            });
         }
+
     };
 
     /****** Premium Blog Handler ******/
@@ -745,7 +883,7 @@
             } else {
                 prevArrow = prevArrow = "";
             }
-            console.log(spacing);
+
             $($blogElement).slick({
                 infinite: true,
                 slidesToShow: cols,
@@ -780,7 +918,8 @@
             });
         }
     };
-    /****** Premium Image Scroll ******/
+
+    /****** Premium Image Scroll Handler ******/
     var PremiumImageScrollHandler = function ($scope, $) {
         var scrollElement = $scope.find(".premium-image-scroll-container"),
             scrollOverlay = scrollElement.find(".premium-image-scroll-overlay"),
@@ -841,6 +980,7 @@
         }
     };
 
+    /****** Premium Contact Form 7 Handler ******/
     var PremiumContactFormHandler = function ($scope, $) {
 
         var $contactForm = $scope.find(".premium-cf7-container");
@@ -851,12 +991,12 @@
         $input.wrap("<span class='wpcf7-span'>");
 
         $input.on("focus blur", function () {
-            console.log($input);
             $(this).closest(".wpcf7-span").toggleClass("is-focused");
         });
     };
 
-    var PremiumPersonsHandler = function ($scope, $) {
+    /****** Premium Team Members Handler ******/
+    var PremiumTeamMembersHandler = function ($scope, $) {
         var $persons = $scope.find(".multiple-persons");
         if (!$persons.length) return;
         var carousel = $persons.data("carousel");
@@ -919,24 +1059,21 @@
 
     //Elementor JS Hooks
     $(window).on("elementor/frontend/init", function () {
-        elementorFrontend.hooks.addAction(
-            "frontend/element_ready/premium-addon-video-box.default", PremiumVideoBoxWidgetHandler);
+
+        elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-video-box.default", PremiumVideoBoxWidgetHandler);
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-img-gallery.default", PremiumGridWidgetHandler);
-        elementorFrontend.hooks.addAction(
-            "frontend/element_ready/premium-addon-fancy-text.default", PremiumFancyTextHandler
-        );
+        elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-fancy-text.default", PremiumFancyTextHandler);
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-counter.default", PremiumCounterHandler);
-        elementorFrontend.hooks.addAction(
-            "frontend/element_ready/premium-countdown-timer.default", PremiumCountDownHandler);
-        elementorFrontend.hooks.addAction(
-            "frontend/element_ready/premium-carousel-widget.default", PremiumCarouselHandler);
+        elementorFrontend.hooks.addAction("frontend/element_ready/premium-countdown-timer.default", PremiumCountDownHandler);
+        elementorFrontend.hooks.addAction("frontend/element_ready/premium-carousel-widget.default", PremiumCarouselHandler);
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-banner.default", PremiumBannerHandler);
-        elementorFrontend.hooks.addAction(
-            "frontend/element_ready/premium-addon-modal-box.default", PremiumModalBoxHandler);
+        elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-modal-box.default", PremiumModalBoxHandler);
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-blog.default", PremiumBlogHandler);
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-image-scroll.default", PremiumImageScrollHandler);
         elementorFrontend.hooks.addAction("frontend/element_ready/premium-contact-form.default", PremiumContactFormHandler);
-        elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-person.default", PremiumPersonsHandler);
+        elementorFrontend.hooks.addAction("frontend/element_ready/premium-addon-person.default", PremiumTeamMembersHandler);
+
+
         if (elementorFrontend.isEditMode()) {
             elementorFrontend.hooks.addAction(
                 "frontend/element_ready/premium-addon-progressbar.default", PremiumProgressBarWidgetHandler);

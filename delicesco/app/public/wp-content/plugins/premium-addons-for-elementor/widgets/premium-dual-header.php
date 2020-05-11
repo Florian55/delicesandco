@@ -203,7 +203,7 @@ class Premium_Dual_Header extends Widget_Base {
 
         $this->add_responsive_control('rotate',
             [
-                'label'         => __('Degrees', 'premium-addons-pro'),
+                'label'         => __('Degrees', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::NUMBER,
                 'min'           => -180,
                 'max'           => 180,
@@ -215,20 +215,20 @@ class Premium_Dual_Header extends Widget_Base {
 
         $this->add_responsive_control('transform_origin_x',
             [
-                'label' => __( 'X Anchor Point', 'premium-addons-pro' ),
+                'label' => __( 'X Anchor Point', 'premium-addons-for-elementor' ),
                 'type' => Controls_Manager::CHOOSE,
                 'default' => 'center',
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'premium-addons-pro' ),
+                        'title' => __( 'Left', 'premium-addons-for-elementor' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'premium-addons-pro' ),
+                        'title' => __( 'Center', 'premium-addons-for-elementor' ),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'premium-addons-pro' ),
+                        'title' => __( 'Right', 'premium-addons-for-elementor' ),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -243,20 +243,20 @@ class Premium_Dual_Header extends Widget_Base {
 
         $this->add_responsive_control('transform_origin_y',
             [
-                'label' => __( 'Y Anchor Point', 'premium-addons-pro' ),
+                'label' => __( 'Y Anchor Point', 'premium-addons-for-elementor' ),
                 'type' => Controls_Manager::CHOOSE,
                 'default' => 'center',
                 'options' => [
                     'top' => [
-                        'title' => __( 'Top', 'premium-addons-pro' ),
+                        'title' => __( 'Top', 'premium-addons-for-elementor' ),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'premium-addons-pro' ),
+                        'title' => __( 'Center', 'premium-addons-for-elementor' ),
                         'icon' => 'eicon-v-align-middle',
                     ],
                     'bottom' => [
-                        'title' => __( 'Bottom', 'premium-addons-pro' ),
+                        'title' => __( 'Bottom', 'premium-addons-for-elementor' ),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                 ],

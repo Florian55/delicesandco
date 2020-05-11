@@ -3,9 +3,9 @@ Contributors: Leap13, Rimoun
 Tags: Elementor, Elementor Page Builder, Elements, Elementor Addons, Add-ons, Page Builder, Widgets, Elementor Widgets
 Donate Link: https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme
 Requires at Least: 4.5
-Tested Up To: 5.4
+Tested Up To: 5.4.1
 Requires PHP: 5.4
-Stable Tag: 3.12.2
+Stable Tag: 3.20.0
 License: GPL v3.0
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -16,6 +16,9 @@ Elementor Widgets and Addons like Vertical Scroll, Grid, Carousel, Google Maps, 
 Supercharge your Elementor Page Builder with 50+ highly customizable widgets and add-ons that will give you the ability to build sophisticated websites in less time with no coding required. Both Elementor and Premium Addons plugins take your WordPress website to the next level.
 
 [**Check Elementor Widgets & Addons Demo Pages**](https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme)
+
+#### New: Elementor Lottie Animations Integration
+You can now use Lottie Animations in ALL our Elementor widgets. Whatever widget that have an image or icon option now have also the option to add a Lottie animation. Lottie animations are open source, lightweight and available for free, Use them now to make your Elementor pages more eye-catching.
 
 #### NEW: Elementor Templates
 NEW: Ever-growing [Elementor Section Templates Library](https://premiumaddons.com/premium-templates-for-elementor/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme) Available on both Premium Addons Free and PRO versions. Browse, preview, and insert the template you like in your page/post with just ONE click.
@@ -174,6 +177,29 @@ Premium Addons for Elementor is 100% Ads Free, Ads can only be detected from You
 14. Premium Progress Bar Widget for Elementor
 
 == Changelog ==
+
+= 3.20.0 =
+
+- New: Introducing Lottie Animations Integration for all the widgets including icon options.
+- Tweak: Added Circle and Dots layouts in Progress Bar widget.
+- Tweak: Added Icon Spacing icon option in Title widget.
+- Tweak: Added Custom Image icon option in Title widget.
+- Tweak: Added Icon Position option in Title widget.
+- Tweak: Added Icon/Text Color option to control feature list items colors separately in Pricing Table widget.
+- Tweak: Added Separator Align option in Testimonials widget.
+- Tweak: Added Text Shadow options for person/company name in Testimonials widget.
+- Tweak: Added Hover CSS Filters in Image Separator widget.
+- Tweak: Modal Box widget improved for faster editing experience.
+- Fixed: Images not re-align on window resize in Media Grid widget.
+
+= 3.12.3 =
+
+- Tweak: Added `Size` option for Markers in Google Maps widget.
+- Tweak: Posts comments number compatibility with Disqus plugin.
+- Fixed: Progress Bar widget value applied on all bars on the page.
+- Fixed: Media Grid widget masonry layout issues on the editor on Chrome.
+- Fixed: Blog post content duplicate issue when Full Content option is selected.
+- Fixed: Blog masonry layout issues on the editor on Chrome.
 
 = 3.12.2 =
 

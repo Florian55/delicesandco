@@ -9,6 +9,7 @@
 namespace PremiumAddons\Widgets;
 
 use PremiumAddons\Helper_Functions;
+use PremiumAddons\Includes;
 use Elementor\Widget_Base;
 use Elementor\Utils;
 use Elementor\Icons_Manager;
@@ -24,6 +25,12 @@ use Elementor\Group_Control_Background;
 if ( ! defined( 'ABSPATH' ) ) exit; // If this file is called directly, abort.
 
 class Premium_Title extends Widget_Base {
+
+    protected $templateInstance;
+
+    public function getTemplateInstance(){
+        return $this->templateInstance = Includes\premium_Template_Tags::getInstance();
+    }
     
     public function get_name() {
         return 'premium-addon-title';
@@ -462,6 +469,61 @@ class Premium_Title extends Widget_Base {
                 ]
             ]
         );
+
+        $this->add_control('link_switcher',
+            [
+                'label'         => __('Link', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::SWITCHER,
+            ]
+        );
+        
+        $this->add_control('link_selection', 
+            [
+                'label'         => __('Link Type', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::SELECT,
+                'options'       => [
+                    'url'   => __('URL', 'premium-addons-for-elementor'),
+                    'link'  => __('Existing Page', 'premium-addons-for-elementor'),
+                ],
+                'default'       => 'url',
+                'label_block'   => true,
+                'condition'     => [
+                    'link_switcher'     => 'yes',
+                ]
+            ]
+        );
+        
+        $this->add_control('custom_link',
+            [
+                'label'         => __('Link', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::URL,
+                'dynamic'       => [ 'active' => true ],
+                'default'       => [
+                    'url'   => '#',
+                ],
+                'placeholder'   => 'https://premiumaddons.com/',
+                'label_block'   => true,
+                'separator'     => 'after',
+                'condition'     => [
+                    'link_switcher'     => 'yes',
+                    'link_selection'   => 'url'
+                ]
+            ]
+        );
+        
+        $this->add_control('existing_link',
+            [
+                'label'         => __('Existing Page', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::SELECT2,
+                'options'       => $this->getTemplateInstance()->get_all_post(),
+                'condition'     => [
+                    'link_switcher'         => 'yes',
+                    'link_selection'       => 'link',
+                ],
+                'multiple'      => false,
+                'label_block'   => true,
+            ]
+        );
         
         $this->end_controls_section();
 
@@ -664,7 +726,7 @@ class Premium_Title extends Widget_Base {
         
         $this->add_control('premium_title_icon_color', 
             [
-                'label'         => __('Icon Color', 'premium-addons-for-elementor'),
+                'label'         => __('Color', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::COLOR,
                 'scheme' => [
                     'type'  => Scheme_Color::get_type(),
@@ -682,7 +744,7 @@ class Premium_Title extends Widget_Base {
         
         $this->add_responsive_control('premium_title_icon_size', 
             [
-                'label'         => __('Icon Size', 'premium-addons-for-elementor'),
+                'label'         => __('Size', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SLIDER,
                 'size_units'    => ['px', 'em', '%'],
                 'range' => [
@@ -824,6 +886,32 @@ class Premium_Title extends Widget_Base {
                 ]);
             }
         }
+
+        if( $settings['link_switcher'] === 'yes' ) {
+
+            $link = '';
+
+            if( $settings['link_selection'] === 'link' ) {
+
+                $link = get_permalink( $settings['existing_link'] );
+
+            } else {
+
+                $link = $settings['custom_link']['url'];
+
+            }
+
+            $this->add_render_attribute( 'link', 'href', $link );
+
+            if( ! empty( $settings['custom_link']['is_external'] ) ) {
+                $this->add_render_attribute( 'link', 'target', "_blank" );
+            }
+
+            if( ! empty( $settings['custom_link']['nofollow'] ) ) {
+                $this->add_render_attribute( 'link', 'rel',  "nofollow" );
+            }
+        }
+
     ?>
 
     <div <?php echo $this->get_render_attribute_string('container'); ?>>
@@ -864,6 +952,9 @@ class Premium_Title extends Widget_Base {
             </span>
             <?php if ( $selected_style === 'style7' ) : ?>
                 </div>
+            <?php endif; ?>
+            <?php if( $settings['link_switcher'] === 'yes' && !empty( $link ) ) : ?>
+                <a <?php echo $this->get_render_attribute_string( 'link' ); ?>></a>
             <?php endif; ?>
         </<?php echo $title_tag; ?>>
     </div>
@@ -921,6 +1012,24 @@ class Premium_Title extends Widget_Base {
                 }
                 
             }
+
+            if( 'yes' === settings.link_switcher ) {
+
+                var link = '';
+
+                if( settings.link_selection === 'link' ) {
+
+                    link = settings.existing_link;
+
+                } else {
+
+                    link = settings.custom_link.url;
+
+                }
+
+                view.addRenderAttribute( 'link', 'href', link );
+
+            }
         
         #>
         <div {{{ view.getRenderAttributeString('premium_title_container') }}}>
@@ -956,6 +1065,9 @@ class Premium_Title extends Widget_Base {
                 <span {{{ view.getRenderAttributeString('premium_title_text') }}}>{{{ titleText }}}</span>
                 <# if( 'style7' === selectedStyle ) { #>
                     </div>
+                <# } #>
+                <# if( 'yes' === settings.link_switcher && '' !== link ) { #>
+                    <a {{{ view.getRenderAttributeString('link') }}}></a>
                 <# } #>
             </{{{titleTag}}}>
         </div>

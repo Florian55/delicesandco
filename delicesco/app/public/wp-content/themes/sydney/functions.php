@@ -465,6 +465,13 @@ require get_template_directory() . '/inc/onboarding/theme-info.php';
 require get_template_directory() . '/inc/woocommerce.php';
 
 /**
+ * WPML
+ */
+if ( class_exists( 'SitePress' ) ) {
+	require get_template_directory() . '/inc/wpml/class-sydney-wpml.php';
+}
+
+/**
  * Upsell
  */
 require get_template_directory() . '/inc/upsell/class-customize.php';

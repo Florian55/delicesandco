@@ -14746,11 +14746,6 @@
 
             self.transform = function (action, percents, data) {
 
-                var stopFrame = lottieInstance.totalFrames;
-                var currframe = ((percents) / 100) * (stopFrame);
-
-                lottieInstance.goToAndStop(currframe, true);
-
                 if ('down' === data.direction) {
                     percents = 100 - percents;
                 }
@@ -14977,6 +14972,7 @@
 
                         if ("yes" === layer.premium_lottie_parallax)
                             effects.push("translateY");
+
 
                         if (layer.animate_on_scroll) {
                             animItem.pause();

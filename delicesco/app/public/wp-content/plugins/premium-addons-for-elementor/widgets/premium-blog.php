@@ -485,7 +485,7 @@ class Premium_Blog extends Widget_Base {
 					],
 				],
                 'selectors'     => [
-					'{{WRAPPER}} .premium-blog-post-outer-container' => 'padding-right: calc( {{SIZE}}{{UNIT}}/2 ); padding-left: calc( {{SIZE}}{{UNIT}}/2 );',
+					'{{WRAPPER}} .premium-blog-post-outer-container' => 'padding-right: calc( {{SIZE}}{{UNIT}}/2 ); padding-left: calc( {{SIZE}}{{UNIT}}/2 )',
 					'{{WRAPPER}} .premium-blog-wrap' => 'margin-left: calc( -{{SIZE}}{{UNIT}}/2 ); margin-right: calc( -{{SIZE}}{{UNIT}}/2 );',
 				],
                 'condition'     => [
@@ -820,7 +820,10 @@ class Premium_Blog extends Widget_Base {
 				'label' 		=> __( 'Slides\' Spacing', 'premium-addons-for-elementor' ),
                 'description'   => __('Set a spacing value in pixels (px)', 'premium-addons-for-elementor'),
 				'type'			=> Controls_Manager::NUMBER,
-				'default'		=> '15'
+                'default'		=> '15',
+                'condition'     => [
+                    'premium_blog_carousel' => 'yes',
+                ]
 			]
 		);
         
@@ -1034,7 +1037,7 @@ class Premium_Blog extends Widget_Base {
 			Group_Control_Css_Filter::get_type(),
 			[
 				'name'      => 'hover_css_filters',
-                'label'     => __('Hover CSS Filter', 'premium-addons-for-elementor'),
+                'label'     => __('Hover CSS Filters', 'premium-addons-for-elementor'),
 				'selector'  => '{{WRAPPER}} .premium-blog-post-container:hover .premium-blog-thumbnail-container img'
 			]
 		);
@@ -2224,32 +2227,64 @@ class Premium_Blog extends Widget_Base {
     protected function get_post_meta( $link_target ) {
         
         $settings = $this->get_settings();
+
+        $author_meta = $settings['premium_blog_author_meta'];
         
-        $date_format = get_option('date_format');
+        $data_meta = $settings['premium_blog_date_meta'];
+
+        $categories_meta = $settings['premium_blog_categories_meta'];
+
+        $comments_meta = $settings['premium_blog_comments_meta'];
+
+        if( 'yes' === $data_meta ) {
+            $date_format = get_option('date_format');
+        }
+        
+        if( 'yes' === $comments_meta ) {
+
+            $comments_strings = [
+                'no-comments'           => __( 'No Comments', 'premium-addons-for-elementor' ),
+				'one-comment'           => __( '1 Comment', 'premium-addons-for-elementor' ),
+				'multiple-comments'     => __( '% Comments', 'premium-addons-for-elementor' ),
+            ];
+
+        }
+
+        
         
     ?>
         
         <div class="premium-blog-entry-meta" style="<?php if( $settings['premium_blog_post_format_icon'] !== 'yes' ) : echo 'margin-left:0px'; endif; ?>">
-            <?php if( $settings['premium_blog_author_meta'] === 'yes' ) : ?>
+        
+            <?php if( $author_meta === 'yes' ) : ?>
                 <span class="premium-blog-post-author premium-blog-meta-data">
-                    <i class="fa fa-user fa-fw"></i><?php the_author_posts_link();?>
+                    <i class="fa fa-user fa-fw"></i><?php the_author_posts_link(); ?>
                 </span>
             <?php endif; ?>
-            <?php if( $settings['premium_blog_date_meta'] === 'yes' ) : ?>
+
+            <?php if( $data_meta === 'yes' ) : ?>
                 <span class="premium-blog-meta-separator">|</span>
                 <span class="premium-blog-post-time premium-blog-meta-data">
                     <i class="fa fa-calendar fa-fw"></i>
                     <span><?php the_time( $date_format ); ?></span>
                 </span>
             <?php endif; ?>
-            <?php if( $settings['premium_blog_categories_meta'] === 'yes' ) : ?>
+
+            <?php if( $categories_meta === 'yes' ) : ?>
                 <span class="premium-blog-meta-separator">|</span>
-                <span class="premium-blog-post-categories premium-blog-meta-data"><i class="fa fa-align-left fa-fw"></i><?php the_category(', '); ?></span>
+                <span class="premium-blog-post-categories premium-blog-meta-data">
+                    <i class="fa fa-align-left fa-fw"></i>
+                    <?php the_category(', '); ?>
+                </span>
             <?php endif; ?>
-            <?php if( $settings['premium_blog_comments_meta'] === 'yes' ) : ?>
+
+            <?php if( $comments_meta === 'yes' ) : ?>
                 <span class="premium-blog-meta-separator">|</span>
-                <span class="premium-blog-post-comments premium-blog-meta-data"><i class="fa fa-comments-o fa-fw"></i>
-                    <span><?php comments_number('No Comments', '1', '%'); ?></span>
+                <span class="premium-blog-post-comments premium-blog-meta-data">
+                    <i class="fa fa-comments-o fa-fw"></i>
+                    <span>
+                        <?php comments_popup_link( $comments_strings['no-comments'], $comments_strings['one-comment'], $comments_strings['multiple-comments'] ); ?>
+                    </span>
                 </span>
             <?php endif; ?>
         </div>
@@ -2323,15 +2358,17 @@ class Premium_Blog extends Widget_Base {
         <?php
     }
 
+    /**
+	 * Render Blog output on the frontend.
+	 *
+	 * Written in PHP and used to generate the final HTML.
+	 *
+	 * @since 0.0.1
+	 * @access protected
+	 */
     protected function render() {
         
-        if ( get_query_var('paged') ) { 
-            $paged = get_query_var('paged');
-        } elseif ( get_query_var('page') ) {
-            $paged = get_query_var('page');             
-        } else {
-            $paged = 1;
-        }
+        $paged = max( 1, get_query_var( 'paged' ), get_query_var( 'page' ) );
         
         $settings = $this->get_settings();
 
@@ -2389,29 +2426,23 @@ class Premium_Blog extends Widget_Base {
 
             $columns_mobile = intval ( 100 / substr( $settings['premium_blog_columns_number_mobile'], 0, strpos( $settings['premium_blog_columns_number_mobile'], '%') ) );
 
-            $this->add_render_attribute('blog', 'data-carousel', $carousel );
-            
-            $this->add_render_attribute('blog', 'data-grid', $grid );
-            
-            $this->add_render_attribute('blog', 'data-fade', $fade );
+            $carousel_settings = [
+                'data-carousel' => $carousel,
+                'data-grid' => $grid,
+                'data-fade' => $fade,
+                'data-play' => $play,
+                'data-center' => $center_mode,
+                'data-slides-spacing' => $spacing,
+                'data-speed' => $speed,
+                'data-col' => $columns,
+                'data-col-tablet' => $columns_tablet,
+                'data-col-mobile' => $columns_mobile,
+                'data-arrows' => $arrows,
+                'data-dots' => $dots
+            ];
 
-            $this->add_render_attribute('blog', 'data-play', $play );
-
-            $this->add_render_attribute('blog', 'data-center', $center_mode );
-
-            $this->add_render_attribute('blog', 'data-slides-spacing', $spacing );
-
-            $this->add_render_attribute('blog', 'data-speed', $speed );
-
-            $this->add_render_attribute('blog', 'data-col', $columns );
-
-            $this->add_render_attribute('blog', 'data-col-tablet', $columns_tablet );
-
-            $this->add_render_attribute('blog', 'data-col-mobile', $columns_mobile );
-            
-            $this->add_render_attribute('blog', 'data-arrows', $arrows );
-            
-            $this->add_render_attribute('blog', 'data-dots', $dots );
+            $this->add_render_attribute('blog', $carousel_settings );
+        
             
         }
         
@@ -2452,7 +2483,7 @@ class Premium_Blog extends Widget_Base {
                     array(
                         'base'      => str_replace( $big, '%#%',get_pagenum_link( 999999999, false ) ),
                         'format'    => '?paged=%#%',
-                        'current'   => max( 1, $paged ),
+                        'current'   => $paged,
                         'total'     => $page_tot,
                         'prev_next' => 'yes' === $settings['pagination_strings'] ? true : false,
                         'prev_text' => sprintf( "&lsaquo; %s", $settings['premium_blog_prev_text'] ),
@@ -2465,7 +2496,60 @@ class Premium_Blog extends Widget_Base {
             ?>
         </div>
     <?php endif;
-        wp_reset_postdata();   
+            wp_reset_postdata();
+            
+            if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
+
+                if ( 'masonry' === $settings['premium_blog_layout'] && 'yes' !== $settings['premium_blog_carousel'] ) {
+                    $this->render_editor_script();
+                }
+            }
+
         }
     }
+
+    /**
+	 * Render Editor Masonry Script.
+	 *
+	 * @since 3.12.3
+	 * @access protected
+	 */
+	protected function render_editor_script() {
+
+		?><script type="text/javascript">
+			jQuery( document ).ready( function( $ ) {
+
+				$( '.premium-blog-wrap' ).each( function() {
+
+                    var $node_id 	= '<?php echo $this->get_id(); ?>',
+                        scope 		= $( '[data-id="' + $node_id + '"]' ),
+                        selector 	= $(this);
+                    
+					if ( selector.closest( scope ).length < 1 ) {
+						return;
+					}
+					
+                    var masonryArgs = {
+                        itemSelector	: '.premium-blog-post-outer-container',
+                        percentPosition : true,
+                        layoutMode		: 'masonry',
+                    };
+
+                    var $isotopeObj = {};
+
+                    selector.imagesLoaded( function() {
+
+                        $isotopeObj = selector.isotope( masonryArgs );
+
+                        selector.find('.premium-blog-post-outer-container').resize( function() {
+                            $isotopeObj.isotope( 'layout' );
+                        });
+                    });
+
+				});
+			});
+		</script>
+		<?php
+    }
+    
 }

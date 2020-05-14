@@ -160,6 +160,32 @@ class Premium_Maps extends Widget_Base {
                 );
          
         $repeater = new REPEATER();
+
+        $repeater->add_control('pin_icon',
+            [
+                'label'         => __('Custom Icon', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::MEDIA,
+                'dynamic'       => [ 'active' => true ],
+            ]
+        );
+
+        $repeater->add_control('pin_icon_size',
+			[
+				'label' => __( 'Size', 'premium-addons-for-elementor' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units'    => ['px', 'em'],
+				'range' => [
+					'px' => [
+		                'min' => 1,
+		                'max' => 200,
+                    ],
+                    'em' => [
+		                'min' => 1,
+		                'max' => 20,
+		            ]
+				]
+			]
+		);
         
         $repeater->add_control('premium_map_pin_location_finder',
             [
@@ -219,14 +245,6 @@ class Premium_Maps extends Widget_Base {
             ]
         );
         
-        $repeater->add_control('pin_icon',
-            [
-                'label'         => __('Custom Icon', 'premium-addons-for-elementor'),
-                'type'          => Controls_Manager::MEDIA,
-                'dynamic'       => [ 'active' => true ],
-            ]
-        );
-
         $this->add_control('premium_maps_map_pins',
             [
                 'label'         => __('Map Pins', 'premium-addons-for-elementor'),
@@ -388,7 +406,7 @@ class Premium_Maps extends Widget_Base {
         
         $this->start_controls_section('section_pa_docs',
             [
-                'label'         => __('Helpful Documentations', 'premium-addons-pro'),
+                'label'         => __('Helpful Documentations', 'premium-addons-for-elementor'),
             ]
         );
         
@@ -721,9 +739,21 @@ class Premium_Maps extends Widget_Base {
         <?php if( count( $map_pins ) ) { ?>
 	        <div class="premium_maps_map_height" data-settings='<?php echo wp_json_encode( $map_settings ); ?>' <?php echo $this->get_render_attribute_string('style_wrapper'); ?>>
 			<?php
-        	foreach( $map_pins as $pin ) {
+        	foreach( $map_pins as $index => $pin ) {
+                
+                $key = 'map_marker_' . $index;
+
+                $this->add_render_attribute( $key, [
+                    'class' => 'premium-pin',
+                    'data-lng' => $pin['map_longitude'],
+                    'data-lat'  => $pin['map_latitude'],
+                    'data-icon' => $pin['pin_icon']['url'],
+                    'data-icon-size' => $pin['pin_icon_size']['size'],
+                    'data-max-width' => $marker_width
+                ]);
+
 				?>
-		        <div class="premium-pin" data-lng="<?php echo $pin['map_longitude']; ?>" data-lat="<?php echo $pin['map_latitude']; ?>" data-icon="<?php echo $pin['pin_icon']['url']; ?>" data-max-width="<?php echo $marker_width; ?>">
+		        <div <?php echo $this->get_render_attribute_string( $key ); ?>>
                     <?php if( ! empty( $pin['pin_title'] )|| !empty( $pin['pin_desc'] ) ) : ?>
                         <div class='premium-maps-info-container'><p class='premium-maps-info-title'><?php echo $pin['pin_title']; ?></p><div class='premium-maps-info-desc'><?php echo $pin['pin_desc']; ?></div></div>
                     <?php endif; ?>

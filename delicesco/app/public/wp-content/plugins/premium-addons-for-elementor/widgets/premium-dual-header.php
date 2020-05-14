@@ -16,6 +16,7 @@ use Elementor\Group_Control_Background;
 if ( ! defined( 'ABSPATH' ) ) exit; // If this file is called directly, abort.
 
 class Premium_Dual_Header extends Widget_Base {
+    
     protected $templateInstance;
 
     public function getTemplateInstance(){
@@ -203,7 +204,7 @@ class Premium_Dual_Header extends Widget_Base {
 
         $this->add_responsive_control('rotate',
             [
-                'label'         => __('Degrees', 'premium-addons-pro'),
+                'label'         => __('Degrees', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::NUMBER,
                 'min'           => -180,
                 'max'           => 180,
@@ -215,20 +216,20 @@ class Premium_Dual_Header extends Widget_Base {
 
         $this->add_responsive_control('transform_origin_x',
             [
-                'label' => __( 'X Anchor Point', 'premium-addons-pro' ),
+                'label' => __( 'X Anchor Point', 'premium-addons-for-elementor' ),
                 'type' => Controls_Manager::CHOOSE,
                 'default' => 'center',
                 'options' => [
                     'left' => [
-                        'title' => __( 'Left', 'premium-addons-pro' ),
+                        'title' => __( 'Left', 'premium-addons-for-elementor' ),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'premium-addons-pro' ),
+                        'title' => __( 'Center', 'premium-addons-for-elementor' ),
                         'icon' => 'eicon-h-align-center',
                     ],
                     'right' => [
-                        'title' => __( 'Right', 'premium-addons-pro' ),
+                        'title' => __( 'Right', 'premium-addons-for-elementor' ),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -243,20 +244,20 @@ class Premium_Dual_Header extends Widget_Base {
 
         $this->add_responsive_control('transform_origin_y',
             [
-                'label' => __( 'Y Anchor Point', 'premium-addons-pro' ),
+                'label' => __( 'Y Anchor Point', 'premium-addons-for-elementor' ),
                 'type' => Controls_Manager::CHOOSE,
                 'default' => 'center',
                 'options' => [
                     'top' => [
-                        'title' => __( 'Top', 'premium-addons-pro' ),
+                        'title' => __( 'Top', 'premium-addons-for-elementor' ),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'center' => [
-                        'title' => __( 'Center', 'premium-addons-pro' ),
+                        'title' => __( 'Center', 'premium-addons-for-elementor' ),
                         'icon' => 'eicon-v-align-middle',
                     ],
                     'bottom' => [
-                        'title' => __( 'Bottom', 'premium-addons-pro' ),
+                        'title' => __( 'Bottom', 'premium-addons-for-elementor' ),
                         'icon' => 'eicon-v-align-bottom',
                     ],
                 ],
@@ -707,11 +708,19 @@ class Premium_Dual_Header extends Widget_Base {
         $full_title = '<' . $first_title_tag . ' class="premium-dual-header-first-header ' . $first_clip . $first_stroke . $first_grad . '"><span class="premium-dual-header-first-span">'. $first_title_text . '</span><span class="premium-dual-header-second-header ' . $second_clip . $second_stroke . $second_grad . '">'. $second_title_text . '</span></' . $settings['premium_dual_header_first_header_tag'] . '> ';
         
         $link = '';
-        if( $settings['premium_dual_header_link_switcher'] == 'yes' && $settings['premium_dual_heading_link_selection'] == 'link' ) {
-            $link = get_permalink( $settings['premium_dual_heading_existing_link'] );
-        } elseif( $settings['premium_dual_header_link_switcher'] == 'yes' && $settings['premium_dual_heading_link_selection'] == 'url' ) {
-            $link = $settings['premium_dual_heading_link']['url'];
+        if( $settings['premium_dual_header_link_switcher'] === 'yes' ) {
+
+            if( $settings['premium_dual_heading_link_selection'] === 'link' ) {
+
+                $link = get_permalink( $settings['premium_dual_heading_existing_link'] );
+
+            } else {
+
+                $link = $settings['premium_dual_heading_link']['url'];
+
+            }
         }
+        
         
     ?>
     
@@ -772,16 +781,25 @@ class Premium_Dual_Header extends Widget_Base {
                 view.addRenderAttribute('first_title', 'class', ['premium-dual-header-first-header', firstClip, firstGrad, firstStroke ] );
                 view.addRenderAttribute('second_title', 'class', ['premium-dual-header-second-header', secondClip, secondGrad, secondStroke ] );
         
-            if( 'yes' == settings.premium_dual_header_link_switcher && 'link' == settings.premium_dual_heading_link_selection ) {
-                var link = settings.premium_dual_heading_existing_link;
-            } else if( 'yes' == settings.premium_dual_header_link_switcher && 'url' == settings.premium_dual_heading_link_selection ){
-                var link = settings.premium_dual_heading_link.url;
+            var link = '';
+            if( 'yes' === settings.premium_dual_header_link_switcher ) {
+
+                if( 'link' === settings.premium_dual_heading_link_selection ) {
+
+                    link = settings.premium_dual_heading_existing_link;
+
+                } else {
+
+                    link = settings.premium_dual_heading_link.url;
+
+                }
             }
+            
         
         #>
         
         <div class="premium-dual-header-container">
-            <# if( 'yes' == settings.premium_dual_header_link_switcher && ( '' != settings.premium_dual_heading_link.url || '' != settings.premium_dual_heading_existing_link ) ) { #>
+            <# if( 'yes' === settings.premium_dual_header_link_switcher && '' !== link ) { #>
                 <a href="{{ link }}">
             <# } #>
             <div class="premium-dual-header-first-container">
@@ -790,7 +808,7 @@ class Premium_Dual_Header extends Widget_Base {
                 </{{{firstTag}}}>
                 
             </div>
-            <# if( 'yes' == settings.premium_dual_header_link_switcher && ( '' != settings.premium_dual_heading_link.url || '' != settings.premium_dual_heading_existing_link ) ) { #>
+            <# if( 'yes' == settings.premium_dual_header_link_switcher && '' !== link ) { #>
                 </a>
             <# } #>
         </div>

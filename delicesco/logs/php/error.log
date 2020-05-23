@@ -692,3 +692,33 @@ Stack trace:
 [23-May-2020 12:59:44 UTC] Astra: Queuing 2.4.4 - astra_gtn_full_wide_image_group_css
 [23-May-2020 12:59:45 UTC] Astra: db version updated successfully!
 [23-May-2020 12:59:45 UTC] Astra: Batch Process Completed!
+[23-May-2020 13:13:38 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 16781312 bytes) in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php on line 3890
+[23-May-2020 13:13:38 UTC] PHP Stack trace:
+[23-May-2020 13:13:38 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:0
+[23-May-2020 13:13:38 UTC] PHP   2. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:175
+[23-May-2020 13:13:38 UTC] PHP   3. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[23-May-2020 13:13:38 UTC] PHP   4. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:311
+[23-May-2020 13:13:38 UTC] PHP   5. Elementor\Core\Common\Modules\Ajax\Module->handle_ajax_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:287
+[23-May-2020 13:13:38 UTC] PHP   6. Elementor\Core\Common\Modules\Ajax\Module->send_success() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:185
+[23-May-2020 13:13:38 UTC] PHP   7. wp_json_encode() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:258
+[23-May-2020 13:13:38 UTC] PHP   8. json_encode() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php:3890
+[23-May-2020 13:24:25 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 12587008 bytes) in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php on line 3890
+[23-May-2020 13:24:25 UTC] PHP Stack trace:
+[23-May-2020 13:24:25 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:0
+[23-May-2020 13:24:25 UTC] PHP   2. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:175
+[23-May-2020 13:24:25 UTC] PHP   3. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[23-May-2020 13:24:25 UTC] PHP   4. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:311
+[23-May-2020 13:24:25 UTC] PHP   5. Elementor\Core\Common\Modules\Ajax\Module->handle_ajax_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:287
+[23-May-2020 13:24:25 UTC] PHP   6. Elementor\Core\Common\Modules\Ajax\Module->send_success() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:185
+[23-May-2020 13:24:25 UTC] PHP   7. wp_json_encode() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:258
+[23-May-2020 13:24:25 UTC] PHP   8. json_encode() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php:3890
+[23-May-2020 13:25:54 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 12587008 bytes) in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php on line 3890
+[23-May-2020 13:25:54 UTC] PHP Stack trace:
+[23-May-2020 13:25:54 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:0
+[23-May-2020 13:25:54 UTC] PHP   2. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:175
+[23-May-2020 13:25:54 UTC] PHP   3. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[23-May-2020 13:25:54 UTC] PHP   4. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:311
+[23-May-2020 13:25:54 UTC] PHP   5. Elementor\Core\Common\Modules\Ajax\Module->handle_ajax_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:287
+[23-May-2020 13:25:54 UTC] PHP   6. Elementor\Core\Common\Modules\Ajax\Module->send_success() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:185
+[23-May-2020 13:25:54 UTC] PHP   7. wp_json_encode() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:258
+[23-May-2020 13:25:54 UTC] PHP   8. json_encode() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php:3890

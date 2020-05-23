@@ -96,17 +96,17 @@ class Admin_Notices {
      */
     public function handle_lottie_notice() {
         
-        if ( ! isset( $_GET['lottie'] ) ) {
+        if ( ! isset( $_GET['lottie_widget'] ) ) {
             return;
         }
 
-        if ( 'opt_out' === $_GET['lottie'] ) {
+        if ( 'opt_out' === $_GET['lottie_widget'] ) {
             check_admin_referer( 'opt_out' );
 
-            update_option( 'lottie_notice', '1' );
+            update_option( 'lottie_widget_notice', '1' );
         }
 
-        wp_redirect( remove_query_arg( 'lottie' ) );
+        wp_redirect( remove_query_arg( 'lottie_widget' ) );
         exit;
     }
     
@@ -219,20 +219,20 @@ class Admin_Notices {
      */
     public function get_lottie_notice() {
         
-        $lottie_notice = get_option( 'lottie_notice' );
+        $lottie_notice = get_option( 'lottie_widget_notice' );
         
         if( '1' === $lottie_notice )
             return;
         
         $theme = Helper_Functions::get_installed_theme();
     
-        $notice_url = sprintf( 'https://premiumaddons.com/elementor-lottie-animations-section-addon/?utm_source=lottie-notification&utm_medium=wp-dash&utm_campaign=get-pro&utm_term=%s', $theme );
+        $notice_url = sprintf( 'https://premiumaddons.com/elementor-lottie-animations-widget/?utm_source=lottie-notification&utm_medium=wp-dash&utm_campaign=get-pro&utm_term=%s', $theme );
     
         $templates_message = '<div class="pa-text-wrap">';
 
         $templates_message .= '<img class="pa-notice-logo" src="' . PREMIUM_ADDONS_URL .'admin/images/premium-addons-logo.png' . '">';
 
-        $templates_message .= '<strong>' . __('Premium Addons','premium-addons-for-elementor') . '&nbsp</strong><span>' . __('is now fully compatible with Lottie Animations.', 'premium-addons-for-elementor') . '&nbsp</span><a href="' . esc_url( $notice_url ) . '" target="_blank">' . __('Check it out now', 'premium-addons-for-elementor') . '</a>';
+        $templates_message .= '<strong>' . __('Premium Lottie Animations','premium-addons-for-elementor') . '&nbsp</strong><span>' . __('widget is now available.', 'premium-addons-for-elementor') . '&nbsp</span><a href="' . esc_url( $notice_url ) . '" target="_blank">' . __('Check it out now', 'premium-addons-for-elementor') . '</a>';
 
         $templates_message .= '<div class="pa-notice-close" data-notice="lottie"><span class="dashicons dashicons-dismiss"></span></div>';
 
@@ -332,7 +332,7 @@ class Admin_Notices {
         
         if ( ! empty( $key ) ) {
             
-            update_option( 'lottie_notice', '1' );
+            update_option( 'lottie_widget_notice', '1' );
             
             wp_send_json_success();
             

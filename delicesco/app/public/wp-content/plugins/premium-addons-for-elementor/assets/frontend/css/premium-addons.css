@@ -1,7 +1,7 @@
 @font-face {
   font-family: "pa-elements";
-  src: url("../../editor/fonts/pa-elements.eot?6nhz6k");
-  src: url("../../editor/fonts/pa-elements.eot?6nhz6k#iefix") format("embedded-opentype"), url("../../editor/fonts/pa-elements.ttf?6nhz6k") format("truetype"), url("../../editor/fonts/pa-elements.woff?6nhz6k") format("woff"), url("../../editor/fonts/pa-elements.svg?6nhz6k#pa-elements") format("svg");
+  src: url("../../editor/fonts/pa-elements.eot?p2y7wv");
+  src: url("../../editor/fonts/pa-elements.eot?p2y7wv#iefix") format("embedded-opentype"), url("../../editor/fonts/pa-elements.ttf?p2y7wv") format("truetype"), url("../../editor/fonts/pa-elements.woff?p2y7wv") format("woff"), url("../../editor/fonts/pa-elements.svg?p2y7wv#pa-elements") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -2191,7 +2191,8 @@ button.premium-modal-box-modal-close {
   -webkit-transition: all 0.4s linear 0s;
   transition: all 0.4s linear 0s;
   height: 1px;
-  width: 100%; }
+  width: 100%;
+  background-color: #fff; }
 
 .premium-blog-post-container:not(.premium-blog-skin-classic) .premium-blog-thumbnail-container:before {
   width: 1px;
@@ -2488,7 +2489,8 @@ button.premium-modal-box-modal-close {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out; }
 
-.premium-blog-entry-title {
+.premium-blog-post-container .premium-blog-entry-title {
+  font-size: 18px;
   margin-bottom: 0px; }
 
 .premium-blog-entry-meta {
@@ -2624,12 +2626,6 @@ button.premium-modal-box-modal-close {
   .premium-blog-wrap.premium-blog-col-3 .premium-blog-format-container,
   .premium-blog-wrap.premium-blog-col-4 .premium-blog-format-container {
     display: none; }
-  .premium-blog-wrap.premium-blog-col-3 .premium-blog-entry-title,
-  .premium-blog-wrap.premium-blog-col-4 .premium-blog-entry-title {
-    line-height: 1; }
-  .premium-blog-wrap.premium-blog-col-3 .premium-blog-entry-title a,
-  .premium-blog-wrap.premium-blog-col-4 .premium-blog-entry-title a {
-    font-size: 20px; }
   .premium-blog-wrap ul.slick-dots {
     width: 100%; }
 
@@ -2637,10 +2633,6 @@ button.premium-modal-box-modal-close {
 /* * Even Layout */
 .premium-blog-even .premium-blog-post-container {
   height: 100%; }
-
-@media (max-width: 1025px) {
-  .premium-blog-entry-title a {
-    font-size: 18px; } }
 
 @media (max-width: 768px) {
   .premium-blog-content-wrapper {
@@ -2651,10 +2643,6 @@ button.premium-modal-box-modal-close {
     margin-bottom: 15px; }
   .premium-blog-format-container {
     display: none; }
-  .premium-blog-entry-title {
-    line-height: 1; }
-    .premium-blog-entry-title a {
-      font-size: 16px; }
   .premium-blog-entry-meta,
   .premium-blog-post-content,
   .premium-blog-post-tags-container {
@@ -4641,6 +4629,7 @@ ul.premium-person-social-list {
   position: absolute;
   top: auto;
   right: 0;
+  bottom: -1px;
   left: 0;
   width: 100%;
   -webkit-transition: all 500ms ease 0s;
@@ -4649,6 +4638,12 @@ ul.premium-person-social-list {
   -ms-transform: translate3d(0, 100%, 0);
   transform: translate3d(0, 100%, 0); }
 
+.pa-gallery-img.style1:hover .premium-gallery-caption {
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  bottom: -1px !important; }
+
 .pa-gallery-img.default .premium-gallery-caption {
   position: absolute;
   top: auto;
@@ -4656,12 +4651,6 @@ ul.premium-person-social-list {
   left: 0;
   width: 100%;
   bottom: 0; }
-
-.pa-gallery-img.style1:hover .premium-gallery-caption {
-  -webkit-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  bottom: -1px !important; }
 
 .pa-gallery-img.style2 .pa-gallery-icons-caption-container {
   position: absolute;
@@ -5139,10 +5128,10 @@ ul.premium-person-social-list {
   animation-timing-function: ease-in-out; }
 
 .pa-horizontal-mouse-scroll:before {
-  content: "\e917"; }
+  content: "\e918"; }
 
 .pa-vertical-mouse-scroll:before {
-  content: "\e918"; }
+  content: "\e919"; }
 
 .pa-horizontal-mouse-scroll {
   -webkit-animation-name: pa-scroll-horizontal;
@@ -5191,3 +5180,22 @@ ul.premium-person-social-list {
     -webkit-transform: translateX(5px);
     -ms-transform: translateX(5px);
     transform: translateX(5px); } }
+
+/********* Premium Lottie Animations **********/
+/**********************************************/
+.premium-lottie-wrap .premium-lottie-animation {
+  position: relative;
+  -js-display: inline-flex;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
+  .premium-lottie-wrap .premium-lottie-animation a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; }

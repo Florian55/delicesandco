@@ -96,7 +96,7 @@ class Premium_Grid extends Widget_Base {
         
         $this->add_responsive_control('pemium_gallery_even_img_height',
 			[ 
- 				'label'             => __( 'Minimum Height', 'premium-addons-for-elementor' ),
+ 				'label'             => __( 'Height', 'premium-addons-for-elementor' ),
 				'label_block'       => true,
                 'size_units'        => ['px', 'em', 'vh'],
 				'type'              => Controls_Manager::SLIDER,
@@ -115,7 +115,7 @@ class Premium_Grid extends Widget_Base {
                     'premium_gallery_img_size_select'   => 'fitRows'
                 ],
                 'selectors'         => [
-                    '{{WRAPPER}} .premium-gallery-item .pa-gallery-image' => 'min-height: {{SIZE}}{{UNIT}}'
+                    '{{WRAPPER}} .premium-gallery-item .pa-gallery-image' => 'height: {{SIZE}}{{UNIT}}'
                 ]
 			]
 		);
@@ -141,11 +141,8 @@ class Premium_Grid extends Widget_Base {
         $this->add_group_control(
 			Group_Control_Image_Size::get_type(),
 			[
-				'name'             => 'thumbnail', // Actually its `image_size`.
+				'name'             => 'thumbnail',
 				'default'          => 'full',
-                'condition'        => [
-                    'premium_gallery_img_size_select'   => 'fitRows'
-                ]
 			]
 		);
         
@@ -2371,23 +2368,16 @@ class Premium_Grid extends Widget_Base {
         $alt        = Control_Media::get_image_alt( $item['premium_gallery_img'] );
         
         $key        = 'image_' . $index;
-        
-        if ( ! $is_video ) {
-            if ( $settings['premium_gallery_img_size_select'] == 'fitRows' ) {
-                $image_src = $item['premium_gallery_img'];
-                $image_src_size = Group_Control_Image_Size::get_attachment_image_src($image_src['id'], 'thumbnail', $settings);
 
-                $image_src = empty( $image_src_size ) ? $image_src['url'] : $image_src_size;
-                
-            } else {
-                $image_src = $item['premium_gallery_img']['url'];
-            }
-        } else {
-            
-            $image_src  = $item['premium_gallery_img']['url'];
+        $image_src = $item['premium_gallery_img'];
+        $image_src_size = Group_Control_Image_Size::get_attachment_image_src($image_src['id'], 'thumbnail', $settings);
+
+        $image_src = empty( $image_src_size ) ? $image_src['url'] : $image_src_size;
+        
+        if( $is_video ) {
             
             $type       = $item['premium_gallery_video_type'];
-            
+        
             if( 'hosted' !==  $type ) {
                 $embed_params   = $this->get_embed_params( $item );
                 $link           = Embed::get_embed_url( $item['premium_gallery_video_url'], $embed_params );
@@ -2406,7 +2396,7 @@ class Premium_Grid extends Widget_Base {
             } else {
                 $video_params = $this->get_hosted_params( $item );
             }
-            
+
         }
         
         $this->add_render_attribute( $key, [

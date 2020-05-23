@@ -1682,8 +1682,8 @@ class Premium_Modalbox extends Widget_Base
             </div>
         </div>
         <style>
-            <?php if (!empty($settings['premium_modal_box_modal_size']['size'])) :
-                echo '@media (min-width:992px) {'; ?>#premium-modal-<?php echo  $this->get_id(); ?>.premium-modal-box-modal-dialog {
+            <?php if ( ! empty( $settings['premium_modal_box_modal_size']['size'] ) ) :
+                echo '@media (min-width: 992px) {'; ?>#premium-modal-<?php echo  $this->get_id(); ?> .premium-modal-box-modal-dialog {
                 width: <?php echo $settings['premium_modal_box_modal_size']['size'] . $settings['premium_modal_box_modal_size']['unit']; ?>
             }
             <?php echo '}';

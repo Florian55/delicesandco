@@ -928,7 +928,7 @@ class Premium_Button extends Widget_Base {
     }
    
     /**
-	 * Render Grid output on the frontend.
+	 * Render Button output on the frontend.
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
@@ -943,7 +943,7 @@ class Premium_Button extends Widget_Base {
         
         $button_text = $settings['premium_button_text'];
         
-        if( $settings['premium_button_link_selection'] == 'url' ){
+        if( $settings['premium_button_link_selection'] === 'url' ){
             $button_url = $settings['premium_button_link']['url'];
         } else {
             $button_url = get_permalink( $settings['premium_button_existing_link'] );

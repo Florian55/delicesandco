@@ -760,3 +760,19 @@ Stack trace:
 [29-Jul-2020 13:30:41 UTC] Astra: Queuing 2.5.0 - astra_gtn_full_wide_group_cover_css
 [29-Jul-2020 13:30:43 UTC] Astra: db version updated successfully!
 [29-Jul-2020 13:30:43 UTC] Astra: Batch Process Completed!
+[29-Jul-2020 13:45:06 UTC] Astra: Batch Process Started!
+[29-Jul-2020 13:45:06 UTC] Astra: Queuing 2.4.4 - astra_gtn_full_wide_image_group_css
+[29-Jul-2020 13:45:06 UTC] Astra: Queuing 2.5.0 - astra_global_button_woo_css
+[29-Jul-2020 13:45:06 UTC] Astra: Queuing 2.5.0 - astra_gtn_full_wide_group_cover_css
+[29-Jul-2020 13:45:10 UTC] Astra: db version updated successfully!
+[29-Jul-2020 13:45:10 UTC] Astra: Batch Process Completed!
+[29-Jul-2020 13:50:47 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8392704 bytes) in C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php on line 3890
+[29-Jul-2020 13:50:47 UTC] PHP Stack trace:
+[29-Jul-2020 13:50:47 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:0
+[29-Jul-2020 13:50:47 UTC] PHP   2. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:175
+[29-Jul-2020 13:50:47 UTC] PHP   3. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[29-Jul-2020 13:50:47 UTC] PHP   4. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:311
+[29-Jul-2020 13:50:47 UTC] PHP   5. Elementor\Core\Common\Modules\Ajax\Module->handle_ajax_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:287
+[29-Jul-2020 13:50:47 UTC] PHP   6. Elementor\Core\Common\Modules\Ajax\Module->send_success() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:185
+[29-Jul-2020 13:50:47 UTC] PHP   7. wp_json_encode() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:258
+[29-Jul-2020 13:50:47 UTC] PHP   8. json_encode() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php:3890

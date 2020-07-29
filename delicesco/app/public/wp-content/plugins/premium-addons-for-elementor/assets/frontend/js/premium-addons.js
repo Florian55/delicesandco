@@ -370,10 +370,12 @@
                 var type = $(item).data("type");
                 $(item).closest(".premium-gallery-item").on("click", function () {
                     var $this = $(this);
-                    $this.find(".pa-gallery-img").css("background", "#000");
-                    $this.find(
-                        "img, .pa-gallery-icons-caption-container, .pa-gallery-icons-wrapper, .premium-gallery-caption"
-                    ).css("visibility", "hidden");
+                    $this.find(".pa-gallery-img-container").css("background", "#000");
+
+                    $this.find("img, .pa-gallery-icons-caption-container, .pa-gallery-icons-wrapper").css("visibility", "hidden");
+
+                    if ("style3" !== settings.skin)
+                        $this.find(".premium-gallery-caption").css("visibility", "hidden");
 
                     if ("hosted" !== type) {
                         var $iframeWrap = $this.find(".premium-gallery-iframe-wrap"),
@@ -403,6 +405,7 @@
             e.preventDefault();
 
             isFilterClicked = true;
+
             //Showing all images of category
             $scope.find(".premium-gallery-cats-container li .active").removeClass("active");
             $(this).addClass("active");
@@ -413,12 +416,14 @@
             });
 
             if (shuffle) $galleryElement.isotope("shuffle");
+
             if (loadMore) appendItems(minimum);
 
             return false;
         });
 
         if ("default" === settings.lightbox_type) {
+
             $scope.find(".premium-img-gallery a[data-rel^='prettyPhoto']").prettyPhoto({
                 theme: settings.theme,
                 hook: "data-rel",
@@ -431,24 +436,32 @@
                 default_height: 506,
                 social_tools: ""
             });
+
         }
     };
 
     /****** Premium Counter Handler ******/
     var PremiumCounterHandler = function ($scope, $) {
+
         var $counterElement = $scope.find(".premium-counter");
+
         elementorFrontend.waypoint($counterElement, function () {
+
             var counterSettings = $counterElement.data(),
                 incrementElement = $counterElement.find(".premium-counter-init"),
                 iconElement = $counterElement.find(".icon");
+
             $(incrementElement).numerator(counterSettings);
+
             $(iconElement).addClass("animated " + iconElement.data("animation"));
+
         });
 
     };
 
     /****** Premium Fancy Text Handler ******/
     var PremiumFancyTextHandler = function ($scope, $) {
+
         var $elem = $scope.find(".premium-fancy-text-wrapper");
         var settings = $elem.data("settings");
 
@@ -457,60 +470,86 @@
                 /"/g, "&quot;").replace(/'/g, "&#039;");
         }
 
-        if (settings["effect"] === "typing") {
+        if (settings.effect === "typing") {
+
             var fancyStrings = [];
-            settings["strings"].forEach(function (item) {
+            settings.strings.forEach(function (item) {
                 fancyStrings.push(escapeHtml(item));
             });
 
             $elem.find(".premium-fancy-text").typed({
                 strings: fancyStrings,
-                typeSpeed: settings["typeSpeed"],
-                backSpeed: settings["backSpeed"],
-                startDelay: settings["startDelay"],
-                backDelay: settings["backDelay"],
-                showCursor: settings["showCursor"],
-                cursorChar: settings["cursorChar"],
-                loop: settings["loop"]
+                typeSpeed: settings.typeSpeed,
+                backSpeed: settings.backSpeed,
+                startDelay: settings.startDelay,
+                backDelay: settings.backDelay,
+                showCursor: settings.showCursor,
+                cursorChar: settings.cursorChar,
+                loop: settings.loop
             });
-        } else if (settings["effect"] === "slide") {
+
+        } else if (settings.effect === "slide") {
 
             $elem.find(".premium-fancy-text").vTicker({
-                speed: settings["speed"],
-                showItems: settings["showItems"],
-                pause: settings["pause"],
-                mousePause: settings["mousePause"],
+                speed: settings.speed,
+                showItems: settings.showItems,
+                pause: settings.pause,
+                mousePause: settings.mousePause,
                 direction: "up"
             });
+
         } else {
+
             setFancyAnimation();
 
             function setFancyAnimation() {
-                var effect = settings.effect,
-                    $item = $elem.find(".premium-fancy-list-items"),
-                    current = 0;
-                var delay = (settings.delay || 2.5) * 1000;
-                if ("bar" === effect) $elem.find(".premium-fancy-text-items-wrapper").addClass(
-                    "active");
-                setInterval(function () {
-                    //                    $elem.find( ".premium-fancy-text-items-wrapper" ).css("width", $item.eq( current ).outerWidth() );
-                    if ("bar" === effect) $elem.find(".premium-fancy-text-items-wrapper")
-                        .addClass("active");
-                    $item.eq(current).addClass("premium-fancy-item-visible").removeClass(
-                        "premium-fancy-item-hidden");
+
+                var $item = $elem.find(".premium-fancy-list-items"),
+                    current = 1;
+
+                //Get effect settings
+                var delay = (settings.delay || 2.5) * 1000,
+                    loopCount = settings.count;
+
+                //If Loop Count option is set
+                if (loopCount) {
+                    var currentLoop = 1,
+                        fancyStringsCount = $elem.find(".premium-fancy-list-items").length;
+                }
+
+                var loopInterval = setInterval(function () {
+
+                    var animationClass = "";
+
+                    //Add animation class
+                    if (settings.effect === "custom")
+                        animationClass = "animated " + settings.animation;
+
+                    //Show current active item
+                    $item.eq(current).addClass("premium-fancy-item-visible " + animationClass).removeClass("premium-fancy-item-hidden");
+
                     var $inactiveItems = $item.filter(function (index) {
                         return index !== current;
                     });
-                    $inactiveItems.addClass("premium-fancy-item-hidden").removeClass(
-                        "premium-fancy-item-visible");
+
+                    //Hide inactive items
+                    $inactiveItems.addClass("premium-fancy-item-hidden").removeClass("premium-fancy-item-visible " + animationClass);
+
                     current++;
-                    if ($item.length === current) current = 0;
-                    if ("bar" === effect) {
-                        setTimeout(function () {
-                            $elem.find(".premium-fancy-text-items-wrapper")
-                                .removeClass("active");
-                        }, delay - 100);
+
+                    //Restart loop
+                    if ($item.length === current)
+                        current = 0;
+
+                    //Increment interval and check if loop count is reached
+                    if (loopCount) {
+                        currentLoop++;
+
+                        if ((fancyStringsCount * loopCount) === currentLoop)
+                            clearInterval(loopInterval);
                     }
+
+
                 }, delay);
             }
         }
@@ -518,7 +557,9 @@
 
     /****** Premium Countdown Handler ******/
     var PremiumCountDownHandler = function ($scope, $) {
+
         var countDownElement = $scope.find(".premium-countdown").each(function () {
+
             var countDownSettings = $(this).data("settings");
             var label1 = countDownSettings["label1"],
                 label2 = countDownSettings["label2"],
@@ -553,6 +594,7 @@
                     }
                 });
             }
+
             times = $(this).find(".premium-countdown-init").pre_countdown("getTimes");
 
             function runTimer(el) {
@@ -577,27 +619,34 @@
 
     /****** Premium Carousel Handler ******/
     var PremiumCarouselHandler = function ($scope, $) {
-        var carouselElement = $scope.find(".premium-carousel-wrapper"),
-            carouselSettings = $(carouselElement).data("settings"),
+        var $carouselElem = $scope.find(".premium-carousel-wrapper"),
+            settings = $($carouselElem).data("settings"),
             isEdit = elementorFrontend.isEditMode();
 
         function slideToShow(slick) {
+
             var slidesToShow = slick.options.slidesToShow,
                 windowWidth = $(window).width();
-            if (windowWidth > carouselSettings["tabletBreak"]) {
-                slidesToShow = carouselSettings["slidesDesk"];
+            if (windowWidth > settings.tabletBreak) {
+                slidesToShow = settings.slidesDesk;
             }
-            if (windowWidth <= carouselSettings["tabletBreak"]) {
-                slidesToShow = carouselSettings["slidesTab"];
+            if (windowWidth <= settings.tabletBreak) {
+                slidesToShow = settings.slidesTab;
             }
-            if (windowWidth <= carouselSettings["mobileBreak"]) {
-                slidesToShow = carouselSettings["slidesMob"];
+            if (windowWidth <= settings.mobileBreak) {
+                slidesToShow = settings.slidesMob;
             }
             return slidesToShow;
+
         }
+
+        //Get templates content on the editor page
         if (isEdit) {
-            carouselElement.find(".item-wrapper").each(function (index, slide) {
+
+            $carouselElem.find(".item-wrapper").each(function (index, slide) {
+
                 var templateID = $(slide).data("template");
+
                 if (undefined !== templateID) {
                     $.ajax({
                         type: "GET",
@@ -608,136 +657,182 @@
                             templateID: templateID
                         }
                     }).success(function (response) {
+
                         var data = JSON.parse(response).data;
+
                         if (undefined !== data.template_content) {
+
                             $(slide).html(data.template_content);
-                            carouselElement.find(".premium-carousel-inner").slick(
-                                "refresh");
+                            $carouselElem.find(".premium-carousel-inner").slick("refresh");
+
                         }
                     });
                 }
             });
+
         }
-        carouselElement.on("init", function (event) {
+
+        $carouselElem.on("init", function (event) {
+
             event.preventDefault();
-            //            restartAnimations();
+
+            setTimeout(function () {
+                resetAnimations("init");
+            }, 500);
+
             $(this).find("item-wrapper.slick-active").each(function () {
                 var $this = $(this);
                 $this.addClass($this.data("animation"));
             });
+
             $(".slick-track").addClass("translate");
+
         });
-        carouselElement.find(".premium-carousel-inner").slick({
-            vertical: carouselSettings["vertical"],
-            slidesToScroll: carouselSettings["slidesToScroll"],
-            slidesToShow: carouselSettings["slidesToShow"],
+
+        $carouselElem.find(".premium-carousel-inner").slick({
+            vertical: settings.vertical,
+            slidesToScroll: settings.slidesToScroll,
+            slidesToShow: settings.slidesToShow,
             responsive: [{
-                breakpoint: carouselSettings["tabletBreak"],
+                breakpoint: settings.tabletBreak,
                 settings: {
-                    slidesToShow: carouselSettings["slidesTab"],
-                    slidesToScroll: carouselSettings["slidesTab"]
+                    slidesToShow: settings.slidesTab,
+                    slidesToScroll: settings.slidesTab
                 }
             },
             {
-                breakpoint: carouselSettings["mobileBreak"],
+                breakpoint: settings.mobileBreak,
                 settings: {
-                    slidesToShow: carouselSettings["slidesMob"],
-                    slidesToScroll: carouselSettings["slidesMob"]
+                    slidesToShow: settings.slidesMob,
+                    slidesToScroll: settings.slidesMob
                 }
             }
             ],
             useTransform: true,
-            fade: carouselSettings["fade"],
-            infinite: carouselSettings["infinite"],
-            speed: carouselSettings["speed"],
-            autoplay: carouselSettings["autoplay"],
-            autoplaySpeed: carouselSettings["autoplaySpeed"],
-            draggable: carouselSettings["draggable"],
-            touchMove: carouselSettings["touchMove"],
-            rtl: carouselSettings["rtl"],
-            adaptiveHeight: carouselSettings["adaptiveHeight"],
-            pauseOnHover: carouselSettings["pauseOnHover"],
-            centerMode: carouselSettings["centerMode"],
-            centerPadding: carouselSettings["centerPadding"],
-            arrows: carouselSettings["arrows"],
-            nextArrow: carouselSettings["nextArrow"],
-            prevArrow: carouselSettings["prevArrow"],
-            dots: carouselSettings["dots"],
+            fade: settings.fade,
+            infinite: settings.infinite,
+            speed: settings.speed,
+            autoplay: settings.autoplay,
+            autoplaySpeed: settings.autoplaySpeed,
+            draggable: settings.draggable,
+            touchMove: settings.touchMove,
+            rtl: settings.rtl,
+            adaptiveHeight: settings.adaptiveHeight,
+            pauseOnHover: settings.pauseOnHover,
+            centerMode: settings.centerMode,
+            centerPadding: settings.centerPadding,
+            arrows: settings.arrows,
+            nextArrow: settings.nextArrow,
+            prevArrow: settings.prevArrow,
+            dots: settings.dots,
             customPaging: function () {
-                return ('<i class="' + carouselSettings["customPaging"] + '"></i>');
+                return ('<i class="' + settings.customPaging + '" ></i > ');
             }
         });
 
-        function restartAnimations() {
-            var $slides = carouselElement.find(".premium-carousel-template");
+        function resetAnimations(event) {
+
+            var $slides = $carouselElem.find(".premium-carousel-template");
+
+            if ("init" === event)
+                $slides = $slides.not(".slick-current");
+
             $slides.find(".animated").each(function (index, elem) {
+
                 var settings = $(elem).data("settings");
-                if (!settings) return;
-                if (!settings._animation && !settings.animation) return;
+
+                if (!settings)
+                    return;
+
+                if (!settings._animation && !settings.animation)
+                    return;
+
                 var animation = settings._animation || settings.animation;
+
                 $(elem).removeClass("animated " + animation).addClass("elementor-invisible");
             });
         };
 
         function triggerAnimation() {
-            carouselElement.find(".slick-active .elementor-invisible").each(function (index, elem) {
+
+            $carouselElem.find(".slick-active .elementor-invisible").each(function (index, elem) {
+
                 var settings = $(elem).data("settings");
-                if (!settings) return;
-                if (!settings._animation && !settings.animation) return;
+
+                if (!settings)
+                    return;
+
+                if (!settings._animation && !settings.animation)
+                    return;
+
                 var delay = settings._animation_delay ? settings._animation_delay : 0,
                     animation = settings._animation || settings.animation;
+
                 setTimeout(function () {
                     $(elem).removeClass("elementor-invisible").addClass(animation +
                         ' animated');
                 }, delay);
             });
         }
-        carouselElement.on("afterChange", function (event, slick, currentSlide) {
+
+        $carouselElem.on("afterChange", function (event, slick, currentSlide) {
+
             var slidesScrolled = slick.options.slidesToScroll,
                 slidesToShow = slideToShow(slick),
                 centerMode = slick.options.centerMode,
                 slideToAnimate = currentSlide + slidesToShow - 1;
-            restartAnimations();
+
+            //Reset Aniamtions for the other slides
+            resetAnimations();
+
+            //Trigger Aniamtions for the current slide
             triggerAnimation();
+
             if (slidesScrolled === 1) {
                 if (!centerMode === true) {
                     var $inViewPort = $(this).find("[data-slick-index='" + slideToAnimate +
                         "']");
-                    if ("null" != carouselSettings["animation"]) {
+                    if ("null" != settings.animation) {
                         $inViewPort.find("p, h1, h2, h3, h4, h5, h6, span, a, img, i, button")
-                            .addClass(carouselSettings["animation"]).removeClass(
+                            .addClass(settings.animation).removeClass(
                                 "premium-carousel-content-hidden");
                     }
                 }
             } else {
                 for (var i = slidesScrolled + currentSlide; i >= 0; i--) {
                     $inViewPort = $(this).find("[data-slick-index='" + i + "']");
-                    if ("null" != carouselSettings["animation"]) {
+                    if ("null" != settings.animation) {
                         $inViewPort.find("p, h1, h2, h3, h4, h5, h6, span, a, img, i, button")
-                            .addClass(carouselSettings["animation"]).removeClass(
+                            .addClass(settings.animation).removeClass(
                                 "premium-carousel-content-hidden");
                     }
                 }
             }
         });
-        carouselElement.on("beforeChange", function (event, slick, currentSlide) {
+
+        $carouselElem.on("beforeChange", function (event, slick, currentSlide) {
+
             var $inViewPort = $(this).find("[data-slick-index='" + currentSlide + "']");
-            if ("null" != carouselSettings["animation"]) {
+
+            if ("null" != settings.animation) {
                 $inViewPort.siblings().find(
                     "p, h1, h2, h3, h4, h5, h6, span, a, img, i, button").removeClass(
-                        carouselSettings["animation"]).addClass(
+                        settings.animation).addClass(
                             "premium-carousel-content-hidden");
             }
         });
-        if (carouselSettings["vertical"]) {
+
+        if (settings.vertical) {
+
             var maxHeight = -1;
+
             elementorFrontend.elements.$window.on('load', function () {
-                carouselElement.find(".slick-slide").each(function () {
+                $carouselElem.find(".slick-slide").each(function () {
                     if ($(this).height() > maxHeight) {
                         maxHeight = $(this).height();
                     }
                 });
-                carouselElement.find(".slick-slide").each(function () {
+                $carouselElem.find(".slick-slide").each(function () {
                     if ($(this).height() < maxHeight) {
                         $(this).css("margin", Math.ceil(
                             (maxHeight - $(this).height()) / 2) + "px 0");
@@ -816,6 +911,7 @@
 
     /****** Premium Blog Handler ******/
     var PremiumBlogHandler = function ($scope, $) {
+
         var $blogElement = $scope.find(".premium-blog-wrap"),
             $blogPost = $blogElement.find(".premium-blog-post-outer-container"),
             carousel = $blogElement.data("carousel"),
@@ -847,6 +943,7 @@
         });
 
         if ("masonry" === layout && !carousel) {
+
             $blogElement.imagesLoaded(function () {
                 $blogElement.isotope({
                     itemSelector: ".premium-blog-post-outer-container",
@@ -861,6 +958,7 @@
         }
 
         if (carousel && grid) {
+
             var autoPlay = $blogElement.data("play"),
                 speed = $blogElement.data("speed"),
                 fade = $blogElement.data("fade"),
@@ -916,6 +1014,30 @@
                     return '<i class="fas fa-circle"></i>';
                 }
             });
+        }
+
+        //Force posts inner boxes to take the same height
+        if ("even" === layout) {
+
+            var equalHeight = $blogElement.data("equal");
+
+            if (equalHeight) {
+
+                var heights = new Array();
+
+                $blogElement.find(".premium-blog-content-wrapper").each(function (index, post) {
+
+                    var height = $(post).outerHeight();
+
+                    heights.push(height);
+
+                });
+
+                var maxHeight = Math.max.apply(null, heights);
+
+                $blogElement.find(".premium-blog-content-wrapper").css("height", maxHeight + "px");
+            }
+
         }
     };
 
@@ -1014,14 +1136,14 @@
                 slidesToShow: colsNumber,
                 slidesToScroll: colsNumber,
                 responsive: [{
-                    breakpoint: 769,
+                    breakpoint: 1025,
                     settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1
                     }
                 },
                 {
-                    breakpoint: 481,
+                    breakpoint: 768,
                     settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1

@@ -1,8 +1,11 @@
 <?php 
 
+/**
+ * Premium Counter.
+ */
 namespace PremiumAddons\Widgets;
 
-use PremiumAddons\Helper_Functions;
+// Elementor Classes.
 use Elementor\Widget_Base;
 use Elementor\Utils;
 use Elementor\Icons_Manager;
@@ -14,8 +17,14 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Text_Shadow;
 
+// PremiumAddons Classes.
+use PremiumAddons\Helper_Functions;
+
 if( ! defined( 'ABSPATH' ) ) exit; // No access of directly access
 
+/**
+ * Class Premium_Counter
+ */
 class Premium_Counter extends Widget_Base {
 
 	public function get_name() {
@@ -53,8 +62,12 @@ class Premium_Counter extends Widget_Base {
 		return 'https://premiumaddons.com/support/';
 	}
 
-    // Adding the controls fields for the premium counter
-	// This will controls the animation, colors and background, dimensions etc
+    /**
+	 * Register Counter controls.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
 	protected function _register_controls() {
 		$this->start_controls_section('premium_counter_global_settings',
 			[
@@ -130,6 +143,33 @@ class Premium_Counter extends Widget_Base {
 				'description'	=> __( 'How long should it take to complete the digit?', 'premium-addons-for-elementor' ),
 				'default'		=> 3
 			]
+		);
+
+		$this->add_responsive_control('counter_align',
+            [
+                'label'         => __( 'Alignment', 'premium-addons-for-elementor' ),
+                'type'          => Controls_Manager::CHOOSE,
+                'options'       => [
+                    'flex-start'      => [
+                        'title'=> __( 'Left', 'premium-addons-for-elementor' ),
+                        'icon' => 'fa fa-align-left',
+                    ],
+                    'center'    => [
+                        'title'=> __( 'Center', 'premium-addons-for-elementor' ),
+                        'icon' => 'fa fa-align-center',
+                    ],
+                    'flex-end'     => [
+                        'title'=> __( 'Right', 'premium-addons-for-elementor' ),
+                        'icon' => 'fa fa-align-right',
+                    ],
+                ],
+                'default'       => 'center',
+                'toggle'        => false,
+                'selectors'     => [
+					'{{WRAPPER}} .premium-counter:not(.top)' => 'justify-content: {{VALUE}}',
+					'{{WRAPPER}} .premium-counter.top' => 'align-items: {{VALUE}}'
+                ]
+            ]
 		);
         
         $this->end_controls_section();
@@ -832,6 +872,14 @@ class Premium_Counter extends Widget_Base {
     <?php
     }
 
+	/**
+	 * Render Counter widget output on the frontend.
+	 *
+	 * Written in PHP and used to generate the final HTML.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
 	protected function render() {
         
 		$settings = $this->get_settings_for_display();
@@ -866,8 +914,16 @@ class Premium_Counter extends Widget_Base {
 
 		<?php
 	}
-    
-    protected function _content_template() {
+	
+	/**
+	 * Render Counter widget output in the editor.
+	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
+    protected function content_template() {
         ?>
         <#
             

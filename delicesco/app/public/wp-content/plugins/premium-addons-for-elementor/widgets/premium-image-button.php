@@ -1,15 +1,11 @@
 <?php
 
 /**
- * Class: Premium_Image_Button
- * Name: Image Button
- * Slug: premium-addon-image-button
+ * Premium Image Button.
  */
-
 namespace PremiumAddons\Widgets;
 
-use PremiumAddons\Helper_Functions;
-use PremiumAddons\Includes;
+// Elementor Classes.
 use Elementor\Icons_Manager;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -21,8 +17,15 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Background;
 
+// PremiumAddons Classes.
+use PremiumAddons\Helper_Functions;
+use PremiumAddons\Includes;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // If this file is called directly, abort.
 
+/**
+ * Class Premium_Image_Button
+ */
 class Premium_Image_Button extends Widget_Base {
 
     public function get_name() {
@@ -61,8 +64,12 @@ class Premium_Image_Button extends Widget_Base {
 		return 'https://premiumaddons.com/support/';
 	}
 
-    // Adding the controls fields for the premium image button
-    // This will controls the animation, colors and background, dimensions etc
+    /**
+	 * Register Image  Button controls.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function _register_controls() {
 
         $this->start_controls_section('premium_image_button_general_section',
@@ -868,6 +875,14 @@ class Premium_Image_Button extends Widget_Base {
         $this->end_controls_section();
     }
 
+    /**
+	 * Render Image Button widget output on the frontend.
+	 *
+	 * Written in PHP and used to generate the final HTML.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function render() {
         
         $settings = $this->get_settings_for_display();
@@ -1019,7 +1034,15 @@ class Premium_Image_Button extends Widget_Base {
     <?php
     }
     
-    protected function _content_template() {
+    /**
+	 * Render Image Button widget output in the editor.
+	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
+    protected function content_template() {
         ?>
         <#
         

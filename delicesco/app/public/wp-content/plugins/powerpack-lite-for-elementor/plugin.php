@@ -2,6 +2,7 @@
 namespace PowerpackElementsLite;
 
 use Elementor\Utils;
+use PowerpackElementsLite\Classes\PP_Config;
 
 if ( ! defined( 'ABSPATH' ) ) {	exit; } // Exit if accessed directly
 
@@ -48,7 +49,7 @@ class PowerpackLitePlugin {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'power-pack' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'powerpack' ), '1.0.0' );
 	}
 
 	/**
@@ -59,7 +60,7 @@ class PowerpackLitePlugin {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'power-pack' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'powerpack' ), '1.0.0' );
 	}
 
 	/**
@@ -146,13 +147,15 @@ class PowerpackLitePlugin {
 			POWERPACK_ELEMENTS_LITE_VER
 		);
         
-        if ( class_exists( 'GFCommon' ) && \Elementor\Plugin::$instance->preview->is_preview_mode() ) {
-            foreach( pp_elements_lite_get_gravity_forms() as $form_id => $form_name ){
-                if ( $form_id != '0' ) {
-                    gravity_form_enqueue_scripts( $form_id );
-                }
-            };
-        }
+        if ( class_exists( 'GFCommon' ) ) {
+			$gf_forms = \RGFormsModel::get_forms( null, 'title' );
+			foreach ( $gf_forms as $form ) {
+				if ( '0' !== $form->id ) {
+					wp_enqueue_script( 'gform_gravityforms' );
+					gravity_form_enqueue_scripts( $form->id );
+				}
+			}
+		}
 
         if ( function_exists( 'wpforms' ) ) {
             wpforms()->frontend->assets_css();
@@ -377,14 +380,35 @@ class PowerpackLitePlugin {
 
 		// Add element category in panel
 		\Elementor\Plugin::instance()->elements_manager->add_category(
-			'power-pack', // This is the name of your addon's category and will be used to group your widgets/elements in the Edit sidebar pane!
+			'powerpack-elements', // This is the name of your addon's category and will be used to group your widgets/elements in the Edit sidebar pane!
 			[
-				'title' => __( 'PowerPack Elements', 'power-pack' ), // The title of your modules category - keep it simple and short!
+				'title' => __( 'PowerPack Elements', 'powerpack' ), // The title of your modules category - keep it simple and short!
 				'icon' => 'font',
 			],
 			1
 		);
 	}
+
+	public function get_promotion_widgets($config) {
+
+        if (is_pp_elements_active()) {
+            return $config;
+        }
+
+        $promotion_widgets = [];
+
+        if (isset($config['promotionWidgets'])) {
+            $promotion_widgets = $config['promotionWidgets'];
+        }
+
+		$pro_widgets = PP_Config::get_pro_widgets();
+
+        $combine_array = array_merge($promotion_widgets, $pro_widgets);
+
+        $config['promotionWidgets'] = $combine_array;
+
+        return $config;
+    }
 
 	protected function add_actions() {
 		add_action( 'elementor/init', [ $this, 'elementor_init' ] );
@@ -399,6 +423,8 @@ class PowerpackLitePlugin {
 
 		add_action( 'elementor/frontend/after_register_scripts', [ $this, 'enqueue_frontend_scripts' ] );
 		add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'enqueue_frontend_styles' ] );
+
+		add_filter('elementor/editor/localize_settings', [$this, 'get_promotion_widgets']);
 	}
 
 	/**
@@ -409,8 +435,9 @@ class PowerpackLitePlugin {
 
 		$this->_includes();
 		$this->add_actions();
+		Classes\UsageTracking::get_instance();
 	}
-	
+
 }
 
 if ( ! defined( 'POWERPACK_ELEMENTS_TESTS' ) ) {

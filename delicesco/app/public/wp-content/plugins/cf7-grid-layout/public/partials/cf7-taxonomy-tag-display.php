@@ -19,6 +19,17 @@
 $class = $tag->get_class_option( $class );
 
 $id = $tag->get_id_option();
+/** @since 3.3.0 allow multiple */
+$select_attributes = '';
+$name_suffix='';
+foreach($tag->options as $tag_option){
+  switch($tag_option){
+    case 'multiple':
+      $select_attributes = ' multiple';
+      $name_suffix='[]';
+      break;
+  }
+}
 $options = array();
 $cf7_form = wpcf7_get_current_contact_form();
 $cf7_key = Cf7_WP_Post_Table::form_key($cf7_form->id());
@@ -158,9 +169,17 @@ if($filter_options){ //true if either taxonomy or post dropdpwn;
 }
 
 $tag_name = sanitize_html_class( $tag->name );
+/** @since 3.3.0 enable custom attributes on select element*/
+$attributes = apply_filters('cf7sg_dynamic_dropdown_attributes', array(), $tag->name, $cf7_key);
+
+foreach($attributes as $name=>$value){
+  if( !is_null($value) ){
+    $select_attributes.=' '.$name.'='.'"'.$value.'"';
+  }else $select_attributes.=' '.$name;
+}
 ?>
 <span class="wpcf7-form-control-wrap <?= $tag_name ?>">
-<select id="<?= $id?>" name="<?= $tag->name ?>" class="<?= $class?>">
+<select id="<?= $id?>" name="<?= $tag->name.$name_suffix ?>" class="<?= $class?>"<?=$select_attributes?>>
 <?php
 /**
 * @since 2.2 allows custom filtered $options to be an html string.
@@ -211,3 +230,4 @@ if(is_array( $options )){
    $form_classes[] = 'has-nice-select';
  }
  if(!empty($form_classes)) $this->update_form_classes($form_classes, $cf7_form->id());
+

@@ -1,15 +1,11 @@
 <?php
 
 /**
- * Class: Premium_Button
- * Name: Button
- * Slug: premium-addon-button
+ * Premium Button.
  */
-
 namespace PremiumAddons\Widgets;
 
-use PremiumAddons\Helper_Functions;
-use PremiumAddons\Includes;
+// Elementor Classes.
 use Elementor\Icons_Manager;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -20,8 +16,15 @@ use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Box_Shadow;
 
+// PremiumAddons Classes.
+use PremiumAddons\Helper_Functions;
+use PremiumAddons\Includes;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // If this file is called directly, abort.
 
+/**
+ * Class Premium_Button
+ */
 class Premium_Button extends Widget_Base {
     
     public function get_name() {
@@ -64,11 +67,14 @@ class Premium_Button extends Widget_Base {
 		return 'https://premiumaddons.com/support/';
 	}
 
-    // Adding the controls fields for the premium button
-    // This will controls the animation, colors and background, dimensions etc
+    /**
+	 * Register Button controls.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function _register_controls() {
 
-        /*Start Button Content Section */
         $this->start_controls_section('premium_button_general_section',
                 [
                     'label'         => __('Button', 'premium-addons-for-elementor'),
@@ -611,6 +617,38 @@ class Premium_Button extends Widget_Base {
                 );
         
         $this->end_controls_section();
+
+        $this->start_controls_section('section_pa_docs',
+            [
+                'label'         => __('Helpful Documentations', 'premium-addons-for-elementor'),
+            ]
+        );
+
+        $this->add_control('doc_1',
+            [
+                'type'            => Controls_Manager::RAW_HTML,
+                'raw'             => sprintf( __( '%1$s Getting started » %2$s', 'premium-addons-for-elementor' ), '<a href="https://premiumaddons.com/docs/button-widget-tutorial/?utm_source=pa-dashboard&utm_medium=pa-editor&utm_campaign=pa-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'content_classes' => 'editor-pa-doc',
+            ]
+        );
+
+        $this->add_control('doc_2',
+            [
+                'type'            => Controls_Manager::RAW_HTML,
+                'raw'             => sprintf( __( '%1$s How to open an Elementor popup using button widget » %2$s', 'premium-addons-for-elementor' ), '<a href="https://premiumaddons.com/docs/how-can-i-open-an-elementor-popup-using-premium-button/?utm_source=pa-dashboard&utm_medium=pa-editor&utm_campaign=pa-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'content_classes' => 'editor-pa-doc',
+            ]
+        );
+        
+        $this->add_control('doc_3',
+            [
+                'type'            => Controls_Manager::RAW_HTML,
+                'raw'             => sprintf( __( '%1$s How to play/pause a soundtrack using button widget » %2$s', 'premium-addons-for-elementor' ), '<a href="https://premiumaddons.com/docs/how-to-play-pause-a-soundtrack-using-premium-button-widget/?utm_source=pa-dashboard&utm_medium=pa-editor&utm_campaign=pa-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'content_classes' => 'editor-pa-doc',
+            ]
+        );
+
+        $this->end_controls_section();
         
         $this->start_controls_section('premium_button_style_section',
             [
@@ -626,7 +664,7 @@ class Premium_Button extends Widget_Base {
                 'scheme'            => Scheme_Typography::TYPOGRAPHY_1,
                 'selector'          => '{{WRAPPER}} .premium-button',
             ]
-            );
+        );
         
         $this->start_controls_tabs('premium_button_style_tabs');
         
@@ -634,7 +672,7 @@ class Premium_Button extends Widget_Base {
             [
                 'label'             => __('Normal', 'premium-addons-for-elementor'),
             ]
-            );
+        );
         
         $this->add_control('premium_button_text_color_normal',
             [
@@ -1084,7 +1122,15 @@ class Premium_Button extends Widget_Base {
     <?php
     }
     
-    protected function _content_template() {
+    /**
+	 * Render Button widget output in the editor.
+	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
+    protected function content_template() {
         ?>
         <#
         

@@ -1,8 +1,11 @@
 <?php
 
+/**
+ * Premium Progress Bar.
+ */
 namespace PremiumAddons\Widgets;
 
-use PremiumAddons\Helper_Functions;
+// Elementor Classes.
 use Elementor\Widget_Base;
 use Elementor\Utils;
 use Elementor\Controls_Manager;
@@ -14,8 +17,14 @@ use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 
+// PremiumAddons Classes.
+use PremiumAddons\Helper_Functions;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // If this file is called directly, abort.
 
+/**
+ * Class Premium_Progressbar
+ */
 class Premium_Progressbar extends Widget_Base {
     
     public function get_name() {
@@ -56,11 +65,14 @@ class Premium_Progressbar extends Widget_Base {
 		return 'https://premiumaddons.com/support/';
 	}
 
-    // Adding the controls fields for the premium progress bar
-    // This will controls the animation, colors and background, dimensions etc
+    /**
+	 * Register Testimonials controls.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function _register_controls() {
 
-        /* Start Progress Content Section */
         $this->start_controls_section('premium_progressbar_labels',
             [
                 'label'         => __('Progress Bar Settings', 'premium-addons-for-elementor'),
@@ -941,6 +953,14 @@ class Premium_Progressbar extends Widget_Base {
         $this->end_controls_section();
     }
 
+    /**
+	 * Render Progress Bar widget output on the frontend.
+	 *
+	 * Written in PHP and used to generate the final HTML.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function render() {
         
         $settings = $this->get_settings_for_display();

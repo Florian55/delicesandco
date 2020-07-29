@@ -1,14 +1,11 @@
 <?php
 
 /**
- * Class: Premium_Testimonials
- * Name: Testimonials
- * Slug: premium-addon-testimonials
+ * Premium Testimonials.
  */
-
 namespace PremiumAddons\Widgets;
 
-use PremiumAddons\Helper_Functions;
+// Elementor Classes.
 use Elementor\Modules\DynamicTags\Module as TagsModule;
 use Elementor\Widget_Base;
 use Elementor\Utils;
@@ -22,8 +19,14 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Background;
 
+// PremiumAddons Classes.
+use PremiumAddons\Helper_Functions;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // If this file is called directly, abort.
 
+/**
+ * Class Premium_Testimonials
+ */
 class Premium_Testimonials extends Widget_Base {
     
     public function get_name() {
@@ -40,6 +43,7 @@ class Premium_Testimonials extends Widget_Base {
     
     public function get_style_depends() {
         return [
+            'font-awesome',
             'premium-addons'
         ];
     }
@@ -52,8 +56,12 @@ class Premium_Testimonials extends Widget_Base {
 		return 'https://premiumaddons.com/support/';
 	}
     
-    // Adding the controls fields for the premium testimonial
-    // This will controls the animation, colors and background, dimensions etc
+    /**
+	 * Register Testimonials controls.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function _register_controls() {   
         
         $this->start_controls_section('premium_testimonial_person_settings',
@@ -264,6 +272,22 @@ class Premium_Testimonials extends Widget_Base {
             ]
         );
         
+        $this->end_controls_section();
+
+        $this->start_controls_section('section_pa_docs',
+            [
+                'label'         => __('Helpful Documentations', 'premium-addons-pro'),
+            ]
+        );
+        
+        $this->add_control('doc_1',
+            [
+                'type'            => Controls_Manager::RAW_HTML,
+                'raw'             => sprintf( __( '%1$s I\'m not able to see Font Awesome icons in the widget » %2$s', 'premium-addons-pro' ), '<a href="https://premiumaddons.com/docs/why-im-not-able-to-see-elementor-font-awesome-5-icons-in-premium-add-ons/?utm_source=papro-dashboard&utm_medium=papro-editor&utm_campaign=papro-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'content_classes' => 'editor-pa-doc',
+            ]
+        );
+
         $this->end_controls_section();
         
         $this->start_controls_section('premium_testimonial_image_style',
@@ -622,6 +646,14 @@ class Premium_Testimonials extends Widget_Base {
         
     }
 
+    /**
+	 * Render Testimonials widget output on the frontend.
+	 *
+	 * Written in PHP and used to generate the final HTML.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function render() {
         
         $settings = $this->get_settings_for_display();
@@ -653,7 +685,7 @@ class Premium_Testimonials extends Widget_Base {
     
     <div <?php echo $this->get_render_attribute_string('testimonial'); ?>>
         <div class="premium-testimonial-container">
-            <i class="fas fa-quote-left premium-testimonial-upper-quote"></i>
+            <i class="fa fa-quote-left premium-testimonial-upper-quote"></i>
             <div class="premium-testimonial-content-wrapper">
                 <?php if ( ! empty( $image_src ) ) : ?>
                     <div <?php echo $this->get_render_attribute_string('img_wrap'); ?>>
@@ -687,14 +719,22 @@ class Premium_Testimonials extends Widget_Base {
                     </<?php echo $company_title_tag; ?>>
                 </div>
             </div>
-            <i class="fas fa-quote-right premium-testimonial-lower-quote"></i>
+            <i class="fa fa-quote-right premium-testimonial-lower-quote"></i>
         </div>
     </div>
     <?php
     
     }
     
-    protected function _content_template() {
+    /**
+	 * Render Testimonials widget output in the editor.
+	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
+    protected function content_template() {
         ?>
         <#
         
@@ -727,7 +767,7 @@ class Premium_Testimonials extends Widget_Base {
         
             <div {{{ view.getRenderAttributeString('testimonial') }}}>
                 <div class="premium-testimonial-container">
-                    <i class="fas fa-quote-left premium-testimonial-upper-quote"></i>
+                    <i class="fa fa-quote-left premium-testimonial-upper-quote"></i>
                     <div class="premium-testimonial-content-wrapper">
                         <# if ( '' != imageSrc ) { #>
                             <div {{{ view.getRenderAttributeString('img_wrap') }}}>
@@ -756,7 +796,7 @@ class Premium_Testimonials extends Widget_Base {
                         
                     </div>
                     
-                    <i class="fas fa-quote-right premium-testimonial-lower-quote"></i>
+                    <i class="fa fa-quote-right premium-testimonial-lower-quote"></i>
                     
                 </div>
             </div>

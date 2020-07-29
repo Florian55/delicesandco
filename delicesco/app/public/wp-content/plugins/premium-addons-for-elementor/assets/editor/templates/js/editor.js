@@ -864,7 +864,7 @@
 
 			setTimeout(function () {
 				var $addNewSection = window.elementor.$previewContents.find('.elementor-add-new-section'),
-					addPremiumTemplate = "<div class='elementor-add-section-area-button pa-add-section-btn' title='Add Premium Template'><i class='fas fa-star'></i></div>",
+					addPremiumTemplate = "<div class='elementor-add-section-area-button pa-add-section-btn' title='Add Premium Template'><i class='eicon-star'></i></div>",
 					$addPremiumTemplate;
 
 				if ($addNewSection.length && PremiumTempsData.PremiumTemplatesBtn) {

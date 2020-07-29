@@ -1,23 +1,26 @@
 <?php
 
 /**
- * Class: Premium_Lottie
- * Name: Lottie Animations
- * Slug: premium-lottie-animations
+ * Premium Lottie Animations.
  */
-
 namespace PremiumAddons\Widgets;
 
-use PremiumAddons\Helper_Functions;
-use PremiumAddons\Includes;
+// Elementor Classes.
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Box_Shadow;
 
+// PremiumAddons Classes.
+use PremiumAddons\Helper_Functions;
+use PremiumAddons\Includes;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // If this file is called directly, abort.
 
+/**
+ * Class Premium_Lottie
+ */
 class Premium_Lottie extends Widget_Base {
     
     public function get_name() {
@@ -56,6 +59,12 @@ class Premium_Lottie extends Widget_Base {
 		return 'https://premiumaddons.com/support/';
 	}
 
+    /**
+	 * Register Testimonials controls.
+	 *
+	 * @since 3.20.0
+	 * @access protected
+	 */
     protected function _register_controls() {
 
         $this->start_controls_section('section_general_settings',
@@ -101,7 +110,7 @@ class Premium_Lottie extends Widget_Base {
 
         $this->add_control('lottie_speed',
 			[
-                'label'         => __( 'Animation Speed', 'premium-addons-pro' ),
+                'label'         => __( 'Animation Speed', 'premium-addons-for-elementor' ),
                 'type'          => Controls_Manager::NUMBER,
                 'default'       => 1,
                 'min'           => 0.1,
@@ -112,7 +121,7 @@ class Premium_Lottie extends Widget_Base {
 
         $this->add_control('animate_on_scroll',
             [
-                'label'         => __('Animate On Scroll','premium-addons-pro'),
+                'label'         => __('Animate On Scroll','premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SWITCHER,
                 'return_value'  => 'true',
                 'condition'     => [
@@ -124,7 +133,7 @@ class Premium_Lottie extends Widget_Base {
 
         $this->add_control('animate_speed',
 			[
-				'label'         => __( 'Speed', 'premium-addons-pro' ),
+				'label'         => __( 'Speed', 'premium-addons-for-elementor' ),
 				'type'          => Controls_Manager::SLIDER,
 				'default' => [
                     'size' => 4,
@@ -145,7 +154,7 @@ class Premium_Lottie extends Widget_Base {
         
         $this->add_control('animate_view',
 			[
-				'label'         => __( 'Viewport', 'premium-addons-pro' ),
+				'label'         => __( 'Viewport', 'premium-addons-for-elementor' ),
 				'type'          => Controls_Manager::SLIDER,
 				'default' => [
                     'sizes' => [
@@ -155,8 +164,8 @@ class Premium_Lottie extends Widget_Base {
                     'unit' => '%',
                 ],
                 'labels' => [
-                    __( 'Bottom', 'premium-addons-pro' ),
-                    __( 'Top', 'premium-addons-pro' ),
+                    __( 'Bottom', 'premium-addons-for-elementor' ),
+                    __( 'Top', 'premium-addons-for-elementor' ),
                 ],
                 'scales' => 1,
                 'handles' => 'range',
@@ -187,19 +196,19 @@ class Premium_Lottie extends Widget_Base {
                         'max'   => 30,
                     ],
                 ],
-                'render_type'   => 'temlate',
+                'render_type'   => 'template',
                 'separator'     => 'before',
                 'selectors'     => [
-                    '{{WRAPPER}} .premium-lottie-animation svg'    => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}'
+                    '{{WRAPPER}}.premium-lottie-canvas .premium-lottie-animation, {{WRAPPER}}.premium-lottie-svg svg'    => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}'
                 ]
             ]
         );
 
         $this->add_control('lottie_rotate',
             [
-                'label'         => __('Rotate', 'premium-addons-pro'),
+                'label'         => __('Rotate (degrees)', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::SLIDER,
-                'description'   => __('Set rotation value in degress', 'premium-addons-pro'),
+                'description'   => __('Set rotation value in degress', 'premium-addons-for-elementor'),
                 'range'         => [
                     'px'    => [
                         'min'   => -180,
@@ -297,12 +306,76 @@ class Premium_Lottie extends Widget_Base {
             ]
         );
 
+        $this->add_control('lottie_renderer', 
+            [
+                'label'         => __('Render As', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::SELECT,
+                'options'       => [
+                    'svg'   => __('SVG', 'premium-addons-for-elementor'),
+                    'canvas'  => __('Canvas', 'premium-addons-for-elementor'),
+                ],
+                'default'       => 'svg',
+                'prefix_class'  => 'premium-lottie-',
+                'render_type'   => 'template',
+                'label_block'   => true,
+                'separator'     => 'before'
+            ]
+        );
+
+        $this->add_control('render_notice', 
+            [
+                'raw'               => __('Set render type to canvas if you\'re having performance issues on the page.', 'premium-addons-for-elemeentor'),
+                'type'              => Controls_Manager::RAW_HTML,
+                'content_classes'   => 'elementor-panel-alert elementor-panel-alert-info',
+            ] 
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section('section_pa_docs',
+            [
+                'label'         => __('Helpful Documentations', 'premium-addons-for-elementor'),
+            ]
+        );
+
+        $this->add_control('doc_1',
+            [
+                'type'            => Controls_Manager::RAW_HTML,
+                'raw'             => sprintf( __( '%1$s Check the video tutorial » %2$s', 'premium-addons-pro' ), '<a href="https://www.youtube.com/watch?v=0QWzUpF57dw" target="_blank" rel="noopener">', '</a>' ),
+                'content_classes' => 'editor-pa-doc',
+            ]
+        );
+        
+        $this->add_control('doc_2',
+            [
+                'raw'             => sprintf( __( '%1$s Check the documentation article » %2$s', 'premium-addons-for-elementor' ), '<a href="https://premiumaddons.com/docs/lottie-animations-widget-tutorial/?utm_source=pa-dashboard&utm_medium=pa-editor&utm_campaign=pa-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'type'            => Controls_Manager::RAW_HTML,
+                'content_classes' => 'editor-pa-doc',
+            ]
+        );
+
+        $this->add_control('doc_3',
+            [
+                'type'            => Controls_Manager::RAW_HTML,
+                'raw'             => sprintf( __( '%1$s How to speed up Elementor pages with many Lottie animations » %2$s', 'premium-addons-for-elementor' ), '<a href="https://premiumaddons.com/docs/how-to-speed-up-elementor-pages-with-many-lottie-animations/?utm_source=pa-dashboard&utm_medium=pa-editor&utm_campaign=pa-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'content_classes' => 'editor-pa-doc',
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section('section_animation_style',
             [
                 'label'             => __('Animation', 'premium-addons-for-elementor'),
                 'tab'               => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->start_controls_tabs('tabs_lottie');
+        
+        $this->start_controls_tab('tab_lottie_normal',
+            [
+                'label'             => __('Normal', 'premium-addons-for-elementor'),
             ]
         );
 
@@ -316,21 +389,84 @@ class Premium_Lottie extends Widget_Base {
             ]
         );
 
+        $this->add_control('opacity',
+			[
+				'label'     => __( 'Opacity', 'premium-addons-for-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [
+					'px' => [
+						'max'   => 1,
+						'min'   => 0.10,
+						'step'  => 0.01,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .premium-lottie-animation' => 'opacity: {{SIZE}}',
+				],
+			]
+        );
+
+        $this->add_group_control(
+			Group_Control_Css_Filter::get_type(),
+			[
+				'name'      => 'css_filters',
+                'selector'  => '{{WRAPPER}} .premium-lottie-animation',
+			]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab('tab_lottie_hover',
+            [
+                'label'             => __('Hover', 'premium-addons-for-elementor'),
+            ]
+        );
+
         $this->add_control('lottie_hover_background',
             [
-                'label'             => __('Hover Background Color', 'premium-addons-for-elementor'),
+                'label'             => __('Background Color', 'premium-addons-for-elementor'),
                 'type'              => Controls_Manager::COLOR,
                 'selectors'      => [
                     '{{WRAPPER}} .premium-lottie-animation:hover'  => 'background-color: {{VALUE}}',
                 ]
             ]
         );
+
+        $this->add_control('hover_opacity',
+			[
+				'label'     => __( 'Opacity', 'premium-addons-for-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [
+					'px' => [
+						'max'   => 1,
+						'min'   => 0.10,
+						'step'  => 0.01,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .premium-lottie-animation:hover' => 'opacity: {{SIZE}}',
+				],
+			]
+        );
         
+        $this->add_group_control(
+			Group_Control_Css_Filter::get_type(),
+			[
+				'name'      => 'hover_css_filters',
+                'selector'  => '{{WRAPPER}} .premium-lottie-animation:hover',
+			]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
         $this->add_group_control(
             Group_Control_Border::get_type(), 
             [
                 'name'          => 'lottie_border',
                 'selector'      => '{{WRAPPER}} .premium-lottie-animation',
+                'separator'     => 'before'
             ]
         );
         
@@ -345,23 +481,6 @@ class Premium_Lottie extends Widget_Base {
             ]
         );
 
-        $this->add_group_control(
-			Group_Control_Css_Filter::get_type(),
-			[
-				'name'      => 'css_filters',
-                'selector'  => '{{WRAPPER}} .premium-lottie-animation',
-			]
-        );
-
-        $this->add_group_control(
-			Group_Control_Css_Filter::get_type(),
-			[
-				'name'      => 'hover_css_filters',
-                'label'     => __('Hover CSS Filters', 'premium-addons-for-elementor'),
-                'selector'  => '{{WRAPPER}} .premium-lottie-animation:hover',
-			]
-        );
-        
         $this->add_responsive_control('animation_padding',
             [
                 'label'         => __('Padding', 'premium-addons-for-elementor'),
@@ -402,7 +521,8 @@ class Premium_Lottie extends Widget_Base {
             'data-lottie-loop' => $settings['lottie_loop'],
             'data-lottie-reverse' => $settings['lottie_reverse'],
             'data-lottie-hover' => $settings['lottie_hover'],
-            'data-lottie-speed' => $settings['lottie_speed']
+            'data-lottie-speed' => $settings['lottie_speed'],
+            'data-lottie-render' => $settings['lottie_renderer'],
         ]);
 
         if( $settings['animate_on_scroll'] ) {
@@ -450,13 +570,14 @@ class Premium_Lottie extends Widget_Base {
     }
 
     /**
-	 * Render Lottie Animations output on the editor.
+	 * Render Testimonials widget output in the editor.
 	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
 	 * @since 3.20.2
 	 * @access protected
 	 */
-    protected function _content_template() {
+    protected function content_template() {
 
         ?>
 
@@ -475,7 +596,8 @@ class Premium_Lottie extends Widget_Base {
             'data-lottie-loop': settings.lottie_loop,
             'data-lottie-reverse': settings.lottie_reverse,
             'data-lottie-hover': settings.lottie_hover,
-            'data-lottie-speed': settings.lottie_speed
+            'data-lottie-speed': settings.lottie_speed,
+            'data-lottie-render': settings.lottie_renderer
         });
 
         if( settings.animate_on_scroll ) {

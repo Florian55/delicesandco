@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: 	  Image Hover Effects Addon for Elementor
+ * Plugin Name: 	  Image Hover Effects - Elementor Addon
  * Plugin URI:  	  https://imagehoverpro.blocksera.com
  * Author: 			  Blocksera
  * Author URI:		  https://blocksera.com
- * Description: 	  Collection of image hover effects for Elementor page builder
- * Version:     	  1.2.8
+ * Description: 	  Add creative image hover effects to Elementor page builder. Easily customize title and content and effects with intuitive interface.
+ * Version:     	  1.3.0
  * Requires at least: 4.7
- * Tested up to:      5.3.2
+ * Tested up to:      5.4.2
  * License: 		  GPL v3
  * Text Domain: 	  eihe-lang
  * Domain Path: 	  /languages
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('EIHE_VERSION', '1.2.8');
+define('EIHE_VERSION', '1.3.0');
 define('EIHE_MINIMUM_ELEMENTOR_VERSION', '1.1.2');
 define('EIHE_PATH', plugin_dir_path(__FILE__));
 define('EIHE_URL', plugin_dir_url(__FILE__));
@@ -61,6 +61,27 @@ class Elementor_Image_Hover_Effects {
 		});
 		add_action('admin_init', [$this, 'display_notice']);
 		load_plugin_textdomain('eihe-lang', false, dirname(plugin_basename(__FILE__)) . '/languages' );
+		add_filter( 'wpml_elementor_widgets_to_translate', [ $this, 'wpml_widgets_to_translate_filter' ] );
+	}
+
+	public function wpml_widgets_to_translate_filter( $widgets ) {
+		$widgets[ 'e_image_hover_effects' ] = [
+		   'conditions' => [ 'widgetType' => 'e_image_hover_effects' ],
+		   'fields'     => [
+			[
+			   'field'       => 'eihe_title',
+			   'type'        => __( 'Image Hover Effects : Title', 'eihe-lang' ),
+			   'editor_type' => 'LINE'
+			],
+			[
+				'field'       => 'eihe_description',
+				'type'        => __( 'Image Hover Effects : Description', 'eihe-lang' ),
+				'editor_type' => 'LINE'
+			 ],
+		 ],
+		];
+	   
+		return $widgets;
 	}
 
 	public function eihe_scripts(){
@@ -97,7 +118,7 @@ class Elementor_Image_Hover_Effects {
 		?>
 			<div class="eihe-notice notice notice-success is-dismissible">
 				<img class="eihe-iconimg" src="<?php echo EIHE_URL; ?>assets/icon.png" style="float:left;" />
-				<p style="width:80%;"><?php _e('Enjoying our <strong>Image Hover Effects Addon for Elementor?</strong> We hope you liked it! If you feel this plugin helped you, You can give us a 5 star rating!<br>It will motivate us to serve you more !','eihe-lang'); ?> </p>
+				<p style="width:80%;"><?php _e('Enjoying our <strong>Image Hover Effects - Elementor Addon?</strong> We hope you liked it! If you feel this plugin helped you, You can give us a 5 star rating!<br>It will motivate us to serve you more !','eihe-lang'); ?> </p>
 				<a href="https://wordpress.org/support/plugin/image-hover-effects-addon-for-elementor/reviews/#new-post" class="button button-primary" style="margin-right: 10px !important;" target="_blank"><?php _e('Rate the Plugin!','eihe-lang'); ?> &#11088;&#11088;&#11088;&#11088;&#11088;</a>
 				<a href="https://tiny.cc/eihe-pro" class="button button-secondary" target="_blank"><?php _e('Go Pro','eihe-lang'); ?></a>
 				<span class="eihe-done"><?php _e('Already Done','eihe-lang'); ?></span>

@@ -1,15 +1,11 @@
 <?php
 
+/**
+ * Premium Pricing Table.
+ */
 namespace PremiumAddons\Widgets;
 
-/**
- * Class: Premium_Pricing_Table
- * Name: Pricing Table
- * Slug: premium-addon-pricing-table
- */
-
-use PremiumAddons\Helper_Functions;
-use PremiumAddons\Includes;
+ // Elementor Classes.
 use Elementor\Modules\DynamicTags\Module as TagsModule;
 use Elementor\Icons_Manager;
 use Elementor\Widget_Base;
@@ -22,8 +18,15 @@ use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Background;
 
+// PremiumAddons Classes.
+use PremiumAddons\Helper_Functions;
+use PremiumAddons\Includes;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // If this file is called directly, abort.
 
+/**
+ * Class Premium_Pricing_Table
+ */
 class Premium_Pricing_Table extends Widget_Base {
 
     protected $templateInstance;
@@ -64,8 +67,12 @@ class Premium_Pricing_Table extends Widget_Base {
 		return 'https://premiumaddons.com/support/';
 	}
 
-    // Adding the controls fields for the premium pricing table
-    // This will controls the animation, colors and background, dimensions etc
+    /**
+	 * Register Pricing Table controls.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function _register_controls() {
         
         $this->start_controls_section('premium_pricing_table_icon_section',
@@ -2152,6 +2159,14 @@ class Premium_Pricing_Table extends Widget_Base {
         
     }
 
+    /**
+	 * Render Pricing Table widget output on the frontend.
+	 *
+	 * Written in PHP and used to generate the final HTML.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function render() {
         
         $settings = $this->get_settings_for_display();
@@ -2296,8 +2311,9 @@ class Premium_Pricing_Table extends Widget_Base {
                             <?php if ( ! empty( $item['premium_pricing_list_item_text'] ) ) :
                                 $item_class = 'yes' === $item['premium_pricing_table_item_tooltip'] ? 'list-item-tooltip' : '';
                             ?>
-                                <span class="premium-pricing-list-span <?php echo $item_class; ?>"><?php echo esc_html( $item['premium_pricing_list_item_text'] );
-                                if ( 'yes' === $item['premium_pricing_table_item_tooltip'] && ! empty( $item['premium_pricing_table_item_tooltip_text'] ) ) : ?>
+                                <span class="premium-pricing-list-span <?php echo $item_class; ?>">
+                                    <?php echo $item['premium_pricing_list_item_text'];
+                                    if ( 'yes' === $item['premium_pricing_table_item_tooltip'] && ! empty( $item['premium_pricing_table_item_tooltip_text'] ) ) : ?>
                                         <span class="premium-pricing-list-tooltip"><?php echo esc_html( $item['premium_pricing_table_item_tooltip_text'] ); ?></span>
                                     <?php endif; ?>    
                                 </span>
@@ -2326,7 +2342,15 @@ class Premium_Pricing_Table extends Widget_Base {
     <?php
     }
     
-    protected function _content_template() {
+    /**
+	 * Render Pricing Table widget output in the editor.
+	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
+    protected function content_template() {
         ?>
         <#
             

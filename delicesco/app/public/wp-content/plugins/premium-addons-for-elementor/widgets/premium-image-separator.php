@@ -1,16 +1,12 @@
 <?php
 
 /**
- * Class: Premium_Image_Separator
- * Name: Image Separator
- * Slug: premium-addon-image-separator
+ * Premium Image Separator.
  */
-
 namespace PremiumAddons\Widgets;
 
-use PremiumAddons\Helper_Functions;
+// Elementor Classes.
 use Elementor\Modules\DynamicTags\Module as TagsModule;
-use PremiumAddons\Includes;
 use Elementor\Widget_Base;
 use Elementor\Utils;
 use Elementor\Control_Media;
@@ -20,8 +16,15 @@ use Elementor\Icons_Manager;
 use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Text_Shadow;
 
+// PremiumAddons Classes.
+use PremiumAddons\Helper_Functions;
+use PremiumAddons\Includes;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // If this file is called directly, abort.
 
+/**
+ * Class Premium_Image_Separator
+ */
 class Premium_Image_Separator extends Widget_Base {
 
     protected $templateInstance;
@@ -66,8 +69,12 @@ class Premium_Image_Separator extends Widget_Base {
 		return 'https://premiumaddons.com/support/';
 	}
 
-    // Adding the controls fields for the premium image separator
-    // This will controls the animation, colors and background, dimensions etc
+    /**
+	 * Register Image Controls controls.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function _register_controls() {
 
         $this->start_controls_section('premium_image_separator_general_settings',
@@ -449,6 +456,14 @@ class Premium_Image_Separator extends Widget_Base {
        
     }
 
+    /**
+	 * Render Image Separator widget output on the frontend.
+	 *
+	 * Written in PHP and used to generate the final HTML.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function render() {
         
         $settings = $this->get_settings_for_display();
@@ -507,7 +522,15 @@ class Premium_Image_Separator extends Widget_Base {
     <?php
     }
     
-    protected function _content_template() {
+    /**
+	 * Render Image Separtor widget output in the editor.
+	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
+    protected function content_template() {
         ?>
         <#
             var type        = settings.separator_type,

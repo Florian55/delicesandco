@@ -293,7 +293,17 @@ class Cf7_Grid_Layout_Admin {
         );
         wp_enqueue_script( 'cf7sg-dynamic-tag-js', $plugin_dir . 'admin/js/cf7sg-dynamic-tag.js', array('jquery','wpcf7-admin-taggenerator' ), $this->version, true );
         wp_enqueue_script( 'cf7-benchmark-tag-js', $plugin_dir . 'admin/js/cf7-benchmark-tag.js', array('jquery','wpcf7-admin-taggenerator' ), $this->version, true );
-
+        /** @since 3.2.0 */
+        wp_enqueue_script('cf7sg-mail-tag-js', $plugin_dir.'admin/js/mail-tag-helper.js', array('jquery','jquery-clibboard'));
+        wp_localize_script('cf7sg-mail-tag-js','mailTagHelper',
+          array(
+            'msg'=>__('Click to copy!','cf7-grid-layout'),
+            'filter'=> __('Filter mailTag %s', 'cf7-grid-layout')
+          )
+        );
+        /** @since 3.3.0enqueue ui-grid helpers js */
+        wp_enqueue_script('ui-grid-helpers-js', $plugin_dir.'admin/js/ui-custom-helper.js', array('jquery'));
+        do_action('cf7sg_enqueue_admin_editor_scripts');
         break;
       case 'edit':
         //wp_enqueue_script( $this->plugin_name.'-quick-edit', plugin_dir_url( __FILE__ ) . 'js/cf7-grid-layout-quick-edit.js', false, $this->version, true );
@@ -360,7 +370,7 @@ class Cf7_Grid_Layout_Admin {
 
   public function modify_cf7_post_type_args($args, $post_type){
     if($post_type === $this->cf7_post_type()  ) {
-      //debug_msg($args, 'pre-args');
+      // debug_msg($args, 'pre-args');
       // $system_dropdowns = get_option('_cf7sg_dynamic_dropdown_system_taxonomy',array());
       /** @since 2.8.3 add wpcf7_type (registered in assets/cf7-table.php) taxonomy to cf7 post type */
       $system_taxonomy = array('wpcf7_type');
@@ -397,6 +407,8 @@ class Cf7_Grid_Layout_Admin {
       /** @since 2.8.1  fix missing delete_posts notices*/
       // $args['capabilities']['delete_posts']= 'wpcf7_delete_posts';
       /** @since 3.0.0 enable better capability management */
+      // $args['capability_type'] = 'page';
+
       $args['map_meta_cap']=true; //allow finer capability mapping.
       $args['capabilities']['edit_post'] = 'wpcf7_edit_contact_form';
       $args['capabilities']['read_post'] = 'wpcf7_read_contact_form';
@@ -408,6 +420,7 @@ class Cf7_Grid_Layout_Admin {
       $args['capabilities']['delete_published_posts']= 'wpcf7_delete_published_contact_forms';
       $args['capabilities']['delete_others_posts']= 'wpcf7_delete_others_contact_forms';
       $args['capabilities']['publish_posts']= 'wpcf7_publish_contact_forms';
+      $args['capabilities']['read_private_posts']= 'wpcf7_publish_contact_forms';
 
        // debug_msg($args);
     }
@@ -479,7 +492,7 @@ class Cf7_Grid_Layout_Admin {
         }
       }
       $args['locale'] =$locale;
-    }
+    }else $args['locale'] = get_locale();
     WPCF7_ContactForm::get_template( $args);
   }
   /**
@@ -1147,8 +1160,20 @@ class Cf7_Grid_Layout_Admin {
   *@return array key->value pairs of capabilities.
   */
   public function reset_meta_cap($caps){
-		// fixes bug in contact-form-7/capabilities.php, which uses array_diff instead of array_merge
-    return array();
+    return array(
+      'wpcf7_read_contact_form'=>'read_post',
+      'wpcf7_edit_contact_form' =>'edit_post',
+      'wpcf7_edit_contact_forms' => 'edit_posts',
+      'wpcf7_edit_others_contact_forms'=>'edit_others_posts',
+      'wpcf7_edit_published_contact_forms'=>'edit_published_posts',
+      'wpcf7_delete_contact_form'=>'delete_post',
+      'wpcf7_delete_contact_forms'=>'delete_posts',
+      'wpcf7_delete_published_contact_forms'=>'delete_published_posts',
+      'wpcf7_delete_others_contact_forms'=>'delete_others_posts',
+      'wpcf7_publish_contact_forms'=>'publish_posts',
+      'wpcf7_publish_contact_forms'=>'read_private_posts',
+      'wpcf7_submit'=>'read', /** @since 3.2.1 to fix subscribers_only. */
+    );
   }
   /**
   * CF7 plugin by default sets form post status to 'publish' regardless of user capability.
@@ -1205,5 +1230,13 @@ class Cf7_Grid_Layout_Admin {
         exit;
       }
     }
+  }
+  /**
+  * Add grid helper hooks for individual tags.
+  * Hooked to action 'cf7sg_ui_grid_helper_hooks'.
+  *@since 3.3.0
+  */
+  public function print_helper_hooks(){
+    require_once plugin_dir_path( __FILE__ ) .'partials/helpers/cf7sg-form-fields.php';
   }
 }

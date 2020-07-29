@@ -1,21 +1,25 @@
-=== Image Hover Effects Addon for Elementor ===
+=== Image Hover Effects - Elementor Addon ===
 Contributors: blocksera, crypto4ever
 Donate Link: https://imagehoverpro.blocksera.com
-Tags: elementor, elementor addon, elementor image hover effects, image hover effects, hover effects
+Tags: elementor, addons, elementor widget, image hover effects, css effects
 Requires PHP: 5.2.4
 Requires at least: 4.7
-Tested up to: 5.3.2
-Stable tag: 1.2.8
+Tested up to: 5.4.2
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Elementor addon to add 40+ Image hover effects with title and descriptions to your site anywhere.
+Add creative image hover effects to Elementor page builder. Easily customize title and content and effects with intuitive interface.
 
 == Description ==
 
-> Image Hover Effects available for Block Editor (Gutenberg) version - [Click Here](https://wordpress.org/plugins/image-hover-effects-block/)
+https://www.youtube.com/watch?v=1XknWh0rtQY
 
-You can add 40+ Image hover effects with title and descriptions in a simple way using this wordpress plugin image hover effects addon for [Elementor](https://wordpress.org/plugins/elementor/).
+Image Hover Effects Addon for [Elementor Page Builder](https://elementor.com) is the best in class addon that lets you set customized hover effects for your image. It gives attention to detail by allowing you to align text, change background, set borders and offers a number of other features. This free plugin has over 40 image hover effects ranging from fade and push to zoom and blur. A pre-set combination of two or more effects is also available. It creates an interactive space for the users to your website. 
+
+Add title and description to your image, set the title tag, add icons, link to a page or a website and do a lot more. Whenever you scroll the cursor over the image, the hover effect is effectuated to display the title and description. 
+
+The widget add-on is designed for use by both beginners and advanced users. You can either change the appearance of the effect with the click of a few buttons or choose to add custom HTML or CSS attributes.
 
 = Features =
 
@@ -24,17 +28,41 @@ You can add 40+ Image hover effects with title and descriptions in a simple way 
 * Circle and Square border both comes with all effects.
 * Center the text horizontally.
 * Control the spaces between elements.
+* WPML Compatibility
 
-with this elementor addon plugin, you can show your title and description with various entry animations.
+**Background**: Set a background color to the effect. You can also choose set a transparent background. 
 
-= Getting Started Tutorial Video =
+**Horizontal Alignment**: Align the title and description to the left, center, right with horizontal alignment.
 
-https://www.youtube.com/watch?v=1XknWh0rtQY
+**Vertical Alignment**: Align the title and description to the top, middle or bottom with vertical alignment.
 
-[Free Demo](http://tiny.cc/free-eihe) | [Pro Demo](https://imagehoverpro.blocksera.com) | [**Buy Premium Version**](https://codecanyon.net/item/emage-image-hover-effects-for-elementor-page-builder/22563091) | [Contact Us](https://blocksera.com/contact/)
+**Padding**: Set the padding to the content over the effect. 
 
-<h3>Emage Hover Effects for Elementor</h3>
-[Get Image Hover PRO](https://imagehoverpro.blocksera.com/)
+**Border Radius**: You can use this feature to trim off the sharp edges of the image to give it a smoother touch. 
+
+**Title**: Set a title color that compliments the background. Using the ‘Typography’ option, you can choose the font, font size, weight, case, style (italic, bold, etc.), decoration (overline, underline, etc.), line height and letter spacing of the title. 
+
+**Description**: Similarly, you can choose the color and the typography options for your description under this option. 
+
+**Icon**: Set the icon’s color, it’s size and the space between the icon and the title. 
+
+= Customizations = 
+
+Image Hover Effects for Elementor comes with CSS3 styles that add stunning yet mellow and pleasant hover effects to your images. Let your images fade in or fade out, slide, flip, shutter, zoom, fold, roll, etc with just a click. There’s no coding involved. Image hover effects keeps things simple and elegant. If you’ve got multiple images to be displayed, then you can simply copy the style and paste it onto another image. You also have the option to duplicate the image. The hover effects from Image Hover Effects are fully responsive, and can accommodate to very small and extra-large devices. They’re designed using flexible and robust CSS. 
+
+= Seo Friendly = 
+
+From an SEO perspective, adding title tags, headings and descriptions to your images is indispensable. Title tags and descriptions almost always garner a click from the user whereas keywords in titles and headings can help your website rank higher in search results. 
+
+Image Hover Effects for Elementor lets you do all that and more in just a span of few seconds. Just add the title of your image to the Title field and set the tag (H1-H6, paragraph, span). Then add the description to the Description field. That’s all there is to it. Now you can customize the look of your text to being neat and crisp or wild and artistic or choose from a multitude of other choices. 
+
+Another important factor is linking to specific pages or interlinking to drive traffic. Image Hover Effects provides an option to link your image to a specified URL. You can copy the link to which your users should be directed to (when they click the image) and paste it in the field under the ‘Link To’ section. 
+
+= Where it can be used =
+
+On any WordPress website that supports Elementor! Be it a blogging site, a news website or even an e-commerce or e-learning website, Image Hover Effects works flawless. Since there are over 40 hover effects, you can use a combination of styles to work wonders with your images. But why should you stop there? Try our Pro version. The Pro version offers over 150+ hover effects and a number of other perks as well. 
+
+<h3>Emage Hover Effects for Elementor (Pro)</h3>
 
 * **150+ hover effects**
 * Basic to **advanced** image hover effects
@@ -43,53 +71,18 @@ https://www.youtube.com/watch?v=1XknWh0rtQY
 * Virtually **unlimited effect** combinations
 * Customize content with links, buttons, colors and typography
 * **Post Grid** Hover effects
+* Dynamic fields (with Elementor Pro)
 
-**Image Hover Effects List** - Effects (Free)
+= Useful Links =
 
-* Fade
-* Slide Up
-* Slide Down
-* Slide Left
-* Slide Right
-* Reveal Up
-* Reveal Down
-* Reveal Left
-* Reveal Right
-* Push Up
-* Push Down
-* Push Left
-* Push Right
-* Hinge Up
-* Hinge Down
-* Hinge Left
-* Hinge Right
-* Flip Horizontal
-* Flip Vertical
-* Flip Dialog 1
-* Flip Dialog 2
-* Shutter Out Horizontal
-* Shutter Out Vertical
-* Shutter Out Dialog 1
-* Shutter Out Dialog 2
-* Shutter In Horizontal
-* Shutter In Vertical
-* Shutter In Out Horizontal
-* Shutter In Out Vertical
-* Shutter In Out Dialog 1
-* Shutter In Out Dialog 2
-* Fold Up
-* Fold Down
-* Fold Left
-* Fold Right
-* Zoom In
-* Zoom Out
-* Zoom Out Up
-* Zoom Out Down
-* Zoom Out Left
-* Zoom Out Right
-* Zoom Out Flip Vertical
-* Zoom Out Flip Horizontal
-* Blur
+[Hover effects demo](http://tiny.cc/free-eihe) | [Emage Hover Effects](https://imagehoverpro.blocksera.com) (Pro) | [Buy Emage Hover Effects](https://codecanyon.net/item/emage-image-hover-effects-for-elementor-page-builder/22563091)
+
+== Screenshots ==
+
+1. Image Hover Effects - Elementor Addon
+2. 40+ hover effects
+3. Advanced styling options
+4. Full html code support
 
 == Installation ==
 
@@ -105,13 +98,15 @@ https://www.youtube.com/watch?v=1XknWh0rtQY
 
 = Will it work without Elementor page builder? =
 
-No. It does not work without Elementor
-
+Ths plugin only works with Elementor. Check out [Image Hover Effects Block](https://wordpress.org/plugins/image-hover-effects-block/) plugin if you are using Wordpress Block Editor
 
 = Will it work with any theme? =
 
 Absolutely. It will work with any theme where Elementor works.
 
+= What is Emage Hover Effects? =
+
+[Emage Hover Effects](https://codecanyon.net/item/emage-image-hover-effects-for-elementor-page-builder/22563091) is the premium version of this plugin. It contains over 150+ hover effects and more customization options
 
 = Can I upgrade this to pro version? =
 
@@ -119,6 +114,9 @@ Yes, but you need to remove this plugin and install pro version after purchase.
 
 
 == Changelog ==
+
+= 1.3.0 =
+* WPML Translation Support
 
 = 1.2.8 =
 * Wordpress 5.3.2 Compatibility Update

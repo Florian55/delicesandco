@@ -1,8 +1,11 @@
 <?php
 
+/**
+ * Premium Dual Heading.
+ */
 namespace PremiumAddons\Widgets;
 
-use PremiumAddons\Helper_Functions;
+// Elementor Classes.
 use PremiumAddons\Includes;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -13,8 +16,14 @@ use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Background;
 
+// PremiumAddons Classes.
+use PremiumAddons\Helper_Functions;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // If this file is called directly, abort.
 
+/**
+ * Class Premium_Dual_Header
+ */
 class Premium_Dual_Header extends Widget_Base {
     
     protected $templateInstance;
@@ -49,8 +58,12 @@ class Premium_Dual_Header extends Widget_Base {
 		return 'https://premiumaddons.com/support/';
 	}
 
-    // Adding the controls fields for the premium dual header
-    // This will controls the animation, colors and background, dimensions etc
+    /**
+	 * Register Dual Heading controls.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function _register_controls() {
 
         /*Start General Section*/
@@ -273,6 +286,30 @@ class Premium_Dual_Header extends Widget_Base {
 		);
 
         /*End General Settings Section*/
+        $this->end_controls_section();
+
+        $this->start_controls_section('section_pa_docs',
+            [
+                'label'         => __('Helpful Documentations', 'premium-addons-for-elementor'),
+            ]
+        );
+
+        $this->add_control('doc_1',
+            [
+                'type'            => Controls_Manager::RAW_HTML,
+                'raw'             => sprintf( __( '%1$s Getting started » %2$s', 'premium-addons-for-elementor' ), '<a href="https://premiumaddons.com/docs/dual-heading-widget-tutorial/?utm_source=pa-dashboard&utm_medium=pa-editor&utm_campaign=pa-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'content_classes' => 'editor-pa-doc',
+            ]
+        );
+
+        $this->add_control('doc_2',
+            [
+                'type'            => Controls_Manager::RAW_HTML,
+                'raw'             => sprintf( __( '%1$s How to add an outlined heading using Dual Heading widget » %2$s', 'premium-addons-for-elementor' ), '<a href="https://premiumaddons.com/docs/how-to-add-an-outlined-heading-to-my-website/?utm_source=pa-dashboard&utm_medium=pa-editor&utm_campaign=pa-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'content_classes' => 'editor-pa-doc',
+            ]
+        );
+        
         $this->end_controls_section();
         
         /*Start First Header Styling Section*/
@@ -671,6 +708,14 @@ class Premium_Dual_Header extends Widget_Base {
        
     }
 
+    /**
+	 * Render Dual Heading widget output on the frontend.
+	 *
+	 * Written in PHP and used to generate the final HTML.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function render() {
         
         $settings = $this->get_settings_for_display();
@@ -739,7 +784,15 @@ class Premium_Dual_Header extends Widget_Base {
     <?php
     }
     
-    protected function _content_template()
+    /**
+	 * Render Dual Heading widget output in the editor.
+	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
+    protected function content_template()
     {
         ?>
         <#

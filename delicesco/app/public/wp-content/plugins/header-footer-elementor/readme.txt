@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/BrainstormForce
 Requires at least: 4.4
 Requires PHP: 5.4
 Tested up to: 5.4
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,7 +82,7 @@ Check [Ultimate Addons for Elementor](https://uaelementor.com/?utm_source=wp-rep
 
 = HAVE YOU TRIED ASTRA WITH ELEMENTOR? =
 
-Powering over 800,000+ WordPress websites, Astra is loved for the performance and ease-of-use it offers.
+Powering over 900,000+ WordPress websites, Astra is loved for the performance and ease-of-use it offers.
 
 People love Astra for -
 
@@ -137,6 +137,11 @@ This same applies when you are creating your Header/Footer using this plugin.
 5. Default widgets available with Elementor – Header, Footer & Blocks.
 
 == Changelog ==
+
+= 1.5.1 =
+- Fix: Retained GeneratePress theme's after header while using EHF header.
+- Fix: Target rule 'Specific Pages/Posts/Taxonomies etc' not working.
+- Fix: Cart - Error in some cases.
 
 = 1.5.0 =
 - New: Search widget.

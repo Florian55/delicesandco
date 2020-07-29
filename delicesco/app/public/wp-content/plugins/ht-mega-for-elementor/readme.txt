@@ -2,8 +2,8 @@
 Contributors: hasthemes, htplugins, devitemsllc
 Tags: Elementor, Elementor Addons, Elementor Widgets, elementor page builder, Elementor Blocks
 Requires at least: 4.7
-Tested up to: 5.4.1
-Stable tag: 1.4.1
+Tested up to: 5.4.2
+Stable tag: 1.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -189,6 +189,24 @@ August 05 - 2019:
 Visit [HasThemes](https://hasthemes.com/) for more details about HTML, Shopify and WordPress products and services.
 
 == Changelog ==
+
+= Version: 1.4.5 - Date: 2020-07-29 =
+* Instagram Addon Issue Solved
+* Thumbnail Opacity add for style-3 in HT Mega post carousal widget.
+* Add default background in HT Mega button widget.
+* Border radius issue and read-mode border issue fixed in HT Mega button widget.
+* Add dependency for style-2 and style-3 in HT Mega countdown widget.
+* Title Background color issue fixed in HT Mega post grid tab.
+* Add image opacity in HT Mega image marker.
+* Progress bar animation issue and value size issue fixed in HT Mega progress bar.
+* Footer-Background color issue fixed for style-5 in HT Mega pricing table.
+
+= Version: 1.4.3 - Date: 2020-06-17 =
+* Post Duplicator Option Added.
+
+= Version: 1.4.2 - Date: 2020-06-02 =
+* Scroll Navigation addon Scoring issue has been solved.
+* Admin popup console error issue has been solved.
 
 = Version: 1.4.1 - Date: 2020-05-11 =
 * Working process Icon style Option added.

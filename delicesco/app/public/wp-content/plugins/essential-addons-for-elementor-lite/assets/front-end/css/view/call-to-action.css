@@ -23,16 +23,44 @@
   font-style: normal;
 }
 
-.eael-call-to-action.cta-center {
+.elementor-widget-eael-cta-box.content-align-cta-default {
+  text-align: left;
+}
+
+.elementor-widget-eael-cta-box.content-align-cta-center {
   text-align: center;
 }
 
-.eael-call-to-action.cta-right {
+.elementor-widget-eael-cta-box.content-align-cta-right {
   text-align: right;
 }
 
-.eael-call-to-action.cta-left {
-  text-align: left;
+@media all and (min-width: 768px) and (max-width: 1024px) {
+  .elementor-widget-eael-cta-box.content-align--tabletcta-right {
+    text-align: right;
+  }
+
+  .elementor-widget-eael-cta-box.content-align--tabletcta-center {
+    text-align: center;
+  }
+
+  .elementor-widget-eael-cta-box.content-align--tabletcta-default {
+    text-align: left;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .elementor-widget-eael-cta-box.content-align--mobilecta-center {
+    text-align: center;
+  }
+
+  .elementor-widget-eael-cta-box.content-align--mobilecta-right {
+    text-align: right;
+  }
+
+  .elementor-widget-eael-cta-box.content-align--mobilecta-default {
+    text-align: left;
+  }
 }
 
 .eael-call-to-action.bg-lite {
@@ -78,15 +106,12 @@
 .eael-call-to-action.cta-flex,
 .eael-call-to-action.cta-icon-flex {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
   -webkit-box-align: start;
-  -webkit-align-items: flex-start;
       -ms-flex-align: start;
           align-items: flex-start;
 }
@@ -95,7 +120,6 @@
 
 .eael-call-to-action.cta-icon-flex .icon {
   -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   font-size: 80px;
@@ -105,19 +129,16 @@
 
 .eael-call-to-action.cta-icon-flex .action {
   -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   text-align: right;
   padding-top: 22px;
-  -webkit-flex-basis: 22%;
-      -ms-flex-preferred-size: 22%;
-          flex-basis: 22%;
+  -ms-flex-preferred-size: 22%;
+      flex-basis: 22%;
 }
 
 .eael-call-to-action.cta-icon-flex .content {
   -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   padding: 0px 30px;
@@ -128,21 +149,18 @@
 .eael-call-to-action.cta-flex .content {
   padding: 0px 15px;
   -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
 }
 
 .eael-call-to-action.cta-flex .action {
   -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   text-align: right;
   padding-top: 25px;
-  -webkit-flex-basis: 23%;
-      -ms-flex-preferred-size: 23%;
-          flex-basis: 23%;
+  -ms-flex-preferred-size: 23%;
+      flex-basis: 23%;
 }
 
 /*--- Cta Button ---*/
@@ -179,7 +197,7 @@
 
 .eael-call-to-action .cta-button:hover {
   color: #fff;
-  background: #3F51B5;
+  background: #3f51b5;
   -webkit-box-shadow: 0px 1px 12px 1px rgba(0, 0, 0, 0.1);
   -ms-box-shadow: 0px 1px 12px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 1px 12px 1px rgba(0, 0, 0, 0.1);
@@ -192,7 +210,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #3F51B5;
+  background: #3f51b5;
   top: 0px;
   left: 0px;
   transform: translateY(-100%);
@@ -218,7 +236,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #3F51B5;
+  background: #3f51b5;
   top: 0px;
   left: 0px;
   z-index: -1;
@@ -242,9 +260,8 @@
 @media only screen and (max-width: 768px) {
   .eael-call-to-action.cta-flex,
 .eael-call-to-action.cta-icon-flex {
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
 
   .eael-call-to-action .title {
@@ -255,7 +272,6 @@
 
   .eael-call-to-action.cta-icon-flex .icon {
     -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
         -ms-flex-positive: 1;
             flex-grow: 1;
     font-size: 48px;
@@ -266,7 +282,6 @@
   .eael-call-to-action.cta-flex .content,
 .eael-call-to-action.cta-icon-flex .content {
     -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
         -ms-flex-positive: 1;
             flex-grow: 1;
     text-align: center;

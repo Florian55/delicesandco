@@ -1,9 +1,11 @@
 <?php
 
+/**
+ * Premium Media Grid.
+ */
 namespace PremiumAddons\Widgets;
 
-use PremiumAddons\Helper_Functions;
-use PremiumAddons\Includes;
+// Elementor Classes.
 use Elementor\Modules\DynamicTags\Module as TagsModule;
 use Elementor\Widget_Base;
 use Elementor\Utils;
@@ -22,8 +24,15 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Image_Size;
 
+// PremiumAddons Classes.
+use PremiumAddons\Helper_Functions;
+use PremiumAddons\Includes;
+
 if( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Class Premium_Grid
+ */
 class Premium_Grid extends Widget_Base {
     
     public function get_name() {
@@ -73,6 +82,12 @@ class Premium_Grid extends Widget_Base {
 		return 'https://premiumaddons.com/support/';
 	}
     
+    /**
+	 * Register Media Grid controls.
+	 *
+	 * @since 2.1.0
+	 * @access protected
+	 */
     protected function _register_controls() {
         
         $this->start_controls_section('premium_gallery_general',
@@ -876,7 +891,19 @@ class Premium_Grid extends Widget_Base {
 					'premium_gallery_light_box' => 'yes',
 				],
 			]
-		);
+        );
+        
+        $this->add_control('lightbox_show_title',
+            [
+                'label'         => __( 'Show Image Title', 'premium-addons-for-elementor' ),
+                'type'          => Controls_Manager::SWITCHER,
+                'default'       => 'yes',
+                'condition'     => [
+                    'premium_gallery_light_box'     => 'yes',
+                    'premium_gallery_lightbox_type' => 'yes'
+                ]
+            ]
+        );
         
         $this->add_control('premium_gallery_lightbox_doc',
 			[
@@ -982,7 +1009,23 @@ class Premium_Grid extends Widget_Base {
                 'content_classes' => 'editor-pa-doc',
             ]
         );
-        
+
+        $this->add_control('doc_2',
+            [
+                'type'            => Controls_Manager::RAW_HTML,
+                'raw'             => sprintf( __( '%1$s How to assign a grid item to multiple categories » %2$s', 'premium-addons-for-elementor' ), '<a href="https://premiumaddons.com/docs/how-to-assign-an-image-to-multiple-categories/?utm_source=pa-dashboard&utm_medium=pa-editor&utm_campaign=pa-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'content_classes' => 'editor-pa-doc',
+            ]
+        );
+
+        $this->add_control('doc_3',
+            [
+                'type'            => Controls_Manager::RAW_HTML,
+                'raw'             => sprintf( __( '%1$s How to open an Elementor popup/lightbox using a grid item » %2$s', 'premium-addons-for-elementor' ), '<a href="https://premiumaddons.com/docs/how-to-open-a-popup-lightbox-through-a-grid-image/?utm_source=pa-dashboard&utm_medium=pa-editor&utm_campaign=pa-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'content_classes' => 'editor-pa-doc',
+            ]
+        );
+
         $this->end_controls_section();
         
         $this->start_controls_section('premium_gallery_general_style',
@@ -1927,7 +1970,7 @@ class Premium_Grid extends Widget_Base {
 
 		$this->add_control('lightbox_color',
 			[
-				'label' => __( 'Color', 'premium-addons-for-elementor' ),
+				'label' => __( 'Background Color', 'premium-addons-for-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'#elementor-lightbox-slideshow-{{ID}}' => 'background-color: {{VALUE}};',
@@ -2119,7 +2162,8 @@ class Premium_Grid extends Widget_Base {
             'active_cat'    => $category,
             'ltr_mode'      => $ltr_mode,
             'shuffle'       => $shuffle,
-            'sort_by'       => $shuffle_onload
+            'sort_by'       => $shuffle_onload,
+            'skin'          => $skin
         ];
         
         $load_more          = 'yes' === $settings['premium_gallery_load_more'] ? true : false;
@@ -2288,13 +2332,18 @@ class Premium_Grid extends Widget_Base {
 
                                 if( 'default' !== $lightbox_type ) {
 
-                                    $alt    = Control_Media::get_image_alt( $image['premium_gallery_img'] );
-
                                     $this->add_render_attribute( $lightbox_key, [
                                         'data-elementor-open-lightbox'      => $lightbox_type,
-                                        'data-elementor-lightbox-slideshow' => $this->get_id(),
-                                        'data-elementor-lightbox-title'     => $alt
+                                        'data-elementor-lightbox-slideshow' => $this->get_id()
                                     ]);
+
+                                    if( 'yes' === $settings['lightbox_show_title'] ) {
+
+                                        $alt    = Control_Media::get_image_alt( $image['premium_gallery_img'] );
+                                       
+                                        $this->add_render_attribute( $lightbox_key, 'data-elementor-lightbox-title', $alt );
+                                        
+                                    }
 
                                 } else {
 
@@ -2513,13 +2562,19 @@ class Premium_Grid extends Widget_Base {
 
                 if( 'default' !== $lightbox_type ) {
 
-                    $alt    = Control_Media::get_image_alt( $item['premium_gallery_img'] );
-
                     $this->add_render_attribute( $lightbox_key, [
                         'data-elementor-open-lightbox'      => $lightbox_type,
-                        'data-elementor-lightbox-slideshow' => $id,
-                        'data-elementor-lightbox-title'     => $alt
+                        'data-elementor-lightbox-slideshow' => $id
                     ]);
+                    
+                    if( 'yes' === $settings['lightbox_show_title'] ) {
+
+                        $alt    = Control_Media::get_image_alt( $item['premium_gallery_img'] );
+                       
+                        $this->add_render_attribute( $lightbox_key, 'data-elementor-lightbox-title', $alt );
+                        
+                    }
+
                 } else {
 
                     $rel = sprintf( 'prettyPhoto[premium-grid-%s]', $this->get_id() );

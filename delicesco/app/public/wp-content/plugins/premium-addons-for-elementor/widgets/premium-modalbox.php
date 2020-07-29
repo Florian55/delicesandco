@@ -1,15 +1,11 @@
 <?php
 
 /**
- * Class: Premium_Modalbox
- * Name: Modal Box
- * Slug: premium-addon-modal-box
+ * Premium Modal Box.
  */
-
 namespace PremiumAddons\Widgets;
 
-use PremiumAddons\Helper_Functions;
-use PremiumAddons\Includes;
+// Elementor Classes.
 use Elementor\Icons_Manager;
 use Elementor\Widget_Base;
 use Elementor\Utils;
@@ -24,8 +20,15 @@ use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Background;
 
+// PremiumAddons Classes.
+use PremiumAddons\Helper_Functions;
+use PremiumAddons\Includes;
+
 if (!defined('ABSPATH')) exit; // If this file is called directly, abort.
 
+/**
+ * Class Premium_Modalbox
+ */
 class Premium_Modalbox extends Widget_Base
 {
 
@@ -80,8 +83,12 @@ class Premium_Modalbox extends Widget_Base
         return 'https://premiumaddons.com/support/';
     }
 
-    // Adding the controls fields for the premium modal box
-    // This will controls the animation, colors and background, dimensions etc
+    /**
+	 * Register Modal Box controls.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 */
     protected function _register_controls()
     {
 
@@ -782,7 +789,6 @@ class Premium_Modalbox extends Widget_Base
             Group_Control_Typography::get_type(),
             [
                 'name'          => 'selectortext',
-                'label'         => __('Typography', 'premium-addons-for-elementor'),
                 'scheme'        => Scheme_Typography::TYPOGRAPHY_1,
                 'selector'      => '{{WRAPPER}} .premium-modal-trigger-btn, {{WRAPPER}} .premium-modal-trigger-text',
                 'condition'     => [
@@ -993,7 +999,6 @@ class Premium_Modalbox extends Widget_Base
             Group_Control_Typography::get_type(),
             [
                 'name'          => 'headertext',
-                'label'         => __('Typography', 'premium-addons-for-elementor'),
                 'scheme'        => Scheme_Typography::TYPOGRAPHY_1,
                 'selector'      => '{{WRAPPER}} .premium-modal-box-modal-title',
             ]
@@ -1182,7 +1187,6 @@ class Premium_Modalbox extends Widget_Base
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'label'         => __('Typography', 'premium-addons-for-elementor'),
                 'name'          => 'lowerclose',
                 'scheme'        => Scheme_Typography::TYPOGRAPHY_1,
                 'selector'      => '{{WRAPPER}} .premium-modal-box-modal-lower-close',
@@ -1358,6 +1362,28 @@ class Premium_Modalbox extends Widget_Base
             ]
         );
 
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name'          => 'content_typography',
+                'selector'      => '{{WRAPPER}} .premium-modal-box-modal-body',
+                'condition'     => [
+                    'premium_modal_box_content_type'  => 'editor'
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'premium_modal_box_content_background',
+            [
+                'label'         => __('Content Background Color', 'premium-addons-for-elementor'),
+                'type'          => Controls_Manager::COLOR,
+                'selectors'     => [
+                    '{{WRAPPER}} .premium-modal-box-modal-body'  => 'background: {{VALUE}};',
+                ]
+            ]
+        );
+
         $this->add_control(
             'premium_modal_box_modal_size',
             [
@@ -1370,6 +1396,7 @@ class Premium_Modalbox extends Widget_Base
                         'max'   => 1000,
                     ]
                 ],
+                'separator'     => 'before',
                 'label_block'   => true,
             ]
         );
@@ -1399,17 +1426,6 @@ class Premium_Modalbox extends Widget_Base
                 'name'              => 'premium_modal_box_modal_background',
                 'types'             => ['classic', 'gradient'],
                 'selector'          => '{{WRAPPER}} .premium-modal-box-modal'
-            ]
-        );
-
-        $this->add_control(
-            'premium_modal_box_content_background',
-            [
-                'label'         => __('Content Background Color', 'premium-addons-for-elementor'),
-                'type'          => Controls_Manager::COLOR,
-                'selectors'     => [
-                    '{{WRAPPER}} .premium-modal-box-modal-body'  => 'background: {{VALUE}};',
-                ]
             ]
         );
 
@@ -1513,8 +1529,7 @@ class Premium_Modalbox extends Widget_Base
         }
     }
 
-    protected function render()
-    {
+    protected function render() {
 
         $settings = $this->get_settings_for_display();
 

@@ -1,19 +1,19 @@
 ﻿=== Premium Addons for Elementor ===
 Contributors: Leap13, Rimoun
-Tags: Elementor, Elementor Page Builder, Elements, Elementor Addons, Add-ons, Page Builder, Widgets, Elementor Widgets
+Tags: elementor, elements, addons, elementor addon, elementor widget, elementor extensions, page builder, builder, visual editor, wordpress page builder
 Donate Link: https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme
-Requires at Least: 4.5
-Tested Up To: 5.4.1
+Requires at least: 5.0
+Tested Up To: 5.4.2
 Requires PHP: 5.4
-Stable Tag: 3.20.2
+Stable Tag: 3.20.9
 License: GPL v3.0
 License URI: https://opensource.org/licenses/GPL-3.0
 
-Elementor Widgets and Addons like Vertical Scroll, Grid, Carousel, Google Maps, Pricing Tables, Lottie Animations, Countdown, Testimonials, Blog and more.
+Premium Addons for Elementor plugin includes widgets and addons like Blog Post Grid, Gallery, Carousel, Modal Popup, Lottie Animations, Google Maps, Pricing Tables, Countdown, Testimonials and much more.
 
 == Description ==
 
-Supercharge your Elementor Page Builder with 50+ highly customizable widgets and add-ons that will give you the ability to build sophisticated websites in less time with no coding required. Both Elementor and Premium Addons plugins take your WordPress website to the next level.
+Supercharge your Elementor Page Builder with 53+ highly customizable Elementor addons and widgets, 270+ premade Elementor templates that will give you the ability to build sophisticated websites in less time with no coding required. Both Elementor and Premium Addons plugins take your WordPress website to the next level.
 
 [**Check Elementor Widgets & Addons Demo Pages**](https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme)
 
@@ -179,6 +179,52 @@ Premium Addons for Elementor is 100% Ads Free, Ads can only be detected from You
 14. Premium Progress Bar Widget for Elementor
 
 == Changelog ==
+
+= 3.20.9 =
+
+- Tweak: Added Loop Count option in Fancy Text widget.
+- Tweak: Elementor Deprecated functions updated.
+- Fixed: RTL issues in Banner and Title widgets.
+
+= 3.20.8 =
+
+- Tweak: Added Show/Hide Post Featured Image option in Blog widget.
+- Tweak: Added Border options for post box in Blog widget.
+- Tweak: Added Boxes Equal Height option for posts content boxes in Blog widget.
+- Fixed: Lottie animations duplicate issue when inserted in Elementor template.
+
+= 3.20.7 =
+
+- Tweak: Added alignment options for the outer container in Counter widget.
+- Tweak: Added Typography options for modal body content in Modal Box widget.
+
+= 3.20.7 =
+
+- Tweak: Added Custom Animation to select between dozens of animations in Fancy Text widget.
+- Fixed: Items overlap issue in zoomout and rotate effects in Fancy Text widget.
+- Fixed: `NOTICE: wp-content/plugins/premium-addons-for-elementor/includes/class-helper-functions.php:461 – Trying to access array offset on value of type bool`
+
+= 3.20.6 =
+
+- Tweak: Added Show Title option for Elementor lightbox in Media Grid widget.
+- Fixed: Carousel flickering issue when Elementor Entrance Animation is added for inner content.
+
+= 3.20.5 =
+
+- Tweak: Added Active Border options for Filter tabs in Blog widget.
+- Tweak: Added Render Type option in Lottie Animation widget.
+- Fixed: Page scroll not working when Vertial Scroll widget is hidden on the current device.
+- Fixed: Item title/description hidden when video is clicked in Media Grid.
+
+= 3.20.4 =
+
+- Tweak: Added Normal/Hover opacity in Lottie Animations widget.
+- Fixed: Post featured image is not linked to post in Blog widget.
+
+= 3.20.3 =
+
+- Fixed: Even layout in Blog widget not working when carousel option is enabled.
+- Fixed: Premium Templates button icon not showing.
 
 = 3.20.2 =
 

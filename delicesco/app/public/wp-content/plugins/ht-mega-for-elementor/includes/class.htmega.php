@@ -205,6 +205,16 @@ final class HTMega_Addons_Elementor {
         require_once ( HTMEGA_ADDONS_PL_PATH . 'includes/widgets_control.php' );
         require_once ( HTMEGA_ADDONS_PL_PATH . 'includes/class.htmega-icon-manager.php' );
 
+        // Admin Required File
+        if( is_admin() ){
+
+            // Post Duplicator
+            if( htmega_get_option( 'postduplicator', 'htmega_advance_element_tabs', 'off' ) === 'on' ){
+                require_once ( HTMEGA_ADDONS_PL_PATH . 'includes/class.post-duplicator.php' );
+            }
+            
+        }
+
         // Extension Assest Management
         require_once( HTMEGA_ADDONS_PL_PATH . 'extensions/class.enqueue_scripts.php' );
 

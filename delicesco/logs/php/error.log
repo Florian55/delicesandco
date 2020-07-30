@@ -776,3 +776,4 @@ Stack trace:
 [29-Jul-2020 13:50:47 UTC] PHP   6. Elementor\Core\Common\Modules\Ajax\Module->send_success() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:185
 [29-Jul-2020 13:50:47 UTC] PHP   7. wp_json_encode() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\elementor\core\common\modules\ajax\module.php:258
 [29-Jul-2020 13:50:47 UTC] PHP   8. json_encode() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php:3890
+[30-Jul-2020 14:34:49 UTC] Astra: db version updated successfully!

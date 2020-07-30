@@ -326,8 +326,6 @@ For JavaScript helper codes, paste them in your `<theme folder>/js/<form-unique-
 23. (23) You can filter mail tags, hover your mouse over the blue information icon next to each tag and click the link, this will copy the filter code to your clipboard which you can paste into your functions.php file.
 
 == Changelog ==
-= 3.3.4 =
-* remove continue 2 in public class.
 = 3.3.3 =
 * fix really simple captcha bug.
 * fix missing hidden fields in CF7 v5.2.

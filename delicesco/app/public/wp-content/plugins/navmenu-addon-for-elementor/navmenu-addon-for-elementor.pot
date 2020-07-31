@@ -1,0 +1,498 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NavMenu Addon For Elementor\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-31 11:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.4.0; wp-5.4.2"
+
+#: elementor-navmenu.php:80
+msgid "Activate Elementor Now"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:322
+#: modules/menus/widgets/default-navmenu.php:352
+msgid "Active Background"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:307
+msgid "Active Color"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:337
+msgid "Active Link"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Adds new NavMenus to the Elementor Page Builder plugin. Now with Site "
+"Branding options, search box, basic MegaMenu and Fullscreen Menu Overlay"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:68
+#: modules/menus/widgets/elementor-branding.php:66
+#: modules/menus/widgets/elementor-search.php:53
+#: modules/menus/widgets/mega-menu.php:63
+#: modules/search/widgets/elementor-search.php:55
+msgid "Alignment"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:228
+#: modules/menus/widgets/mega-menu.php:142
+#: modules/menus/widgets/mega-menu.php:211
+#: modules/menus/widgets/navmenu-overlay.php:195
+msgid "Background"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:259
+#: modules/menus/widgets/default-navmenu.php:511
+msgid "Background Color"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:542
+msgid "Background Hover"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:252
+#: modules/menus/widgets/default-navmenu.php:275
+#: modules/menus/widgets/default-navmenu.php:368
+#: modules/menus/widgets/default-navmenu.php:463
+#: modules/menus/widgets/default-navmenu.php:570
+#: modules/menus/widgets/elementor-branding.php:250
+#: modules/menus/widgets/elementor-search.php:143
+#: modules/menus/widgets/elementor-search.php:152
+#: modules/search/widgets/elementor-search.php:145
+#: modules/search/widgets/elementor-search.php:154
+msgid "Border"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:261
+#: modules/menus/widgets/default-navmenu.php:284
+#: modules/menus/widgets/default-navmenu.php:377
+#: modules/menus/widgets/default-navmenu.php:472
+#: modules/menus/widgets/default-navmenu.php:579
+#: modules/menus/widgets/elementor-branding.php:259
+#: modules/menus/widgets/elementor-search.php:161
+#: modules/menus/widgets/navmenu-overlay.php:211
+#: modules/search/widgets/elementor-search.php:163
+msgid "Border Radius"
+msgstr ""
+
+#: modules/menus/widgets/elementor-search.php:113
+#: modules/search/widgets/elementor-search.php:115
+msgid "Box Background"
+msgstr ""
+
+#: modules/menus/widgets/elementor-search.php:97
+#: modules/search/widgets/elementor-search.php:99
+msgid "Box Color"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:94
+#: modules/menus/widgets/elementor-branding.php:92
+msgid "Brand"
+msgstr ""
+
+#: modules/branding/module.info.php:7
+#: modules/branding/widgets/elementor-branding.php:31
+#: modules/branding/widgets/elementor-branding.php:48
+#: modules/menus/widgets/elementor-branding.php:29
+#: modules/menus/widgets/elementor-branding.php:46
+msgid "Branding"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:243
+#: modules/menus/widgets/elementor-branding.php:241
+msgid "Branding Border"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:55
+#: modules/menus/widgets/elementor-branding.php:53
+msgid "Branding Type"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:76
+#: modules/menus/widgets/default-navmenu.php:85
+#: modules/menus/widgets/default-navmenu.php:109
+#: modules/menus/widgets/default-navmenu.php:156
+#: modules/menus/widgets/elementor-branding.php:74
+#: modules/menus/widgets/elementor-search.php:61
+#: modules/menus/widgets/mega-menu.php:71
+#: modules/menus/widgets/navmenu-overlay.php:71
+#: modules/search/widgets/elementor-search.php:63
+msgid "Center"
+msgstr ""
+
+#: plugin.php:48 plugin.php:59 base/module-base.php:29 base/module-base.php:40
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: plugin.php:206 plugin.php:230 plugin.php:241 plugin.php:252
+msgid "collapse child menu"
+msgstr ""
+
+#: modules/menus/widgets/mega-menu.php:126
+#: modules/menus/widgets/mega-menu.php:179
+#: modules/menus/widgets/navmenu-overlay.php:109
+#: modules/menus/widgets/navmenu-overlay.php:179
+msgid "Color"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:298
+msgid "Current/Active"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:31
+msgid "Default Navmenu"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:195
+#: modules/menus/widgets/elementor-branding.php:193
+msgid "Description Color"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:184
+#: modules/menus/widgets/elementor-branding.php:182
+msgid "Description Options"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:213
+#: modules/menus/widgets/elementor-branding.php:211
+msgid "Description Padding - Default 1em"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:640
+#: modules/menus/widgets/navmenu-overlay.php:248
+msgid "Elementor Menu"
+msgstr ""
+
+#: elementor-navmenu.php:103
+msgid ""
+"Elementor NavMenu is not working because you are using an old version of "
+"Elementor."
+msgstr ""
+
+#: elementor-navmenu.php:79
+msgid ""
+"Elementor NavMenu is not working because you need to activate the Elementor "
+"plugin."
+msgstr ""
+
+#: elementor-navmenu.php:88
+msgid ""
+"Elementor NavMenu is not working because you need to install the Elemenor "
+"plugin"
+msgstr ""
+
+#: plugin.php:205 plugin.php:229 plugin.php:240 plugin.php:251
+msgid "expand child menu"
+msgstr ""
+
+#: plugin.php:264
+msgid "Header Elements"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:121
+#: modules/menus/widgets/elementor-branding.php:119
+#: modules/menus/widgets/navmenu-overlay.php:125
+msgid "Hover"
+msgstr ""
+
+#: modules/menus/widgets/mega-menu.php:195
+msgid "hover"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid "https://themeisle.com/"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:495
+msgid "Icon Color"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:527
+msgid "Icon Hover"
+msgstr ""
+
+#: elementor-navmenu.php:89
+msgid "Install Elementor Now"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:148
+#: modules/menus/widgets/navmenu-overlay.php:63
+msgid "Item Alignment"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:174
+msgid "Item Padding"
+msgstr ""
+
+#: modules/menus/widgets/elementor-search.php:184
+#: modules/search/widgets/elementor-search.php:186
+msgctxt "label"
+msgid "Search for:"
+msgstr ""
+
+#: modules/menus/widgets/elementor-search.php:183
+#: modules/menus/widgets/elementor-search.php:191
+#: modules/search/widgets/elementor-search.php:185
+#: modules/search/widgets/elementor-search.php:193
+msgctxt "label"
+msgid "Search:"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:72
+#: modules/menus/widgets/default-navmenu.php:81
+#: modules/menus/widgets/default-navmenu.php:105
+#: modules/menus/widgets/default-navmenu.php:152
+#: modules/menus/widgets/elementor-branding.php:70
+#: modules/menus/widgets/elementor-search.php:57
+#: modules/menus/widgets/mega-menu.php:67
+#: modules/menus/widgets/navmenu-overlay.php:67
+#: modules/search/widgets/elementor-search.php:59
+msgid "Left"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:212
+#: modules/menus/widgets/default-navmenu.php:244
+msgid "Link Color"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:59
+#: modules/menus/widgets/elementor-branding.php:57
+msgid "Logo"
+msgstr ""
+
+#: modules/menus/widgets/mega-menu.php:31
+msgid "Mega Menu"
+msgstr ""
+
+#: modules/menus/widgets/mega-menu.php:172
+msgid "MegaMenu"
+msgstr ""
+
+#: modules/menus/widgets/mega-menu.php:99
+msgid "MegaMenu Content"
+msgstr ""
+
+#: modules/menus/widgets/navmenu-overlay.php:47
+msgid "Menu"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:64
+msgid "Menu Location"
+msgstr ""
+
+#: modules/menus/module.info.php:7
+msgid "Menus"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:101
+msgid "Mobile Item Alignment"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:486
+msgid "Mobile Toggle"
+msgstr ""
+
+#: modules/menus/widgets/mega-menu.php:118
+msgid "NavBar"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:188
+msgid "Navbar"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:196
+msgid "Navbar Background"
+msgstr ""
+
+#: modules/menus/widgets/mega-menu.php:47
+msgid "Navbar Content"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:77
+msgid "Navbar/Toggle Alignment"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:48
+msgid "Navigation"
+msgstr ""
+
+#. Name of the plugin
+msgid "NavMenu Addon For Elementor"
+msgstr ""
+
+#. Install Neve link
+#: includes/class-ti-upsell-notice-manager.php:93
+#, php-format
+msgid ""
+"NavMenu Addon For Elementor recommends %1$s. Fully AMP optimized and "
+"responsive, Neve will load in mere seconds and adapt perfectly on any "
+"viewing device. Neve works perfectly with Gutenberg and the most popular "
+"page builders. You will love it!"
+msgstr ""
+
+#. Install Neve link
+#: includes/class-ti-upsell-notice-manager.php:98
+msgid "Neve"
+msgstr ""
+
+#: modules/menus/widgets/navmenu-overlay.php:141
+msgid "Overlay Background"
+msgstr ""
+
+#: modules/menus/widgets/navmenu-overlay.php:31
+msgid "Overlay NavMenu"
+msgstr ""
+
+#: modules/menus/widgets/navmenu-overlay.php:101
+msgid "Overlay Style"
+msgstr ""
+
+#: modules/menus/widgets/mega-menu.php:158
+#: modules/menus/widgets/navmenu-overlay.php:157
+msgid "Padding"
+msgstr ""
+
+#: modules/menus/widgets/elementor-search.php:184
+#: modules/search/widgets/elementor-search.php:186
+msgctxt "placeholder"
+msgid "Type keyword & hit enter to search;"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:67
+msgid "Primary"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:80
+#: modules/menus/widgets/default-navmenu.php:89
+#: modules/menus/widgets/default-navmenu.php:113
+#: modules/menus/widgets/default-navmenu.php:160
+#: modules/menus/widgets/elementor-branding.php:78
+#: modules/menus/widgets/elementor-search.php:65
+#: modules/menus/widgets/mega-menu.php:75
+#: modules/menus/widgets/navmenu-overlay.php:75
+#: modules/search/widgets/elementor-search.php:67
+msgid "Right"
+msgstr ""
+
+#: modules/search/module.info.php:7
+#: modules/menus/widgets/elementor-search.php:46
+#: modules/menus/widgets/elementor-search.php:89
+#: modules/search/widgets/elementor-search.php:48
+#: modules/search/widgets/elementor-search.php:91
+msgid "Search"
+msgstr ""
+
+#: modules/menus/widgets/elementor-search.php:29
+#: modules/search/widgets/elementor-search.php:31
+msgid "Search Box"
+msgstr ""
+
+#: modules/menus/widgets/elementor-search.php:129
+#: modules/search/widgets/elementor-search.php:131
+msgid "Search Padding"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:68
+msgid "Secondary"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:65
+msgid ""
+"Select a location for your menu. This option facilitate the ability to "
+"create up to 2 mobile enabled menu locations"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:55
+#: modules/menus/widgets/mega-menu.php:54
+#: modules/menus/widgets/navmenu-overlay.php:54
+msgid "Select Menu"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:141
+#: modules/menus/widgets/default-navmenu.php:391
+msgid "Submenu"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:416
+msgid "Submenu Background"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:447
+msgid "Submenu Hover BG"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:432
+msgid "Submenu Link Hover"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:400
+msgid "Submenu Links"
+msgstr ""
+
+#: modules/menus/widgets/default-navmenu.php:127
+#: modules/menus/widgets/default-navmenu.php:557
+msgid "Text Padding - Default 1em"
+msgstr ""
+
+#. Author of the plugin
+msgid "ThemeIsle"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:58
+#: modules/menus/widgets/elementor-branding.php:56
+msgid "Title"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:102
+#: modules/menus/widgets/elementor-branding.php:100
+msgid "Title Color"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:139
+#: modules/branding/widgets/elementor-branding.php:167
+#: modules/menus/widgets/elementor-branding.php:137
+#: modules/menus/widgets/elementor-branding.php:165
+msgid "Title Padding - Default 1em"
+msgstr ""
+
+#: modules/menus/widgets/navmenu-overlay.php:171
+msgid "Toggle Style"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:155
+#: modules/branding/widgets/elementor-branding.php:229
+#: modules/menus/widgets/default-navmenu.php:593
+#: modules/menus/widgets/default-navmenu.php:603
+#: modules/menus/widgets/elementor-branding.php:153
+#: modules/menus/widgets/elementor-branding.php:227
+#: modules/menus/widgets/elementor-search.php:78
+#: modules/menus/widgets/mega-menu.php:88
+#: modules/menus/widgets/mega-menu.php:107
+#: modules/menus/widgets/navmenu-overlay.php:90
+#: modules/search/widgets/elementor-search.php:80
+msgid "Typography"
+msgstr ""
+
+#: elementor-navmenu.php:104
+msgid "Update Elementor Now"
+msgstr ""
+
+#: modules/branding/widgets/elementor-branding.php:56
+#: modules/menus/widgets/elementor-branding.php:54
+msgid ""
+"Your theme must declare the \"add_theme_support( 'custom-logo')\" for the "
+"logo to work"
+msgstr ""

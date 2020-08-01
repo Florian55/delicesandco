@@ -833,3 +833,80 @@ Stack trace:
 [30-Jul-2020 16:40:33 UTC] Erreur de la base de données WordPress You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FOREIGN KEY (`eventId`) REFERENCES wp_amelia_events(id) ON DELETE CASCADE' at line 1 pour la requête ALTER TABLE wp_amelia_custom_fields_events ADD COLUMN FOREIGN KEY (`eventId`) REFERENCES wp_amelia_events(id) ON DELETE CASCADE faite par do_action('admin_init'), WP_Hook->do_action, WP_Hook->apply_filters, AmeliaBooking\Plugin::adminInit, activate_plugin, do_action('activate_ameliabooking/ameliabooking.php'), WP_Hook->do_action, WP_Hook->apply_filters, AmeliaBooking\Plugin::activation, AmeliaBooking\Infrastructure\WP\InstallActions\ActivationDatabaseHook::init, AmeliaBooking\Infrastructure\WP\InstallActions\DB\AbstractDatabaseTable::init, dbDelta
 [31-Jul-2020 10:09:54 UTC] [Loco.warning] "Le modèle de traduction n’est pas valide (cf7-grid-layout.pot)" in src/error/AdminNotices.php:87
 [31-Jul-2020 11:27:01 UTC] [Loco.error] "Translation set not known in Smart Slider 3" in src/admin/bundle/BaseController.php:69
+[31-Jul-2020 14:30:34 UTC] PHP Warning:  PHP Startup: Unable to load dynamic library 'php_imagick.dll' (tried: C:/Users/fharb/AppData/Roaming/Local/lightning-services/php-7.4.1+8/bin/win64/ext\php_imagick.dll (Le module spécifié est introuvable.), C:/Users/fharb/AppData/Roaming/Local/lightning-services/php-7.4.1+8/bin/win64/ext\php_php_imagick.dll.dll (Le module spécifié est introuvable.)) in Unknown on line 0
+[31-Jul-2020 16:34:50 UTC] PHP Warning:  require(): Filename cannot be empty in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\class-autoloader-handler.php on line 87
+[31-Jul-2020 16:34:50 UTC] PHP Stack trace:
+[31-Jul-2020 16:34:50 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\index.php:0
+[31-Jul-2020 16:34:50 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\index.php:17
+[31-Jul-2020 16:34:50 UTC] PHP   3. wp() C:\Users\fharb\Local Sites\delicesco\app\public\wp-blog-header.php:16
+[31-Jul-2020 16:34:50 UTC] PHP   4. WP->main() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php:1274
+[31-Jul-2020 16:34:50 UTC] PHP   5. WP->parse_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp.php:739
+[31-Jul-2020 16:34:50 UTC] PHP   6. do_action_ref_array() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp.php:388
+[31-Jul-2020 16:34:50 UTC] PHP   7. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:544
+[31-Jul-2020 16:34:50 UTC] PHP   8. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:311
+[31-Jul-2020 16:34:50 UTC] PHP   9. rest_api_loaded() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:287
+[31-Jul-2020 16:34:50 UTC] PHP  10. WP_REST_Server->serve_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api.php:312
+[31-Jul-2020 16:34:50 UTC] PHP  11. WP_REST_Server->dispatch() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api\class-wp-rest-server.php:342
+[31-Jul-2020 16:34:50 UTC] PHP  12. Automattic\WooCommerce\Admin\API\Plugins->activate_plugins() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api\class-wp-rest-server.php:1015
+[31-Jul-2020 16:34:50 UTC] PHP  13. activate_plugin() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\woocommerce\packages\woocommerce-admin\src\API\Plugins.php:419
+[31-Jul-2020 16:34:50 UTC] PHP  14. include_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\plugin.php:659
+[31-Jul-2020 16:34:50 UTC] PHP  15. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\jetpack.php:99
+[31-Jul-2020 16:34:50 UTC] PHP  16. Automattic\Jetpack\Autoloader\jp706c584b40c416b3678eb907f297053b\set_up_autoloader() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\autoload_packages.php:14
+[31-Jul-2020 16:34:50 UTC] PHP  17. Automattic\Jetpack\Autoloader\jp706c584b40c416b3678eb907f297053b\Autoloader_Handler->find_latest_autoloader() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\autoload_functions.php:92
+[31-Jul-2020 16:34:50 UTC] PHP Fatal error:  require(): Failed opening required '' (include_path='.:/usr/share/php:/www/wp-content/pear') in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\class-autoloader-handler.php on line 87
+[31-Jul-2020 16:34:50 UTC] PHP Stack trace:
+[31-Jul-2020 16:34:50 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\index.php:0
+[31-Jul-2020 16:34:50 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\index.php:17
+[31-Jul-2020 16:34:50 UTC] PHP   3. wp() C:\Users\fharb\Local Sites\delicesco\app\public\wp-blog-header.php:16
+[31-Jul-2020 16:34:50 UTC] PHP   4. WP->main() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php:1274
+[31-Jul-2020 16:34:50 UTC] PHP   5. WP->parse_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp.php:739
+[31-Jul-2020 16:34:50 UTC] PHP   6. do_action_ref_array() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp.php:388
+[31-Jul-2020 16:34:50 UTC] PHP   7. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:544
+[31-Jul-2020 16:34:50 UTC] PHP   8. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:311
+[31-Jul-2020 16:34:50 UTC] PHP   9. rest_api_loaded() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:287
+[31-Jul-2020 16:34:50 UTC] PHP  10. WP_REST_Server->serve_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api.php:312
+[31-Jul-2020 16:34:50 UTC] PHP  11. WP_REST_Server->dispatch() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api\class-wp-rest-server.php:342
+[31-Jul-2020 16:34:50 UTC] PHP  12. Automattic\WooCommerce\Admin\API\Plugins->activate_plugins() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api\class-wp-rest-server.php:1015
+[31-Jul-2020 16:34:50 UTC] PHP  13. activate_plugin() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\woocommerce\packages\woocommerce-admin\src\API\Plugins.php:419
+[31-Jul-2020 16:34:50 UTC] PHP  14. include_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\plugin.php:659
+[31-Jul-2020 16:34:50 UTC] PHP  15. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\jetpack.php:99
+[31-Jul-2020 16:34:50 UTC] PHP  16. Automattic\Jetpack\Autoloader\jp706c584b40c416b3678eb907f297053b\set_up_autoloader() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\autoload_packages.php:14
+[31-Jul-2020 16:34:50 UTC] PHP  17. Automattic\Jetpack\Autoloader\jp706c584b40c416b3678eb907f297053b\Autoloader_Handler->find_latest_autoloader() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\autoload_functions.php:92
+[31-Jul-2020 16:34:58 UTC] PHP Warning:  require(): Filename cannot be empty in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\class-autoloader-handler.php on line 87
+[31-Jul-2020 16:34:58 UTC] PHP Stack trace:
+[31-Jul-2020 16:34:58 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\index.php:0
+[31-Jul-2020 16:34:58 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\index.php:17
+[31-Jul-2020 16:34:58 UTC] PHP   3. wp() C:\Users\fharb\Local Sites\delicesco\app\public\wp-blog-header.php:16
+[31-Jul-2020 16:34:58 UTC] PHP   4. WP->main() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php:1274
+[31-Jul-2020 16:34:58 UTC] PHP   5. WP->parse_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp.php:739
+[31-Jul-2020 16:34:58 UTC] PHP   6. do_action_ref_array() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp.php:388
+[31-Jul-2020 16:34:58 UTC] PHP   7. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:544
+[31-Jul-2020 16:34:58 UTC] PHP   8. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:311
+[31-Jul-2020 16:34:58 UTC] PHP   9. rest_api_loaded() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:287
+[31-Jul-2020 16:34:58 UTC] PHP  10. WP_REST_Server->serve_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api.php:312
+[31-Jul-2020 16:34:58 UTC] PHP  11. WP_REST_Server->dispatch() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api\class-wp-rest-server.php:342
+[31-Jul-2020 16:34:58 UTC] PHP  12. Automattic\WooCommerce\Admin\API\Plugins->activate_plugins() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api\class-wp-rest-server.php:1015
+[31-Jul-2020 16:34:58 UTC] PHP  13. activate_plugin() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\woocommerce\packages\woocommerce-admin\src\API\Plugins.php:419
+[31-Jul-2020 16:34:58 UTC] PHP  14. include_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\plugin.php:659
+[31-Jul-2020 16:34:58 UTC] PHP  15. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\jetpack.php:99
+[31-Jul-2020 16:34:58 UTC] PHP  16. Automattic\Jetpack\Autoloader\jp706c584b40c416b3678eb907f297053b\set_up_autoloader() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\autoload_packages.php:14
+[31-Jul-2020 16:34:58 UTC] PHP  17. Automattic\Jetpack\Autoloader\jp706c584b40c416b3678eb907f297053b\Autoloader_Handler->find_latest_autoloader() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\autoload_functions.php:92
+[31-Jul-2020 16:34:58 UTC] PHP Fatal error:  require(): Failed opening required '' (include_path='.:/usr/share/php:/www/wp-content/pear') in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\class-autoloader-handler.php on line 87
+[31-Jul-2020 16:34:58 UTC] PHP Stack trace:
+[31-Jul-2020 16:34:58 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\index.php:0
+[31-Jul-2020 16:34:58 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\index.php:17
+[31-Jul-2020 16:34:58 UTC] PHP   3. wp() C:\Users\fharb\Local Sites\delicesco\app\public\wp-blog-header.php:16
+[31-Jul-2020 16:34:58 UTC] PHP   4. WP->main() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\functions.php:1274
+[31-Jul-2020 16:34:58 UTC] PHP   5. WP->parse_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp.php:739
+[31-Jul-2020 16:34:58 UTC] PHP   6. do_action_ref_array() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp.php:388
+[31-Jul-2020 16:34:58 UTC] PHP   7. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:544
+[31-Jul-2020 16:34:58 UTC] PHP   8. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:311
+[31-Jul-2020 16:34:58 UTC] PHP   9. rest_api_loaded() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:287
+[31-Jul-2020 16:34:58 UTC] PHP  10. WP_REST_Server->serve_request() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api.php:312
+[31-Jul-2020 16:34:58 UTC] PHP  11. WP_REST_Server->dispatch() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api\class-wp-rest-server.php:342
+[31-Jul-2020 16:34:58 UTC] PHP  12. Automattic\WooCommerce\Admin\API\Plugins->activate_plugins() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\rest-api\class-wp-rest-server.php:1015
+[31-Jul-2020 16:34:58 UTC] PHP  13. activate_plugin() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\woocommerce\packages\woocommerce-admin\src\API\Plugins.php:419
+[31-Jul-2020 16:34:58 UTC] PHP  14. include_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\plugin.php:659
+[31-Jul-2020 16:34:58 UTC] PHP  15. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\jetpack.php:99
+[31-Jul-2020 16:34:58 UTC] PHP  16. Automattic\Jetpack\Autoloader\jp706c584b40c416b3678eb907f297053b\set_up_autoloader() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\autoload_packages.php:14
+[31-Jul-2020 16:34:58 UTC] PHP  17. Automattic\Jetpack\Autoloader\jp706c584b40c416b3678eb907f297053b\Autoloader_Handler->find_latest_autoloader() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\autoload_functions.php:92

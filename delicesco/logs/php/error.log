@@ -910,3 +910,306 @@ Stack trace:
 [31-Jul-2020 16:34:58 UTC] PHP  15. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\jetpack.php:99
 [31-Jul-2020 16:34:58 UTC] PHP  16. Automattic\Jetpack\Autoloader\jp706c584b40c416b3678eb907f297053b\set_up_autoloader() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\autoload_packages.php:14
 [31-Jul-2020 16:34:58 UTC] PHP  17. Automattic\Jetpack\Autoloader\jp706c584b40c416b3678eb907f297053b\Autoloader_Handler->find_latest_autoloader() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\jetpack\vendor\autoload_functions.php:92
+[03-Aug-2020 15:22:33 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:22:33 UTC] PHP Stack trace:
+[03-Aug-2020 15:22:33 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:0
+[03-Aug-2020 15:22:33 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:75
+[03-Aug-2020 15:22:33 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:22:33 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:22:33 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:22:33 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:46
+[03-Aug-2020 15:22:33 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:22:33 UTC] PHP Stack trace:
+[03-Aug-2020 15:22:33 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:0
+[03-Aug-2020 15:22:33 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:75
+[03-Aug-2020 15:22:33 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:22:33 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:22:33 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:22:33 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:177
+[03-Aug-2020 15:22:33 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:22:33 UTC] PHP Stack trace:
+[03-Aug-2020 15:22:33 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:0
+[03-Aug-2020 15:22:33 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:75
+[03-Aug-2020 15:22:33 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:22:33 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:22:33 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:22:33 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:208
+[03-Aug-2020 15:22:33 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:22:33 UTC] PHP Stack trace:
+[03-Aug-2020 15:22:33 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:0
+[03-Aug-2020 15:22:33 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:75
+[03-Aug-2020 15:22:33 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:22:33 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:22:33 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:22:33 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:248
+[03-Aug-2020 15:22:33 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:22:33 UTC] PHP Stack trace:
+[03-Aug-2020 15:22:33 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:0
+[03-Aug-2020 15:22:33 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:75
+[03-Aug-2020 15:22:33 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:22:33 UTC] PHP   4. ycd\CircleCountdown->countdownButton() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:22:33 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:510
+[03-Aug-2020 15:22:33 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\countdownButton.php:161
+[03-Aug-2020 15:22:35 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:22:35 UTC] PHP Stack trace:
+[03-Aug-2020 15:22:35 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:0
+[03-Aug-2020 15:22:35 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:75
+[03-Aug-2020 15:22:35 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:22:35 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:22:35 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:22:35 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:46
+[03-Aug-2020 15:22:35 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:22:35 UTC] PHP Stack trace:
+[03-Aug-2020 15:22:35 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:0
+[03-Aug-2020 15:22:35 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:75
+[03-Aug-2020 15:22:35 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:22:35 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:22:35 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:22:35 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:177
+[03-Aug-2020 15:22:35 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:22:35 UTC] PHP Stack trace:
+[03-Aug-2020 15:22:35 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:0
+[03-Aug-2020 15:22:35 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:75
+[03-Aug-2020 15:22:35 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:22:35 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:22:35 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:22:35 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:208
+[03-Aug-2020 15:22:35 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:22:35 UTC] PHP Stack trace:
+[03-Aug-2020 15:22:35 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:0
+[03-Aug-2020 15:22:35 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:75
+[03-Aug-2020 15:22:35 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:22:35 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:22:35 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:22:35 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:248
+[03-Aug-2020 15:22:35 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:22:35 UTC] PHP Stack trace:
+[03-Aug-2020 15:22:35 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:0
+[03-Aug-2020 15:22:35 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post-new.php:75
+[03-Aug-2020 15:22:35 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:22:35 UTC] PHP   4. ycd\CircleCountdown->countdownButton() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:22:35 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:510
+[03-Aug-2020 15:22:35 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\countdownButton.php:161
+[03-Aug-2020 15:23:37 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:23:37 UTC] PHP Stack trace:
+[03-Aug-2020 15:23:37 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:0
+[03-Aug-2020 15:23:37 UTC] PHP   2. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:175
+[03-Aug-2020 15:23:37 UTC] PHP   3. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[03-Aug-2020 15:23:38 UTC] PHP   4. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:311
+[03-Aug-2020 15:23:38 UTC] PHP   5. ycd\Ajax->conditionsRow() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:287
+[03-Aug-2020 15:23:38 UTC] PHP   6. ycd\DisplayConditionBuilder->renderConditionRowFromParam() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\Ajax.php:120
+[03-Aug-2020 15:23:38 UTC] PHP   7. ycd\DisplayConditionBuilder->getConditionRowFromCurrentData() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:211
+[03-Aug-2020 15:23:38 UTC] PHP   8. ycd\DisplayConditionBuilder->renderCurrentConditionRow() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:135
+[03-Aug-2020 15:23:38 UTC] PHP   9. ycd\DisplayConditionBuilder->renderConditionRow() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:149
+[03-Aug-2020 15:23:38 UTC] PHP  10. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:169
+[03-Aug-2020 15:24:33 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:24:33 UTC] PHP Stack trace:
+[03-Aug-2020 15:24:33 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:0
+[03-Aug-2020 15:24:33 UTC] PHP   2. do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\admin-ajax.php:175
+[03-Aug-2020 15:24:33 UTC] PHP   3. WP_Hook->do_action() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\plugin.php:478
+[03-Aug-2020 15:24:33 UTC] PHP   4. WP_Hook->apply_filters() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:311
+[03-Aug-2020 15:24:33 UTC] PHP   5. ycd\Ajax->conditionsRow() C:\Users\fharb\Local Sites\delicesco\app\public\wp-includes\class-wp-hook.php:287
+[03-Aug-2020 15:24:33 UTC] PHP   6. ycd\DisplayConditionBuilder->renderConditionRowFromParam() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\Ajax.php:120
+[03-Aug-2020 15:24:33 UTC] PHP   7. ycd\DisplayConditionBuilder->getConditionRowFromCurrentData() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:211
+[03-Aug-2020 15:24:33 UTC] PHP   8. ycd\DisplayConditionBuilder->renderCurrentConditionRow() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:135
+[03-Aug-2020 15:24:33 UTC] PHP   9. ycd\DisplayConditionBuilder->renderConditionRow() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:149
+[03-Aug-2020 15:24:33 UTC] PHP  10. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:169
+[03-Aug-2020 15:25:29 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:25:29 UTC] PHP Stack trace:
+[03-Aug-2020 15:25:29 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:25:29 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:25:29 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:25:29 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:25:29 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:25:29 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:46
+[03-Aug-2020 15:25:29 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:25:29 UTC] PHP Stack trace:
+[03-Aug-2020 15:25:29 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:25:29 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:25:29 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:25:29 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:25:29 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:25:29 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:177
+[03-Aug-2020 15:25:29 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:25:29 UTC] PHP Stack trace:
+[03-Aug-2020 15:25:29 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:25:29 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:25:29 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:25:29 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:25:29 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:25:29 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:208
+[03-Aug-2020 15:25:29 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:25:29 UTC] PHP Stack trace:
+[03-Aug-2020 15:25:29 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:25:29 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:25:29 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:25:29 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:25:29 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:25:29 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:248
+[03-Aug-2020 15:25:29 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:25:29 UTC] PHP Stack trace:
+[03-Aug-2020 15:25:29 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:25:29 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:25:29 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:25:29 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:25:29 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:25:29 UTC] PHP   6. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:289
+[03-Aug-2020 15:25:29 UTC] PHP   7. ycd\DisplayConditionBuilder->render() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\displaySettings.php:19
+[03-Aug-2020 15:25:29 UTC] PHP   8. ycd\DisplayConditionBuilder->renderConditions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:78
+[03-Aug-2020 15:25:29 UTC] PHP   9. ycd\DisplayConditionBuilder->getConditionRowFromCurrentData() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:92
+[03-Aug-2020 15:25:29 UTC] PHP  10. ycd\DisplayConditionBuilder->renderCurrentConditionRow() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:135
+[03-Aug-2020 15:25:29 UTC] PHP  11. ycd\DisplayConditionBuilder->renderConditionRow() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:149
+[03-Aug-2020 15:25:29 UTC] PHP  12. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:169
+[03-Aug-2020 15:25:29 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:25:29 UTC] PHP Stack trace:
+[03-Aug-2020 15:25:29 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:25:29 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:25:29 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:25:29 UTC] PHP   4. ycd\CircleCountdown->countdownButton() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:25:29 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:510
+[03-Aug-2020 15:25:29 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\countdownButton.php:161
+[03-Aug-2020 15:25:32 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:25:32 UTC] PHP Stack trace:
+[03-Aug-2020 15:25:32 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:25:32 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:25:32 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:25:32 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:25:32 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:25:32 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:46
+[03-Aug-2020 15:25:32 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:25:32 UTC] PHP Stack trace:
+[03-Aug-2020 15:25:32 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:25:32 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:25:32 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:25:32 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:25:32 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:25:32 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:177
+[03-Aug-2020 15:25:32 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:25:32 UTC] PHP Stack trace:
+[03-Aug-2020 15:25:32 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:25:32 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:25:32 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:25:32 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:25:32 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:25:32 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:208
+[03-Aug-2020 15:25:32 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:25:32 UTC] PHP Stack trace:
+[03-Aug-2020 15:25:32 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:25:32 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:25:32 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:25:32 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:25:32 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:25:32 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:248
+[03-Aug-2020 15:25:32 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:25:32 UTC] PHP Stack trace:
+[03-Aug-2020 15:25:32 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:25:32 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:25:32 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:25:32 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:25:32 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:25:32 UTC] PHP   6. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:289
+[03-Aug-2020 15:25:32 UTC] PHP   7. ycd\DisplayConditionBuilder->render() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\displaySettings.php:19
+[03-Aug-2020 15:25:32 UTC] PHP   8. ycd\DisplayConditionBuilder->renderConditions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:78
+[03-Aug-2020 15:25:32 UTC] PHP   9. ycd\DisplayConditionBuilder->getConditionRowFromCurrentData() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:92
+[03-Aug-2020 15:25:32 UTC] PHP  10. ycd\DisplayConditionBuilder->renderCurrentConditionRow() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:135
+[03-Aug-2020 15:25:32 UTC] PHP  11. ycd\DisplayConditionBuilder->renderConditionRow() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:149
+[03-Aug-2020 15:25:32 UTC] PHP  12. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\ConditionBuilder.php:169
+[03-Aug-2020 15:25:32 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:25:32 UTC] PHP Stack trace:
+[03-Aug-2020 15:25:32 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:25:32 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:25:32 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:25:32 UTC] PHP   4. ycd\CircleCountdown->countdownButton() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:25:32 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:510
+[03-Aug-2020 15:25:32 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\countdownButton.php:161
+[03-Aug-2020 15:28:11 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:28:11 UTC] PHP Stack trace:
+[03-Aug-2020 15:28:11 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:28:11 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:28:11 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:28:11 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:28:11 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:28:11 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:46
+[03-Aug-2020 15:28:11 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:28:11 UTC] PHP Stack trace:
+[03-Aug-2020 15:28:11 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:28:11 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:28:11 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:28:11 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:28:11 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:28:11 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:177
+[03-Aug-2020 15:28:11 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:28:11 UTC] PHP Stack trace:
+[03-Aug-2020 15:28:11 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:28:11 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:28:11 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:28:11 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:28:11 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:28:11 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:208
+[03-Aug-2020 15:28:11 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:28:11 UTC] PHP Stack trace:
+[03-Aug-2020 15:28:11 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:28:11 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:28:11 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:28:11 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:28:11 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:28:11 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:248
+[03-Aug-2020 15:28:11 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:28:11 UTC] PHP Stack trace:
+[03-Aug-2020 15:28:11 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:28:11 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:28:11 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:28:11 UTC] PHP   4. ycd\CircleCountdown->countdownButton() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:28:11 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:510
+[03-Aug-2020 15:28:11 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\countdownButton.php:161
+[03-Aug-2020 15:28:14 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:28:14 UTC] PHP Stack trace:
+[03-Aug-2020 15:28:14 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:28:14 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:28:14 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:28:14 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:28:14 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:28:14 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:46
+[03-Aug-2020 15:28:14 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:28:14 UTC] PHP Stack trace:
+[03-Aug-2020 15:28:14 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:28:14 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:28:14 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:28:14 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:28:14 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:28:14 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:177
+[03-Aug-2020 15:28:14 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:28:14 UTC] PHP Stack trace:
+[03-Aug-2020 15:28:14 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:28:14 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:28:14 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:28:14 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:28:14 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:28:14 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:208
+[03-Aug-2020 15:28:14 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:28:14 UTC] PHP Stack trace:
+[03-Aug-2020 15:28:14 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:28:14 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:28:14 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:28:14 UTC] PHP   4. ycd\CircleCountdown->generalOptions() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:28:14 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:522
+[03-Aug-2020 15:28:14 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\generalOptions.php:248
+[03-Aug-2020 15:28:14 UTC] PHP Warning:  Invalid argument supplied for foreach() in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\helpers\AdminHelper.php on line 719
+[03-Aug-2020 15:28:14 UTC] PHP Stack trace:
+[03-Aug-2020 15:28:14 UTC] PHP   1. {main}() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:0
+[03-Aug-2020 15:28:14 UTC] PHP   2. require() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\post.php:206
+[03-Aug-2020 15:28:14 UTC] PHP   3. do_meta_boxes() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\edit-form-advanced.php:677
+[03-Aug-2020 15:28:14 UTC] PHP   4. ycd\CircleCountdown->countdownButton() C:\Users\fharb\Local Sites\delicesco\app\public\wp-admin\includes\template.php:1345
+[03-Aug-2020 15:28:14 UTC] PHP   5. require_once() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\classes\countdown\Countdown.php:510
+[03-Aug-2020 15:28:14 UTC] PHP   6. ycd\AdminHelper::selectBox() C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\countdown-builder\assets\views\countdownButton.php:161
+[03-Aug-2020 16:01:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function isGroup() on null in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\smart-slider-3\Nextend\SmartSlider3\Application\Frontend\Slider\ViewIframe.php:39
+Stack trace:
+#0 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\smart-slider-3\Nextend\SmartSlider3\Application\Frontend\Slider\ControllerPreRenderSlider.php(32): Nextend\SmartSlider3\Application\Frontend\Slider\ViewIframe->display()
+#1 [internal function]: Nextend\SmartSlider3\Application\Frontend\Slider\ControllerPreRenderSlider->actionIframe()
+#2 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\smart-slider-3\Nextend\Framework\Controller\AbstractController.php(93): call_user_func_array(Array, Array)
+#3 C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\smart-slider-3\Nextend\Framework\Application\AbstractApplicationType.php(88): Nextend\Framework\Controller\AbstractController->doAction('iframe', Array)
+#4 C:\Users\fharb\Local Sites\delicesco\app\ in C:\Users\fharb\Local Sites\delicesco\app\public\wp-content\plugins\smart-slider-3\Nextend\SmartSlider3\Application\Frontend\Slider\ViewIframe.php on line 39
+[11-Aug-2020 16:01:25 UTC] Astra: Batch Process Started!
+[11-Aug-2020 16:01:25 UTC] Astra: Queuing 2.5.2 - astra_footer_widget_bg
+[11-Aug-2020 16:01:29 UTC] Astra: db version updated successfully!
+[11-Aug-2020 16:01:29 UTC] Astra: Batch Process Completed!

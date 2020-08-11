@@ -731,6 +731,36 @@ class HTMega_Elementor_Widget_Accordion extends Widget_Base {
                 ]
             );
 
+            $this->add_responsive_control(
+                'titlethree_margin',
+                [
+                    'label' => __( 'Active Title Space', 'htmega-addons' ),
+                    'type' => Controls_Manager::SLIDER,
+                    'size_units' => [ 'px', '%' ],
+                    'selectors' => [
+                        '{{WRAPPER}} ul.accordion--4 li .description h2' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    ],
+                    'condition' => [
+                        'accordiantstyle' =>'three',
+                    ],
+                ]
+            );
+
+            $this->add_responsive_control(
+                'titlefour_lineheight',
+                [
+                    'label' => __( 'Active Title Line Height', 'htmega-addons' ),
+                    'type' => Controls_Manager::SLIDER,
+                    'size_units' => [ 'px', '%' ],
+                    'selectors' => [
+                        '{{WRAPPER}} .accordion--5 .single_accordion .va-title.htmegava-active' => 'line-height: {{SIZE}}{{UNIT}} !important;',
+                    ],
+                    'condition' => [
+                        'accordiantstyle' =>'four',
+                    ],
+                ]
+            );
+
         $this->end_controls_section(); // Title three tab end
 
 

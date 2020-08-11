@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Events Manager - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-07-06 12:43:25+0000\n"
+"PO-Revision-Date: 2020-08-09 11:57:45+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -367,10 +367,6 @@ msgstr "Toutes les options ci-dessous sont en relation avec les données qui ont
 msgid "Location Submission Forms"
 msgstr "Formulaire pour un emplacement"
 
-#: admin/em-options.php:984
-msgid "Depending on the nature of your site, you will be subject to one or more national and international privacy/data protection laws such as the %s. Below are some options that you can use to tailor how Events Manager interacts with WordPress privacy tools."
-msgstr "En fonction de votre site, vous pouvez être soumis à une ou plusieurs lois nationales ou internationales sur la gestion des données personnelles et la confidentialité comme %s. Ci-dessous, vous trouverez des options que vous pouvez utiliser pour définir comment Events Manager inter-agit avec les options de confidentialité de WordPress."
-
 #: em-data-privacy.php:152
 msgid "Please check the consent box so we can collect and store your submitted information."
 msgstr "Merci de cocher la case d’acceptation pour que nous puissions collecter et stocker les données que vous nous fournissez."
@@ -398,6 +394,10 @@ msgstr "Je consens à ce que mes données soumises soient recueillies et stocké
 #: em-install.php:1097
 msgid "Events Manager has introduced new privacy tools to help you comply with international laws such as the GDPR, <a href=\"%s\">see our documentation</a> for more information."
 msgstr "Events Manager ajoute des nouveaux outils pour la gestion de la confidentialité afin de vous aidez à être conforme aux lois internationales comme le RGPD, <a href=\"%s\">voir notre documentation</a> pour plus d’informations."
+
+#: admin/em-options.php:984
+msgid "Depending on the nature of your site, you will be subject to one or more national and international privacy/data protection laws such as the %s. Below are some options that you can use to tailor how Events Manager interacts with WordPress privacy tools."
+msgstr "En fonction de votre site, vous pouvez être soumis à une ou plusieurs lois nationales ou internationales sur la gestion des données personnelles et la confidentialité comme %s. Ci-dessous, vous trouverez des options que vous pouvez utiliser pour définir comment Events Manager interagit avec les options de confidentialité de WordPress."
 
 #: em-install.php:1086 admin/em-options.php:914
 msgid "All Blogs"
@@ -935,15 +935,6 @@ msgstr "Détails"
 msgid "HTML allowed."
 msgstr "HTML autorisé."
 
-#. Author of the plugin
-msgid "Marcus Sykes"
-msgstr "Marcus Sykes"
-
-#. Plugin URI of the plugin
-#. Author URI of the plugin
-msgid "http://wp-events-plugin.com"
-msgstr "http://wp-events-plugin.com"
-
 #: templates/forms/event/when-with-recurring.php:22
 #: templates/forms/event/recurring-when.php:10
 msgid "Events start from"
@@ -1107,10 +1098,6 @@ msgstr "Afficher une liste des évènements sur le gestionnaire d’évènements
 #: templates/forms/event/when.php:16
 msgid "Event starts at"
 msgstr "L’évènement démarre le"
-
-#. Description of the plugin
-msgid "Event registration and booking management for WordPress. Recurring events, locations, google maps, rss, ical, booking registration and more!"
-msgstr "Gestion d’inscriptions et de réservations pour WordPress. Évènements réguliers, emplacements, Google Maps, RSS, iCal, prise de réservation et plus encore !"
 
 #: widgets/em-events.php:172
 msgid "All events link text?"
@@ -2123,13 +2110,13 @@ msgstr "Un nouvel évènement vient d’être soumis par #_CONTACTNAME.<br/>Nom�
 msgid "Dear #_CONTACTNAME, <br/>Your event #_EVENTNAME on #_EVENTDATES has been approved.<br/>You can view your event here: #_EVENTURL"
 msgstr "Cher/chère #_CONTACTNAME, <br/>Votre évènement #_EVENTNAME le #_EVENTDATES a été approuvé.<br/>Vous pouvez visualiser votre évènement ici ;: #_EVENTURL"
 
-#: em-install.php:375
-msgid "Dear #_BOOKINGNAME, <br/>You have requested #_BOOKINGSPACES space/spaces for #_EVENTNAME.<br/>When : #_EVENTDATES @ #_EVENTTIMES<br/>Where : #_LOCATIONNAME - #_LOCATIONFULLLINE<br/>Your booking is currently pending approval by our administrators. Once approved you will receive an automatic confirmation.<br/>Yours faithfully,<br/>#_CONTACTNAME"
-msgstr "Cher/chère #_BOOKINGNAME,<br/>Vous avez demandé à réserver #_BOOKINGSPACES place(s) pour #_EVENTNAME.<br/>Quand : #_EVENTDATES à #_EVENTTIMES<br/>Où : #_LOCATIONNAME - #_LOCATIONFULLLINE<br/>Cette réservation est maintenant en attente d’approbation par nos administrateurs : une fois approuvée vous recevrez un e-mail automatique de confirmation.<br/>Cordialement,<br/>#_CONTACTNAME"
-
 #: em-install.php:374
 msgid "Dear #_BOOKINGNAME, <br/>You have successfully reserved #_BOOKINGSPACES space/spaces for #_EVENTNAME.<br/>When : #_EVENTDATES @ #_EVENTTIMES<br/>Where : #_LOCATIONNAME - #_LOCATIONFULLLINE<br/>Yours faithfully,<br/>#_CONTACTNAME"
 msgstr "Cher/chère #_BOOKINGNAME,<br/>Vous avez réservé #_BOOKINGSPACES place(s) pour #_EVENTNAME.<br/>Quand : #_EVENTDATES à #_EVENTTIMES<br/>Où : #_LOCATIONNAME - #_LOCATIONFULLLINE<br/>Cordialement,<br/>#_CONTACTNAME"
+
+#: em-install.php:375
+msgid "Dear #_BOOKINGNAME, <br/>You have requested #_BOOKINGSPACES space/spaces for #_EVENTNAME.<br/>When : #_EVENTDATES @ #_EVENTTIMES<br/>Where : #_LOCATIONNAME - #_LOCATIONFULLLINE<br/>Your booking is currently pending approval by our administrators. Once approved you will receive an automatic confirmation.<br/>Yours faithfully,<br/>#_CONTACTNAME"
+msgstr "Cher/chère #_BOOKINGNAME,<br/>Vous avez demandé à réserver #_BOOKINGSPACES place(s) pour #_EVENTNAME.<br/>Quand : #_EVENTDATES à #_EVENTTIMES<br/>Où : #_LOCATIONNAME - #_LOCATIONFULLLINE<br/>Cette réservation est maintenant en attente d’approbation par nos administrateurs : une fois approuvée vous recevrez un e-mail automatique de confirmation.<br/>Cordialement,<br/>#_CONTACTNAME"
 
 #: multilingual/em-ml-admin.php:159 templates/forms/location/where.php:35
 #: templates/forms/event/location.php:142
@@ -3654,10 +3641,6 @@ msgstr "Permet de définir combien d’évènements appartenant à une catégori
 msgid "Some WordPress themes don't follow best practices when generating navigation menus, and so the automatic title rewriting feature may cause problems, if your menus aren't working correctly on the event pages, try setting this to 'Yes', and provide an appropriate HTML title format below."
 msgstr "Certains thèmes WordPress ne suivent pas les règles de l’art dans la génération des menus, si bien que la réécriture automatique des titres peut poser des soucis. Si vos menus ne fonctionnent pas correctement à la page d’évènements, essayez de positionner ceci à Oui en fournissant le format de titre en HTML, ci-dessous."
 
-#: admin/settings/tabs/pages.php:74 admin/settings/tabs/pages.php:258
-msgid "WordPress %s Archives"
-msgstr "Archives %s de WordPress"
-
 #: admin/settings/tabs/pages.php:86 admin/settings/tabs/pages.php:396
 #: admin/settings/tabs/pages.php:530
 msgid "Default event archive ordering"
@@ -3682,15 +3665,6 @@ msgstr "Étiquettes d’évènement"
 msgid "Our CSS file will be EXCLUDED on all of these pages. Takes precedence over inclusion rules."
 msgstr "Notre fichier CSS sera EXCLU sur toutes ces pages. Cette option a précédence sur les règles d’inclusion."
 
-#: admin/settings/tabs/pages.php:5
-msgid "Many themes display extra meta information on post pages such as 'posted by' or 'post date' information, which may not be desired. Usually, page templates contain less clutter."
-msgstr "De nombreux thèmes affichent des informations supplémentaires sur les pages d’articles, telles que ’publié par’ ou ’publié le’, qui pourraient ne pas être souhaitables. En général, les modèles de page contiennent moins de bruit de fond. "
-
-#: admin/settings/tabs/pages.php:19 admin/settings/tabs/pages.php:21
-#: admin/settings/tabs/pages.php:24 admin/settings/tabs/pages.php:27
-msgid "e.g. %s - you can use / Separators too"
-msgstr "p.ex. %s - vous pouvez également utiliser des séparateurs /"
-
 #: admin/settings/tabs/pages.php:61
 msgid "This option allows you to select which page to use as an events page. If you do not select an events page, to display event lists you can enable event archives or use the appropriate shortcodes and/or template tags."
 msgstr "Cette option vous permet de sélectionner une page en tant que page d’évènements. Si vous ne sélectionnez pas de page d’évènements, vous pourrez afficher une liste d’évènements via les archives d’évènements, ou utiliser les codes courts appropriés et/ou les étiquettes."
@@ -3698,14 +3672,6 @@ msgstr "Cette option vous permet de sélectionner une page en tant que page d’
 #: admin/settings/tabs/pages.php:66
 msgid "If set to yes, a search form will appear just above your list of events."
 msgstr "Si oui, un formulaire de recherche apparaîtra juste au-dessus de votre liste d’évènements."
-
-#: admin/settings/tabs/general.php:244
-msgid "This section allows you to configure parts of this plugin that will improve performance on your site and increase page speeds by reducing extra files from being unnecessarily included on pages as well as reducing server loads where possible. This only applies to pages outside the admin area."
-msgstr "Cette section vous permet de configurer des réglages pour l’amélioration des performances sur votre site et d’accélérer le chargement des pages en réduisant le nombre de fichiers qui sont inclus dans les pages de manière inutile ainsi que de réduire la charge du serveur quand cela est possible. Cela s’appliquera uniquement en dehors de la zone d’administration."
-
-#: admin/settings/tabs/general.php:250
-msgid "If you are not using it already, we recommend you try the <a href=\"%s\" target=\"_blank\">Use Google Libraries</a> plugin, because without further optimization options below it already significantly reduces the number of files needed to display your Event pages and will most likely speed up your overall website loading time."
-msgstr "Si vous ne l’utilisez pas encore, nous vous recommandons d’essayer l’extension <a href=\"%s\" target=\"_blank\">Google Libraries</a>, parce que sans options d’optimisations supplémentaires, il réduira de manière significative le nombre de fichiers nécessaires à l’affichage de vos pages d’évènements et de manière générale améliorera le chargement des pages de votre site."
 
 #: admin/settings/tabs/general.php:264
 msgid "Include pages where you use shortcodes or widgets to display event search forms."
@@ -3722,6 +3688,14 @@ msgstr "Pays de l’emplacement par défaut"
 #: admin/settings/tabs/general.php:117
 msgid "If you select a default country, that will be pre-selected when creating a new location."
 msgstr "Si vous sélectionnez un pays par défaut, celui-ci sera présélectionné lors de la création d’un nouvel emplacement."
+
+#: admin/settings/tabs/general.php:244
+msgid "This section allows you to configure parts of this plugin that will improve performance on your site and increase page speeds by reducing extra files from being unnecessarily included on pages as well as reducing server loads where possible. This only applies to pages outside the admin area."
+msgstr "Cette section vous permet de configurer des réglages pour l’amélioration des performances sur votre site et d’accélérer le chargement des pages en réduisant le nombre de fichiers qui sont inclus dans les pages de manière inutile ainsi que de réduire la charge du serveur quand cela est possible. Cela s’appliquera uniquement en dehors de la zone d’administration."
+
+#: admin/settings/tabs/general.php:250
+msgid "If you are not using it already, we recommend you try the <a href=\"%s\" target=\"_blank\">Use Google Libraries</a> plugin, because without further optimization options below it already significantly reduces the number of files needed to display your Event pages and will most likely speed up your overall website loading time."
+msgstr "Si vous ne l’utilisez pas encore, nous vous recommandons d’essayer l’extension <a href=\"%s\" target=\"_blank\">Google Libraries</a>, parce que sans options d’optimisations supplémentaires, il réduira de manière significative le nombre de fichiers nécessaires à l’affichage de vos pages d’évènements et de manière générale améliorera le chargement des pages de votre site."
 
 #: admin/settings/tabs/general.php:60
 msgid "If you disable locations, bear in mind that you should remove your location page, shortcodes and related placeholders from your <a href=\"#formats\" class=\"nav-tab-link\" rel=\"#em-menu-formats\">formats</a>."
@@ -3768,10 +3742,6 @@ msgstr "Réglages %s"
 msgid "Select yes to enable the tag features"
 msgstr "Sélectionnez oui pour activer les étiquettes"
 
-#: admin/settings/tabs/general.php:201 admin/settings/tabs/general.php:203
-msgid "Events require a user to own them. In order to allow events to be submitted anonymously you need to assign that event a specific user. We recommend you create a \"Anonymous\" subscriber with a very good password and use that. Guests will have the same event permissions as this user when submitting."
-msgstr "Les évènements doivent avoir un propriétaire. Afin de permettre aux évènements d’être soumis de façon anonyme, vous devez spécifier un utilisateur particulier. Nous vous recommandons de créer un compte abonné \"Anonyme\" avec un excellent mot de passe et de l’utiliser pour cela. Les visiteurs auront les mêmes droits que ce compte, lors de la soumission de l’évènement."
-
 #: admin/settings/tabs/general.php:44
 msgid "This option allows you to select the default category when adding an event."
 msgstr "Cette option vous permet de sélectionner la catégorie par défaut lors de l’ajout d’un évènement."
@@ -3780,13 +3750,13 @@ msgstr "Cette option vous permet de sélectionner la catégorie par défaut lors
 msgid "If an event does not have a category assigned when editing, this one will be assigned automatically."
 msgstr "Si un évènement n’est pas associé à une catégorie lors de sa création, celle-ci lui sera associée par défaut."
 
-#: admin/settings/tabs/general.php:49 admin/settings/tabs/general.php:99
-msgid "Custom fields are the same as attributes, except you cannot restrict specific values, users can add any kind of custom field name/value pair. Only available in the WordPress admin area."
-msgstr "Les champs personnalisés sont comme des attributs, sauf qu’on ne peut les restreindre à des valeurs spécifiques. Les utilisateurs peuvent ajouter n’importe quelle paire nom / valeur. N’est accessible que depuis la partie admin de WordPress."
-
 #: admin/settings/tabs/general.php:105 admin/settings/tabs/general.php:113
 msgid "This option allows you to select the default location when adding an event."
 msgstr "Cette option vous permet de sélectionner l’emplacement par défaut lors de l’ajout d’un évènement."
+
+#: admin/settings/tabs/general.php:201 admin/settings/tabs/general.php:203
+msgid "Events require a user to own them. In order to allow events to be submitted anonymously you need to assign that event a specific user. We recommend you create a \"Anonymous\" subscriber with a very good password and use that. Guests will have the same event permissions as this user when submitting."
+msgstr "Les évènements doivent avoir un propriétaire. Afin de permettre aux évènements d’être soumis de façon anonyme, vous devez spécifier un utilisateur particulier. Nous vous recommandons de créer un compte abonné \"Anonyme\" avec un excellent mot de passe et de l’utiliser pour cela. Les visiteurs auront les mêmes droits que ce compte, lors de la soumission de l’évènement."
 
 #: admin/settings/tabs/pages.php:42 admin/settings/tabs/pages.php:201
 msgid "Body Classes"
@@ -4008,10 +3978,6 @@ msgstr "Titres Events Manager"
 msgid "Permalink Slugs"
 msgstr "Identifiants de permaliens"
 
-#: admin/settings/tabs/pages.php:7
-msgid "Be aware that some themes will not work with this option, if so (or you want to make your own changes), you can create a file named <code>single-%s.php</code> <a href='#'>as shown on the WordPress codex</a>, and leave this set to Posts."
-msgstr "Méfiez-vous, certains thèmes ne fonctionneront pas avec cette option. Dans ce cas (ou si vous souhaitez effectuer vos propres changements), vous pouvez créer un fichier appelé <code>single-%s.php</code>, cf. <a href='#'>le Codex WordPress</a>, et laisser ceci à Articles."
-
 #: admin/settings/tabs/general.php:320
 msgid "Events Manager imposes a minimal amount of styling on websites so that your themes can take over."
 msgstr "Events Manager impose un nombre restreint de styles sur le site de manière à ce que votre thème puisse prendre le dessus."
@@ -4036,9 +4002,17 @@ msgstr "Utilisateur invité par défaut"
 msgid "Hundreds of free hours have gone into making this free plugin, show your support and add a small link to the plugin website at the bottom of your event pages."
 msgstr "Des centaines d’heures sont passées sur cette extension gratuite pour WordPress, montrez votre soutien et ajoutez un petit lien vers le site de l’extension au bas de vos pages évènement."
 
+#: admin/settings/tabs/general.php:101
+msgid "You can also add location attributes here, one per line in this format <code>#_LATT{key}</code>. They will not appear on location pages unless you insert them into another template below, but you may want to store extra information about an event for other uses. <a href='%s'>More information on placeholders.</a>"
+msgstr "Vous pouvez également ajouter des attributs d’emplacement ici, un par ligne dans ce format <code>#_LATT{key}</code>. Ils n’apparaîtront pas sur les pages d’évènement, sauf si vous les insérez dans un modèle ci-dessous. Vous pourrez stocker des informations supplémentaires sur un évènement pour d’autres usages. <a href='%s'>Plus d’informations sur les marqueurs.</a>"
+
 #: admin/settings/tabs/general.php:97
 msgid "Select yes to select location from a drop-down menu; location selection will be faster, but you will lose the ability to insert locations with events"
 msgstr "Sélectionnez oui pour choisir l’emplacement à l’aide d’un menu déroulant. Le choix de l’emplacement sera plus rapide, mais vous perdrez la possibilité d’ajouter des emplacements en même temps qu’un évènement."
+
+#: admin/settings/tabs/general.php:51
+msgid "You can also add event attributes here, one per line in this format <code>#_ATT{key}</code>. They will not appear on event pages unless you insert them into another template below, but you may want to store extra information about an event for other uses. <a href='%s'>More information on placeholders.</a>"
+msgstr "Vous pouvez également ajouter des attributs d’évènement ici, un par ligne dans ce format <code>#_ATT{key}</code>. Ils n’apparaîtront pas sur les pages d’évènement, sauf si vous les insérez dans un autre modèle. Vous pourrez stocker des informations supplémentaires sur un évènement pour d’autres usages. <a href='%s'>Plus d’informations sur les marqueurs.</a>"
 
 #: admin/settings/tabs/general.php:51 admin/settings/tabs/general.php:101
 msgid "%s Attributes"
@@ -4059,14 +4033,6 @@ msgstr "Trier par nom de l’évènement, date de début, heure de début"
 #: admin/settings/tabs/formats.php:391 admin/settings/tabs/pages.php:147
 msgid "Order by start date, start time, then event name"
 msgstr "Trier par date de début, heure de début, nom de l’évènement"
-
-#: admin/settings/tabs/general.php:101
-msgid "You can also add location attributes here, one per line in this format <code>#_LATT{key}</code>. They will not appear on location pages unless you insert them into another template below, but you may want to store extra information about an event for other uses. <a href='%s'>More information on placeholders.</a>"
-msgstr "Vous pouvez également ajouter des attributs d’emplacement ici, un par ligne dans ce format <code>#_LATT{key}</code>. Ils n’apparaîtront pas sur les pages d’évènement, sauf si vous les insérez dans un modèle ci-dessous. Vous pourrez stocker des informations supplémentaires sur un évènement pour d’autres usages. <a href='%s'>Plus d’informations sur les marqueurs.</a>"
-
-#: admin/settings/tabs/general.php:51
-msgid "You can also add event attributes here, one per line in this format <code>#_ATT{key}</code>. They will not appear on event pages unless you insert them into another template below, but you may want to store extra information about an event for other uses. <a href='%s'>More information on placeholders.</a>"
-msgstr "Vous pouvez également ajouter des attributs d’évènement ici, un par ligne dans ce format <code>#_ATT{key}</code>. Ils n’apparaîtront pas sur les pages d’évènement, sauf si vous les insérez dans un autre modèle. Vous pourrez stocker des informations supplémentaires sur un évènement pour d’autres usages. <a href='%s'>Plus d’informations sur les marqueurs.</a>"
 
 #: admin/settings/tabs/formats.php:382
 msgid "RSS limit"
@@ -4141,6 +4107,10 @@ msgstr "Inclure dans les recherches WordPress ?"
 msgid "Enable Archives?"
 msgstr "Activer les archives ?"
 
+#: admin/settings/tabs/pages.php:69
+msgid "This only setting only matters if you selected 'Yes' to above. You will notice the events page titles aren't being rewritten, and you have a new title underneath the default page name. This is where you control the HTML of this title. Make sure you keep the #_PAGETITLE placeholder here, as that's what is rewritten by events manager. To control what's rewritten in this title, see settings further down for page titles."
+msgstr "Ce réglage n’est utilisé que si vous cochez ’Oui’ ci-dessus. Vous constaterez que les titres des pages d’évènements ne sont plus réécrits, et que vous avez un nouveau titre sous le titre par défaut. C’est ici que vous contrôlez l’HTML de ce titre : assurez-vous que le marqueur #_PAGETITLE est présent, car c’est celui qui est utilisé par Events Manager pour contrôler ce qui est réécrit dans ce titre, cf. plus bas."
+
 #: admin/settings/tabs/pages.php:68
 msgid "Disable title rewriting?"
 msgstr "Désactiver la réécriture du titre ?"
@@ -4148,10 +4118,6 @@ msgstr "Désactiver la réécriture du titre ?"
 #: admin/settings/tabs/pages.php:67
 msgid "Display calendar in events page?"
 msgstr "Afficher le calendrier à la page d’évènements ?"
-
-#: admin/settings/tabs/pages.php:69
-msgid "This only setting only matters if you selected 'Yes' to above. You will notice the events page titles aren't being rewritten, and you have a new title underneath the default page name. This is where you control the HTML of this title. Make sure you keep the #_PAGETITLE placeholder here, as that's what is rewritten by events manager. To control what's rewritten in this title, see settings further down for page titles."
-msgstr "Ce réglage n’est utilisé que si vous cochez ’Oui’ ci-dessus. Vous constaterez que les titres des pages d’évènements ne sont plus réécrits, et que vous avez un nouveau titre sous le titre par défaut. C’est ici que vous contrôlez l’HTML de ce titre : assurez-vous que le marqueur #_PAGETITLE est présent, car c’est celui qui est utilisé par Events Manager pour contrôler ce qui est réécrit dans ce titre, cf. plus bas."
 
 #: admin/settings/tabs/pages.php:66
 msgid "Show events search?"
@@ -4248,6 +4214,27 @@ msgstr "Activer les champs personnalisés pour %s ?"
 #: admin/settings/tabs/general.php:48 admin/settings/tabs/general.php:98
 msgid "Enable %s attributes?"
 msgstr "Activer les attributs pour %s ?"
+
+#: admin/settings/tabs/general.php:49 admin/settings/tabs/general.php:99
+msgid "Custom fields are the same as attributes, except you cannot restrict specific values, users can add any kind of custom field name/value pair. Only available in the WordPress admin area."
+msgstr "Les champs personnalisés sont comme des attributs, sauf qu’on ne peut les restreindre à des valeurs spécifiques. Les utilisateurs peuvent ajouter n’importe quelle paire nom/valeur. Accessible uniquement depuis la partie admin de WordPress."
+
+#: admin/settings/tabs/pages.php:7
+msgid "Be aware that some themes will not work with this option, if so (or you want to make your own changes), you can create a file named <code>single-%s.php</code> <a href='#'>as shown on the WordPress codex</a>, and leave this set to Posts."
+msgstr "Sachez que certains thèmes ne fonctionneront pas avec cette option, si c’est le cas (ou si vous voulez faire vos propres modifications), vous pouvez créer un fichier nommé <code>single-%s.php</code> <a href='#'>comme indiqué dans le codex de WordPress</a>, et laisser ce paramètre à Publications."
+
+#: admin/settings/tabs/pages.php:5
+msgid "Many themes display extra meta information on post pages such as 'posted by' or 'post date' information, which may not be desired. Usually, page templates contain less clutter."
+msgstr "De nombreux thèmes affichent des métadonnées supplémentaires sur les pages de publication, telles que les informations « publié par » ou « publié le », qui peuvent ne pas être souhaitées. En général, les modèles de page contiennent moins de bruit de fond."
+
+#: admin/settings/tabs/pages.php:19 admin/settings/tabs/pages.php:21
+#: admin/settings/tabs/pages.php:24 admin/settings/tabs/pages.php:27
+msgid "e.g. %s - you can use / Separators too"
+msgstr "p. ex. %s - vous pouvez également utiliser des séparateurs /"
+
+#: admin/settings/tabs/pages.php:74 admin/settings/tabs/pages.php:258
+msgid "WordPress %s Archives"
+msgstr "Archives %s WordPress"
 
 #: admin/settings/tabs/formats.php:26 admin/settings/tabs/formats.php:252
 msgid "These formats can be used on %s pages or on other areas of your site displaying an %s."
@@ -6603,6 +6590,10 @@ msgstr "Si vous préférez que tous vos emplacements appartiennent au site princ
 msgid "Displays %s from all sites on the network by default. You can still restrict %s by blog using shortcodes and template tags coupled with the <code>blog</code> attribute. Requires global tables to be turned on."
 msgstr "Affiche les %s de tous les sites du réseau par défaut. Vous pourrez restreindre les %s par site en utilisant des codes courts et des étiquettes de modèles associés à l’attribut <code>blog</code>. Nécessite que les tables globales soient activées."
 
+#: admin/em-ms-options.php:170
+msgid "Setting this to yes will make all events save in the main site event tables (EM must also be activated). This allows you to share events across different blogs, such as showing events in your network whilst allowing users to display and manage their events within their own blog. Bear in mind that activating this will mean old events created on the sub-blogs will not be accessible anymore, and if you switch back they will be but new events created during global events mode will only remain on the main site."
+msgstr "Sélectionnez oui pour enregistrer les évènements dans les tables du site principal (EM doit également y être activée). Ceci vous permet de partager des évènements à travers différents sites, comme par exemple pour montrer les évènements de votre réseau tout en permettant aux utilisateurs d’afficher et de gérer leurs propres évènements au sein de leur site. Gardez à l’esprit que l’activation de ceci signifie que les anciens évènements créés sur les sous-sitess ne seront plus accessibles, ils le seront à nouveau si vous faites marche arrière, tandis que de nouveaux évènements créés en mode global resteront sur le site principal."
+
 #: admin/em-ms-options.php:138 admin/em-options.php:473
 msgid "Event Manager Options"
 msgstr "Réglages de Events Manager"
@@ -6614,10 +6605,6 @@ msgstr "Pour mettre à jour votre réseau de sites avec la dernière version de 
 #: admin/em-help.php:32
 msgid "Tag Related Placeholders"
 msgstr "Marqueurs relatifs aux étiquette"
-
-#: admin/em-ms-options.php:170
-msgid "Setting this to yes will make all events save in the main site event tables (EM must also be activated). This allows you to share events across different blogs, such as showing events in your network whilst allowing users to display and manage their events within their own blog. Bear in mind that activating this will mean old events created on the sub-blogs will not be accessible anymore, and if you switch back they will be but new events created during global events mode will only remain on the main site."
-msgstr "Sélectionnez oui pour enregistrer les évènements dans les tables du site principal (EM doit également y être activée). Ceci vous permet de partager des évènements à travers différents sites, comme par exemple pour montrer les évènements de votre réseau tout en permettant aux utilisateurs d’afficher et de gérer leurs propres évènements au sein de leur site. Gardez à l’esprit que l’activation de ceci signifie que les anciens évènements créés sur les sous-sitess ne seront plus accessibles, ils le seront à nouveau si vous faites marche arrière, tandis que de nouveaux évènements créés en mode global resteront sur le site principal."
 
 #: admin/em-help.php:24
 msgid "Placeholders for customizing event pages"
@@ -6640,6 +6627,14 @@ msgstr "Voir/modifier un évènement"
 msgid "Event Bookings Dashboard"
 msgstr "Tableau de bord des réservations d’évènement"
 
+#: admin/em-admin.php:212
+msgid "It looks like you have WPML enabled on your site. We advise you also install our extra <a href=\"%s\">Events Manager WPML Connector</a> plugin which helps the two work better together. <a href=\"%s\">Dismiss message</a>"
+msgstr "Il semble que vous avez activé WPML sur votre site. Nous vous recommandons d’installer aussi notre extension <a href=\"%s\">Events Manager WPML Connector</a> qui permet une meuilleure intégration des deux. <a href=\"%s\">Ignorer ce message</a>."
+
+#: admin/em-admin.php:194
+msgid "Whilst they will still appear using placeholders, you need to <a href=\"%s\">migrate your location and event images</a> in order for them to appear in your edit forms and media library. <a href=\"%s\">Dismiss message</a>"
+msgstr "Bien qu’elles apparaissent encore via les marqueurs, vous devrez <a href=\"%s\">migrer les images</a> pour les évènements et les emplacements, afin de les voir apparaitre dans vos formulaires d’édition, ainsi que votre bibliothèque de médias. <a href=\"%s\">Ignorer ce message</a>."
+
 #: em-template-tags.php:141 widgets/em-events.php:17 em-install.php:482
 #: em-install.php:533 em-install.php:619 em-install.php:620 em-install.php:637
 #: em-install.php:657 em-install.php:1213 em-actions.php:127
@@ -6657,17 +6652,13 @@ msgstr "Tableau de bord des réservations d’évènement"
 msgid "Events"
 msgstr "Évènements"
 
-#: admin/em-admin.php:212
-msgid "It looks like you have WPML enabled on your site. We advise you also install our extra <a href=\"%s\">Events Manager WPML Connector</a> plugin which helps the two work better together. <a href=\"%s\">Dismiss message</a>"
-msgstr "Il semble que vous avez activé WPML sur votre site. Nous vous recommandons d’installer aussi notre extension <a href=\"%s\">Events Manager WPML Connector</a> qui permet une meuilleure intégration des deux. <a href=\"%s\">Ignorer ce message</a>."
-
-#: admin/em-admin.php:194
-msgid "Whilst they will still appear using placeholders, you need to <a href=\"%s\">migrate your location and event images</a> in order for them to appear in your edit forms and media library. <a href=\"%s\">Dismiss message</a>"
-msgstr "Bien qu’elles apparaissent encore via les marqueurs, vous devrez <a href=\"%s\">migrer les images</a> pour les évènements et les emplacements, afin de les voir apparaitre dans vos formulaires d’édition, ainsi que votre bibliothèque de médias. <a href=\"%s\">Ignorer ce message</a>."
-
 #: admin/em-admin.php:182
 msgid "MultiSite options have moved <a href=\"%s\">here</a>. <a href=\"%s\">Dismiss message</a>"
 msgstr "Les options multi site ont été déplacées <a href=\"%s\">ici</a>. <a href=\"%s\">Ignorer ce message</a>."
+
+#: admin/em-admin.php:162
+msgid "Uh Oh! For some reason WordPress could not create an events page for you (or you just deleted it). Not to worry though, all you have to do is create an empty page, name it whatever you want, and select it as your events page in your <a href=\"%s\">settings page</a>. Sorry for the extra step! If you know what you are doing, you may have done this on purpose, if so <a href=\"%s\">ignore this message</a>"
+msgstr "Désolé&nbsp;! Pour une raison inconnue, la page d’évènements n’a pas pu être créée (peut-être que vous venez de l’effacer&nbsp;?). Vous devrez la créer manuellement, en créant une page vide, du nom que vous voulez, puis en la sélectionnant en tant que page d’évènements depuis la <a href=\"%s\">page de réglages</a>. Désolé pour cette étape supplémentaire&nbsp;! Si vous savez ce que vous faites, vous pouvez <a href=\"%s\">ignorer ce message</a>."
 
 #: admin/bookings/em-events.php:34
 msgid "Future Events"
@@ -6692,10 +6683,6 @@ msgstr "Modifier/voir"
 #: admin/em-admin.php:147
 msgid "<p>Events Manager is ready to go! It is highly recommended you read the <a href='%s'>Getting Started</a> guide on our site, as well as checking out the <a href='%s'>Settings Page</a>. <a href='%s' title='Don't show this advice again'>Dismiss</a></p>"
 msgstr "<p>Events Manager est prêt&nbsp;! Il est fortement recommandé de lire le <a href='%s'>Guide de démarrage</a> sur notre site, ainsi que d’aller à la <a href='%s'>Page des réglages</a>. <a href='%s' title='Ne plus afficher ce conseil'>Masquer</a>.</p>"
-
-#: admin/em-admin.php:162
-msgid "Uh Oh! For some reason WordPress could not create an events page for you (or you just deleted it). Not to worry though, all you have to do is create an empty page, name it whatever you want, and select it as your events page in your <a href=\"%s\">settings page</a>. Sorry for the extra step! If you know what you are doing, you may have done this on purpose, if so <a href=\"%s\">ignore this message</a>"
-msgstr "Désolé&nbsp;! Pour une raison inconnue, la page d’évènements n’a pas pu être créée (peut-être que vous venez de l’effacer&nbsp;?). Vous devrez la créer manuellement, en créant une page vide, du nom que vous voulez, puis en la sélectionnant en tant que page d’évènements depuis la <a href=\"%s\">page de réglages</a>. Désolé pour cette étape supplémentaire&nbsp;! Si vous savez ce que vous faites, vous pouvez <a href=\"%s\">ignorer ce message</a>."
 
 #: admin/em-bookings.php:62
 msgid "Events With Bookings Enabled"

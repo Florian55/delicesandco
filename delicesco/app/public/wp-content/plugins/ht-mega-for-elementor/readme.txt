@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc
 Tags: Elementor, Elementor Addons, Elementor Widgets, elementor page builder, Elementor Blocks
 Requires at least: 4.7
 Tested up to: 5.4.2
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ The HTMega is a elementor addons package for Elementor page builder plugin for W
 == Description ==
 HTMega is a absolute addons for elementor includes 80+ elements & 360 Blocks with unlimited variations. HT Mega brings limitless possibilities. Embellish your site with the elements of HT Mega.
 
-[Check the Plugin Demo](https://demo.hasthemes.com/ht-mega/index.html)
+[Video Tutorial Playlist](https://www.youtube.com/watch?v=d7jAiAYusUg&list=PLk25BQFrj7wEEGUHn9x2zwOql990bZAo_) | [Plugin Live Demo](https://demo.hasthemes.com/ht-mega/index.html)
 
 = Advanced Features: =
 = Header/Footer Builder =
@@ -189,6 +189,9 @@ August 05 - 2019:
 Visit [HasThemes](https://hasthemes.com/) for more details about HTML, Shopify and WordPress products and services.
 
 == Changelog ==
+
+= Version: 1.4.6 - Date: 2020-07-29 =
+* Accodion Line height Issue Solved
 
 = Version: 1.4.5 - Date: 2020-07-29 =
 * Instagram Addon Issue Solved

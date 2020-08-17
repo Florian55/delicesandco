@@ -1164,6 +1164,19 @@ else {
             <div id="updates-panel" class="panel-left">
 
                 <h2>Change Log for the Premium Version</h2>
+                <h3>4.0.0</h3>
+                <ul>
+                    <li>Added - Choice of 'Custom Skin' and 'Custom Grid' for posts grid items to design your custom posts grid and/or custom posts grid item using theme builder templates in Elementor PRO. You can now create custom skins for grid items and also create custom grid layout via drag and drop of page builder elements in Elementor.</li>
+                    <li>Added - Choice of 'Custom Skin' for posts carousel items with ability to use theme builder templates for designing your own posts carousel. The custom skins for posts carousel items can now be designed via drag and drop of page builder elements in Elementor.</li>
+                    <li>Added - Design custom skin for items of Posts Carousel and Posts Grid with custom choice of fields and their arrangement using Elementor page builder.</li>
+                    <li>Added - Ability to choose separate Skin Templates for individual items within a Posts Grid. A single Posts Grid can now feature disparate set of grid items which utilize individual skins of their choice.</li>
+                    <li>Added - Ability to use any custom post type with custom fields(including ACF/Pods/Toolset) for Posts Grid and Posts Carousel items. </li>
+                    <li>Added - You can now drag and drop widgets in Elementor to build custom carousels/sliders and grids of Services, Events, Features, Team, Testimonials, Posts Grid, Posts Carousels etc. by utilizing the custom grid and grid item templates feature built into Posts Carousel and Posts Grid widgets. Possibilities for building custom carousels and grids are endless with dynamic widgets and page building experience provided by Elementor and data provided by custom post types and ACF/Pods/Toolset plugins. </li>
+                    <li>Added - Added two theme builder template locations Livemesh Item and Livemesh Grid to help build custom grids and custom skins for posts grid and posts carousel widgets.</li>
+                    <li>Added - Pagination, Next/Previous, Load More and Load on Scroll/Infinite Scroll support for Posts Grid featuring custom grids and those featuring custom grid items.</li>
+                    <li>Added - Filters using custom taxonomy terms or categories/tags work for those Posts Grid instances which feature user designed custom grids</li>
+                    <li>Fixed - The posts carousel does not show arrow navigation controls on smartphones</li>
+                </ul>
                 <h3>3.0.0</h3>
                 <ul>
                     <li>Added - Options to turn off/on title and taxonomy terms displayed on posts carousel thumbnail</li>

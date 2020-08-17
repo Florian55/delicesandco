@@ -1,15 +1,15 @@
-=== Livemesh Addons for Elementor Page Builder ===
+=== Livemesh Addons for Elementor ===
 Author URI: https://livemeshelementor.com
 Plugin URI: https://livemeshelementor.com
-Contributors: livemesh, freemius
-Tags: elementor, elementor addons, elementor extensions, elementor modules, page builder, portfolio, carousel, posts grid
+Contributors: livemesh, freemius, elementoraddons
+Tags: elementor, elementor addons, elementor extensions, elementor widgets, page builder, portfolio, carousel, posts grid
 Requires at least: 4.5
-Tested up to: 5.4
-Stable Tag: 3.0.0
+Tested up to: 5.5
+Stable Tag: 4.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A collection of premium quality addons or modules for use in Elementor page builder. Elementor must be installed and activated.
+A collection of premium quality addons or widgets for Elementor page builder. Elementor must be installed and activated.
 
 == Description ==
 
@@ -115,6 +115,17 @@ Pls install and activate the <a href="https://wordpress.org/plugins/portfolio-po
 
 
 
+
+= 4.0.0 =
+* Added - Choice of 'Custom Skin' and 'Custom Grid' for posts grid items to design your custom posts grid and/or custom posts grid item using theme builder templates in Elementor PRO. You can now create custom skins for grid items and also create custom grid layout via drag and drop of page builder elements in Elementor.
+* Added - Choice of 'Custom Skin' for posts carousel items with ability to use theme builder templates for designing your own posts carousel. The custom skins for posts carousel items can now be designed via drag and drop of page builder elements in Elementor.
+* Added - Design custom skin for items of Posts Carousel and Posts Grid with custom choice of fields and their arrangement using Elementor page builder.
+* Added - Ability to choose separate Skin Templates for individual items within a Posts Grid. A single Posts Grid can now feature disparate set of grid items which utilize individual skins of their choice.
+* Added - Ability to use any custom post type with custom fields(including ACF/Pods/Toolset) for Posts Grid and Posts Carousel items.
+* Added - You can now drag and drop widgets in Elementor to build custom carousels/sliders and grids of Services, Events, Features, Team, Testimonials, Posts Grid, Posts Carousels etc. by utilizing the custom grid and grid item templates feature built into Posts Carousel and Posts Grid widgets. Possibilities for building custom carousels and grids are endless with dynamic widgets and page building experience provided by Elementor and data provided by custom post types and ACF/Pods/Toolset plugins.
+* Added - Added two theme builder template locations Livemesh Item and Livemesh Grid to help build custom grids and custom skins for posts grid and posts carousel widgets
+* Fixed - The posts carousel does not show arrow navigation controls on smartphones
+* Fixed - Handle lazy load feature part of WP 5.5
 
 = 3.0.0 =
 * Added - Options to turn off/on title and taxonomy terms displayed on posts grid thumbnail

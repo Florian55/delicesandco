@@ -11,10 +11,8 @@ namespace LivemeshAddons\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
-use Elementor\Scheme_Color;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
 
 
 if (!defined('ABSPATH'))
@@ -133,6 +131,9 @@ class LAE_Portfolio_Widget extends Widget_Base {
             [
                 'label' => __('Posts Per Page', 'livemesh-el-addons'),
                 'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 50,
+                'step' => 1,
                 'default' => 6,
                 'condition' => [
                     'query_type' => ['custom_query', 'related']
@@ -209,34 +210,87 @@ class LAE_Portfolio_Widget extends Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'section_post_content',
+            'section_grid_skin',
             [
-                'label' => __('Post Content', 'livemesh-el-addons'),
+                'label' => __('Grid Skin', 'livemesh-el-addons'),
             ]
         );
 
         $this->add_control(
-            'heading',
+            'grid_skin',
             [
-                'label' => __('Heading for the grid', 'livemesh-el-addons'),
-                'type' => Controls_Manager::TEXT,
-                'placeholder' => __('My Posts', 'livemesh-el-addons'),
-                'default' => __('My Posts', 'livemesh-el-addons'),
-                'dynamic' => [
-                    'active' => true,
+                'label' => __('Choose Grid Skin', 'livemesh-el-addons'),
+                'description' => __('The "Classic Skin" is the built-in styling provided for the grid items. Choose "Custom Skin" if you want to use theme builder template for the grid item. The option "Custom Grid" is the most flexible one that lets you use a theme builder template for the grid layout with choice of custom template for one or more of its items.', 'livemesh-el-addons'),
+                'type' => Controls_Manager::SELECT,
+                'options' => array(
+                    'classic_skin' => __('Classic Skin', 'livemesh-el-addons'),
+                    'custom_skin' => __('Custom Skin', 'livemesh-el-addons'),
+                    'custom_grid' => __('Custom Grid', 'livemesh-el-addons'),
+                ),
+                'default' => 'classic_skin',
+            ]
+        );
+
+        $this->add_control(
+            'item_template',
+            [
+                'label' => __('Select the custom skin template for the grid item', 'livemesh-el-addons'),
+                'description' => '<div style="text-align:center;font-style: normal;">'
+                    . '<a target="_blank" class="elementor-button elementor-button-default" href="'
+                    . esc_url(admin_url('/edit.php?post_type=elementor_library&tabs_group=theme&elementor_library_type=livemesh_item'))
+                    . '">'
+                    . __('Create/Edit the Item Skin Builder Templates', 'livemesh-el-addons')
+                    . '</a>'
+                    . '</div>',
+                'type' => Controls_Manager::SELECT,
+                'label_block' => true,
+                'default' => [],
+                'options' => $this->get_item_template_options(),
+                'condition' => [
+                    'grid_skin' => 'custom_skin'
                 ],
             ]
         );
 
         $this->add_control(
-            'taxonomy_filter',
+            'grid_template',
             [
+                'label' => __('Select the custom grid template for the grid item', 'livemesh-el-addons'),
+                'description' => '<div style="text-align:center;font-style: normal;">'
+                    . '<a target="_blank" class="elementor-button elementor-button-default" href="'
+                    . esc_url(admin_url('/edit.php?post_type=elementor_library&tabs_group=theme&elementor_library_type=livemesh_grid'))
+                    . '">'
+                    . __('Create/Edit the Grid Builder Templates', 'livemesh-el-addons')
+                    . '</a>'
+                    . '</div>',
                 'type' => Controls_Manager::SELECT,
-                'label' => __('Choose the taxonomy to display and filter on.', 'livemesh-el-addons'),
                 'label_block' => true,
-                'description' => __('Choose the taxonomy information to display for posts/portfolio and the taxonomy that is used to filter the portfolio/post. Takes effect only if no taxonomy filters are specified when building query.', 'livemesh-el-addons'),
-                'options' => lae_get_taxonomies_map(),
-                'default' => 'category',
+                'default' => [],
+                'options' => $this->get_grid_template_options(),
+                'condition' => [
+                    'grid_skin' => 'custom_grid'
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_post_content',
+            [
+                'label' => __('Post Content', 'livemesh-el-addons'),
+                'condition' => [
+                    'grid_skin' => 'classic_skin'
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Image_Size::get_type(),
+            [
+                'name' => 'thumbnail_size',
+                'label' => __('Image Size', 'livemesh-el-addons'),
+                'default' => 'large',
             ]
         );
 
@@ -376,19 +430,23 @@ class LAE_Portfolio_Widget extends Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'section_settings',
+            'section_general_settings',
             [
-                'label' => __('General Settings', 'livemesh-el-addons'),
+                'label' => __('General', 'livemesh-el-addons'),
                 'tab' => Controls_Manager::TAB_SETTINGS,
             ]
         );
 
-        $this->add_group_control(
-            Group_Control_Image_Size::get_type(),
+        $this->add_control(
+            'heading',
             [
-                'name' => 'thumbnail_size',
-                'label' => __('Image Size', 'livemesh-el-addons'),
-                'default' => 'large',
+                'label' => __('Heading for the grid', 'livemesh-el-addons'),
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => __('My Posts', 'livemesh-el-addons'),
+                'default' => __('My Posts', 'livemesh-el-addons'),
+                'dynamic' => [
+                    'active' => true,
+                ],
             ]
         );
 
@@ -401,6 +459,21 @@ class LAE_Portfolio_Widget extends Widget_Base {
                 'label_off' => __('No', 'livemesh-el-addons'),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                'condition' => [
+                    'grid_skin' => ['classic_skin', 'custom_skin']
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'taxonomy_filter',
+            [
+                'type' => Controls_Manager::SELECT,
+                'label' => __('Choose the taxonomy to display and filter on.', 'livemesh-el-addons'),
+                'label_block' => true,
+                'description' => __('Choose the taxonomy information to display for posts/portfolio and the taxonomy that is used to filter the portfolio/post. Takes effect only if no taxonomy filters are specified when building query.', 'livemesh-el-addons'),
+                'options' => lae_get_taxonomies_map(),
+                'default' => 'category',
             ]
         );
 
@@ -528,7 +601,6 @@ class LAE_Portfolio_Widget extends Widget_Base {
             ]
         );
 
-
         $this->add_control(
             'heading_tag',
             [
@@ -624,6 +696,9 @@ class LAE_Portfolio_Widget extends Widget_Base {
             [
                 'label' => __('Grid Thumbnail', 'livemesh-el-addons'),
                 'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'grid_skin' => 'classic_skin'
+                ],
             ]
         );
 
@@ -730,6 +805,9 @@ class LAE_Portfolio_Widget extends Widget_Base {
             [
                 'label' => __('Grid Item Entry Title', 'livemesh-el-addons'),
                 'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'grid_skin' => 'classic_skin'
+                ],
             ]
         );
 
@@ -817,6 +895,9 @@ class LAE_Portfolio_Widget extends Widget_Base {
             [
                 'label' => __('Grid Item Entry Meta', 'livemesh-el-addons'),
                 'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'grid_skin' => 'classic_skin'
+                ],
             ]
         );
 
@@ -884,6 +965,9 @@ class LAE_Portfolio_Widget extends Widget_Base {
             [
                 'label' => __('Read More', 'livemesh-el-addons'),
                 'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'grid_skin' => 'classic_skin'
+                ],
             ]
         );
 
@@ -920,7 +1004,96 @@ class LAE_Portfolio_Widget extends Widget_Base {
         $this->end_controls_section();
 
 
+    }
 
+    protected function get_item_template_content($template_id, $settings) {
+
+        /* Initialize the theme builder templates - Requires elementor pro plugin */
+        if (!is_plugin_active('elementor-pro/elementor-pro.php')) {
+            $output = __('Custom skin requires Elementor Pro but the plugin is not installed/active', 'livemesh-el-addons');
+        }
+        else {
+            $output = lae_get_item_template_content($template_id, $settings);
+        }
+
+        return $output;
+
+    }
+
+    protected function get_grid_template_content($template_id, $settings) {
+
+        /* Initialize the theme builder templates - Requires elementor pro plugin */
+        if (!is_plugin_active('elementor-pro/elementor-pro.php')) {
+            $output = __('Custom skin requires Elementor Pro but the plugin is not installed/active', 'livemesh-el-addons');
+        }
+        else {
+            $output = lae_get_template_content($template_id, $settings);
+        }
+
+        return $output;
+
+    }
+
+    protected function get_item_template_options() {
+
+        $template_options = array();
+
+        /* Initialize the theme builder templates - Requires elementor pro plugin */
+        if (!is_plugin_active('elementor-pro/elementor-pro.php')) {
+            $template_options = [0 => __('No templates found. Elementor Pro is not installed/active', 'livemesh-el-addons')];
+        }
+        else {
+            $templates = lae_get_livemesh_item_templates();
+
+            //$template_options = [0 => __('Select a template', 'livemesh-el-addons')];
+
+            foreach ($templates as $template) {
+                $template_options[$template->ID] = $template->post_title;
+            }
+        }
+
+        return $template_options;
+    }
+
+    protected function get_grid_template_options() {
+
+        $template_options = array();
+
+        /* Initialize the theme builder templates - Requires elementor pro plugin */
+        if (!is_plugin_active('elementor-pro/elementor-pro.php')) {
+            $template_options = [0 => __('No templates found. Elementor Pro is not installed/active', 'livemesh-el-addons')];
+        }
+        else {
+            $templates = lae_get_livemesh_grid_templates();
+
+            //$template_options = [0 => __('Select a template', 'livemesh-el-addons')];
+
+            foreach ($templates as $template) {
+                $template_options[$template->ID] = $template->post_title;
+            }
+        }
+
+        return $template_options;
+    }
+
+    protected function get_item_templates($shortcode_pattern, $grid_template_content) {
+
+        $matches = array();
+
+        preg_match_all($shortcode_pattern, $grid_template_content, $matches);
+
+        $attributes = array_pop($matches); // fetch last array element
+
+        $item_templates = array();
+
+        foreach ($attributes as $attribute) {
+
+            list($key, $val) = explode("=", $attribute);
+
+            $item_templates[] = trim($val, '"');
+
+        }
+        return $item_templates;
     }
 
     protected function render() {
@@ -974,170 +1147,247 @@ class LAE_Portfolio_Widget extends Widget_Base {
 
             endif;
 
-            $output .= '<div' . $dir . ' id="lae-portfolio-' . uniqid()
-                . '" class="lae-portfolio js-isotope lae-' . esc_attr($settings['layout_mode']) . ' lae-grid-container ' . lae_get_grid_classes($settings)
-                . '" data-isotope-options=\'{ "itemSelector": ".lae-portfolio-item", "layoutMode": "' . esc_attr($settings['layout_mode']) . '", "originLeft": ' . esc_attr(!is_rtl() ? 'true' : 'false') . '}\'>';
+            if ($settings['grid_skin'] == 'custom_grid') :
 
-            $current_page = get_queried_object_id();
+                $grid_template_id = $settings['grid_template'];
 
-            while ($loop->have_posts()) : $loop->the_post();
+                if (!$grid_template_id) :
 
-                $post_id = get_the_ID();
+                    $output .= __('Choose a custom template for the grid', 'livemesh-el-addons');
 
-                if ($post_id === $current_page)
-                    continue; // skip current page since we can run into infinite loop when users choose All option in build query
+                else :
 
-                $style = '';
-                foreach ($taxonomies as $taxonomy) {
-                    $terms = get_the_terms($post_id, $taxonomy);
-                    if (!empty($terms) && !is_wp_error($terms)) {
-                        foreach ($terms as $term) {
-                            $style .= ' term-' . $term->term_id;
+                    $shortcode_pattern = "/\[livemesh_grid_item (.+?)\]/";
+
+                    $grid_template_content = $this->get_grid_template_content($grid_template_id, $settings);
+
+                    $item_templates = $this->get_item_templates($shortcode_pattern, $grid_template_content);
+
+                    $item_template_walker = array();
+
+                    $output .= '<div' . $dir . ' id="lae-portfolio-' . uniqid()
+                        . '" class="lae-portfolio lae-grid-container '
+                        . 'lae-' . str_replace('_', '-', $settings['grid_skin'])
+                        . '">';
+
+                    $template_output = '';
+
+                    while ($loop->have_posts()) : $loop->the_post();
+
+                        if (empty($item_template_walker)) {
+                            $template_output .= $grid_template_content;
+
+                            $item_template_walker = $item_templates;
+
+                        }
+
+                        $item_template_id = array_shift($item_template_walker);
+
+                        $item_template_content = $this->get_item_template_content($item_template_id, $settings);
+
+                        // Replace the first element with the grid template content for the item
+                        $template_output = preg_replace($shortcode_pattern, $item_template_content, $template_output, 1);
+
+                    endwhile;
+
+                    // Replace the remaining shortcode occurrences in the grid template content with a placeholder string
+                    $template_output = preg_replace($shortcode_pattern, '', $template_output);
+
+                    $output .= apply_filters('lae_posts_grid_template_output', $template_output, $loop, $settings);
+
+                endif;
+
+            else :
+
+                $output .= '<div' . $dir . ' id="lae-portfolio-' . uniqid()
+                    . '" class="lae-portfolio js-isotope lae-' . esc_attr($settings['layout_mode']) . ' lae-grid-container '
+                    . 'lae-' . str_replace('_', '-', $settings['grid_skin'])
+                    . lae_get_grid_classes($settings)
+                    . '" data-isotope-options=\'{ "itemSelector": ".lae-portfolio-item", "layoutMode": "' . esc_attr($settings['layout_mode']) . '", "originLeft": ' . esc_attr(!is_rtl() ? 'true' : 'false') . '}\'>';
+
+                $current_page = get_queried_object_id();
+
+                while ($loop->have_posts()) : $loop->the_post();
+
+                    $post_id = get_the_ID();
+
+                    if ($post_id === $current_page)
+                        continue; // skip current page since we can run into infinite loop when users choose All option in build query
+
+                    $style = '';
+                    foreach ($taxonomies as $taxonomy) {
+                        $terms = get_the_terms($post_id, $taxonomy);
+                        if (!empty($terms) && !is_wp_error($terms)) {
+                            foreach ($terms as $term) {
+                                $style .= ' term-' . $term->term_id;
+                            }
                         }
                     }
-                }
 
-                $entry_output = '<div data-id="id-' . $post_id . '" class="lae-grid-item lae-portfolio-item ' . $style . '">';
+                    $entry_output = '<div data-id="id-' . $post_id . '" class="lae-grid-item lae-portfolio-item ' . $style . '">';
 
-                $entry_output .= '<article id="post-' . $post_id . '" class="' . join(' ', get_post_class('', $post_id)) . '">';
+                    $entry_output .= '<article id="post-' . $post_id . '" class="' . join(' ', get_post_class('', $post_id)) . '">';
 
-                if ($thumbnail_exists = has_post_thumbnail()):
+                    if ($settings['grid_skin'] == 'custom_skin') :
 
-                    $entry_image = '<div class="lae-project-image">';
+                        $item_template_id = $settings['item_template'];
 
-                    $image_setting = ['id' => get_post_thumbnail_id($post_id)];
+                        if ($item_template_id) :
 
-                    $thumbnail_html = lae_get_image_html($image_setting, 'thumbnail_size', $settings, true);
+                            $item_template_output = $this->get_item_template_content($item_template_id, $settings);
 
-                    if ($settings['image_linkable'] == 'yes'):
+                            $entry_output .= apply_filters('lae_posts_grid_item_template_output', $item_template_output, $item_template_id, $post_id, $settings);
 
-                        $thumbnail_html = '<a href="' . get_the_permalink() . '"̌̌' . $target . '>' . $thumbnail_html . '</a>';
+                        else :
 
-                    endif;
-
-                    $entry_image .= apply_filters('lae_posts_grid_thumbnail_html', $thumbnail_html, $image_setting, $settings);
-
-                    if (($settings['display_title_on_thumbnail'] == 'yes') || ($settings['display_taxonomy_on_thumbnail'] == 'yes')):
-
-                        $image_info = '<div class="lae-image-info">';
-
-                        $image_info .= '<div class="lae-entry-info">';
-
-                        if ($settings['display_title_on_thumbnail'] == 'yes'):
-
-                            $image_info .= '<' . $settings['title_tag'] . ' class="lae-post-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '" rel="bookmark"' . $target . '>' . get_the_title() . '</a></' . $settings['title_tag'] . '>';
+                            $entry_output .= __('Choose a custom skin template for the grid item', 'livemesh-el-addons');
 
                         endif;
 
-                        if ($settings['display_taxonomy_on_thumbnail'] == 'yes'):
+                    else :
 
-                            $image_info .= lae_get_info_for_taxonomies($taxonomies);
+                        if ($thumbnail_exists = has_post_thumbnail()) :
 
-                        endif;
+                            $entry_image = '<div class="lae-project-image">';
 
-                        $image_info .= '</div>';
+                            $image_setting = ['id' => get_post_thumbnail_id($post_id)];
 
-                        $image_info .= '</div><!-- .lae-image-info -->';
+                            $thumbnail_html = lae_get_image_html($image_setting, 'thumbnail_size', $settings, true);
 
-                        $entry_image .= apply_filters('lae_posts_grid_image_info', $image_info, $post_id, $settings);
+                            if ($settings['image_linkable'] == 'yes'):
 
-                        $entry_image .= '</div>';
+                                $thumbnail_html = '<a href="' . get_the_permalink() . '"̌̌' . $target . '>' . $thumbnail_html . '</a>';
 
-                    endif;
+                            endif;
 
-                    $entry_output .= apply_filters('lae_posts_grid_entry_image', $entry_image, $image_setting, $settings);
+                            $entry_image .= apply_filters('lae_posts_grid_thumbnail_html', $thumbnail_html, $image_setting, $settings);
 
-                endif;
+                            if (($settings['display_title_on_thumbnail'] == 'yes') || ($settings['display_taxonomy_on_thumbnail'] == 'yes')):
 
-                if (($settings['display_title'] == 'yes') || ($settings['display_summary'] == 'yes')) :
+                                $image_info = '<div class="lae-image-info">';
 
-                    $entry_text = '<div class="lae-entry-text-wrap ' . ($thumbnail_exists ? '' : ' nothumbnail') . '">';
+                                $image_info .= '<div class="lae-entry-info">';
 
-                    if ($settings['display_title'] == 'yes') :
+                                if ($settings['display_title_on_thumbnail'] == 'yes'):
 
-                        $entry_title = '<' . $settings['entry_title_tag'] . ' class="entry-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '" rel="bookmark"' . $target . '>' . get_the_title() . '</a></' . $settings['entry_title_tag'] . '>';
+                                    $image_info .= '<' . $settings['title_tag'] . ' class="lae-post-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '" rel="bookmark"' . $target . '>' . get_the_title() . '</a></' . $settings['title_tag'] . '>';
 
-                        $entry_text .= apply_filters('lae_posts_grid_entry_title', $entry_title, $post_id, $settings);
+                                endif;
 
-                    endif;
+                                if ($settings['display_taxonomy_on_thumbnail'] == 'yes'):
 
-                    if (($settings['display_post_date'] == 'yes') || ($settings['display_author'] == 'yes') || ($settings['display_taxonomy'] == 'yes')) :
+                                    $image_info .= lae_get_info_for_taxonomies($taxonomies);
 
-                        $entry_meta = '<div class="lae-entry-meta">';
+                                endif;
 
-                        if ($settings['display_author'] == 'yes'):
+                                $image_info .= '</div>';
 
-                            $entry_meta .= lae_entry_author();
+                                $image_info .= '</div><!-- .lae-image-info -->';
 
-                        endif;
+                                $entry_image .= apply_filters('lae_posts_grid_image_info', $image_info, $post_id, $settings);
 
-                        if ($settings['display_post_date'] == 'yes'):
+                                $entry_image .= '</div>';
 
-                            $entry_meta .= lae_entry_published();
+                            endif;
 
-                        endif;
-
-                        if ($settings['display_taxonomy'] == 'yes'):
-
-                            $entry_meta .= lae_get_info_for_taxonomies($taxonomies);
+                            $entry_output .= apply_filters('lae_posts_grid_entry_image', $entry_image, $image_setting, $settings);
 
                         endif;
 
-                        $entry_meta .= '</div>';
+                        if (($settings['display_title'] == 'yes') || ($settings['display_summary'] == 'yes')) :
 
-                        $entry_text .= apply_filters('lae_posts_grid_entry_meta', $entry_meta, $post_id, $settings);
+                            $entry_text = '<div class="lae-entry-text-wrap ' . ($thumbnail_exists ? '' : ' nothumbnail') . '">';
+
+                            if ($settings['display_title'] == 'yes') :
+
+                                $entry_title = '<' . $settings['entry_title_tag'] . ' class="entry-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '" rel="bookmark"' . $target . '>' . get_the_title() . '</a></' . $settings['entry_title_tag'] . '>';
+
+                                $entry_text .= apply_filters('lae_posts_grid_entry_title', $entry_title, $post_id, $settings);
+
+                            endif;
+
+                            if (($settings['display_post_date'] == 'yes') || ($settings['display_author'] == 'yes') || ($settings['display_taxonomy'] == 'yes')) :
+
+                                $entry_meta = '<div class="lae-entry-meta">';
+
+                                if ($settings['display_author'] == 'yes'):
+
+                                    $entry_meta .= lae_entry_author();
+
+                                endif;
+
+                                if ($settings['display_post_date'] == 'yes'):
+
+                                    $entry_meta .= lae_entry_published();
+
+                                endif;
+
+                                if ($settings['display_taxonomy'] == 'yes'):
+
+                                    $entry_meta .= lae_get_info_for_taxonomies($taxonomies);
+
+                                endif;
+
+                                $entry_meta .= '</div>';
+
+                                $entry_text .= apply_filters('lae_posts_grid_entry_meta', $entry_meta, $post_id, $settings);
+
+                            endif;
+
+                            if ($settings['display_summary'] == 'yes') :
+
+                                $excerpt = '<div class="entry-summary">';
+
+                                $excerpt .= get_the_excerpt();
+
+                                $excerpt .= '</div>';
+
+                                $entry_text .= apply_filters('lae_posts_grid_entry_excerpt', $excerpt, $post_id, $settings);
+
+                            endif;
+
+                            if ($settings['display_read_more'] == 'yes') :
+
+                                $read_more_text = $settings['read_more_text'];
+
+                                $read_more = '<div class="lae-read-more">';
+
+                                $read_more .= '<a href="' . get_the_permalink() . '"' . $target . '>' . $read_more_text . '</a>';
+
+                                $read_more .= '</div>';
+
+                                $entry_text .= apply_filters('lae_posts_grid_read_more_link', $read_more, $post_id, $settings);
+
+                            endif;
+
+                            $entry_text .= '</div>';
+
+                            $entry_output .= apply_filters('lae_posts_grid_entry_text', $entry_text, $post_id, $settings);
+
+                        endif;
 
                     endif;
 
-                    if ($settings['display_summary'] == 'yes') :
+                    $entry_output .= '</article><!-- .hentry -->';
 
-                        $excerpt = '<div class="entry-summary">';
+                    $entry_output .= '</div>';
 
-                        $excerpt .= get_the_excerpt();
+                    $output .= apply_filters('lae_posts_grid_entry_output', $entry_output, $post_id, $settings);
 
-                        $excerpt .= '</div>';
+                endwhile;
 
-                        $entry_text .= apply_filters('lae_posts_grid_entry_excerpt', $excerpt, $post_id, $settings);
+                wp_reset_postdata();
 
-                    endif;
+                $output .= '</div><!-- .lae-portfolio -->';
 
-                    if ($settings['display_read_more'] == 'yes') :
+                $output .= '</div><!-- .lae-portfolio-wrap -->';
 
-                        $read_more_text = $settings['read_more_text'];
-
-                        $read_more = '<div class="lae-read-more">';
-
-                        $read_more .= '<a href="' . get_the_permalink() . '"' . $target . '>' . $read_more_text . '</a>';
-
-                        $read_more .= '</div>';
-
-                        $entry_text .= apply_filters('lae_posts_grid_read_more_link', $read_more, $post_id, $settings);
-
-                    endif;
-
-                    $entry_text .= '</div>';
-
-                    $entry_output .= apply_filters('lae_posts_grid_entry_text', $entry_text, $post_id, $settings);
-
-                endif;
-
-                $entry_output .= '</article><!-- .hentry -->';
-
-                $entry_output .= '</div>';
-
-                $output .= apply_filters('lae_posts_grid_entry_output', $entry_output, $post_id, $settings);
-
-            endwhile;
-
-            wp_reset_postdata();
-
-            $output .= '</div><!-- .lae-portfolio -->';
-
-            $output .= '</div><!-- .lae-portfolio-wrap -->';
+            endif;
 
             echo apply_filters('lae_posts_grid_output', $output, $settings);
 
         endif;
+
     }
 
     protected function content_template() {

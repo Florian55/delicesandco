@@ -416,6 +416,7 @@ function lae_get_image_html(
         if ( $disable_lazy_load ) {
             $image_attrs = array_merge( $image_attrs, array(
                 'data-no-lazy' => 1,
+                'loading'      => 'eager',
             ) );
         }
         $image_html .= wp_get_attachment_image(
@@ -429,15 +430,19 @@ function lae_get_image_html(
         if ( !$image_src && isset( $image_setting['url'] ) ) {
             $image_src = $image_setting['url'];
         }
+        $size = $settings[$image_size_key . '_size'];
+        $custom_dimension = $settings[$image_size_key . '_custom_dimension'];
         
         if ( !empty($image_src) ) {
             $lazy_load_attr = '';
             if ( $disable_lazy_load ) {
-                $lazy_load_attr = 'data-no-lazy="1"';
+                $lazy_load_attr = 'loading=eager data-no-lazy=1';
             }
             $image_class_html = ( !empty($image_class) ? ' class="' . $image_class . '"' : '' );
             $image_html .= sprintf(
-                '<img %s src="%s" title="%s" alt="%s"%s />',
+                '<img width="%s" height="%s" %s src="%s" title="%s" alt="%s"%s />',
+                esc_attr( $custom_dimension['width'] ),
+                esc_attr( $custom_dimension['height'] ),
                 esc_attr( $lazy_load_attr ),
                 esc_attr( $image_src ),
                 get_the_title( $attachment_id ),

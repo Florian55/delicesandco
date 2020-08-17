@@ -1289,7 +1289,7 @@ $theme_color: #f94213;
     max-width: 96%;
   }
 
-  .lae-posts-carousel-item {
+  &.lae-classic-skin .lae-posts-carousel-item {
     .hentry {
       background: #fff;
       border-radius: 6px;
@@ -2339,10 +2339,6 @@ input.lae-button.lae-with-icon, button.lae-button.lae-with-icon, a.lae-button.la
       &:after {
         margin: 0 7px 0 0;
       }
-    }
-
-    &:hover {
-      color: #666;
     }
   }
 }

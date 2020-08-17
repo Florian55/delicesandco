@@ -202,7 +202,7 @@
             return;
         }
 
-        var portfolioElem = $scope.find('.lae-portfolio');
+        var portfolioElem = $scope.find('.lae-portfolio:not(.lae-custom-grid)');
         if (portfolioElem.length === 0) {
             return; // no items to filter or load and hence don't continue
         }
@@ -218,8 +218,8 @@
             originLeft: !rtl,
         });
 
-        // layout Isotope after all images have loaded
-        portfolioElem.imagesLoaded(function () {
+        // layout Isotope after each image load
+        portfolioElem.imagesLoaded().progress( function() {
             portfolioElem.isotope('layout');
         });
 

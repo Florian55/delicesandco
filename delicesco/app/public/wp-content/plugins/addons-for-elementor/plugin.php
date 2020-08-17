@@ -45,7 +45,7 @@ if ( !class_exists( 'Livemesh_Elementor_Addons' ) ) {
         public function __clone()
         {
             // Cloning instances of the class is forbidden
-            _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'livemesh-el-addons' ), '3.0.0' );
+            _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'livemesh-el-addons' ), '4.0.0' );
         }
         
         /**
@@ -55,7 +55,7 @@ if ( !class_exists( 'Livemesh_Elementor_Addons' ) ) {
         public function __wakeup()
         {
             // Unserializing instances of the class is forbidden
-            _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'livemesh-el-addons' ), '3.0.0' );
+            _doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'livemesh-el-addons' ), '4.0.0' );
         }
         
         private function setup_debug_constants()
@@ -98,6 +98,10 @@ if ( !class_exists( 'Livemesh_Elementor_Addons' ) ) {
             /* Ensure WPML String Translation plugin is active */
             if ( is_plugin_active( 'wpml-string-translation/plugin.php' ) ) {
                 require_once LAE_PLUGIN_DIR . 'i18n/wpml-compatibility-init.php';
+            }
+            /* Initialize the theme builder templates - Requires elementor pro plugin */
+            if ( is_plugin_active( 'elementor-pro/elementor-pro.php' ) ) {
+                require_once LAE_PLUGIN_DIR . 'includes/theme-builder/init.php';
             }
         }
         

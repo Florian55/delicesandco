@@ -838,6 +838,12 @@
   background: #fff url('./ajax-loader.gif') center center no-repeat;
 }
 
+@include respond-to-max(1024) {
+  .slick-slider {
+    padding: 0 10px;
+  }
+}
+
 .lae-container {
 
   button.slick-prev, button.slick-next {
@@ -896,10 +902,6 @@
         }
       }
     }
-
-    @include respond-to-max(1024) {
-      display: none !important; /* Let users navigate via touch */
-    }
   }
 
   button.slick-prev {
@@ -908,6 +910,10 @@
     &:before {
       content: "\e904";
     }
+
+    @include respond-to-max(1024) {
+      left: -10px;
+    }
   }
 
   button.slick-next {
@@ -915,6 +921,10 @@
 
     &:before {
       content: "\e905";
+    }
+
+    @include respond-to-max(1024) {
+      right: -10px;
     }
   }
 
@@ -1057,4 +1067,15 @@ $color-collection: (#363636, #46a5d5, #57c0dc, #00a57d, #e87151, #dd5679, #da4f4
     background-color: #fff;
     color: #333 !important;
   }
+}
+
+/* Template Library Theme Builder Templates */
+
+.single-elementor_library [data-elementor-type="livemesh_grid"] .elementor-element.elementor-widget.elementor-widget-livemesh-grid-item {
+  border: 5px double #a4a0a2;
+  padding: 10px;
+}
+
+.single-elementor_library [data-elementor-type="livemesh_grid"] .elementor-column {
+  border: 1px dotted #827e80;
 }

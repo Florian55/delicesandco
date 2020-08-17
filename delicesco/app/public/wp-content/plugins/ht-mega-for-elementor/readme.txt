@@ -2,8 +2,8 @@
 Contributors: hasthemes, htplugins, devitemsllc
 Tags: Elementor, Elementor Addons, Elementor Widgets, elementor page builder, Elementor Blocks
 Requires at least: 4.7
-Tested up to: 5.4.2
-Stable tag: 1.4.6
+Tested up to: 5.5
+Stable tag: 1.4.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,7 +190,10 @@ Visit [HasThemes](https://hasthemes.com/) for more details about HTML, Shopify a
 
 == Changelog ==
 
-= Version: 1.4.6 - Date: 2020-07-29 =
+= Version: 1.4.7 - Date: 2020-08-13 =
+* Capability With latest WordPress Version
+
+= Version: 1.4.6 - Date: 2020-08-11 =
 * Accodion Line height Issue Solved
 
 = Version: 1.4.5 - Date: 2020-07-29 =

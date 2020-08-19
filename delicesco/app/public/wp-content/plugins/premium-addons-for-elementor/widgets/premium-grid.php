@@ -417,7 +417,7 @@ class Premium_Grid extends Widget_Base {
         $img_repeater->add_responsive_control('premium_gallery_image_cell',
 			[
   				'label'                 => __( 'Width', 'premium-addons-for-elementor' ),
-                'description'           => __('Works only when layout set to \'Metro\'', 'premium-addons-for-elementor'),
+                'description'           => __('Works only when layout set to Metro', 'premium-addons-for-elementor'),
 				'label_block'           => true,
                 'default'               => [
                     'unit'  => 'px',

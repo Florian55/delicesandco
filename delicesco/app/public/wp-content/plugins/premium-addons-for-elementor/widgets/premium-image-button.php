@@ -557,7 +557,7 @@ class Premium_Image_Button extends Widget_Base {
                     'value' => Scheme_Color::COLOR_2,
                 ],
                 'selectors'         => [
-                    '{{WRAPPER}} .premium-image-button .premium-image-button-text-icon-wrapper'   => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .premium-image-button .premium-image-button-text-icon-wrapper span'   => 'color: {{VALUE}};',
                 ]
             ]);
         
@@ -677,7 +677,7 @@ class Premium_Image_Button extends Widget_Base {
                     'value' => Scheme_Color::COLOR_1,
                 ],
                 'selectors'         => [
-                    '{{WRAPPER}} .premium-image-button:hover .premium-image-button-text-icon-wrapper'   => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .premium-image-button:hover .premium-image-button-text-icon-wrapper span'   => 'color: {{VALUE}};',
                 ],
                 'condition'         => [
                     'premium_image_button_hover_effect!'   => 'style4'

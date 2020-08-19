@@ -235,7 +235,7 @@ class MetaSlider_Api {
 				unset($slideshow['slides'][$order]);
 				$slideshow['slides'][$order] = array(
 					'id' => $slide_id,
-					'thumbnail' => $thumbnail_data['0'],
+					'thumbnail' => isset($thumbnail_data[0]) ? $thumbnail_data['0'] : '',
 					'post_excerpt' => get_post_field('post_excerpt', $slide_id),
 					'order' => $order,
 					'meta' =>  array()
@@ -767,96 +767,117 @@ if (class_exists('WP_REST_Controller')) :
 
 			register_rest_route($this->namespace, '/slideshow/all', array(array(
 				'methods' => 'GET',
-				'callback' => array($this->api, 'get_slideshows')
+                'callback' => array($this->api, 'get_slideshows'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			register_rest_route($this->namespace, '/slideshow/list', array(array(
 				'methods' => 'GET',
-				'callback' => array($this->api, 'list_slideshows')
+                'callback' => array($this->api, 'list_slideshows'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			register_rest_route($this->namespace, '/slideshow/single', array(array(
 				'methods' => 'GET',
-				'callback' => array($this->api, 'get_single_slideshow')
+                'callback' => array($this->api, 'get_single_slideshow'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			register_rest_route($this->namespace, '/slideshow/preview', array(array(
 				'methods' => 'GET',
-				'callback' => array($this->api, 'get_preview')
+                'callback' => array($this->api, 'get_preview'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			register_rest_route($this->namespace, '/slideshow/save', array(array(
 				'methods' => 'POST',
-				'callback' => array($this->api, 'save_slideshow')
+                'callback' => array($this->api, 'save_slideshow'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			register_rest_route($this->namespace, '/slideshow/delete', array(array(
 				'methods' => 'POST',
-				'callback' => array($this->api, 'delete_slideshow')
+                'callback' => array($this->api, 'delete_slideshow'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			register_rest_route($this->namespace, '/slideshow/duplicate', array(array(
 				'methods' => 'POST',
-				'callback' => array($this->api, 'duplicate_slideshow')
+                'callback' => array($this->api, 'duplicate_slideshow'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			register_rest_route($this->namespace, '/slideshow/search', array(array(
 				'methods' => 'GET',
-				'callback' => array($this->api, 'search_slideshows')
+                'callback' => array($this->api, 'search_slideshows'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			register_rest_route($this->namespace, '/slideshow/export', array(array(
 				'methods' => 'GET',
-				'callback' => array($this->api, 'export_slideshows')
+                'callback' => array($this->api, 'export_slideshows'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			register_rest_route($this->namespace, '/slideshow/import', array(array(
 				'methods' => 'POST',
-				'callback' => array($this->api, 'import_slideshows')
+                'callback' => array($this->api, 'import_slideshows'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			
 			register_rest_route($this->namespace, '/themes/all', array(array(
 				'methods' => 'GET',
-				'callback' => array($this->api, 'get_all_free_themes')
+                'callback' => array($this->api, 'get_all_free_themes'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			register_rest_route($this->namespace, '/themes/custom', array(array(
 				'methods' => 'GET',
-				'callback' => array($this->api, 'get_custom_themes')
+                'callback' => array($this->api, 'get_custom_themes'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			register_rest_route($this->namespace, '/themes/set', array(array(
 				'methods' => 'POST',
-				'callback' => array($this->api, 'set_theme')
+                'callback' => array($this->api, 'set_theme'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			
 			register_rest_route($this->namespace, '/import/images', array(array(
 				'methods' => 'POST',
-				'callback' => array($this->api, 'import_images')
+                'callback' => array($this->api, 'import_images'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 			
 			register_rest_route($this->namespace, '/tour/status', array(array(
 				'methods' => 'POST',
-				'callback' => array($this->api, 'set_tour_status')
+                'callback' => array($this->api, 'set_tour_status'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 
 			register_rest_route($this->namespace, '/settings/save', array(array(
 				'methods' => 'POST',
-				'callback' => array($this->api, 'save_all_settings')
+                'callback' => array($this->api, 'save_all_settings'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 
 			register_rest_route($this->namespace, '/settings/save-single', array(array(
 				'methods' => 'POST',
-				'callback' => array($this->api, 'save_single_setting')
+                'callback' => array($this->api, 'save_single_setting'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 
 			register_rest_route($this->namespace, '/settings/save-global', array(array(
 				'methods' => 'POST',
-				'callback' => array($this->api, 'save_global_setting')
+                'callback' => array($this->api, 'save_global_setting'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 
 			register_rest_route($this->namespace, '/settings/defaults', array(array(
 				'methods' => 'GET',
-				'callback' => array($this->api, 'get_default_settings')
+                'callback' => array($this->api, 'get_default_settings'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 
 			register_rest_route($this->namespace, '/settings/defaults/save', array(array(
 				'methods' => 'POST',
-				'callback' => array($this->api, 'save_default_settings')
+                'callback' => array($this->api, 'save_default_settings'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 
 			register_rest_route($this->namespace, '/images/ids-from-filenames', array(array(
 				'methods' => 'POST',
-				'callback' => array($this->api, 'get_image_ids_from_file_name')
+                'callback' => array($this->api, 'get_image_ids_from_file_name'),
+                'permission_callback' => array($this->api, 'can_access'),
 			)));
 		}
 	}

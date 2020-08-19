@@ -3,7 +3,7 @@ Contributors: matchalabs, DavidAnderson, dnutbourne, kbat82
 Tags: slideshow, slider, image slider, carousel, gallery, flexslider, wordpress slider, nivoslider, rotating banner, responsive slideshow, seo slideshow, unsplash
 Donate link: https://david.dw-perspective.org.uk/donate
 Requires at least: 3.5
-Stable tag: 3.17.0
+Stable tag: 3.17.1
 Requires PHP: 5.2
 Tested up to: 5.5
 License: GPLv2 or later
@@ -167,6 +167,11 @@ See https://www.metaslider.com/documentation/image-cropping/
 6. Administration panel - selecting slides
 
 == Changelog ==
+
+= 3.17.1 - 2020/Aug/13 =
+
+* TWEAK: Adds permission_callback check to register_rest_route as an added redundency
+* TWEAK: Updates colorbox's jQuery .live() function to use .on()
 
 = 3.17.0 - 2020/Aug/5 =
 
@@ -851,4 +856,4 @@ More info/Comments: http://www.metaslider.com/coming-soon-meta-slider-2-6-free/
 * Initial version
 
 == Upgrade Notice ==
-* 3.17.0 : Update now to have more control over importing and exporting your slideshows
+* 3.17.1 : This update just adds an extra permissions check to the REST route endpoints

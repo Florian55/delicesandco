@@ -88,6 +88,7 @@ class Premium_Counter extends Widget_Base {
 			[
 				'label'			=> __( 'Starting Number', 'premium-addons-for-elementor' ),
 				'type'			=> Controls_Manager::NUMBER,
+				'dynamic'       => [ 'active' => true ],
 				'default'		=> 0
 			]
 		);
@@ -96,6 +97,7 @@ class Premium_Counter extends Widget_Base {
 			[
 				'label'			=> __( 'Ending Number', 'premium-addons-for-elementor' ),
 				'type'			=> Controls_Manager::NUMBER,
+				'dynamic'       => [ 'active' => true ],
 				'default'		=> 500
 			]
 		);

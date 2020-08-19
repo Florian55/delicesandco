@@ -114,6 +114,15 @@ class Premium_Vscroll extends Widget_Base {
 		     	'multiple'      => false,
                 'label_block'   => true,
 		  	]
+        );
+        
+        $temp_repeater->add_control('template_id',
+		  	[
+		     	'label'			=> __( 'Section ID', 'premium-addons-for-elementor' ),
+                'type'          => Controls_Manager::TEXT,
+                'description'   => __('Use this option to add unique ID to your template section', 'premium-addons-for-elementor'),
+                'dynamic'       => [ 'active' => true ],
+		  	]
 		);
         
         $this->add_control('section_repeater',
@@ -873,13 +882,18 @@ class Premium_Vscroll extends Widget_Base {
         
         $this->add_render_attribute( 'vertical_scroll_dots_list', 'class', array( 'premium-vscroll-dots-list' ) );
         
-        $this->add_render_attribute( 'vertical_scroll_menu', 'id', 'premium-vscroll-nav-menu-' . $id );
+        $this->add_render_attribute( 'vertical_scroll_menu', [
+            'id'    => 'premium-vscroll-nav-menu-' . $id,
+            'class' => [
+                'premium-vscroll-nav-menu',
+                $settings['navigation_menu_pos']
+            ]
+        ]);
         
-        $this->add_render_attribute( 'vertical_scroll_menu', 'class', array( 'premium-vscroll-nav-menu', $settings['navigation_menu_pos'] ) );
-        
-        $this->add_render_attribute( 'vertical_scroll_sections_wrap', 'id', 'premium-vscroll-sections-wrap-' . $id );
-        
-        $this->add_render_attribute( 'vertical_scroll_sections_wrap', 'class', 'premium-vscroll-sections-wrap' );
+        $this->add_render_attribute( 'vertical_scroll_sections_wrap', [
+            'class' => 'premium-vscroll-sections-wrap',
+            'id'    => 'premium-vscroll-sections-wrap-' . $id
+        ]);
         
         $vscroll_settings = [
             'id'            => $id, 
@@ -898,25 +912,31 @@ class Premium_Vscroll extends Widget_Base {
         
         $templates = 'templates' === $settings['content_type'] ? $settings['section_repeater'] : $settings['id_repeater'];
         
-        $checkType = 'templates' === $settings['content_type'] ? true : false;
-
         $nav_items = $settings['nav_menu_repeater'];
-        
+
         ?>
 
         <div <?php echo $this->get_render_attribute_string('vertical_scroll_wrapper'); ?> data-settings='<?php echo wp_json_encode($vscroll_settings); ?>'>
             <?php if ('yes' == $settings['nav_menu_switch'] ) : ?>
                 <ul <?php echo $this->get_render_attribute_string('vertical_scroll_menu'); ?>>
-                    <?php foreach( $nav_items as $index => $item ) : ?>
-                        <li data-menuanchor="<?php echo $checkType ? 'section_' . $id . $index : $templates[$index]['section_id']; ?>" class="premium-vscroll-nav-item"><div class="premium-vscroll-nav-link"><?php echo $item['nav_menu_item'] ?></div></li>
+                    <?php foreach( $nav_items as $index => $item ) :
+                        $section_id = $this->get_template_id( $index );
+                    ?>
+                        <li class="premium-vscroll-nav-item" data-menuanchor="<?php echo esc_attr( $section_id ); ?>">
+                            <div class="premium-vscroll-nav-link">
+                                <?php echo $item['nav_menu_item']; ?>
+                            </div>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
             <div <?php echo $this->get_render_attribute_string('vertical_scroll_inner'); ?>>
                 <div <?php echo $this->get_render_attribute_string('vertical_scroll_dots'); ?>>
                     <ul <?php echo $this->get_render_attribute_string('vertical_scroll_dots_list'); ?>>
-                        <?php foreach( $templates as $index => $section ) : ?>
-                            <li data-index="<?php echo $index; ?>" data-menuanchor="<?php echo $checkType ? 'section_' . $id . $index : $templates[$index]['section_id']; ?>" class="premium-vscroll-dot-item"><div class="premium-vscroll-nav-link"><span></span></div></li>
+                        <?php foreach( $templates as $index => $section ) :
+                            $section_id = $this->get_template_id( $index );
+                        ?>
+                            <li data-index="<?php echo $index; ?>" data-menuanchor="<?php echo esc_attr( $section_id ); ?>" class="premium-vscroll-dot-item"><div class="premium-vscroll-nav-link"><span></span></div></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -924,8 +944,15 @@ class Premium_Vscroll extends Widget_Base {
                     <div <?php echo $this->get_render_attribute_string('vertical_scroll_sections_wrap'); ?>>
 
                         <?php foreach( $templates as $index => $section ) :
-                                $this->add_render_attribute('section_' . $index, 'class', [ 'premium-vscroll-temp', 'premium-vscroll-temp-' . $id ] );
-                                $this->add_render_attribute('section_' . $index, 'id', 'section_' . $id . $index );
+                                $section_id = $this->get_template_id( $index );
+
+                                $this->add_render_attribute('section_' . $index, [
+                                    'id'    => $section_id,
+                                    'class' => [
+                                        'premium-vscroll-temp',
+                                        'premium-vscroll-temp-' . $id
+                                    ]
+                                ]);
                             ?>
                             <div <?php echo $this->get_render_attribute_string('section_' . $index); ?>>
                                 <?php 
@@ -939,5 +966,42 @@ class Premium_Vscroll extends Widget_Base {
             </div>
         </div>
         
-    <?php }   
+    <?php }
+
+    /**
+     * Get template ID
+     * 
+     * @since 3.21.0
+     * @access protected
+     * 
+     * @param string $index template index
+     *
+     * @return string $id template ID
+     */
+    protected function get_template_id( $index ) {
+
+        $settings = $this->get_settings_for_display();
+
+        $checkType = 'templates' === $settings['content_type'] ? true : false;
+
+        $templates = $checkType ? $settings['section_repeater'] : $settings['id_repeater'];
+
+        if( ! $checkType ) {
+
+            $id = $templates[ $index ][ 'section_id' ];
+
+            return $id;
+        }
+
+        $widget_id = $this->get_id();
+
+        $id = 'section_' . $widget_id . $index;
+
+        if( ! empty( $templates[ $index ][ 'template_id' ] ) ) {
+            $id = $templates[ $index ][ 'template_id' ];
+        }
+
+        return $id;
+
+    }
 }

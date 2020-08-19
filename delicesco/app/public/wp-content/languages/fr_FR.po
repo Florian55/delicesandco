@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.5.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-08-14 15:11:36+0000\n"
+"PO-Revision-Date: 2020-08-19 08:57:00+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -464,54 +464,54 @@ msgctxt "unit symbol"
 msgid "TB"
 msgstr "To"
 
-#: wp-includes/general-template.php:4446
+#: wp-includes/general-template.php:4447
 msgctxt "admin color scheme"
 msgid "Modern"
 msgstr "Moderne"
 
 #. translators: 1: Title prefix. 2: Title.
-#: wp-includes/general-template.php:1722
+#: wp-includes/general-template.php:1723
 msgctxt "archive title"
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
 #. translators: %s: Taxonomy singular name.
-#: wp-includes/general-template.php:1703
+#: wp-includes/general-template.php:1704
 msgctxt "taxonomy term archive title prefix"
 msgid "%s:"
 msgstr "%s :"
 
-#: wp-includes/general-template.php:1695
+#: wp-includes/general-template.php:1696
 msgctxt "post type archive title prefix"
 msgid "Archives:"
 msgstr "Archives :"
 
-#: wp-includes/general-template.php:1672
+#: wp-includes/general-template.php:1673
 msgctxt "date archive title prefix"
 msgid "Day:"
 msgstr "Jour :"
 
-#: wp-includes/general-template.php:1669
+#: wp-includes/general-template.php:1670
 msgctxt "date archive title prefix"
 msgid "Month:"
 msgstr "Mois :"
 
-#: wp-includes/general-template.php:1666
+#: wp-includes/general-template.php:1667
 msgctxt "date archive title prefix"
 msgid "Year:"
 msgstr "Année :"
 
-#: wp-includes/general-template.php:1663
+#: wp-includes/general-template.php:1664
 msgctxt "author archive title prefix"
 msgid "Author:"
 msgstr "Auteur :"
 
-#: wp-includes/general-template.php:1660
+#: wp-includes/general-template.php:1661
 msgctxt "tag archive title prefix"
 msgid "Tag:"
 msgstr "Étiquette :"
 
-#: wp-includes/general-template.php:1657
+#: wp-includes/general-template.php:1658
 msgctxt "category archive title prefix"
 msgid "Category:"
 msgstr "Catégorie :"
@@ -1334,7 +1334,7 @@ msgstr "L’état %1$s de la publication n’est pas enregistré et pourrait ne 
 msgid "In reply to %s."
 msgstr "En réponse à %s."
 
-#: wp-includes/general-template.php:2364
+#: wp-includes/general-template.php:2365
 msgid "Previous and next months"
 msgstr "Mois précédents et suivants"
 
@@ -7112,7 +7112,7 @@ msgstr "<strong>Erreur</strong> : identifiant, adresse de messagerie ou mot de 
 
 #. translators: 1: Blog name, 2: Separator (raquo), 3: Term name, 4: Taxonomy
 #. singular name.
-#: wp-includes/general-template.php:3106
+#: wp-includes/general-template.php:3107
 msgid "%1$s %2$s %3$s %4$s Feed"
 msgstr "Flux pour %1$s %2$s %3$s %4$s"
 
@@ -7784,7 +7784,7 @@ msgid "Older comments"
 msgstr "Commentaires plus anciens"
 
 #. translators: Post calendar label. %s: Date.
-#: wp-includes/general-template.php:2337
+#: wp-includes/general-template.php:2338
 msgid "Posts published on %s"
 msgstr "Publications publiées sur %s"
 
@@ -8893,52 +8893,52 @@ msgstr "Répondre à %s"
 msgid "The following values do not describe a valid date: year %1$s, month %2$s, day %3$s."
 msgstr "Les valeurs suivantes ne décrivent pas une date valide : année %1$s, mois %2$s, jour %3$s."
 
-#: wp-includes/general-template.php:1675
+#: wp-includes/general-template.php:1676
 msgctxt "post format archive title"
 msgid "Asides"
 msgstr "En passant"
 
-#: wp-includes/general-template.php:1671 wp-includes/general-template.php:2335
+#: wp-includes/general-template.php:1672 wp-includes/general-template.php:2336
 msgctxt "daily archives date format"
 msgid "F j, Y"
 msgstr "j F Y"
 
-#: wp-includes/general-template.php:1679
+#: wp-includes/general-template.php:1680
 msgctxt "post format archive title"
 msgid "Images"
 msgstr "Images"
 
-#: wp-includes/general-template.php:1677
+#: wp-includes/general-template.php:1678
 msgctxt "post format archive title"
 msgid "Galleries"
 msgstr "Galeries"
 
-#: wp-includes/general-template.php:1683
+#: wp-includes/general-template.php:1684
 msgctxt "post format archive title"
 msgid "Quotes"
 msgstr "Citations"
 
-#: wp-includes/general-template.php:1681
+#: wp-includes/general-template.php:1682
 msgctxt "post format archive title"
 msgid "Videos"
 msgstr "Vidéos"
 
-#: wp-includes/general-template.php:1685
+#: wp-includes/general-template.php:1686
 msgctxt "post format archive title"
 msgid "Links"
 msgstr "Liens"
 
-#: wp-includes/general-template.php:1687
+#: wp-includes/general-template.php:1688
 msgctxt "post format archive title"
 msgid "Statuses"
 msgstr "États"
 
-#: wp-includes/general-template.php:1691
+#: wp-includes/general-template.php:1692
 msgctxt "post format archive title"
 msgid "Chats"
 msgstr "Discussions"
 
-#: wp-includes/general-template.php:1689
+#: wp-includes/general-template.php:1690
 msgctxt "post format archive title"
 msgid "Audio"
 msgstr "Son"
@@ -10071,22 +10071,22 @@ msgstr "Groupe de colonnes"
 msgid "Could not find the specified string."
 msgstr "Impossible de trouver la chaîne spécifiée."
 
-#: wp-includes/general-template.php:4518
+#: wp-includes/general-template.php:4519
 msgctxt "admin color scheme"
 msgid "Coffee"
 msgstr "Café"
 
-#: wp-includes/general-template.php:4506
+#: wp-includes/general-template.php:4507
 msgctxt "admin color scheme"
 msgid "Ocean"
 msgstr "Océan"
 
-#: wp-includes/general-template.php:4494
+#: wp-includes/general-template.php:4495
 msgctxt "admin color scheme"
 msgid "Ectoplasm"
 msgstr "Ectoplasme"
 
-#: wp-includes/general-template.php:4482
+#: wp-includes/general-template.php:4483
 msgctxt "admin color scheme"
 msgid "Sunrise"
 msgstr "Lever du soleil"
@@ -10156,17 +10156,17 @@ msgstr "no-subset"
 msgid "Use commas instead of %s to separate excluded terms."
 msgstr "Utilisez des virgules au lieu de %s pour séparer les termes exclus."
 
-#: wp-includes/general-template.php:4470
+#: wp-includes/general-template.php:4471
 msgctxt "admin color scheme"
 msgid "Midnight"
 msgstr "Minuit"
 
-#: wp-includes/general-template.php:4434
+#: wp-includes/general-template.php:4435
 msgctxt "admin color scheme"
 msgid "Light"
 msgstr "Lumineux"
 
-#: wp-includes/general-template.php:4422
+#: wp-includes/general-template.php:4423
 msgctxt "admin color scheme"
 msgid "Default"
 msgstr "Par défaut"
@@ -10832,7 +10832,7 @@ msgid "Display post date?"
 msgstr "Afficher la date de la publication ?"
 
 #. translators: 1: Blog name, 2: Separator (raquo), 3: Post type name.
-#: wp-includes/general-template.php:3112
+#: wp-includes/general-template.php:3113
 msgid "%1$s %2$s %3$s Feed"
 msgstr "%1$s %2$s Flux pour %3$s"
 
@@ -11279,12 +11279,12 @@ msgstr "Identifiant utilisateur non valide."
 msgid "Sorry, you are not allowed to edit posts in this post type."
 msgstr "Désolé, vous n’avez pas l’autorisation de modifier les entrées dans ce type de publication."
 
-#: wp-includes/general-template.php:1186 wp-includes/general-template.php:1668
+#: wp-includes/general-template.php:1186 wp-includes/general-template.php:1669
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr "F Y"
 
-#: wp-includes/general-template.php:1183 wp-includes/general-template.php:1665
+#: wp-includes/general-template.php:1183 wp-includes/general-template.php:1666
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr "Y"
@@ -11421,7 +11421,7 @@ msgstr "<strong>Erreur</strong> : veuillez saisir votre commentaire."
 msgid "Documentation"
 msgstr "Documentation"
 
-#: wp-includes/general-template.php:4324 wp-includes/formatting.php:3872
+#: wp-includes/general-template.php:4325 wp-includes/formatting.php:3872
 #: wp-admin/themes.php:249
 msgid "&hellip;"
 msgstr "…"
@@ -11488,7 +11488,7 @@ msgstr "Ce fichier n’est pas une image. Veuillez en téléverser un autre."
 msgid "This is larger than the maximum size. Please try another."
 msgstr "Ce fichier est plus grand que la taille maximale. Veuillez en téléverser un autre."
 
-#: wp-includes/general-template.php:4458
+#: wp-includes/general-template.php:4459
 msgctxt "admin color scheme"
 msgid "Blue"
 msgstr "Bleu"
@@ -13746,64 +13746,64 @@ msgstr "L’utilisateur a bloqué les requêtes HTTP."
 msgid "Gray"
 msgstr "Gris"
 
-#: wp-includes/general-template.php:4221
+#: wp-includes/general-template.php:4222
 msgid "Next &raquo;"
 msgstr "Suivant »"
 
-#: wp-includes/general-template.php:4220
+#: wp-includes/general-template.php:4221
 msgid "&laquo; Previous"
 msgstr "« Précédent"
 
 #. translators: 1: Blog name, 2: Separator (raquo), 3: Search query.
-#: wp-includes/general-template.php:3110
+#: wp-includes/general-template.php:3111
 msgid "%1$s %2$s Search Results for &#8220;%3$s&#8221; Feed"
 msgstr "%1$s %2$s Flux de résultats de la recherche pour « %3$s »"
 
 #. translators: 1: Blog name, 2: Separator (raquo), 3: Author name.
-#: wp-includes/general-template.php:3108
+#: wp-includes/general-template.php:3109
 msgid "%1$s %2$s Posts by %3$s Feed"
 msgstr "%1$s %2$s Flux des articles écrits par %3$s"
 
 #. translators: 1: Blog name, 2: Separator (raquo), 3: Tag name.
-#: wp-includes/general-template.php:3104
+#: wp-includes/general-template.php:3105
 msgid "%1$s %2$s %3$s Tag Feed"
 msgstr "%1$s %2$s Flux de l’étiquette %3$s"
 
 #. translators: 1: Blog name, 2: Separator (raquo), 3: Category name.
-#: wp-includes/general-template.php:3102
+#: wp-includes/general-template.php:3103
 msgid "%1$s %2$s %3$s Category Feed"
 msgstr "%1$s %2$s Flux de la catégorie %3$s"
 
 #. translators: 1: Blog name, 2: Separator (raquo), 3: Post title.
-#: wp-includes/general-template.php:3100
+#: wp-includes/general-template.php:3101
 msgid "%1$s %2$s %3$s Comments Feed"
 msgstr "%1$s %2$s %3$s Flux des commentaires"
 
 #. translators: 1: Blog title, 2: Separator (raquo).
-#: wp-includes/general-template.php:3060
+#: wp-includes/general-template.php:3061
 msgid "%1$s %2$s Comments Feed"
 msgstr "%1$s %2$s Flux des commentaires"
 
 #. translators: 1: Blog title, 2: Separator (raquo).
-#: wp-includes/general-template.php:3058
+#: wp-includes/general-template.php:3059
 msgid "%1$s %2$s Feed"
 msgstr "%1$s %2$s Flux"
 
 #. translators: Separator between blog name and feed type in feed links.
-#: wp-includes/general-template.php:3056 wp-includes/general-template.php:3098
+#: wp-includes/general-template.php:3057 wp-includes/general-template.php:3099
 msgctxt "feed link"
 msgid "&raquo;"
 msgstr "&raquo;"
 
 #. translators: Calendar caption: 1: Month name, 2: 4-digit year.
-#: wp-includes/general-template.php:2265
+#: wp-includes/general-template.php:2266
 msgctxt "calendar caption"
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
 #. translators: 1: Month, 2: Year.
 #. translators: 1: Month name, 2: 4-digit year.
-#: wp-includes/media.php:4118 wp-includes/general-template.php:2021
+#: wp-includes/media.php:4118 wp-includes/general-template.php:2022
 #: wp-admin/includes/class-wp-list-table.php:628
 msgid "%1$s %2$d"
 msgstr "%1$s %2$d"
@@ -14880,7 +14880,7 @@ msgstr "Identifiant"
 
 #: wp-includes/widgets/class-wp-widget-archives.php:30
 #: wp-includes/widgets/class-wp-widget-archives.php:43
-#: wp-includes/blocks/archives.php:35 wp-includes/general-template.php:1652
+#: wp-includes/blocks/archives.php:35 wp-includes/general-template.php:1653
 #: wp-includes/theme-compat/sidebar.php:119
 #: wp-includes/js/dist/block-library.js:9281 wp-admin/includes/file.php:26
 msgid "Archives"

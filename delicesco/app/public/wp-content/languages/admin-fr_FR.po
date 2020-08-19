@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.5.x - Development - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-08-17 04:54:45+0000\n"
+"PO-Revision-Date: 2020-08-18 07:58:45+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -142,7 +142,7 @@ msgstr "Vous pouvez désormais copier des liens dans les écrans des médias et 
 
 #: wp-admin/about.php:152
 msgid "Every release adds improvements to the accessible publishing experience, and that remains true for WordPress 5.5. "
-msgstr "Chaque nouvelle version améliore l’accessibilité de l’expérience de publication, et cela reste vrai pour WordPress 5.5. "
+msgstr "Chaque version améliore l’accessibilité de l’expérience de publication, et cela reste vrai pour WordPress 5.5. "
 
 #: wp-admin/about.php:151
 msgid "Accessibility"
@@ -222,7 +222,7 @@ msgstr "WordPress 5.5 inclut par défaut un plan de site XML qui aide les moteur
 
 #: wp-admin/about.php:78
 msgid "WordPress sites work well with search engines. "
-msgstr "Les sites WordPress sont appréciés par les moteurs de recherche. "
+msgstr "Les sites WordPress fonctionnent bien avec les moteurs de recherche. "
 
 #: wp-admin/about.php:77
 msgid "Say hello to your new sitemap."
@@ -234,7 +234,7 @@ msgstr "Sur mobile, le chargement différé peut également empêcher les naviga
 
 #: wp-admin/about.php:69
 msgid "In WordPress 5.5, images wait to load until they’re just about to scroll into view. The technical term is ‘lazy loading.’"
-msgstr "Sur WordPress 5.5, les images vont attendre d’être dans la zone consultée de l’écran avant de se charger. Techniquement, il s’agit de chargement différé, ou « lazy-load »."
+msgstr "Dans WordPress 5.5, les images attendent d'être chargées jusqu'à ce qu'elles soient sur le point de défiler. Le terme technique est chargement différé ou « lazy loading »."
 
 #: wp-admin/about.php:68
 msgid "Images give your story a lot of impact, but they can sometimes make your site seem slow."
